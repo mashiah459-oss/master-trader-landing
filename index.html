@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מתן משיח | Master Trader</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #060608;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --gold: #D4AF37;
+            --gold-light: #F0D060;
+            --gold-dark: #A8872B;
+            --gold-glow: rgba(212, 175, 55, 0.35);
+            --gold-subtle: rgba(212, 175, 55, 0.08);
+            --text: #F5F5F5;
+            --text-dim: #8A8A9A;
+            --text-muted: #555566;
+            --glass-border: rgba(255, 255, 255, 0.07);
+            --glass-border-hover: rgba(212, 175, 55, 0.25);
+            --green: #22C55E;
+            --green-glow: rgba(34, 197, 94, 0.15);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* === AMBIENT BACKGROUND === */
+        .bg-ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .bg-orb-1 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+            top: -10%; left: -15%;
+            animation: orbFloat1 25s ease-in-out infinite;
+        }
+
+        .bg-orb-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+            bottom: 10%; right: -20%;
+            animation: orbFloat2 30s ease-in-out infinite;
+        }
+
+        .bg-orb-3 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbFloat3 20s ease-in-out infinite;
+        }
+
+        @keyframes orbFloat1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(40px, 30px); }
+        }
+        @keyframes orbFloat2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, -40px); }
+        }
+        @keyframes orbFloat3 {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.3); }
+        }
+
+        /* Grain texture overlay */
+        .bg-ambient::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        /* === CONTAINER === */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 48px 20px 60px;
+        }
+
+        /* === LOGO === */
+        .logo-wrap {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo-svg {
+            width: 80px;
+            height: 80px;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+        }
+
+        /* === PROFILE === */
+        .profile {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .profile h1 {
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #F5F5F5 0%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+
+        .profile .tagline {
+            color: var(--text-dim);
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .profile .tagline strong {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* === STATS BAR === */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 2px;
+            margin-bottom: 36px;
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 16px 8px;
+        }
+
+        .stat {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .stat:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background: var(--glass-border);
+        }
+
+        .stat-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--gold);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 6px;
+            display: block;
+        }
+
+        /* === SECTION LABEL === */
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 32px 0 16px;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to var(--dir, left), rgba(212, 175, 55, 0.15), transparent);
+        }
+        .section-label::before { --dir: left; }
+        .section-label::after { --dir: right; }
+
+        .section-label span {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold-dark);
+            white-space: nowrap;
+        }
+
+        /* === GLASS CARD === */
+        .card {
+            display: block;
+            text-decoration: none;
+            color: var(--text);
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: 22px 24px;
+            margin-bottom: 14px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            background: radial-gradient(
+                600px circle at var(--mx, 50%) var(--my, 50%),
+                rgba(212, 175, 55, 0.06) 0%,
+                transparent 40%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .card:hover::before { opacity: 1; }
+
+        .card:hover {
+            border-color: var(--glass-border-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+                        0 0 0 1px rgba(212, 175, 55, 0.1),
+                        0 0 60px rgba(212, 175, 55, 0.08);
+        }
+
+        .card:active { transform: translateY(-1px); }
+
+        .card-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 22px;
+            position: relative;
+        }
+
+        .card-icon.gold { background: var(--gold-subtle); }
+        .card-icon.red { background: rgba(255, 50, 50, 0.08); }
+        .card-icon.blue { background: rgba(60, 130, 246, 0.08); }
+        .card-icon.green { background: var(--green-glow); }
+
+        .card-body { flex: 1; min-width: 0; }
+
+        .card-body h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .card-body p {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        .card-arrow {
+            font-size: 18px;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            margin-right: auto;
+        }
+
+        .card:hover .card-arrow {
+            color: var(--gold);
+            transform: translateX(-5px);
+        }
+
+        /* === FEATURED CARD === */
+        .card.featured {
+            border-color: rgba(212, 175, 55, 0.15);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.04) 0%, var(--bg-card) 100%);
+        }
+
+        .card.featured::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        /* === BADGES === */
+        .badge {
+            display: inline-block;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .badge.gold {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.08));
+            color: var(--gold-light);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .badge.green {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.08));
+            color: var(--green);
+            border: 1px solid rgba(34, 197, 94, 0.15);
+        }
+
+        .badge.hot {
+            background: linear-gradient(135deg, rgba(255, 80, 50, 0.2), rgba(255, 80, 50, 0.08));
+            color: #FF6B4A;
+            border: 1px solid rgba(255, 80, 50, 0.15);
+        }
+
+        /* === PROMO CODE === */
+        .promo-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 8px 14px;
+            background: rgba(34, 197, 94, 0.04);
+            border: 1px dashed rgba(34, 197, 94, 0.15);
+            border-radius: 10px;
+        }
+
+        .promo-box span {
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .promo-box code {
+            font-family: 'Inter', monospace;
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--gold-light);
+            letter-spacing: 3px;
+        }
+
+        .promo-box .copy-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-dim);
+            cursor: pointer;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-family: 'Heebo', sans-serif;
+        }
+
+        .promo-box .copy-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        /* === TESTIMONIALS === */
+        .testimonials-wrap {
+            margin-top: 8px;
+            margin-left: -20px;
+            margin-right: -20px;
+            position: relative;
+            overflow: hidden;
+            direction: ltr;
+        }
+
+        .testimonials-wrap::before,
+        .testimonials-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 40px;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .testimonials-wrap::before {
+            right: 0;
+            background: linear-gradient(to right, transparent, var(--bg));
+        }
+
+        .testimonials-wrap::after {
+            left: 0;
+            background: linear-gradient(to left, transparent, var(--bg));
+        }
+
+        .testimonials-scroll {
+            display: flex;
+            gap: 14px;
+            scrollbar-width: none;
+            padding: 4px 20px 16px;
+            width: max-content;
+            animation: autoScroll 120s linear infinite;
+            direction: ltr;
+        }
+
+        .testimonials-wrap:hover .testimonials-scroll {
+            animation-play-state: paused;
+        }
+
+        .testimonials-scroll::-webkit-scrollbar { display: none; }
+
+        @keyframes autoScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .review-img-card {
+            flex-shrink: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .review-img-card:hover {
+            border-color: var(--glass-border-hover);
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.08);
+        }
+
+        .review-img-card img {
+            height: 100px;
+            width: auto;
+            display: block;
+        }
+
+        /* Reviews use image cards — see .review-img-card above */
+
+        /* === FOOTER === */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .social-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--text-dim);
+            transition: fill 0.3s;
+        }
+
+        .social-btn:hover {
+            border-color: var(--glass-border-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .social-btn:hover svg { fill: var(--gold); }
+
+        .footer-text {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* === TOAST === */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: var(--bg);
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .reveal-d1 { animation-delay: 0.05s; }
+        .reveal-d2 { animation-delay: 0.12s; }
+        .reveal-d3 { animation-delay: 0.19s; }
+        .reveal-d4 { animation-delay: 0.26s; }
+        .reveal-d5 { animation-delay: 0.33s; }
+        .reveal-d6 { animation-delay: 0.40s; }
+        .reveal-d7 { animation-delay: 0.47s; }
+        .reveal-d8 { animation-delay: 0.54s; }
+        .reveal-d9 { animation-delay: 0.61s; }
+        .reveal-d10 { animation-delay: 0.68s; }
+        .reveal-d11 { animation-delay: 0.75s; }
+
+        /* Count-up animation */
+        @keyframes countPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .stat-number.counted {
+            animation: countPulse 0.3s ease;
+        }
+
+        /* === SCROLLBAR === */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 4px; }
+
+        /* === RESULTS GALLERY === */
+        .results-gallery {
+            margin-top: 8px;
+            margin-left: -20px;
+            margin-right: -20px;
+            overflow: hidden;
+            position: relative;
+            min-height: 330px;
+            direction: ltr;
+        }
+
+        .results-gallery::before,
+        .results-gallery::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 40px;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .results-gallery::before {
+            right: 0;
+            background: linear-gradient(to right, transparent, var(--bg));
+        }
+
+        .results-gallery::after {
+            left: 0;
+            background: linear-gradient(to left, transparent, var(--bg));
+        }
+
+        .results-scroll {
+            display: flex;
+            gap: 14px;
+            padding: 4px 20px 16px;
+            width: max-content;
+            animation: resultsAutoScroll 100s linear infinite;
+            direction: ltr;
+        }
+
+        .results-gallery:hover .results-scroll {
+            animation-play-state: paused;
+        }
+
+        @keyframes resultsAutoScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .result-img-card {
+            flex-shrink: 0;
+            width: 220px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            background: var(--bg-card);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .result-img-card:hover {
+            border-color: var(--glass-border-hover);
+            transform: scale(1.03);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4),
+                        0 0 40px rgba(212, 175, 55, 0.08);
+        }
+
+        .result-img-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 16px;
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.15);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* === MOBILE === */
+        @media (max-width: 480px) {
+            .container { padding: 36px 16px 50px; }
+            .profile h1 { font-size: 26px; }
+            .stat-number { font-size: 20px; }
+            .testimonial { width: 270px; }
+            .result-card .result-value { font-size: 20px; }
+            .result-card.wide .result-value { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-ambient">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+</div>
+
+<div class="container">
+
+    <!-- Logo -->
+    <div class="logo-wrap reveal reveal-d1">
+        <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer ring -->
+            <circle cx="100" cy="100" r="95" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.4"/>
+            <!-- Inner circle bg -->
+            <circle cx="100" cy="100" r="78" fill="#0A0A0C"/>
+            <circle cx="100" cy="100" r="78" fill="url(#innerGlow)" opacity="0.3"/>
+            <!-- Chart line (uptrend) -->
+            <polyline points="50,130 70,125 85,115 95,120 110,95 130,80 150,65"
+                fill="none" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Chart glow -->
+            <polyline points="50,130 70,125 85,115 95,120 110,95 130,80 150,65"
+                fill="none" stroke="url(#goldGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.2" filter="url(#glow)"/>
+            <!-- Arrow tip -->
+            <polygon points="150,65 145,78 155,75" fill="url(#goldGrad)"/>
+            <!-- MT text -->
+            <text x="100" y="162" text-anchor="middle" font-family="Inter, sans-serif" font-size="19" font-weight="800" fill="url(#goldGrad)" letter-spacing="6">MASTER</text>
+            <text x="100" y="180" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#8A8A9A" letter-spacing="8">TRADER</text>
+            <!-- Defs -->
+            <defs>
+                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#F0D060"/>
+                    <stop offset="50%" stop-color="#D4AF37"/>
+                    <stop offset="100%" stop-color="#A8872B"/>
+                </linearGradient>
+                <radialGradient id="innerGlow" cx="50%" cy="30%" r="60%">
+                    <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.15"/>
+                    <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+                </radialGradient>
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+        </svg>
+    </div>
+
+    <!-- Profile -->
+    <div class="profile reveal reveal-d2">
+        <h1>מתן משיח</h1>
+        <p class="tagline">סוחר, מנטור ויוצר תוכן<br><strong>הופך מסחר לעסק רווחי</strong></p>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar reveal reveal-d3">
+        <div class="stat">
+            <span class="stat-number" data-target="87" data-suffix="%">0</span>
+            <span class="stat-label">אחוז הצלחה</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number" data-target="4" data-suffix="">0</span>
+            <span class="stat-label">חשבונות ממומנים</span>
+        </div>
+        <div class="stat">
+            <span class="stat-number" data-target="13" data-suffix="">0</span>
+            <span class="stat-label">משיכות בחודש</span>
+        </div>
+    </div>
+
+    <!-- Results — Real Screenshots -->
+    <div class="section-label reveal reveal-d4">
+        <span>התוצאות שלי</span>
+    </div>
+
+    <div class="results-gallery reveal reveal-d4">
+        <div class="results-scroll" id="resultsScroll">
+            <div class="result-img-card"><img src="images/IMG_5757.jpg" alt="$27,014 payouts in 30 days" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5749.jpg" alt="Topstep — $7,823 highest day, 11 day profit streak" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5750.jpg" alt="August — $37,815 Net P&L, 87.5% win rate" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5751.jpg" alt="Withdrawal requests — succeeded" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5755.jpg" alt="Daily P&L — consistent $1,850+ profits" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5756.jpg" alt="$7,494 payout approved" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5753.jpg" alt="Wise payment — €1,895 received" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5752.jpg" alt="Take Profit Trader — payout emails" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5754.jpg" alt="4 funded PRO+ accounts" loading="lazy"></div>
+            <!-- Duplicate for seamless loop -->
+            <div class="result-img-card"><img src="images/IMG_5757.jpg" alt="$27,014 payouts in 30 days" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5749.jpg" alt="Topstep — $7,823 highest day" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5750.jpg" alt="August — $37,815 Net P&L" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5751.jpg" alt="Withdrawal requests" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5755.jpg" alt="Daily P&L" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5756.jpg" alt="$7,494 payout" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5753.jpg" alt="Wise payment" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5752.jpg" alt="Payout emails" loading="lazy"></div>
+            <div class="result-img-card"><img src="images/IMG_5754.jpg" alt="PRO+ accounts" loading="lazy"></div>
+        </div>
+    </div>
+
+    <!-- Products -->
+    <div class="section-label reveal reveal-d5">
+        <span>שירותים ומוצרים</span>
+    </div>
+
+    <!-- Course - Featured -->
+    <a href="https://whop.com/trading-as-a-business/58c43258-c998-4f1d-a2db-6707625723a3/" target="_blank" class="card featured reveal reveal-d5">
+        <div class="card-inner">
+            <div class="card-icon gold">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 4 3 6 3s6-2 6-3v-5"/>
+                </svg>
+            </div>
+            <div class="card-body">
+                <div class="badge hot">קורס דיגיטלי</div>
+                <h3>עסק או עסקה</h3>
+                <p>הקורס שהופך סוחרים לבעלי עסק אמיתי</p>
+            </div>
+            <span class="card-arrow">&#8592;</span>
+        </div>
+    </a>
+
+    <!-- Club -->
+    <a href="https://mastertradermatmid.lovable.app" target="_blank" class="card reveal reveal-d6">
+        <div class="card-inner">
+            <div class="card-icon gold">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+            </div>
+            <div class="card-body">
+                <div class="badge gold">קהילה</div>
+                <h3>מועדון הסוחר המתמיד</h3>
+                <p>ליווי מקצועי, סיגנלים, ניתוחי שוק ותכנים בלעדיים</p>
+            </div>
+            <span class="card-arrow">&#8592;</span>
+        </div>
+    </a>
+
+    <!-- YouTube -->
+    <a href="https://www.youtube.com/@matanmashiah957" target="_blank" class="card reveal reveal-d7">
+        <div class="card-inner">
+            <div class="card-icon red">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#FF4444">
+                    <path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.5.5c-1 .3-1.7 1.1-2 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2.1 1.9.5 9.5.5 9.5.5s7.6 0 9.5-.5c1-.3 1.7-1.1 2-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z"/>
+                </svg>
+            </div>
+            <div class="card-body">
+                <h3>ערוץ היוטיוב</h3>
+                <p>תוכן חינמי, ניתוחי שוק, טיפים ושיעורי מסחר</p>
+            </div>
+            <span class="card-arrow">&#8592;</span>
+        </div>
+    </a>
+
+    <!-- Tools -->
+    <div class="section-label reveal reveal-d8">
+        <span>כלים שאני ממליץ</span>
+    </div>
+
+    <!-- TradeZella -->
+    <a href="https://tradezella.com/?fpr=matan82" target="_blank" class="card reveal reveal-d9" id="tradezella-card">
+        <div class="card-inner">
+            <div class="card-icon green">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 21H3V3"/><path d="M21 7l-8 8-4-4-6 6"/>
+                </svg>
+            </div>
+            <div class="card-body">
+                <div class="badge green">20% הנחה</div>
+                <h3>TradeZella &mdash; יומן מסחר</h3>
+                <p>ניתוח עסקאות, מעקב ביצועים ובניית אסטרטגיה</p>
+                <div class="promo-box" onclick="event.preventDefault(); event.stopPropagation();">
+                    <span>קוד:</span>
+                    <code>PCQF</code>
+                    <button class="copy-btn" onclick="copyCode(event)">העתק</button>
+                </div>
+            </div>
+            <span class="card-arrow">&#8592;</span>
+        </div>
+    </a>
+
+    <!-- Testimonials -->
+    <div class="section-label reveal reveal-d10">
+        <span>מה אומרים עליי</span>
+    </div>
+
+    <div class="testimonials-wrap reveal reveal-d11">
+        <div class="testimonials-scroll" id="testimonialsScroll">
+            <!-- Set 1 — 15 real review screenshots -->
+            <div class="review-img-card"><img src="images/review-1.png" alt="Amir Sadran review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-2.png" alt="Yaniv Weiss review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-3.png" alt="אורן קארו review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-4.png" alt="Arkash review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-5.png" alt="Hen Haziza review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-6.png" alt="Tair Ben Ami review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-7.png" alt="Zurab Samushia review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-8.png" alt="Ido Boker review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-9.png" alt="Eliya Madniski review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-10.png" alt="Adam Palaria review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-11.png" alt="Adam Harari review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-12.png" alt="Yeheli Raz Atias review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-13.png" alt="יאשה מצקין review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-14.png" alt="אופיר אברג׳יל review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-15.png" alt="Rani Galchenko review" loading="lazy"></div>
+            <!-- Set 2 — duplicate for seamless loop -->
+            <div class="review-img-card"><img src="images/review-1.png" alt="Amir Sadran review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-2.png" alt="Yaniv Weiss review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-3.png" alt="אורן קארו review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-4.png" alt="Arkash review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-5.png" alt="Hen Haziza review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-6.png" alt="Tair Ben Ami review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-7.png" alt="Zurab Samushia review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-8.png" alt="Ido Boker review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-9.png" alt="Eliya Madniski review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-10.png" alt="Adam Palaria review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-11.png" alt="Adam Harari review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-12.png" alt="Yeheli Raz Atias review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-13.png" alt="יאשה מצקין review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-14.png" alt="אופיר אברג׳יל review" loading="lazy"></div>
+            <div class="review-img-card"><img src="images/review-15.png" alt="Rani Galchenko review" loading="lazy"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer reveal reveal-d11">
+        <div class="social-row">
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@matanmashiah957" target="_blank" class="social-btn" aria-label="YouTube">
+                <svg viewBox="0 0 24 24"><path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.5.5c-1 .3-1.7 1.1-2 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2.1 1.9.5 9.5.5 9.5.5s7.6 0 9.5-.5c1-.3 1.7-1.1 2-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z"/></svg>
+            </a>
+            <!-- Instagram -->
+            <a href="#" target="_blank" class="social-btn" aria-label="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.44.41.61.24 1.05.52 1.51.98.46.46.74.9.98 1.51.17.47.36 1.27.41 2.44.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.41 2.44-.24.61-.52 1.05-.98 1.51-.46.46-.9.74-1.51.98-.47.17-1.27.36-2.44.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.44-.41-.61-.24-1.05-.52-1.51-.98-.46-.46-.74-.9-.98-1.51-.17-.47-.36-1.27-.41-2.44C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.24-1.97.41-2.44.24-.61.52-1.05.98-1.51.46-.46.9-.74 1.51-.98.47-.17 1.27-.36 2.44-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.78.3-1.44.71-2.1 1.37S.93 3.36.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.78.71 1.44 1.37 2.1.66.66 1.32 1.07 2.1 1.37.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.78-.3 1.44-.71 2.1-1.37.66-.66 1.07-1.32 1.37-2.1.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.78-.71-1.44-1.37-2.1C21.3 1.42 20.64 1.01 19.86.71 19.1.41 18.22.21 16.95.15 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+            </a>
+        </div>
+        <p class="footer-text">&copy; 2026 מתן משיח &bull; Master Trader</p>
+    </div>
+
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightboxImg" src="" alt="Result screenshot">
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">הקוד הועתק! &#10003;</div>
+
+<script>
+// Mouse glow follow
+document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+});
+
+// Copy promo code
+function copyCode(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText('PCQF').then(() => {
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2000);
+    });
+}
+
+// Count-up animation for stats
+function animateCounters() {
+    document.querySelectorAll('[data-target]').forEach(el => {
+        const target = parseInt(el.dataset.target);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix !== undefined ? el.dataset.suffix : '+';
+        const duration = 1800;
+        const start = performance.now();
+
+        function update(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 4);
+            const current = Math.floor(eased * target);
+            el.textContent = prefix + current.toLocaleString() + suffix;
+            if (progress < 1) requestAnimationFrame(update);
+            else el.classList.add('counted');
+        }
+        requestAnimationFrame(update);
+    });
+}
+
+// Trigger counters when stats bar is visible
+const statsObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateCounters();
+            statsObs.disconnect();
+        }
+    });
+}, { threshold: 0.5 });
+
+const statsBar = document.querySelector('.stats-bar');
+if (statsBar) statsObs.observe(statsBar);
+
+// Pause auto-scroll on touch (mobile) for both carousels
+['testimonialsScroll', 'resultsScroll'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+        el.addEventListener('touchstart', () => {
+            el.style.animationPlayState = 'paused';
+        });
+        el.addEventListener('touchend', () => {
+            setTimeout(() => { el.style.animationPlayState = 'running'; }, 3000);
+        });
+    }
+});
+
+// Lightbox for result images
+document.querySelectorAll('.result-img-card img, .review-img-card img').forEach(img => {
+    img.addEventListener('click', () => {
+        const lb = document.getElementById('lightbox');
+        document.getElementById('lightboxImg').src = img.src;
+        lb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+function closeLightbox() {
+    const lb = document.getElementById('lightbox');
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
+}
+</script>
+
+</body>
+</html>
