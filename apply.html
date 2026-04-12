@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הגשת מועמדות | מתן משיח</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #060608;
+            --gold: #D4AF37;
+            --gold-light: #F0D060;
+            --gold-dark: #A8872B;
+            --gold-glow: rgba(212, 175, 55, 0.35);
+            --text: #F5F5F5;
+            --text-dim: #8A8A9A;
+            --text-muted: #555566;
+            --glass-border: rgba(255, 255, 255, 0.07);
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Background */
+        .bg-chart {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 520px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 24px;
+        }
+
+        /* Header */
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .form-header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #F5F5F5, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            font-size: 14px;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        .form-header .price-tag {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 18px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--gold-light);
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 32px;
+        }
+
+        .progress-step {
+            flex: 1;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 2px;
+            transition: background 0.4s;
+        }
+
+        .progress-step.active {
+            background: var(--gold);
+        }
+
+        .progress-step.done {
+            background: var(--gold-dark);
+        }
+
+        /* Steps */
+        .step {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .step.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dim);
+            margin-bottom: 14px;
+        }
+
+        .step h2 {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 6px;
+        }
+
+        .step .hint {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        /* Options */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .option:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .option.selected {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.06);
+        }
+
+        .option-key {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-dim);
+            flex-shrink: 0;
+            transition: all 0.25s;
+        }
+
+        .option.selected .option-key {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--bg);
+        }
+
+        .option-text {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Text input */
+        .text-input {
+            width: 100%;
+            background: none;
+            border: none;
+            border-bottom: 2px solid var(--glass-border);
+            color: var(--text);
+            font-family: 'Heebo', sans-serif;
+            font-size: 18px;
+            padding: 12px 0;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .text-input:focus {
+            border-color: var(--gold);
+        }
+
+        .text-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        textarea.text-input {
+            resize: none;
+            min-height: 80px;
+            border-bottom: none;
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            font-size: 15px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        textarea.text-input:focus {
+            border-color: var(--gold);
+        }
+
+        /* Buttons */
+        .btn-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: var(--bg);
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-back {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-dim);
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Success screen */
+        .success-screen {
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .success-screen h2 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #F5F5F5, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .success-screen p {
+            font-size: 14px;
+            color: var(--text-dim);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .btn-home {
+            display: inline-block;
+            padding: 14px 32px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-home:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            .container { padding: 30px 18px; }
+            .step h2 { font-size: 18px; }
+            .form-header h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-chart"></div>
+
+<div class="container">
+    <!-- Header -->
+    <div class="form-header" id="formHeader">
+        <h1>פגישה אישית לבניית תוכנית מסחר</h1>
+        <p>טופס קצר שיעזור לי להבין אם אני יכול לעזור לך.<br>לוקח פחות מדקה.</p>
+        <div class="price-tag">888 &#8362;</div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-bar" id="progressBar">
+        <div class="progress-step active"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+    </div>
+
+    <!-- Step 1 -->
+    <div class="step active" data-step="1">
+        <span class="step-number">1</span>
+        <h2>כמה זמן אתה סוחר?</h2>
+        <div class="options" data-field="experience">
+            <div class="option" onclick="selectOption(this, 'פחות מ-3 חודשים')">
+                <span class="option-key">A</span>
+                <span class="option-text">פחות מ-3 חודשים</span>
+            </div>
+            <div class="option" onclick="selectOption(this, '3-12 חודשים')">
+                <span class="option-key">B</span>
+                <span class="option-text">3-12 חודשים</span>
+            </div>
+            <div class="option" onclick="selectOption(this, '1-2 שנים')">
+                <span class="option-key">C</span>
+                <span class="option-text">1-2 שנים</span>
+            </div>
+            <div class="option" onclick="selectOption(this, '2+ שנים')">
+                <span class="option-key">D</span>
+                <span class="option-text">מעל שנתיים</span>
+            </div>
+        </div>
+        <div class="btn-row">
+            <button class="btn btn-primary" onclick="nextStep()" id="btn1" disabled>המשך</button>
+        </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step" data-step="2">
+        <span class="step-number">2</span>
+        <h2>מה האתגר הכי גדול שלך במסחר?</h2>
+        <div class="options" data-field="challenge">
+            <div class="option" onclick="selectOption(this, 'חוסר עקביות — מרוויח ומחזיר')">
+                <span class="option-key">A</span>
+                <span class="option-text">חוסר עקביות — מרוויח ומחזיר</span>
+            </div>
+            <div class="option" onclick="selectOption(this, 'אין שיטה ברורה — מחליף אסטרטגיות')">
+                <span class="option-key">B</span>
+                <span class="option-text">אין שיטה ברורה — מחליף אסטרטגיות</span>
+            </div>
+            <div class="option" onclick="selectOption(this, 'רגשות — אובר-טריידינג או יציאה מוקדמת')">
+                <span class="option-key">C</span>
+                <span class="option-text">רגשות — אובר-טריידינג או יציאה מוקדמת</span>
+            </div>
+            <div class="option" onclick="selectOption(this, 'תזמון — מפספס סטאפים או נכנס מאוחר')">
+                <span class="option-key">D</span>
+                <span class="option-text">תזמון — מפספס סטאפים או נכנס מאוחר</span>
+            </div>
+            <div class="option" onclick="selectOption(this, 'חוסר הון — לא מצליח לגדול')">
+                <span class="option-key">E</span>
+                <span class="option-text">חוסר הון — לא מצליח לגדול</span>
+            </div>
+        </div>
+        <div class="btn-row">
+            <button class="btn btn-back" onclick="prevStep()">חזרה</button>
+            <button class="btn btn-primary" onclick="nextStep()" id="btn2" disabled>המשך</button>
+        </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step" data-step="3">
+        <span class="step-number">3</span>
+        <h2>באיזה שוק אתה סוחר?</h2>
+        <div class="options" data-field="market">
+            <div class="option" onclick="selectOption(this, 'פיוצ\'רס (Futures)')">
+                <span class="option-key">A</span>
+                <span class="option-text">פיוצ'רס (Futures)</span>
+            </div>
+            <div class="option" onclick="selectOption(this, 'פורקס (Forex)')">
+                <span class="option-key">B</span>
+                <span class="option-text">פורקס (Forex)</span>
+            </div>
+            <div class="option" onclick="selectOption(this, 'מניות')">
+                <span class="option-key">C</span>
+                <span class="option-text">מניות</span>
+            </div>
+            <div class="option" onclick="selectOption(this, 'קריפטו')">
+                <span class="option-key">D</span>
+                <span class="option-text">קריפטו</span>
+            </div>
+            <div class="option" onclick="selectOption(this, 'עדיין לא מסחר — רוצה להתחיל')">
+                <span class="option-key">E</span>
+                <span class="option-text">עדיין לא סוחר — רוצה להתחיל</span>
+            </div>
+        </div>
+        <div class="btn-row">
+            <button class="btn btn-back" onclick="prevStep()">חזרה</button>
+            <button class="btn btn-primary" onclick="nextStep()" id="btn3" disabled>המשך</button>
+        </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step" data-step="4">
+        <span class="step-number">4</span>
+        <h2>מה אתה מצפה להשיג מהפגישה?</h2>
+        <p class="hint">תהיה ספציפי.. מה נחשב "הצלחה" מבחינתך?</p>
+        <textarea class="text-input" id="goals" placeholder="כתוב כאן..." oninput="validateText('goals','btn4')"></textarea>
+        <div class="btn-row">
+            <button class="btn btn-back" onclick="prevStep()">חזרה</button>
+            <button class="btn btn-primary" onclick="nextStep()" id="btn4" disabled>המשך</button>
+        </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step" data-step="5">
+        <span class="step-number">5</span>
+        <h2>כמה אתה מוכן להשקיע בלימוד מסחר?</h2>
+        <p class="hint">בכנות..</p>
+        <div class="options" data-field="budget">
+            <div class="option" onclick="selectOption(this, 'אין לי תקציב כרגע')">
+                <span class="option-key">A</span>
+                <span class="option-text">אין לי תקציב כרגע</span>
+            </div>
+            <div class="option" onclick="selectOption(this, '500-1,000 ₪')">
+                <span class="option-key">B</span>
+                <span class="option-text">500-1,000 &#8362;</span>
+            </div>
+            <div class="option" onclick="selectOption(this, '1,000-3,000 ₪')">
+                <span class="option-key">C</span>
+                <span class="option-text">1,000-3,000 &#8362;</span>
+            </div>
+            <div class="option" onclick="selectOption(this, '3,000-5,000 ₪')">
+                <span class="option-key">D</span>
+                <span class="option-text">3,000-5,000 &#8362;</span>
+            </div>
+            <div class="option" onclick="selectOption(this, '5,000+ ₪')">
+                <span class="option-key">E</span>
+                <span class="option-text">5,000+ &#8362;</span>
+            </div>
+        </div>
+        <div class="btn-row">
+            <button class="btn btn-back" onclick="prevStep()">חזרה</button>
+            <button class="btn btn-primary" onclick="nextStep()" id="btn5" disabled>המשך</button>
+        </div>
+    </div>
+
+    <!-- Step 6 -->
+    <div class="step" data-step="6">
+        <span class="step-number">6</span>
+        <h2>מה השם שלך?</h2>
+        <input type="text" class="text-input" id="fullName" placeholder="שם מלא" oninput="validateText('fullName','btn6')">
+        <div class="btn-row">
+            <button class="btn btn-back" onclick="prevStep()">חזרה</button>
+            <button class="btn btn-primary" onclick="nextStep()" id="btn6" disabled>המשך</button>
+        </div>
+    </div>
+
+    <!-- Step 7 -->
+    <div class="step" data-step="7">
+        <span class="step-number">7</span>
+        <h2>מה המייל שלך?</h2>
+        <p class="hint">לשם אשלח תשובה</p>
+        <input type="email" class="text-input" id="email" placeholder="name@example.com" dir="ltr" oninput="validateEmail()">
+        <div class="btn-row">
+            <button class="btn btn-back" onclick="prevStep()">חזרה</button>
+            <button class="btn btn-primary" onclick="submitForm()" id="btn7" disabled>שלח מועמדות</button>
+        </div>
+    </div>
+
+    <!-- Success -->
+    <div class="step" data-step="success">
+        <div class="success-screen">
+            <div class="success-icon">&#10003;</div>
+            <h2>המועמדות נשלחה!</h2>
+            <p>תודה שמילאת את השאלון.<br>אחזור אליך במייל תוך 48 שעות אם הפגישה מתאימה לשנינו.</p>
+            <a href="index.html" class="btn-home">חזרה לאתר</a>
+        </div>
+    </div>
+</div>
+
+<script>
+let current = 1;
+const total = 7;
+const answers = {};
+
+function selectOption(el, value) {
+    const parent = el.closest('.options');
+    const field = parent.dataset.field;
+    parent.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    answers[field] = value;
+    document.getElementById('btn' + current).disabled = false;
+}
+
+function validateText(inputId, btnId) {
+    const val = document.getElementById(inputId).value.trim();
+    document.getElementById(btnId).disabled = val.length < 2;
+}
+
+function validateEmail() {
+    const val = document.getElementById('email').value.trim();
+    document.getElementById('btn7').disabled = !val.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+}
+
+function nextStep() {
+    // Save text fields
+    if (current === 4) answers.goals = document.getElementById('goals').value.trim();
+    if (current === 6) answers.fullName = document.getElementById('fullName').value.trim();
+
+    current++;
+    showStep();
+}
+
+function prevStep() {
+    current--;
+    showStep();
+}
+
+function showStep() {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.querySelector(`[data-step="${current}"]`).classList.add('active');
+
+    // Update progress
+    document.querySelectorAll('.progress-step').forEach((s, i) => {
+        s.classList.remove('active', 'done');
+        if (i + 1 === current) s.classList.add('active');
+        else if (i + 1 < current) s.classList.add('done');
+    });
+
+    // Hide header after step 1
+    document.getElementById('formHeader').style.display = current > 1 ? 'none' : '';
+    document.getElementById('progressBar').style.display = current === 'success' ? 'none' : '';
+}
+
+function submitForm() {
+    answers.email = document.getElementById('email').value.trim();
+
+    // Send via formsubmit.co
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://formsubmit.co/contact@matanmashiah.com';
+    form.style.display = 'none';
+
+    // Disable captcha page
+    const noCaptcha = document.createElement('input');
+    noCaptcha.name = '_captcha';
+    noCaptcha.value = 'false';
+    form.appendChild(noCaptcha);
+
+    // Redirect back after submit
+    const redirect = document.createElement('input');
+    redirect.name = '_next';
+    redirect.value = window.location.href.replace('apply.html', 'apply-thanks.html');
+    form.appendChild(redirect);
+
+    // Subject
+    const subject = document.createElement('input');
+    subject.name = '_subject';
+    subject.value = 'מועמדות חדשה לפגישת מסחר — ' + answers.fullName;
+    form.appendChild(subject);
+
+    // Add all answers
+    const fields = {
+        'שם': answers.fullName,
+        'מייל': answers.email,
+        'ניסיון במסחר': answers.experience,
+        'אתגר עיקרי': answers.challenge,
+        'שוק': answers.market,
+        'מטרה מהפגישה': answers.goals,
+        'תקציב': answers.budget
+    };
+
+    for (const [key, val] of Object.entries(fields)) {
+        const input = document.createElement('input');
+        input.name = key;
+        input.value = val || '';
+        form.appendChild(input);
+    }
+
+    document.body.appendChild(form);
+
+    // Show success immediately, form submits in background
+    current = 'success';
+    showStep();
+    document.getElementById('progressBar').style.display = 'none';
+
+    // Submit form via fetch
+    const formData = new FormData(form);
+    fetch(form.action, { method: 'POST', body: formData }).catch(() => {});
+}
+</script>
+
+</body>
+</html>
