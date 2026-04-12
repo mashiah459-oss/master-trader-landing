@@ -448,20 +448,10 @@
             scrollbar-width: none;
             padding: 4px 20px 16px;
             width: max-content;
-            animation: autoScroll 120s linear infinite reverse;
             direction: ltr;
         }
 
-        .testimonials-wrap:hover .testimonials-scroll {
-            animation-play-state: paused;
-        }
-
         .testimonials-scroll::-webkit-scrollbar { display: none; }
-
-        @keyframes autoScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
 
         .review-img-card {
             flex-shrink: 0;
@@ -637,17 +627,7 @@
             gap: 14px;
             padding: 4px 20px 16px;
             width: max-content;
-            animation: resultsAutoScroll 100s linear infinite;
             direction: ltr;
-        }
-
-        .results-gallery:hover .results-scroll {
-            animation-play-state: paused;
-        }
-
-        @keyframes resultsAutoScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
         }
 
         .result-img-card {
@@ -1276,54 +1256,88 @@ const statsObs = new IntersectionObserver((entries) => {
 const statsBar = document.querySelector('.stats-bar');
 if (statsBar) statsObs.observe(statsBar);
 
-// Drag-to-scroll + auto-scroll for carousels
-['testimonialsScroll', 'resultsScroll'].forEach(id => {
-    const el = document.getElementById(id);
-    if (!el) return;
+// Unified carousel: JS auto-scroll + smooth manual drag
+function initCarousel(wrapperId, speed, direction) {
+    const wrapper = document.getElementById(wrapperId);
+    if (!wrapper) return;
+    const container = wrapper.parentElement;
 
-    let isDown = false, startX, scrollLeft, dragOffset = 0;
+    let autoSpeed = speed; // px per frame
+    let paused = false;
+    let resumeTimer = null;
+    let isDown = false, startX, startScroll;
 
-    function pauseAnim() { el.style.animationPlayState = 'paused'; }
-    function resumeAnim() { setTimeout(() => { if (!isDown) el.style.animationPlayState = 'running'; }, 3000); }
+    // Auto-scroll loop
+    function tick() {
+        if (!paused && !isDown) {
+            container.scrollLeft += direction * autoSpeed;
+            // Loop: if we scrolled past half (the duplicate set), reset
+            const maxScroll = container.scrollWidth - container.clientWidth;
+            const half = container.scrollWidth / 2;
+            if (direction > 0 && container.scrollLeft >= half) {
+                container.scrollLeft -= half;
+            } else if (direction < 0 && container.scrollLeft <= 0) {
+                container.scrollLeft += half;
+            }
+        }
+        requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    function pause() {
+        paused = true;
+        clearTimeout(resumeTimer);
+    }
+    function resume() {
+        resumeTimer = setTimeout(() => { paused = false; }, 2500);
+    }
 
     // Mouse drag
-    el.addEventListener('mousedown', e => {
+    container.addEventListener('mousedown', e => {
         isDown = true;
-        el.style.cursor = 'grabbing';
         startX = e.pageX;
-        dragOffset = 0;
-        pauseAnim();
+        startScroll = container.scrollLeft;
+        container.style.cursor = 'grabbing';
+        pause();
         e.preventDefault();
     });
 
-    el.addEventListener('mousemove', e => {
+    window.addEventListener('mousemove', e => {
         if (!isDown) return;
         const dx = e.pageX - startX;
-        dragOffset += Math.abs(dx);
-        startX = e.pageX;
-        el.parentElement.scrollLeft -= dx;
+        container.scrollLeft = startScroll - dx;
     });
 
-    el.addEventListener('mouseup', () => { isDown = false; el.style.cursor = 'grab'; resumeAnim(); });
-    el.addEventListener('mouseleave', () => { if (isDown) { isDown = false; el.style.cursor = 'grab'; resumeAnim(); } });
+    window.addEventListener('mouseup', () => {
+        if (!isDown) return;
+        isDown = false;
+        container.style.cursor = 'grab';
+        resume();
+    });
 
-    // Touch drag
-    el.addEventListener('touchstart', e => {
-        startX = e.touches[0].pageX;
-        pauseAnim();
+    // Touch
+    let touchStartX;
+    container.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].pageX;
+        startScroll = container.scrollLeft;
+        pause();
     }, { passive: true });
 
-    el.addEventListener('touchmove', e => {
-        const dx = e.touches[0].pageX - startX;
-        startX = e.touches[0].pageX;
-        el.parentElement.scrollLeft -= dx;
+    container.addEventListener('touchmove', e => {
+        const dx = e.touches[0].pageX - touchStartX;
+        container.scrollLeft = startScroll - dx;
     }, { passive: true });
 
-    el.addEventListener('touchend', resumeAnim);
+    container.addEventListener('touchend', resume);
 
-    // Set cursor
-    el.style.cursor = 'grab';
-});
+    container.style.cursor = 'grab';
+}
+
+// Results: scroll left (positive direction)
+initCarousel('resultsScroll', 0.6, 1);
+
+// Testimonials: scroll right (negative = RTL friendly)
+initCarousel('testimonialsScroll', 0.5, -1);
 
 // Lightbox for result images
 document.querySelectorAll('.result-img-card img, .review-img-card img').forEach(img => {
