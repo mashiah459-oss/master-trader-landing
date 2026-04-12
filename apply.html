@@ -351,12 +351,12 @@
     <div class="form-header" id="formHeader">
         <h1>פגישה אישית לבניית תוכנית מסחר</h1>
         <p>טופס קצר שיעזור לי להבין אם אני יכול לעזור לך.<br>לוקח פחות מדקה.</p>
-        <div class="price-tag">888 &#8362;</div>
     </div>
 
     <!-- Progress -->
     <div class="progress-bar" id="progressBar">
         <div class="progress-step active"></div>
+        <div class="progress-step"></div>
         <div class="progress-step"></div>
         <div class="progress-step"></div>
         <div class="progress-step"></div>
@@ -388,6 +388,7 @@
             </div>
         </div>
         <div class="btn-row">
+            <a href="index.html" class="btn btn-back" style="text-decoration:none;text-align:center;">חזרה לאתר</a>
             <button class="btn btn-primary" onclick="nextStep()" id="btn1" disabled>המשך</button>
         </div>
     </div>
@@ -471,28 +472,19 @@
     <!-- Step 5 -->
     <div class="step" data-step="5">
         <span class="step-number">5</span>
-        <h2>כמה אתה מוכן להשקיע בלימוד מסחר?</h2>
-        <p class="hint">בכנות..</p>
+        <h2>עלות הפגישה היא 888&#8362;, האם זה בסדר מבחינת התקציב שלך?</h2>
         <div class="options" data-field="budget">
-            <div class="option" onclick="selectOption(this, 'אין לי תקציב כרגע')">
+            <div class="option" onclick="selectOption(this, 'כן, בהחלט')">
                 <span class="option-key">A</span>
-                <span class="option-text">אין לי תקציב כרגע</span>
+                <span class="option-text">כן, בהחלט</span>
             </div>
-            <div class="option" onclick="selectOption(this, '500-1,000 ₪')">
+            <div class="option" onclick="selectOption(this, 'כן, אם אני מרגיש שזה מתאים לי')">
                 <span class="option-key">B</span>
-                <span class="option-text">500-1,000 &#8362;</span>
+                <span class="option-text">כן, אם אני מרגיש שזה מתאים לי</span>
             </div>
-            <div class="option" onclick="selectOption(this, '1,000-3,000 ₪')">
+            <div class="option" onclick="selectOption(this, 'לא כרגע')">
                 <span class="option-key">C</span>
-                <span class="option-text">1,000-3,000 &#8362;</span>
-            </div>
-            <div class="option" onclick="selectOption(this, '3,000-5,000 ₪')">
-                <span class="option-key">D</span>
-                <span class="option-text">3,000-5,000 &#8362;</span>
-            </div>
-            <div class="option" onclick="selectOption(this, '5,000+ ₪')">
-                <span class="option-key">E</span>
-                <span class="option-text">5,000+ &#8362;</span>
+                <span class="option-text">לא כרגע</span>
             </div>
         </div>
         <div class="btn-row">
@@ -520,7 +512,19 @@
         <input type="email" class="text-input" id="email" placeholder="name@example.com" dir="ltr" oninput="validateEmail()">
         <div class="btn-row">
             <button class="btn btn-back" onclick="prevStep()">חזרה</button>
-            <button class="btn btn-primary" onclick="submitForm()" id="btn7" disabled>שלח מועמדות</button>
+            <button class="btn btn-primary" onclick="nextStep()" id="btn7" disabled>המשך</button>
+        </div>
+    </div>
+
+    <!-- Step 8 -->
+    <div class="step" data-step="8">
+        <span class="step-number">8</span>
+        <h2>מה מספר הטלפון שלך?</h2>
+        <p class="hint">לתיאום הפגישה</p>
+        <input type="tel" class="text-input" id="phone" placeholder="05X-XXXXXXX" dir="ltr" oninput="validatePhone()">
+        <div class="btn-row">
+            <button class="btn btn-back" onclick="prevStep()">חזרה</button>
+            <button class="btn btn-primary" onclick="submitForm()" id="btn8" disabled>שלח מועמדות</button>
         </div>
     </div>
 
@@ -537,7 +541,7 @@
 
 <script>
 let current = 1;
-const total = 7;
+const total = 8;
 const answers = {};
 
 function selectOption(el, value) {
@@ -559,10 +563,16 @@ function validateEmail() {
     document.getElementById('btn7').disabled = !val.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
 }
 
+function validatePhone() {
+    const val = document.getElementById('phone').value.trim().replace(/\D/g, '');
+    document.getElementById('btn8').disabled = val.length < 9;
+}
+
 function nextStep() {
     // Save text fields
     if (current === 4) answers.goals = document.getElementById('goals').value.trim();
     if (current === 6) answers.fullName = document.getElementById('fullName').value.trim();
+    if (current === 7) answers.email = document.getElementById('email').value.trim();
 
     current++;
     showStep();
@@ -590,7 +600,7 @@ function showStep() {
 }
 
 function submitForm() {
-    answers.email = document.getElementById('email').value.trim();
+    answers.phone = document.getElementById('phone').value.trim();
 
     // Send via formsubmit.co
     const form = document.createElement('form');
@@ -620,11 +630,12 @@ function submitForm() {
     const fields = {
         'שם': answers.fullName,
         'מייל': answers.email,
+        'טלפון': answers.phone,
         'ניסיון במסחר': answers.experience,
         'אתגר עיקרי': answers.challenge,
         'שוק': answers.market,
         'מטרה מהפגישה': answers.goals,
-        'תקציב': answers.budget
+        'תקציב (888₪)': answers.budget
     };
 
     for (const [key, val] of Object.entries(fields)) {
