@@ -1336,8 +1336,8 @@ function initCarousel(wrapperId, speed, direction) {
 // Results: scroll left (positive direction)
 initCarousel('resultsScroll', 0.6, 1);
 
-// Testimonials: scroll right (negative = RTL friendly)
-initCarousel('testimonialsScroll', 0.5, -1);
+// Testimonials: scroll right-to-left (positive = content moves left, text revealed from right)
+initCarousel('testimonialsScroll', 0.5, 1);
 
 // Lightbox for result images
 document.querySelectorAll('.result-img-card img, .review-img-card img').forEach(img => {
