@@ -723,12 +723,181 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
+        /* === EXPANDABLE CARDS === */
+        .card-chevron {
+            font-size: 10px;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            margin-right: auto;
+        }
+
+        .card.expanded .card-chevron {
+            transform: rotate(180deg);
+            color: var(--gold);
+        }
+
+        .card-expand {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 4px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card.expanded .card-expand {
+            max-height: 300px;
+            padding: 16px 4px 4px;
+        }
+
+        .card-expand p {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.7;
+            margin-bottom: 14px;
+        }
+
+        .expand-btn {
+            display: inline-block;
+            padding: 10px 22px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .expand-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 4px 20px var(--gold-glow);
+        }
+
+        .card:hover {
+            transform: none;
+        }
+
+        .card.expanded {
+            border-color: var(--glass-border-hover);
+        }
+
+        /* === CTA SECTION === */
+        .cta-section {
+            text-align: center;
+            margin: 36px 0 8px;
+            padding: 28px 20px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.06), var(--bg-card));
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-radius: 18px;
+        }
+
+        .cta-section h2 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #F5F5F5, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-section p {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-bottom: 18px;
+            line-height: 1.5;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: var(--bg);
+            text-decoration: none;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 800;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.35);
+        }
+
+        /* === LEGAL FOOTER === */
+        .legal-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .legal-links a {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .legal-links a:hover {
+            color: var(--text-dim);
+        }
+
+        /* === COOKIE BANNER === */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(18, 18, 26, 0.97);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--glass-border);
+            padding: 16px 20px;
+            z-index: 150;
+            display: none;
+            direction: rtl;
+        }
+
+        .cookie-banner.show { display: block; }
+
+        .cookie-inner {
+            max-width: 480px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .cookie-inner p {
+            font-size: 12px;
+            color: var(--text-dim);
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        .cookie-accept {
+            padding: 8px 20px;
+            background: var(--gold);
+            color: var(--bg);
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            flex-shrink: 0;
+            font-family: 'Heebo', sans-serif;
+        }
+
         /* === MOBILE === */
         @media (max-width: 480px) {
             .container { padding: 36px 16px 50px; }
             .profile h1 { font-size: 26px; }
             .stat-number { font-size: 20px; }
-            .testimonial { width: 270px; }
             .result-card .result-value { font-size: 20px; }
             .result-card.wide .result-value { font-size: 26px; }
         }
@@ -791,19 +960,19 @@
         <p class="tagline">סוחר, מנטור ויוצר תוכן<br><strong>הופך מסחר לעסק רווחי</strong></p>
     </div>
 
-    <!-- Stats Bar -->
+    <!-- Role Strip -->
     <div class="stats-bar reveal reveal-d3">
         <div class="stat">
-            <span class="stat-number" data-target="87" data-suffix="%">0</span>
-            <span class="stat-label">אחוז הצלחה</span>
+            <span class="stat-number" style="font-size:14px;">Prop Trader</span>
+            <span class="stat-label">סוחר ממומן</span>
         </div>
         <div class="stat">
-            <span class="stat-number" data-target="4" data-suffix="">0</span>
-            <span class="stat-label">חשבונות ממומנים</span>
+            <span class="stat-number" style="font-size:14px;">Mentor</span>
+            <span class="stat-label">מנטור מסחר</span>
         </div>
         <div class="stat">
-            <span class="stat-number" data-target="13" data-suffix="">0</span>
-            <span class="stat-label">משיכות בחודש</span>
+            <span class="stat-number" style="font-size:14px;">Creator</span>
+            <span class="stat-label">יוצר תוכן</span>
         </div>
     </div>
 
@@ -842,7 +1011,7 @@
     </div>
 
     <!-- Course - Featured -->
-    <a href="https://whop.com/trading-as-a-business/58c43258-c998-4f1d-a2db-6707625723a3/" target="_blank" class="card featured reveal reveal-d5">
+    <div class="card featured reveal reveal-d5" onclick="toggleExpand(this)">
         <div class="card-inner">
             <div class="card-icon gold">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -854,12 +1023,16 @@
                 <h3>עסק או עסקה</h3>
                 <p>הקורס שהופך סוחרים לבעלי עסק אמיתי</p>
             </div>
-            <span class="card-arrow">&#8592;</span>
+            <span class="card-chevron">&#x25BC;</span>
         </div>
-    </a>
+        <div class="card-expand">
+            <p>הקורס הדיגיטלי שמלמד אותך להתייחס למסחר כעסק אמיתי — לא עוד הימור. תלמד לבנות תוכנית מסחר, לנהל סיכונים, ולייצר עקביות ברווחים. מתאים גם למתחילים וגם לסוחרים שרוצים לעבור לשלב הבא.</p>
+            <a href="https://whop.com/trading-as-a-business/58c43258-c998-4f1d-a2db-6707625723a3/" target="_blank" class="expand-btn">לפרטים והרשמה &larr;</a>
+        </div>
+    </div>
 
     <!-- Club -->
-    <a href="https://mastertradermatmid.lovable.app" target="_blank" class="card reveal reveal-d6">
+    <div class="card reveal reveal-d6" onclick="toggleExpand(this)">
         <div class="card-inner">
             <div class="card-icon gold">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -869,14 +1042,18 @@
             <div class="card-body">
                 <div class="badge gold">קהילה</div>
                 <h3>מועדון הסוחר המתמיד</h3>
-                <p>ליווי מקצועי, סיגנלים, ניתוחי שוק ותכנים בלעדיים</p>
+                <p>ליווי מקצועי, מסחר בלייב, ניתוחי שוק ותכנים בלעדיים</p>
             </div>
-            <span class="card-arrow">&#8592;</span>
+            <span class="card-chevron">&#x25BC;</span>
         </div>
-    </a>
+        <div class="card-expand">
+            <p>קהילת סוחרים פעילה עם מסחר בלייב, ניתוחי שוק יומיים, ספריית ידע מקיפה, וליווי אישי. המקום שבו סוחרים ברמות שונות גדלים ביחד, משתפים רעיונות, ובונים עקביות אמיתית.</p>
+            <a href="https://mastertradermatmid.lovable.app" target="_blank" class="expand-btn">להצטרפות למועדון &larr;</a>
+        </div>
+    </div>
 
     <!-- YouTube -->
-    <a href="https://www.youtube.com/@matanmashiah957" target="_blank" class="card reveal reveal-d7">
+    <div class="card reveal reveal-d7" onclick="toggleExpand(this)">
         <div class="card-inner">
             <div class="card-icon red">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="#FF4444">
@@ -887,9 +1064,13 @@
                 <h3>ערוץ היוטיוב</h3>
                 <p>תוכן חינמי, ניתוחי שוק, טיפים ושיעורי מסחר</p>
             </div>
-            <span class="card-arrow">&#8592;</span>
+            <span class="card-chevron">&#x25BC;</span>
         </div>
-    </a>
+        <div class="card-expand">
+            <p>תוכן חינמי ואיכותי על מסחר בשוק ההון — ניתוחים טכניים, טיפים למסחר יומי, סקירות שוק, ושיעורים שיעזרו לך להבין מה באמת קורה בגרפים.</p>
+            <a href="https://www.youtube.com/@matanmashiah957" target="_blank" class="expand-btn">לערוץ היוטיוב &larr;</a>
+        </div>
+    </div>
 
     <!-- Tools -->
     <div class="section-label reveal reveal-d8">
@@ -960,6 +1141,13 @@
         </div>
     </div>
 
+    <!-- CTA -->
+    <div class="cta-section reveal reveal-d11">
+        <h2>מוכן להפוך את המסחר לעסק?</h2>
+        <p>הצטרף לקהילת סוחרים שכבר עשו את הצעד ומרוויחים בעקביות</p>
+        <a href="https://mastertradermatmid.lovable.app" target="_blank" class="cta-btn">הצטרף עכשיו</a>
+    </div>
+
     <!-- Footer -->
     <div class="footer reveal reveal-d11">
         <div class="social-row">
@@ -973,6 +1161,11 @@
             </a>
         </div>
         <p class="footer-text">&copy; 2026 מתן משיח &bull; Master Trader</p>
+        <div class="legal-links">
+            <a href="#" onclick="showLegal('privacy')">מדיניות פרטיות</a>
+            <a href="#" onclick="showLegal('terms')">תנאי שימוש</a>
+            <a href="#" onclick="showLegal('accessibility')">הצהרת נגישות</a>
+        </div>
     </div>
 
 </div>
@@ -981,6 +1174,22 @@
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
     <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
     <img id="lightboxImg" src="" alt="Result screenshot">
+</div>
+
+<!-- Cookie Banner -->
+<div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-inner">
+        <p>אתר זה משתמש בעוגיות לשיפור חוויית המשתמש. בהמשך הגלישה אתה מסכים לשימוש בעוגיות.</p>
+        <button class="cookie-accept" onclick="acceptCookies()">מסכים</button>
+    </div>
+</div>
+
+<!-- Legal Modal -->
+<div class="lightbox" id="legalModal" onclick="closeLegal(event)">
+    <div style="background:var(--bg);max-width:460px;max-height:80vh;overflow-y:auto;border-radius:18px;border:1px solid var(--glass-border);padding:30px;margin:20px;direction:rtl;" onclick="event.stopPropagation()">
+        <button style="float:left;background:none;border:none;color:var(--text-dim);font-size:24px;cursor:pointer;" onclick="closeLegal()">&times;</button>
+        <div id="legalContent"></div>
+    </div>
 </div>
 
 <!-- Toast -->
@@ -1068,6 +1277,69 @@ document.querySelectorAll('.result-img-card img, .review-img-card img').forEach(
 function closeLightbox() {
     const lb = document.getElementById('lightbox');
     lb.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Expandable cards
+function toggleExpand(card) {
+    const wasExpanded = card.classList.contains('expanded');
+    document.querySelectorAll('.card.expanded').forEach(c => c.classList.remove('expanded'));
+    if (!wasExpanded) card.classList.add('expanded');
+}
+
+// Cookie banner
+if (!localStorage.getItem('cookiesAccepted')) {
+    setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1500);
+}
+
+function acceptCookies() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    document.getElementById('cookieBanner').classList.remove('show');
+}
+
+// Legal modals
+const legalTexts = {
+    privacy: `<h2 style="font-size:18px;margin-bottom:16px;color:var(--gold);">מדיניות פרטיות</h2>
+<p style="font-size:13px;color:var(--text-dim);line-height:1.8;">
+אתר זה (matanmashiah.com) מופעל על ידי מתן משיח ("האתר"). אנו מכבדים את פרטיותך ומחויבים להגן על המידע האישי שלך.<br><br>
+<strong>מידע שנאסף:</strong> האתר אינו אוסף מידע אישי מזהה. קישורים חיצוניים (Whop, YouTube, TradeZella) כפופים למדיניות הפרטיות של אותם שירותים.<br><br>
+<strong>עוגיות:</strong> האתר משתמש בעוגיות בסיסיות לשיפור חוויית הגלישה בלבד.<br><br>
+<strong>צד שלישי:</strong> האתר מכיל קישורים לאתרים חיצוניים שאינם בשליטתנו. אין לנו אחריות על תוכנם או מדיניות הפרטיות שלהם.<br><br>
+<strong>יצירת קשר:</strong> לשאלות בנושא פרטיות, ניתן לפנות דרך הרשתות החברתיות.
+</p>`,
+    terms: `<h2 style="font-size:18px;margin-bottom:16px;color:var(--gold);">תנאי שימוש</h2>
+<p style="font-size:13px;color:var(--text-dim);line-height:1.8;">
+<strong>כללי:</strong> השימוש באתר matanmashiah.com מהווה הסכמה לתנאים אלה.<br><br>
+<strong>תוכן האתר:</strong> התוכן באתר הוא למטרות מידע ולימוד בלבד ואינו מהווה ייעוץ השקעות, המלצה לביצוע עסקאות, או הבטחה לתשואה כלשהי.<br><br>
+<strong>סיכון:</strong> מסחר בשוק ההון כרוך בסיכון משמעותי להפסד כספי. ביצועי עבר אינם מעידים על תוצאות עתידיות. כל החלטת מסחר היא באחריות המשתמש בלבד.<br><br>
+<strong>קניין רוחני:</strong> כל התכנים באתר, לרבות טקסטים, תמונות ועיצוב, הם קניינו של מתן משיח ואין לעשות בהם שימוש ללא אישור.<br><br>
+<strong>שינויים:</strong> האתר רשאי לעדכן תנאים אלה מעת לעת.
+</p>`,
+    accessibility: `<h2 style="font-size:18px;margin-bottom:16px;color:var(--gold);">הצהרת נגישות</h2>
+<p style="font-size:13px;color:var(--text-dim);line-height:1.8;">
+אתר matanmashiah.com מחויב לאפשר שימוש נוח ונגיש לכלל הציבור, לרבות אנשים עם מוגבלויות, בהתאם לחוק שוויון זכויות לאנשים עם מוגבלות, התשנ"ח-1998, ולתקנות שהותקנו מכוחו.<br><br>
+<strong>פעולות נגישות שננקטו:</strong><br>
+• שימוש בניגודיות צבעים גבוהה<br>
+• תמיכה בהגדלת טקסט בדפדפן<br>
+• שימוש ב-HTML סמנטי<br>
+• תיאורי alt לתמונות<br>
+• תמיכה בניווט מקלדת<br><br>
+<strong>נתקלת בבעיית נגישות?</strong><br>
+אנא פנה אלינו דרך הרשתות החברתיות ונשתדל לטפל בהקדם.<br><br>
+הצהרה זו עודכנה לאחרונה באפריל 2026.
+</p>`
+};
+
+function showLegal(type) {
+    event.preventDefault();
+    document.getElementById('legalContent').innerHTML = legalTexts[type];
+    document.getElementById('legalModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeLegal(e) {
+    if (e && e.target !== e.currentTarget) return;
+    document.getElementById('legalModal').classList.remove('active');
     document.body.style.overflow = '';
 }
 </script>
