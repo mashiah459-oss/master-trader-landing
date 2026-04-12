@@ -413,9 +413,13 @@
             margin-left: -20px;
             margin-right: -20px;
             position: relative;
-            overflow: hidden;
+            overflow-x: auto;
+            overflow-y: hidden;
             direction: ltr;
+            scrollbar-width: none;
         }
+
+        .testimonials-wrap::-webkit-scrollbar { display: none; }
 
         .testimonials-wrap::before,
         .testimonials-wrap::after {
@@ -597,11 +601,15 @@
             margin-top: 8px;
             margin-left: -20px;
             margin-right: -20px;
-            overflow: hidden;
+            overflow-x: auto;
+            overflow-y: hidden;
             position: relative;
             min-height: 330px;
             direction: ltr;
+            scrollbar-width: none;
         }
+
+        .results-gallery::-webkit-scrollbar { display: none; }
 
         .results-gallery::before,
         .results-gallery::after {
@@ -1251,17 +1259,53 @@ const statsObs = new IntersectionObserver((entries) => {
 const statsBar = document.querySelector('.stats-bar');
 if (statsBar) statsObs.observe(statsBar);
 
-// Pause auto-scroll on touch (mobile) for both carousels
+// Drag-to-scroll + auto-scroll for carousels
 ['testimonialsScroll', 'resultsScroll'].forEach(id => {
     const el = document.getElementById(id);
-    if (el) {
-        el.addEventListener('touchstart', () => {
-            el.style.animationPlayState = 'paused';
-        });
-        el.addEventListener('touchend', () => {
-            setTimeout(() => { el.style.animationPlayState = 'running'; }, 3000);
-        });
-    }
+    if (!el) return;
+
+    let isDown = false, startX, scrollLeft, dragOffset = 0;
+
+    function pauseAnim() { el.style.animationPlayState = 'paused'; }
+    function resumeAnim() { setTimeout(() => { if (!isDown) el.style.animationPlayState = 'running'; }, 3000); }
+
+    // Mouse drag
+    el.addEventListener('mousedown', e => {
+        isDown = true;
+        el.style.cursor = 'grabbing';
+        startX = e.pageX;
+        dragOffset = 0;
+        pauseAnim();
+        e.preventDefault();
+    });
+
+    el.addEventListener('mousemove', e => {
+        if (!isDown) return;
+        const dx = e.pageX - startX;
+        dragOffset += Math.abs(dx);
+        startX = e.pageX;
+        el.parentElement.scrollLeft -= dx;
+    });
+
+    el.addEventListener('mouseup', () => { isDown = false; el.style.cursor = 'grab'; resumeAnim(); });
+    el.addEventListener('mouseleave', () => { if (isDown) { isDown = false; el.style.cursor = 'grab'; resumeAnim(); } });
+
+    // Touch drag
+    el.addEventListener('touchstart', e => {
+        startX = e.touches[0].pageX;
+        pauseAnim();
+    }, { passive: true });
+
+    el.addEventListener('touchmove', e => {
+        const dx = e.touches[0].pageX - startX;
+        startX = e.touches[0].pageX;
+        el.parentElement.scrollLeft -= dx;
+    }, { passive: true });
+
+    el.addEventListener('touchend', resumeAnim);
+
+    // Set cursor
+    el.style.cursor = 'grab';
 });
 
 // Lightbox for result images
