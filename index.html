@@ -1266,12 +1266,18 @@ function initCarousel(wrapperId, speed, direction) {
     let lastInteraction = 0;
     let isDown = false, startX, startScroll;
     let moved = false;
+    let subPixel = 0;
 
     // Auto-scroll loop — always runs, checks interaction timestamp
     function tick() {
         const idle = Date.now() - lastInteraction > 2000;
         if (!userInteracting && idle) {
-            container.scrollLeft += direction * speed;
+            subPixel += direction * speed;
+            const px = Math.trunc(subPixel);
+            if (px !== 0) {
+                container.scrollLeft += px;
+                subPixel -= px;
+            }
             // Loop reset
             const half = wrapper.scrollWidth / 2;
             if (direction > 0 && container.scrollLeft >= half) {
