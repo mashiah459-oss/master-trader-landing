@@ -1262,18 +1262,18 @@ function initCarousel(wrapperId, speed, direction) {
     if (!wrapper) return;
     const container = wrapper.parentElement;
 
-    let autoSpeed = speed; // px per frame
-    let paused = false;
-    let resumeTimer = null;
+    let userInteracting = false;
+    let lastInteraction = 0;
     let isDown = false, startX, startScroll;
+    let moved = false;
 
-    // Auto-scroll loop
+    // Auto-scroll loop — always runs, checks interaction timestamp
     function tick() {
-        if (!paused && !isDown) {
-            container.scrollLeft += direction * autoSpeed;
-            // Loop: if we scrolled past half (the duplicate set), reset
-            const maxScroll = container.scrollWidth - container.clientWidth;
-            const half = container.scrollWidth / 2;
+        const idle = Date.now() - lastInteraction > 2000;
+        if (!userInteracting && idle) {
+            container.scrollLeft += direction * speed;
+            // Loop reset
+            const half = wrapper.scrollWidth / 2;
             if (direction > 0 && container.scrollLeft >= half) {
                 container.scrollLeft -= half;
             } else if (direction < 0 && container.scrollLeft <= 0) {
@@ -1284,51 +1284,52 @@ function initCarousel(wrapperId, speed, direction) {
     }
     requestAnimationFrame(tick);
 
-    function pause() {
-        paused = true;
-        clearTimeout(resumeTimer);
-    }
-    function resume() {
-        resumeTimer = setTimeout(() => { paused = false; }, 2500);
-    }
-
     // Mouse drag
     container.addEventListener('mousedown', e => {
         isDown = true;
+        moved = false;
         startX = e.pageX;
         startScroll = container.scrollLeft;
+        userInteracting = true;
         container.style.cursor = 'grabbing';
-        pause();
         e.preventDefault();
     });
 
     window.addEventListener('mousemove', e => {
         if (!isDown) return;
-        const dx = e.pageX - startX;
-        container.scrollLeft = startScroll - dx;
+        moved = true;
+        container.scrollLeft = startScroll - (e.pageX - startX);
     });
 
     window.addEventListener('mouseup', () => {
         if (!isDown) return;
         isDown = false;
+        userInteracting = false;
+        lastInteraction = Date.now();
         container.style.cursor = 'grab';
-        resume();
     });
 
-    // Touch
-    let touchStartX;
+    // Touch — only pause if actual swipe (moved > 5px)
+    let touchStartX, touchMoved;
     container.addEventListener('touchstart', e => {
         touchStartX = e.touches[0].pageX;
         startScroll = container.scrollLeft;
-        pause();
+        touchMoved = false;
     }, { passive: true });
 
     container.addEventListener('touchmove', e => {
         const dx = e.touches[0].pageX - touchStartX;
-        container.scrollLeft = startScroll - dx;
+        if (Math.abs(dx) > 5) {
+            touchMoved = true;
+            userInteracting = true;
+            container.scrollLeft = startScroll - dx;
+        }
     }, { passive: true });
 
-    container.addEventListener('touchend', resume);
+    container.addEventListener('touchend', () => {
+        userInteracting = false;
+        if (touchMoved) lastInteraction = Date.now();
+    });
 
     container.style.cursor = 'grab';
 }
@@ -1336,7 +1337,7 @@ function initCarousel(wrapperId, speed, direction) {
 // Results: scroll left (positive direction)
 initCarousel('resultsScroll', 0.6, 1);
 
-// Testimonials: scroll right-to-left (positive = content moves left, text revealed from right)
+// Testimonials: same direction
 initCarousel('testimonialsScroll', 0.5, 1);
 
 // Lightbox for result images
