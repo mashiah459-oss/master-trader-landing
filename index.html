@@ -113,8 +113,8 @@
         }
 
         .logo-svg {
-            width: 80px;
-            height: 80px;
+            width: 110px;
+            height: 121px;
             filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
         }
 
@@ -903,42 +903,66 @@
 
     <!-- Logo -->
     <div class="logo-wrap reveal reveal-d1">
-        <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <!-- Outer ring -->
-            <circle cx="100" cy="100" r="95" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.4"/>
-            <!-- Inner circle bg -->
-            <circle cx="100" cy="100" r="78" fill="#0A0A0C"/>
-            <circle cx="100" cy="100" r="78" fill="url(#innerGlow)" opacity="0.3"/>
-            <!-- Chart line (uptrend) -->
-            <polyline points="50,130 70,125 85,115 95,120 110,95 130,80 150,65"
-                fill="none" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- Chart glow -->
-            <polyline points="50,130 70,125 85,115 95,120 110,95 130,80 150,65"
-                fill="none" stroke="url(#goldGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.2" filter="url(#glow)"/>
-            <!-- Arrow tip -->
-            <polygon points="150,65 145,78 155,75" fill="url(#goldGrad)"/>
-            <!-- MT text -->
-            <text x="100" y="162" text-anchor="middle" font-family="Inter, sans-serif" font-size="19" font-weight="800" fill="url(#goldGrad)" letter-spacing="6">MASTER</text>
-            <text x="100" y="180" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#8A8A9A" letter-spacing="8">TRADER</text>
-            <!-- Defs -->
+        <svg class="logo-svg" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#F0D060"/>
                     <stop offset="50%" stop-color="#D4AF37"/>
                     <stop offset="100%" stop-color="#A8872B"/>
                 </linearGradient>
-                <radialGradient id="innerGlow" cx="50%" cy="30%" r="60%">
-                    <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.15"/>
+                <linearGradient id="goldSoft" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#A8872B" stop-opacity="0.5"/>
+                </linearGradient>
+                <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.2"/>
                     <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
                 </radialGradient>
-                <filter id="glow">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                    <feMerge>
-                        <feMergeNode in="coloredBlur"/>
-                        <feMergeNode in="SourceGraphic"/>
-                    </feMerge>
+                <filter id="softGlow">
+                    <feGaussianBlur stdDeviation="2.5" result="b"/>
+                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
                 </filter>
             </defs>
+
+            <!-- Business frame (diamond/square rotated) -->
+            <rect x="35" y="35" width="130" height="130" rx="8" fill="none" stroke="url(#goldGrad)" stroke-width="1" opacity="0.25" transform="rotate(45 100 100)"/>
+            <!-- Soft center glow -->
+            <circle cx="100" cy="100" r="65" fill="url(#centerGlow)"/>
+
+            <!-- Hourglass frame -->
+            <!-- Top triangle -->
+            <path d="M 68 50 L 132 50 L 100 100 Z" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-linejoin="round"/>
+            <!-- Bottom triangle -->
+            <path d="M 100 100 L 132 150 L 68 150 Z" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-linejoin="round"/>
+
+            <!-- Top/bottom caps (hourglass plates) -->
+            <line x1="62" y1="50" x2="138" y2="50" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round"/>
+            <line x1="62" y1="150" x2="138" y2="150" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round"/>
+
+            <!-- Candlesticks inside top (price) -->
+            <g opacity="0.85">
+                <rect x="78" y="62" width="4" height="12" fill="url(#goldSoft)" rx="1"/>
+                <rect x="88" y="58" width="4" height="16" fill="url(#goldSoft)" rx="1"/>
+                <rect x="98" y="64" width="4" height="10" fill="url(#goldSoft)" rx="1"/>
+                <rect x="108" y="60" width="4" height="14" fill="url(#goldSoft)" rx="1"/>
+                <rect x="118" y="66" width="4" height="8" fill="url(#goldSoft)" rx="1"/>
+            </g>
+
+            <!-- Rising chart inside bottom (results) -->
+            <polyline points="75,140 85,132 95,136 105,122 115,118 125,108"
+                fill="none" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#softGlow)"/>
+            <!-- Arrow tip -->
+            <polygon points="125,108 120,114 128,116" fill="url(#goldGrad)"/>
+
+            <!-- Center flowing sand particle -->
+            <circle cx="100" cy="100" r="2.5" fill="url(#goldGrad)">
+                <animate attributeName="cy" values="85;115;85" dur="3s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;1;1;0" dur="3s" repeatCount="indefinite"/>
+            </circle>
+
+            <!-- Text -->
+            <text x="100" y="188" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="url(#goldGrad)" letter-spacing="5">MASTER</text>
+            <text x="100" y="205" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" font-weight="600" fill="#8A8A9A" letter-spacing="7">TRADER</text>
         </svg>
     </div>
 
