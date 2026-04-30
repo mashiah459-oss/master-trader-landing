@@ -648,9 +648,26 @@ function submitForm() {
     showStep();
     document.getElementById('progressBar').style.display = 'none';
 
-    // Submit form via fetch
+    // Submit form via fetch (email notification)
     const formData = new FormData(form);
     fetch(form.action, { method: 'POST', body: formData }).catch(() => {});
+
+    // Also save to Google Sheets
+    fetch('https://script.google.com/macros/s/AKfycbzIYi6LIAuHrVEwTCr3bhHEpUoMVkQZePGomu0mjoo_wtkIVz8VQmO1TZkKji4yoHiw/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            name: answers.fullName,
+            email: answers.email,
+            phone: answers.phone,
+            experience: answers.experience,
+            challenge: answers.challenge,
+            market: answers.market,
+            goals: answers.goals,
+            budget: answers.budget
+        })
+    }).catch(() => {});
 }
 </script>
 
