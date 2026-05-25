@@ -763,6 +763,42 @@
             margin-top: 2px;
         }
 
+        /* === PRICE ANCHOR === */
+        .price-anchor {
+            max-width: 480px;
+            margin: 0 auto 28px;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: 24px;
+        }
+        .pa-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .pa-lines {
+            font-size: 14px;
+            color: var(--text-dim);
+            line-height: 1.6;
+            text-align: right;
+        }
+        .pa-lines > div {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .pa-lines > div:last-child { border-bottom: none; }
+        .pa-lines s { color: var(--text-muted); }
+        .pa-note {
+            font-size: 14px;
+            color: var(--text-dim);
+            line-height: 1.7;
+            text-align: center;
+            margin-top: 16px;
+        }
+
         /* === REGISTER FORM === */
         .register-card {
             background: var(--bg-card);
@@ -1105,8 +1141,8 @@
         <div class="reveal">
             <span class="hero-label">סדנה חיה · מיי קמפוס, בני ברק · 30 מקומות בלבד</span>
         </div>
-        <h1 class="reveal reveal-d1">סוחר בלי תוכנית מהמר. בסדנת "תורת הרבעים" תקבל שיטה ברורה לכניסה, יציאה וניהול עסקה — מא׳ ועד ת׳</h1>
-        <p class="subtitle reveal reveal-d2">3 שעות חיות עם מתן משיח, פנים אל פנים. השיטה שמייצרת כיוון, תזמון ועקביות — במקום החלפת אסטרטגיות וקבלת החלטות מתוך רגש.</p>
+        <h1 class="reveal reveal-d1">תפסיק לנחש בכל עסקה — ותתחיל לסחור לפי שיטה אחת ברורה</h1>
+        <p class="subtitle reveal reveal-d2">סדנת "תורת הרבעים" — 3 שעות חיות עם מתן משיח, פנים אל פנים. תצא עם שיטת עבודה שלמה לכל עסקה: כיוון, כניסה, סטופ ויעד — כזו שאפשר ליישם כבר ביום המסחר הבא.</p>
 
         <div class="usp-pills reveal reveal-d3">
             <span class="usp-pill">21.06.2026 · 17:00–20:00</span>
@@ -1115,29 +1151,29 @@
         </div>
 
         <div class="reveal reveal-d4">
-            <a href="#register" class="cta-btn">אני רוצה לשריין מקום ←</a>
+            <a href="#register" class="cta-btn">אני בפנים — שריינו לי מקום ←</a>
         </div>
-        <p class="reveal reveal-d4" style="font-size:12px; color:var(--text-muted); margin-top:14px;">המקומות מוגבלים ל-30 משתתפים בלבד</p>
+        <p class="reveal reveal-d4" style="font-size:12px; color:var(--text-muted); margin-top:14px;">⚡ 30 מקומות בלבד · 21.06.2026 · מיי קמפוס בני ברק</p>
     </section>
 
     <!-- PAIN -->
     <section class="section pain">
-        <h2 class="reveal">אתה יודע לקרוא גרף.<br>אבל כל עסקה מרגישה כמו הימור.</h2>
-        <span class="gold-text reveal reveal-d1">הבעיה היא לא הידע — היא חוסר שיטה.</span>
+        <h2 class="reveal">אתה יודע לקרוא גרף.<br>אז למה הרווחים של תחילת החודש נעלמים עד הסוף שלו?</h2>
+        <span class="gold-text reveal reveal-d1">כי בלי שיטה — כל עסקה היא הימור.</span>
 
         <ul class="pain-list reveal reveal-d2">
-            <li>אתה מחליף אסטרטגיה כל כמה שבועות ואף פעם לא נותן לאחת זמן לעבוד</li>
-            <li>אתה נכנס לעסקה כי "זה נראה טוב" — בלי כיוון יומי או שבועי ברור</li>
-            <li>הסטופ-לוס שלך שרירותי, והיעד נקבע לפי תחושה</li>
-            <li>אתה יוצא מוקדם מרווח, ומחזיק יותר מדי בהפסד</li>
-            <li>נכשלת ב-Challenge של חברת מימון כי אין לך מבנה ניהול עסקה</li>
+            <li>אתה מרוויח בתחילת החודש — ומחזיר את הכל לשוק עד הסוף</li>
+            <li>שרפת חשבון Challenge של חברת מימון. אולי יותר מפעם אחת</li>
+            <li>אתה קופץ בין אסטרטגיות, תמיד רודף אחרי "השיטה הקסומה" הבאה</li>
+            <li>אתה נכנס מתוך רגש, נקמה בשוק או פחד לפספס — ואז מצטער</li>
+            <li>אתה נכנס לעסקה בלי באמת לדעת למה המחיר אמור לזוז. זה ניחוש.</li>
         </ul>
 
         <div class="separator reveal"></div>
 
         <p class="key-statement reveal">
             רוב הסוחרים לא נכשלים מחוסר ידע.
-            <strong>הם נכשלים מחוסר שיטה אחת שמייצרת עקביות.</strong>
+            <strong>הם נכשלים כי אין להם שיטה אחת שאומרת מתי כן להיכנס — ומתי לא.</strong>
         </p>
     </section>
 
@@ -1146,11 +1182,12 @@
     <!-- WHAT IS QUARTER THEORY -->
     <section class="section">
         <div class="section-heading reveal">מהי "תורת הרבעים"?</div>
-        <p class="section-sub reveal reveal-d1">שיטת מסחר שמחלקת את התנועה בשוק לרבעים מבוססי זמן ומחיר — כך שאתה יודע מראש איפה השוק נמצא במחזור שלו, מתי להיכנס, איפה לשים סטופ ומתי לקחת רווח. במקום לרדוף אחרי השוק, אתה קורא אותו לפי מבנה קבוע וחוזר.</p>
+        <p class="section-sub reveal reveal-d1">זו לא עוד אסטרטגיה, ולא עוד קבוצת איתותים. זו שיטת עבודה שלמה שמחלקת את תנועת השוק לרבעים מבוססי זמן ומחיר — ונותנת לך 3 קריטריונים ברורים לכל עסקה: <strong style="color:var(--text)">סיבתיות</strong> (למה להיכנס), <strong style="color:var(--text)">כניסה</strong> (איפה בדיוק), ו<strong style="color:var(--text)">יעד</strong> (עד לאן). במקום לרדוף אחרי השוק — אתה קורא אותו לפי מבנה קבוע שחוזר על עצמו.</p>
         <ul class="results-list reveal reveal-d2">
-            <li>הפסקת לנחש — לכל כניסה יש סיבה מבוססת זמן ומחיר</li>
+            <li>לכל כניסה יש סיבה — אתה יודע בדיוק <em>למה</em> אתה בפנים</li>
             <li>כיוון יומי ושבועי ברור עוד לפני שהשוק נפתח</li>
-            <li>ניהול עסקה שיטתי שאפשר לחזור עליו שוב ושוב</li>
+            <li>שיטה אחת שחוזרת על עצמה — במקום לקפוץ בין שיטות</li>
+            <li>השיטה אומרת לך גם מתי <em>לא</em> לסחור</li>
             <li>בסיס מוצק לעמידה ב-Challenges של חברות מימון</li>
         </ul>
     </section>
@@ -1160,7 +1197,7 @@
     <!-- AGENDA -->
     <section class="section">
         <div class="section-heading reveal">מה תיקח מ-3 השעות</div>
-        <p class="section-sub reveal reveal-d1">סדנה מעשית — לא תיאוריה. תצא עם שיטה שאתה יכול ליישם כבר ביום המסחר הבא.</p>
+        <p class="section-sub reveal reveal-d1">סדנה מעשית — לא הרצאה. תתרגל על השוק בזמן אמת, ותצא עם שיטה ליישום כבר ביום המסחר הבא.</p>
 
         <div class="content-grid">
             <div class="content-card reveal reveal-d1">
@@ -1201,7 +1238,7 @@
 <!-- RESULTS GALLERY (full width) -->
 <section class="gallery-section">
     <div class="container">
-        <div class="section-label"><span>התוצאות שלי — מספרים, לא מילים</span></div>
+        <div class="section-label"><span>משיכות ותוצאות אמיתיות — לא הבטחות</span></div>
     </div>
     <div class="gallery-track" id="resultsTrack">
         <img src="images/IMG_5757.jpg" alt="תוצאות מסחר" loading="lazy">
@@ -1231,20 +1268,20 @@
     <!-- ABOUT + PROOF -->
     <section class="section">
         <div class="section-heading reveal">מי מעביר את הסדנה</div>
-        <p class="about-text reveal reveal-d1"><strong>מתן משיח</strong> — סוחר ממומן בחשבונות PRO+, מנטור שליווה מאות סוחרים בישראל. אחרי שנים של מסחר חי ולימוד, ארז את השיטה שמייצרת לו עקביות — <strong>תורת הרבעים</strong> — לסדנה מעשית אחת.</p>
+        <p class="about-text reveal reveal-d1"><strong>מתן משיח</strong> — סוחר ממומן בחשבונות PRO+ (בסטנדרטים הנוקשים של Topstep ו-Take Profit Trader), ומנטור שליווה מאות סוחרים בישראל. הוא לא גורו עם תיאוריות — סוחר פעיל שמראה משיכות רווחים אמיתיות, ומלמד בדיוק את השיטה שעובדת לו בפועל: <strong>תורת הרבעים</strong>.</p>
 
         <div class="stats-grid">
             <div class="stat-card reveal reveal-d1">
-                <div class="stat-num">87.5%</div>
-                <div class="stat-label">אחוזי הצלחה (Win-Rate)</div>
+                <div class="stat-num">PRO+</div>
+                <div class="stat-label">חשבונות מימון פעילים<br>(Topstep / TPT)</div>
             </div>
             <div class="stat-card reveal reveal-d2">
-                <div class="stat-num">$27K</div>
-                <div class="stat-label">משיכת רווחים ב-30 יום</div>
+                <div class="stat-num">מאות</div>
+                <div class="stat-label">סוחרים בליווי אישי</div>
             </div>
             <div class="stat-card reveal reveal-d3">
-                <div class="stat-num">PRO+</div>
-                <div class="stat-label">חשבונות מימון פעילים</div>
+                <div class="stat-num">4 שנים</div>
+                <div class="stat-label">מלמד סוחרים בישראל</div>
             </div>
         </div>
     </section>
@@ -1343,20 +1380,30 @@
 
     <!-- PRICING -->
     <section class="pricing">
-        <p class="price-label reveal">השקעה בסדנה</p>
+        <div class="price-anchor reveal">
+            <p class="pa-title">בוא נדבר תכל׳ס על מחיר 👇</p>
+            <div class="pa-lines">
+                <div>סדנת מסחר חיה כזו, 3 שעות עם סוחר ממומן — בשוק עולה <s>1,690 ₪</s></div>
+                <div>גם ב-<s>990 ₪</s> זו היתה עסקה משתלמת</div>
+                <div>וגם ב-<s>700 ₪</s> לא היית מתלונן</div>
+            </div>
+            <p class="pa-note">אבל המטרה שלי שכל סוחר רציני יקבל את השיטה הזו ביד — בלי שהמחיר יהיה המחסום.</p>
+        </div>
+
+        <p class="price-label reveal">המחיר שלך היום</p>
         <div class="price-amount reveal reveal-d1">590<span class="currency"> ₪</span></div>
-        <p class="price-desc reveal reveal-d2">תשלום חד-פעמי · השתתפות מלאה בסדנה החיה</p>
+        <p class="price-desc reveal reveal-d2">תשלום חד-פעמי · השתתפות מלאה בסדנה החיה · 30 מקומות בלבד</p>
 
         <ul class="price-includes reveal reveal-d2">
             <li>3 שעות סדנה חיה פנים אל פנים במיי קמפוס, בני ברק</li>
             <li>שיטת "תורת הרבעים" המלאה — כיוון, כניסה, סטופ, יעד וניהול</li>
-            <li>תרגול חי על השוק עם מתן</li>
-            <li>מענה לשאלות בזמן אמת</li>
+            <li>תרגול חי על השוק עם מתן בזמן אמת</li>
+            <li>מענה לכל השאלות שלך, פנים אל פנים</li>
         </ul>
 
         <p class="price-sub reveal reveal-d2">המקומות מוגבלים ל-30 — ההרשמה לפי סדר הגעה.</p>
         <div class="reveal reveal-d3">
-            <a href="#register" class="cta-btn">לשריון מקום בסדנה ←</a>
+            <a href="#register" class="cta-btn">אני בפנים — שריינו לי מקום ←</a>
         </div>
     </section>
 
@@ -1439,11 +1486,31 @@
                 <span class="faq-chevron">▼</span>
             </div>
             <div class="faq-a">
-                <div class="faq-a-inner">בהחלט. אם יש לך שיטה שעובדת — תורת הרבעים תוסיף לך שכבת תזמון וכיוון שמחזקת אותה. אם אתה מדלג בין שיטות — זו ההזדמנות לעבור לשיטה אחת ברורה ועקבית.</div>
+                <div class="faq-a-inner">בהחלט. זו לא "עוד אסטרטגיה" — זו שיטת עבודה שלמה שמכתיבה גם מתי <em>לא</em> לסחור. אם יש לך שיטה שעובדת, תורת הרבעים תוסיף לה שכבת תזמון וכיוון. ואם אתה מדלג בין שיטות — זו ההזדמנות לעצור, ולעבור לשיטה אחת ברורה ועקבית.</div>
             </div>
         </div>
 
         <div class="faq-item reveal reveal-d5">
+            <div class="faq-q">
+                <span>אין לי הון גדול לסחור איתו — זה בשבילי?</span>
+                <span class="faq-chevron">▼</span>
+            </div>
+            <div class="faq-a">
+                <div class="faq-a-inner">כן. מתן עצמו סוחר על כסף של חברות מימון (חשבונות PRO+), והשיטה בנויה בדיוק בשביל זה — לעמוד ב-Challenges ולסחור על הון של חברות מימון, בלי לסכן הון עצמי גדול.</div>
+            </div>
+        </div>
+
+        <div class="faq-item reveal reveal-d6">
+            <div class="faq-q">
+                <span>590 ₪ — למה כל כך זול?</span>
+                <span class="faq-chevron">▼</span>
+            </div>
+            <div class="faq-a">
+                <div class="faq-a-inner">כי המטרה שלי היא שכל סוחר רציני בישראל יקבל את השיטה הזו ביד, והמחיר לא אמור להיות המחסום. סדנה כזו בשוק עולה הרבה יותר — מי שרוצה ליווי צמוד, יש את המנטורינג. הסדנה היא נקודת הכניסה, ואני רוצה שתהיה נגישה.</div>
+            </div>
+        </div>
+
+        <div class="faq-item reveal">
             <div class="faq-q">
                 <span>מה אם לא אוכל להגיע?</span>
                 <span class="faq-chevron">▼</span>
@@ -1469,7 +1536,7 @@
         <p class="statement reveal">אפשר להמשיך לנחש בכל עסקה.<br>ואפשר ללמוד שיטה אחת שמייצרת כיוון, תזמון ועקביות.</p>
         <h2 class="reveal reveal-d1">3 שעות שיכולות לשנות<br>את הדרך שבה אתה סוחר</h2>
         <div class="reveal reveal-d2" style="margin-bottom: 16px;">
-            <a href="#register" class="cta-btn" style="width: 100%; max-width: 400px; text-align: center;">לשריון מקום בסדנה — 590 ₪ ←</a>
+            <a href="#register" class="cta-btn" style="width: 100%; max-width: 400px; text-align: center;">אני בפנים — שריינו לי מקום (590 ₪) ←</a>
         </div>
         <p class="reveal reveal-d3" style="font-size: 12px; color: var(--text-muted);">📍 מיי קמפוס, בני ברק · 21.06.2026 · 30 מקומות בלבד</p>
     </section>
