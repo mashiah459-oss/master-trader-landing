@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סדנת תורת הרבעים — מתן משיח | Master Trader</title>
+    <meta name="description" content="סדנה חיה של 3 שעות עם מתן משיח — שיטת 'תורת הרבעים' למסחר עקבי: ביסוס כיוון, כניסות מבוססות זמן ומחיר, ניהול עסקה מא׳ ועד ת׳. 21.06.2026, מיי קמפוס בני ברק. 30 מקומות בלבד.">
+    <meta property="og:title" content="סדנת תורת הרבעים — מתן משיח">
+    <meta property="og:description" content="סדנה חיה של 3 שעות — שיטת תורת הרבעים למסחר עקבי. 21.06.2026, מיי קמפוס בני ברק.">
+    <meta property="og:type" content="website">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #060608;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --gold: #D4AF37;
+            --gold-light: #F0D060;
+            --gold-dark: #A8872B;
+            --gold-glow: rgba(212, 175, 55, 0.35);
+            --gold-subtle: rgba(212, 175, 55, 0.08);
+            --text: #F5F5F5;
+            --text-dim: #8A8A9A;
+            --text-muted: #555566;
+            --glass-border: rgba(255, 255, 255, 0.07);
+            --glass-border-hover: rgba(212, 175, 55, 0.25);
+            --error: #ff6b6b;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* === SCROLL PROGRESS BAR === */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+            z-index: 1000;
+            width: 0%;
+            transition: width 0.05s linear;
+        }
+
+        /* === AMBIENT BACKGROUND === */
+        .bg-ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+        }
+
+        .bg-orb-1 {
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+            top: -10%; left: -15%;
+            animation: orbFloat1 25s ease-in-out infinite;
+        }
+
+        .bg-orb-2 {
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+            bottom: 10%; right: -20%;
+            animation: orbFloat2 30s ease-in-out infinite;
+        }
+
+        .bg-orb-3 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbFloat3 20s ease-in-out infinite;
+        }
+
+        @keyframes orbFloat1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(40px, 30px); }
+        }
+        @keyframes orbFloat2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, -40px); }
+        }
+        @keyframes orbFloat3 {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.3); }
+        }
+
+        .bg-ambient::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        /* === STICKY HEADER === */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(6, 6, 8, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            transform: translateY(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sticky-header.visible {
+            transform: translateY(0);
+        }
+
+        .sticky-header .logo-text {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .sticky-header .logo-text span {
+            color: var(--gold);
+        }
+
+        .btn-sticky {
+            font-family: 'Heebo', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 8px 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: #0a0a0a;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-sticky:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px var(--gold-glow);
+        }
+
+        /* === CONTAINER === */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* === HERO === */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 6px 18px;
+            border-radius: 100px;
+            margin-bottom: 32px;
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .hero h1 {
+            font-size: clamp(26px, 5vw, 38px);
+            font-weight: 800;
+            line-height: 1.35;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text) 30%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--text-dim);
+            line-height: 1.7;
+            max-width: 560px;
+            margin: 0 auto 32px;
+        }
+
+        .usp-pills {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 36px;
+        }
+
+        .usp-pill {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-dim);
+            padding: 6px 16px;
+            border-radius: 100px;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .usp-pill::before {
+            content: '✓';
+            color: var(--gold);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        /* === CTA BUTTON === */
+        .cta-btn {
+            display: inline-block;
+            font-family: 'Heebo', sans-serif;
+            font-size: 17px;
+            font-weight: 700;
+            padding: 16px 40px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+            color: #0a0a0a;
+            text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 24px rgba(212, 175, 55, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.15), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 40px rgba(212, 175, 55, 0.35);
+        }
+
+        .cta-btn:hover::after {
+            transform: translateX(100%);
+        }
+
+        /* === SECTION DIVIDER === */
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* === SECTIONS === */
+        .section {
+            padding: 64px 0;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .section-label::before,
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to var(--dir, left), rgba(212, 175, 55, 0.15), transparent);
+        }
+        .section-label::before { --dir: left; }
+        .section-label::after { --dir: right; }
+
+        .section-label span {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold-dark);
+            white-space: nowrap;
+        }
+
+        .section-heading {
+            font-size: clamp(22px, 4vw, 30px);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 16px;
+            color: var(--gold);
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        /* === PAIN SECTION === */
+        .pain {
+            text-align: center;
+        }
+
+        .pain h2 {
+            font-size: clamp(20px, 4vw, 26px);
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .pain .gold-text {
+            font-size: clamp(18px, 3.5vw, 24px);
+            font-weight: 800;
+            color: var(--gold);
+            margin-bottom: 40px;
+            display: block;
+        }
+
+        .pain-list {
+            list-style: none;
+            text-align: right;
+            max-width: 520px;
+            margin: 0 auto 40px;
+        }
+
+        .pain-list li {
+            font-size: 14px;
+            color: var(--text-dim);
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            line-height: 1.6;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .pain-list li::before {
+            content: '—';
+            color: var(--gold-dark);
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .pain .separator {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border-hover), transparent);
+            margin: 40px 0;
+        }
+
+        .pain .key-statement {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        .pain .key-statement strong {
+            color: var(--gold);
+            font-weight: 700;
+            display: block;
+            font-size: 18px;
+            margin-top: 4px;
+        }
+
+        /* === RESULTS LIST === */
+        .results-list {
+            list-style: none;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .results-list li {
+            font-size: 14px;
+            color: var(--text-dim);
+            padding: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.6;
+        }
+
+        .results-list li::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: 800;
+            flex-shrink: 0;
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        /* === GALLERY === */
+        .gallery-section {
+            padding: 64px 0;
+            overflow: hidden;
+        }
+
+        .gallery-track {
+            display: flex;
+            gap: 14px;
+            width: max-content;
+            padding: 4px 0 16px;
+        }
+
+        .gallery-track img {
+            height: 180px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .gallery-track img:hover {
+            border-color: var(--glass-border-hover);
+            transform: scale(1.03);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        /* === CONTENT CARDS (AGENDA) === */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .content-grid { grid-template-columns: 1fr; }
+        }
+
+        .content-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .content-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            background: radial-gradient(
+                400px circle at var(--mx, 50%) var(--my, 50%),
+                rgba(212, 175, 55, 0.06) 0%,
+                transparent 40%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .content-card:hover::before { opacity: 1; }
+
+        .content-card:hover {
+            border-color: var(--glass-border-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        .content-card .card-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: rgba(212, 175, 55, 0.12);
+            position: absolute;
+            top: 14px;
+            left: 18px;
+        }
+
+        .content-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .content-card p {
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.65;
+        }
+
+        /* === TESTIMONIALS === */
+        .testimonials-track {
+            display: flex;
+            gap: 14px;
+            width: max-content;
+            padding: 4px 0 16px;
+        }
+
+        .testimonials-track img {
+            height: 100px;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border);
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .testimonials-track img:hover {
+            border-color: var(--glass-border-hover);
+            transform: scale(1.05);
+        }
+
+        /* === PROOF STATS === */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 560px) {
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: 28px 18px;
+            text-align: center;
+            transition: all 0.35s ease;
+        }
+
+        .stat-card:hover {
+            border-color: var(--glass-border-hover);
+            transform: translateY(-3px);
+        }
+
+        .stat-num {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(26px, 5vw, 34px);
+            font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 8px;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* === ABOUT === */
+        .about-text {
+            font-size: 15px;
+            color: var(--text-dim);
+            line-height: 1.8;
+            text-align: center;
+            max-width: 560px;
+            margin: 0 auto 36px;
+        }
+
+        .about-text strong { color: var(--text); font-weight: 600; }
+
+        /* === LOGISTICS PANEL === */
+        .logistics {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border-hover);
+            border-radius: 22px;
+            padding: 36px 28px;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .logistics-rows {
+            display: grid;
+            gap: 2px;
+            margin-bottom: 28px;
+        }
+
+        .logistics-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .logistics-row:last-child { border-bottom: none; }
+
+        .logistics-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: var(--gold-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .logistics-row .lr-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .logistics-row .lr-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        /* === COUNTDOWN === */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 auto;
+        }
+
+        .cd-box {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 14px 8px;
+            min-width: 64px;
+            text-align: center;
+        }
+
+        .cd-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .cd-unit {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 6px;
+        }
+
+        .spots-banner {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-top: 20px;
+        }
+
+        .spots-banner span { color: var(--text); }
+
+        /* === PRICING === */
+        .pricing {
+            text-align: center;
+            padding: 64px 0;
+        }
+
+        .price-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .price-amount {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(52px, 10vw, 72px);
+            font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 16px;
+            text-shadow: 0 0 60px rgba(212, 175, 55, 0.2);
+        }
+
+        .price-amount .currency { font-size: 0.5em; vertical-align: super; }
+
+        .price-desc {
+            font-size: 14px;
+            color: var(--text-dim);
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .price-sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 32px;
+        }
+
+        .price-includes {
+            list-style: none;
+            max-width: 420px;
+            margin: 0 auto 32px;
+            text-align: right;
+        }
+
+        .price-includes li {
+            font-size: 14px;
+            color: var(--text-dim);
+            padding: 9px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.6;
+        }
+
+        .price-includes li::before {
+            content: '✓';
+            color: var(--gold);
+            font-weight: 800;
+            flex-shrink: 0;
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        /* === REGISTER FORM === */
+        .register-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border-hover);
+            border-radius: 22px;
+            padding: 36px 28px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .register-title {
+            font-size: 20px;
+            font-weight: 800;
+            text-align: center;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .register-sub {
+            font-size: 13px;
+            color: var(--text-dim);
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .field { margin-bottom: 16px; text-align: right; }
+
+        .field label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dim);
+            margin-bottom: 7px;
+        }
+
+        .field input {
+            width: 100%;
+            font-family: 'Heebo', sans-serif;
+            font-size: 15px;
+            color: var(--text);
+            background: rgba(0,0,0,0.25);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 13px 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .field input::placeholder { color: var(--text-muted); }
+
+        .field input:focus {
+            outline: none;
+            border-color: var(--glass-border-hover);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.08);
+        }
+
+        .field input.invalid {
+            border-color: var(--error);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.08);
+        }
+
+        .form-error {
+            color: var(--error);
+            font-size: 13px;
+            text-align: center;
+            min-height: 18px;
+            margin-bottom: 12px;
+        }
+
+        .form-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 14px;
+            line-height: 1.6;
+        }
+
+        .success-check {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gold-subtle);
+            border: 1px solid var(--glass-border-hover);
+            color: var(--gold);
+            font-size: 30px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        /* === FAQ === */
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        .faq-item:hover,
+        .faq-item.open {
+            border-color: var(--glass-border-hover);
+        }
+
+        .faq-q {
+            padding: 18px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+
+        .faq-q:hover { color: var(--gold); }
+
+        .faq-chevron {
+            font-size: 12px;
+            color: var(--gold-dark);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-right: 8px;
+        }
+
+        .faq-item.open .faq-chevron {
+            transform: rotate(180deg);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-item.open .faq-a {
+            max-height: 320px;
+        }
+
+        .faq-a-inner {
+            padding: 0 24px 20px;
+            font-size: 14px;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        /* === FINAL CTA === */
+        .final-cta {
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .final-cta .statement {
+            font-size: 15px;
+            color: var(--text-dim);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .final-cta h2 {
+            font-size: clamp(22px, 4.5vw, 30px);
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1.4;
+            margin-bottom: 32px;
+        }
+
+        /* === FOOTER === */
+        .footer {
+            text-align: center;
+            padding: 32px 0;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover { color: var(--gold); }
+
+        /* === LIGHTBOX === */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 500;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 16px 64px rgba(0,0,0,0.6);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+
+        .reveal.visible {
+            animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .reveal-d1.visible { animation-delay: 0.05s; }
+        .reveal-d2.visible { animation-delay: 0.1s; }
+        .reveal-d3.visible { animation-delay: 0.15s; }
+        .reveal-d4.visible { animation-delay: 0.2s; }
+        .reveal-d5.visible { animation-delay: 0.25s; }
+        .reveal-d6.visible { animation-delay: 0.3s; }
+
+        /* === BACK TO TOP === */
+        .back-top {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--glass-border-hover);
+            color: var(--gold);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.35s ease;
+            backdrop-filter: blur(12px);
+        }
+
+        .back-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-top:hover {
+            background: rgba(212, 175, 55, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 480px) {
+            .container { padding: 0 16px; }
+            .hero { padding: 60px 0 48px; }
+            .section { padding: 48px 0; }
+            .cta-btn { font-size: 15px; padding: 14px 32px; width: 100%; text-align: center; }
+            .gallery-track img { height: 140px; }
+            .pricing { padding: 48px 0; }
+            .cd-box { min-width: 56px; padding: 12px 6px; }
+            .cd-num { font-size: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Ambient Background -->
+<div class="bg-ambient">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+</div>
+
+<!-- Sticky Header -->
+<header class="sticky-header" id="stickyHeader">
+    <div class="logo-text"><span>מתן משיח</span> | Master Trader</div>
+    <a href="#register" class="btn-sticky">להרשמה לסדנה</a>
+</header>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close">×</button>
+    <img src="" alt="">
+</div>
+
+<div class="container">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="reveal">
+            <span class="hero-label">סדנה חיה · מיי קמפוס, בני ברק · 30 מקומות בלבד</span>
+        </div>
+        <h1 class="reveal reveal-d1">סוחר בלי תוכנית מהמר. בסדנת "תורת הרבעים" תקבל שיטה ברורה לכניסה, יציאה וניהול עסקה — מא׳ ועד ת׳</h1>
+        <p class="subtitle reveal reveal-d2">3 שעות חיות עם מתן משיח, פנים אל פנים. השיטה שמייצרת כיוון, תזמון ועקביות — במקום החלפת אסטרטגיות וקבלת החלטות מתוך רגש.</p>
+
+        <div class="usp-pills reveal reveal-d3">
+            <span class="usp-pill">21.06.2026 · 17:00–20:00</span>
+            <span class="usp-pill">מיי קמפוס, בני ברק</span>
+            <span class="usp-pill">3 שעות תרגול חי</span>
+        </div>
+
+        <div class="reveal reveal-d4">
+            <a href="#register" class="cta-btn">אני רוצה לשריין מקום ←</a>
+        </div>
+        <p class="reveal reveal-d4" style="font-size:12px; color:var(--text-muted); margin-top:14px;">המקומות מוגבלים ל-30 משתתפים בלבד</p>
+    </section>
+
+    <!-- PAIN -->
+    <section class="section pain">
+        <h2 class="reveal">אתה יודע לקרוא גרף.<br>אבל כל עסקה מרגישה כמו הימור.</h2>
+        <span class="gold-text reveal reveal-d1">הבעיה היא לא הידע — היא חוסר שיטה.</span>
+
+        <ul class="pain-list reveal reveal-d2">
+            <li>אתה מחליף אסטרטגיה כל כמה שבועות ואף פעם לא נותן לאחת זמן לעבוד</li>
+            <li>אתה נכנס לעסקה כי "זה נראה טוב" — בלי כיוון יומי או שבועי ברור</li>
+            <li>הסטופ-לוס שלך שרירותי, והיעד נקבע לפי תחושה</li>
+            <li>אתה יוצא מוקדם מרווח, ומחזיק יותר מדי בהפסד</li>
+            <li>נכשלת ב-Challenge של חברת מימון כי אין לך מבנה ניהול עסקה</li>
+        </ul>
+
+        <div class="separator reveal"></div>
+
+        <p class="key-statement reveal">
+            רוב הסוחרים לא נכשלים מחוסר ידע.
+            <strong>הם נכשלים מחוסר שיטה אחת שמייצרת עקביות.</strong>
+        </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- WHAT IS QUARTER THEORY -->
+    <section class="section">
+        <div class="section-heading reveal">מהי "תורת הרבעים"?</div>
+        <p class="section-sub reveal reveal-d1">שיטת מסחר שמחלקת את התנועה בשוק לרבעים מבוססי זמן ומחיר — כך שאתה יודע מראש איפה השוק נמצא במחזור שלו, מתי להיכנס, איפה לשים סטופ ומתי לקחת רווח. במקום לרדוף אחרי השוק, אתה קורא אותו לפי מבנה קבוע וחוזר.</p>
+        <ul class="results-list reveal reveal-d2">
+            <li>הפסקת לנחש — לכל כניסה יש סיבה מבוססת זמן ומחיר</li>
+            <li>כיוון יומי ושבועי ברור עוד לפני שהשוק נפתח</li>
+            <li>ניהול עסקה שיטתי שאפשר לחזור עליו שוב ושוב</li>
+            <li>בסיס מוצק לעמידה ב-Challenges של חברות מימון</li>
+        </ul>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- AGENDA -->
+    <section class="section">
+        <div class="section-heading reveal">מה תיקח מ-3 השעות</div>
+        <p class="section-sub reveal reveal-d1">סדנה מעשית — לא תיאוריה. תצא עם שיטה שאתה יכול ליישם כבר ביום המסחר הבא.</p>
+
+        <div class="content-grid">
+            <div class="content-card reveal reveal-d1">
+                <span class="card-num">01</span>
+                <h3>עקרון תורת הרבעים</h3>
+                <p>איך השוק נע ברבעים מבוססי זמן ומחיר — והבסיס שכל השיטה נשענת עליו.</p>
+            </div>
+            <div class="content-card reveal reveal-d2">
+                <span class="card-num">02</span>
+                <h3>ביסוס כיוון יומי ושבועי</h3>
+                <p>לדעת לאן השוק נוטה עוד לפני הכניסה — בלי לרדוף אחרי הנר הבא.</p>
+            </div>
+            <div class="content-card reveal reveal-d3">
+                <span class="card-num">03</span>
+                <h3>כניסות מבוססות זמן ומחיר</h3>
+                <p>נקודות כניסה מדויקות לפי מבנה השיטה — לא לפי תחושת בטן.</p>
+            </div>
+            <div class="content-card reveal reveal-d4">
+                <span class="card-num">04</span>
+                <h3>מיקום סטופ-לוס נכון</h3>
+                <p>איפה לשים סטופ שמגן עליך באמת — ולמה רוב הסוחרים שמים אותו לא נכון.</p>
+            </div>
+            <div class="content-card reveal reveal-d5">
+                <span class="card-num">05</span>
+                <h3>הגדרת יעדים ולקיחת רווח</h3>
+                <p>מתי לקחת רווח ואיך לקבוע יעד הגיוני — במקום לצאת מוקדם או מאוחר מדי.</p>
+            </div>
+            <div class="content-card reveal reveal-d6">
+                <span class="card-num">06</span>
+                <h3>ניהול עסקה מא׳ ועד ת׳</h3>
+                <p>תרגול חי על השוק — מהכניסה, דרך הניהול, ועד היציאה.</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- RESULTS GALLERY (full width) -->
+<section class="gallery-section">
+    <div class="container">
+        <div class="section-label"><span>התוצאות שלי — מספרים, לא מילים</span></div>
+    </div>
+    <div class="gallery-track" id="resultsTrack">
+        <img src="images/IMG_5757.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5756.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5755.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5754.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5750.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5751.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5753.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5752.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5749.jpg" alt="תוצאות מסחר" loading="lazy">
+        <!-- Duplicates for seamless loop -->
+        <img src="images/IMG_5757.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5756.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5755.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5754.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5750.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5751.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5753.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5752.jpg" alt="תוצאות מסחר" loading="lazy">
+        <img src="images/IMG_5749.jpg" alt="תוצאות מסחר" loading="lazy">
+    </div>
+</section>
+
+<div class="container">
+
+    <!-- ABOUT + PROOF -->
+    <section class="section">
+        <div class="section-heading reveal">מי מעביר את הסדנה</div>
+        <p class="about-text reveal reveal-d1"><strong>מתן משיח</strong> — סוחר ממומן בחשבונות PRO+, מנטור שליווה מאות סוחרים בישראל. אחרי שנים של מסחר חי ולימוד, ארז את השיטה שמייצרת לו עקביות — <strong>תורת הרבעים</strong> — לסדנה מעשית אחת.</p>
+
+        <div class="stats-grid">
+            <div class="stat-card reveal reveal-d1">
+                <div class="stat-num">87.5%</div>
+                <div class="stat-label">אחוזי הצלחה (Win-Rate)</div>
+            </div>
+            <div class="stat-card reveal reveal-d2">
+                <div class="stat-num">$27K</div>
+                <div class="stat-label">משיכת רווחים ב-30 יום</div>
+            </div>
+            <div class="stat-card reveal reveal-d3">
+                <div class="stat-num">PRO+</div>
+                <div class="stat-label">חשבונות מימון פעילים</div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- TESTIMONIALS (full width) -->
+<section class="gallery-section">
+    <div class="container">
+        <div class="section-label"><span>מה אומרים עליי</span></div>
+    </div>
+    <div class="testimonials-track" id="testimonialsTrack">
+        <img src="images/review-1.png" alt="עדות" loading="lazy">
+        <img src="images/review-2.png" alt="עדות" loading="lazy">
+        <img src="images/review-3.png" alt="עדות" loading="lazy">
+        <img src="images/review-4.png" alt="עדות" loading="lazy">
+        <img src="images/review-5.png" alt="עדות" loading="lazy">
+        <img src="images/review-6.png" alt="עדות" loading="lazy">
+        <img src="images/review-7.png" alt="עדות" loading="lazy">
+        <img src="images/review-8.png" alt="עדות" loading="lazy">
+        <img src="images/review-9.png" alt="עדות" loading="lazy">
+        <img src="images/review-10.png" alt="עדות" loading="lazy">
+        <img src="images/review-11.png" alt="עדות" loading="lazy">
+        <img src="images/review-12.png" alt="עדות" loading="lazy">
+        <img src="images/review-13.png" alt="עדות" loading="lazy">
+        <img src="images/review-14.png" alt="עדות" loading="lazy">
+        <img src="images/review-15.png" alt="עדות" loading="lazy">
+        <!-- Duplicates for loop -->
+        <img src="images/review-1.png" alt="עדות" loading="lazy">
+        <img src="images/review-2.png" alt="עדות" loading="lazy">
+        <img src="images/review-3.png" alt="עדות" loading="lazy">
+        <img src="images/review-4.png" alt="עדות" loading="lazy">
+        <img src="images/review-5.png" alt="עדות" loading="lazy">
+        <img src="images/review-6.png" alt="עדות" loading="lazy">
+        <img src="images/review-7.png" alt="עדות" loading="lazy">
+        <img src="images/review-8.png" alt="עדות" loading="lazy">
+        <img src="images/review-9.png" alt="עדות" loading="lazy">
+        <img src="images/review-10.png" alt="עדות" loading="lazy">
+        <img src="images/review-11.png" alt="עדות" loading="lazy">
+        <img src="images/review-12.png" alt="עדות" loading="lazy">
+        <img src="images/review-13.png" alt="עדות" loading="lazy">
+        <img src="images/review-14.png" alt="עדות" loading="lazy">
+        <img src="images/review-15.png" alt="עדות" loading="lazy">
+    </div>
+</section>
+
+<div class="container">
+
+    <!-- LOGISTICS + COUNTDOWN -->
+    <section class="section">
+        <div class="section-heading reveal">פרטי הסדנה</div>
+        <div class="logistics reveal reveal-d1">
+            <div class="logistics-rows">
+                <div class="logistics-row">
+                    <div class="logistics-icon">📅</div>
+                    <div>
+                        <div class="lr-label">תאריך</div>
+                        <div class="lr-value">יום ראשון, 21.06.2026</div>
+                    </div>
+                </div>
+                <div class="logistics-row">
+                    <div class="logistics-icon">🕔</div>
+                    <div>
+                        <div class="lr-label">שעות</div>
+                        <div class="lr-value">17:00 – 20:00 (3 שעות)</div>
+                    </div>
+                </div>
+                <div class="logistics-row">
+                    <div class="logistics-icon">📍</div>
+                    <div>
+                        <div class="lr-label">מיקום</div>
+                        <div class="lr-value">מיי קמפוס, בני ברק</div>
+                    </div>
+                </div>
+                <div class="logistics-row">
+                    <div class="logistics-icon">👥</div>
+                    <div>
+                        <div class="lr-label">מקומות</div>
+                        <div class="lr-value">30 משתתפים בלבד</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="countdown" id="countdown" aria-label="ספירה לאחור לסדנה">
+                <div class="cd-box"><div class="cd-num" id="cd-days">--</div><div class="cd-unit">ימים</div></div>
+                <div class="cd-box"><div class="cd-num" id="cd-hours">--</div><div class="cd-unit">שעות</div></div>
+                <div class="cd-box"><div class="cd-num" id="cd-mins">--</div><div class="cd-unit">דקות</div></div>
+                <div class="cd-box"><div class="cd-num" id="cd-secs">--</div><div class="cd-unit">שניות</div></div>
+            </div>
+
+            <p class="spots-banner">⚡ הסדנה מוגבלת ל-<span>30 מקומות</span> — ברגע שהם נגמרים, נסגרת ההרשמה</p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PRICING -->
+    <section class="pricing">
+        <p class="price-label reveal">השקעה בסדנה</p>
+        <div class="price-amount reveal reveal-d1">590<span class="currency"> ₪</span></div>
+        <p class="price-desc reveal reveal-d2">תשלום חד-פעמי · השתתפות מלאה בסדנה החיה</p>
+
+        <ul class="price-includes reveal reveal-d2">
+            <li>3 שעות סדנה חיה פנים אל פנים במיי קמפוס, בני ברק</li>
+            <li>שיטת "תורת הרבעים" המלאה — כיוון, כניסה, סטופ, יעד וניהול</li>
+            <li>תרגול חי על השוק עם מתן</li>
+            <li>מענה לשאלות בזמן אמת</li>
+        </ul>
+
+        <p class="price-sub reveal reveal-d2">המקומות מוגבלים ל-30 — ההרשמה לפי סדר הגעה.</p>
+        <div class="reveal reveal-d3">
+            <a href="#register" class="cta-btn">לשריון מקום בסדנה ←</a>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- REGISTER -->
+    <section class="section" id="register">
+        <div class="section-label reveal"><span>הרשמה לסדנה</span></div>
+        <div class="register-card reveal reveal-d1">
+            <div id="formView">
+                <h3 class="register-title">שריון מקום לסדנת תורת הרבעים</h3>
+                <p class="register-sub">21.06.2026 · 17:00–20:00 · מיי קמפוס, בני ברק<br>השאר פרטים ועבור להשלמת התשלום ושריון המקום</p>
+                <form id="registerForm" novalidate>
+                    <div class="field">
+                        <label for="fullName">שם מלא</label>
+                        <input type="text" id="fullName" name="fullName" autocomplete="name" required placeholder="השם שלך">
+                    </div>
+                    <div class="field">
+                        <label for="email">כתובת מייל</label>
+                        <input type="email" id="email" name="email" autocomplete="email" required placeholder="name@example.com" dir="ltr" style="text-align:right;">
+                    </div>
+                    <div class="field">
+                        <label for="phone">מספר טלפון</label>
+                        <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="05X-XXXXXXX" dir="ltr" style="text-align:right;">
+                    </div>
+                    <div class="form-error" id="formError"></div>
+                    <button type="submit" class="cta-btn" id="submitBtn" style="width:100%;">המשך לשריון המקום ←</button>
+                    <p class="form-note">🔒 הפרטים שלך מאובטחים · כל הפרטים המלאים יישלחו בהודעת וואטסאפ</p>
+                </form>
+            </div>
+            <div id="successView" style="display:none; text-align:center;">
+                <div class="success-check">✓</div>
+                <h3 class="register-title">כמעט סיימת!</h3>
+                <p class="register-sub">הפרטים שלך נקלטו אצלנו.<br>כדי לשריין סופית את המקום — השלם את התשלום (590 ₪).</p>
+                <a href="https://mrng.to/laDV2f9ekC" target="_blank" rel="noopener" class="cta-btn" style="width:100%;">להשלמת התשלום ושריון המקום — 590 ₪ ←</a>
+                <p class="form-note">לאחר התשלום — כל הפרטים המלאים (כתובת מדויקת והנחיות) יישלחו אליך בהודעת וואטסאפ.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- FAQ -->
+    <section class="section">
+        <div class="section-heading reveal">שאלות נפוצות</div>
+
+        <div class="faq-item reveal reveal-d1">
+            <div class="faq-q">
+                <span>הסדנה מתאימה גם למתחילים?</span>
+                <span class="faq-chevron">▼</span>
+            </div>
+            <div class="faq-a">
+                <div class="faq-a-inner">כן. השיטה נבנתה כך שגם מי שבתחילת הדרך יוכל ליישם אותה, וגם סוחר מנוסה ייקח ממנה שדרוג אמיתי. כל מה שצריך זה ידע בסיסי בקריאת גרף ורצון ליישם.</div>
+            </div>
+        </div>
+
+        <div class="faq-item reveal reveal-d2">
+            <div class="faq-q">
+                <span>הסדנה אונליין או פיזית?</span>
+                <span class="faq-chevron">▼</span>
+            </div>
+            <div class="faq-a">
+                <div class="faq-a-inner">פיזית, פנים אל פנים — במיי קמפוס בבני ברק, ב-21.06.2026 בין 17:00 ל-20:00. הכתובת המדויקת וההנחיות יישלחו לנרשמים בהודעת וואטסאפ.</div>
+            </div>
+        </div>
+
+        <div class="faq-item reveal reveal-d3">
+            <div class="faq-q">
+                <span>איך נרשמים ומה כולל המחיר?</span>
+                <span class="faq-chevron">▼</span>
+            </div>
+            <div class="faq-a">
+                <div class="faq-a-inner">משאירים פרטים בטופס ההרשמה, ומשלימים תשלום של 590 ₪ דרך דף הסליקה. המחיר כולל את כל 3 שעות הסדנה החיה, את שיטת תורת הרבעים המלאה, תרגול חי ומענה לשאלות.</div>
+            </div>
+        </div>
+
+        <div class="faq-item reveal reveal-d4">
+            <div class="faq-q">
+                <span>יש לי כבר שיטת מסחר — זה רלוונטי לי?</span>
+                <span class="faq-chevron">▼</span>
+            </div>
+            <div class="faq-a">
+                <div class="faq-a-inner">בהחלט. אם יש לך שיטה שעובדת — תורת הרבעים תוסיף לך שכבת תזמון וכיוון שמחזקת אותה. אם אתה מדלג בין שיטות — זו ההזדמנות לעבור לשיטה אחת ברורה ועקבית.</div>
+            </div>
+        </div>
+
+        <div class="faq-item reveal reveal-d5">
+            <div class="faq-q">
+                <span>מה אם לא אוכל להגיע?</span>
+                <span class="faq-chevron">▼</span>
+            </div>
+            <div class="faq-a">
+                <div class="faq-a-inner">המקומות מוגבלים ל-30, ולכן אם נבצר ממך להגיע — כתוב לנו מראש בוואטסאפ ונמצא פתרון. הגעה היא חלק מהערך: זו סדנה חיה עם תרגול ומענה אישי.</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- URGENCY -->
+    <section class="section" style="text-align: center;">
+        <div class="reveal" style="background: var(--bg-card); border: 1px solid var(--glass-border-hover); border-radius: 18px; padding: 32px 24px; max-width: 520px; margin: 0 auto;">
+            <p style="font-size: 14px; color: var(--gold); font-weight: 600; margin-bottom: 16px;">⚡ שים לב</p>
+            <p style="font-size: 15px; line-height: 1.7; color: var(--text-dim);">זו סדנה חיה אחת, בתאריך אחד, עם <strong style="color: var(--text);">30 מקומות בלבד.</strong> אין הקלטה חוזרת ואין מועד נוסף מובטח. מי שרוצה להיות בחדר — צריך לשריין מקום עכשיו.</p>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+        <p class="statement reveal">אפשר להמשיך לנחש בכל עסקה.<br>ואפשר ללמוד שיטה אחת שמייצרת כיוון, תזמון ועקביות.</p>
+        <h2 class="reveal reveal-d1">3 שעות שיכולות לשנות<br>את הדרך שבה אתה סוחר</h2>
+        <div class="reveal reveal-d2" style="margin-bottom: 16px;">
+            <a href="#register" class="cta-btn" style="width: 100%; max-width: 400px; text-align: center;">לשריון מקום בסדנה — 590 ₪ ←</a>
+        </div>
+        <p class="reveal reveal-d3" style="font-size: 12px; color: var(--text-muted);">📍 מיי קמפוס, בני ברק · 21.06.2026 · 30 מקומות בלבד</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2026 מתן משיח • Master Trader</p>
+        <div class="footer-links">
+            <a href="index.html">חזרה לאתר</a>
+            <a href="course.html">הקורס הדיגיטלי</a>
+            <a href="apply.html">פגישה אישית</a>
+        </div>
+    </footer>
+
+</div>
+
+<!-- Back to top -->
+<button class="back-top" id="backTop">↑</button>
+
+<script>
+(function() {
+    // === CONFIG ===
+    const WORKSHOP_DATE = new Date('2026-06-21T17:00:00+03:00');
+    const FORMSUBMIT_ENDPOINT = 'https://formsubmit.co/mashiah459@gmail.com';
+    const SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzIYi6LIAuHrVEwTCr3bhHEpUoMVkQZePGomu0mjoo_wtkIVz8VQmO1TZkKji4yoHiw/exec';
+    const PAYMENT_URL = 'https://mrng.to/laDV2f9ekC';
+
+    // === SCROLL PROGRESS / HEADER / BACK-TOP ===
+    const scrollProgress = document.getElementById('scrollProgress');
+    const stickyHeader = document.getElementById('stickyHeader');
+    const hero = document.getElementById('hero');
+    const backTop = document.getElementById('backTop');
+
+    function onScroll() {
+        const scrolled = window.scrollY;
+        const docH = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = Math.min(scrolled / docH * 100, 100);
+        scrollProgress.style.width = pct + '%';
+
+        const heroBottom = hero.offsetTop + hero.offsetHeight;
+        stickyHeader.classList.toggle('visible', scrolled > heroBottom);
+        backTop.classList.toggle('visible', scrolled > 800);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // === REVEAL ON SCROLL ===
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // === COUNTDOWN ===
+    const cdDays = document.getElementById('cd-days');
+    const cdHours = document.getElementById('cd-hours');
+    const cdMins = document.getElementById('cd-mins');
+    const cdSecs = document.getElementById('cd-secs');
+    const countdownEl = document.getElementById('countdown');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function updateCountdown() {
+        const diff = WORKSHOP_DATE.getTime() - Date.now();
+        if (diff <= 0) {
+            countdownEl.innerHTML = '<p style="font-size:15px; color:var(--gold); font-weight:700;">הסדנה החלה / התקיימה</p>';
+            return false;
+        }
+        const days = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins = Math.floor((diff % 3600000) / 60000);
+        const secs = Math.floor((diff % 60000) / 1000);
+        cdDays.textContent = days;
+        cdHours.textContent = pad(hours);
+        cdMins.textContent = pad(mins);
+        cdSecs.textContent = pad(secs);
+        return true;
+    }
+
+    if (updateCountdown()) {
+        const timer = setInterval(() => { if (!updateCountdown()) clearInterval(timer); }, 1000);
+    }
+
+    // === AUTO-SCROLL CAROUSELS ===
+    function initCarousel(track, speed) {
+        if (!track) return;
+        let scrollPos = 0;
+        let isIdle = true;
+        let idleTimer = null;
+        const halfWidth = track.scrollWidth / 2;
+
+        function autoScroll() {
+            if (isIdle && halfWidth > 0) {
+                scrollPos += speed;
+                if (scrollPos >= halfWidth) scrollPos -= halfWidth;
+                track.style.transform = `translateX(${scrollPos}px)`;
+            }
+            requestAnimationFrame(autoScroll);
+        }
+        function pause() {
+            isIdle = false;
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(() => { isIdle = true; }, 2000);
+        }
+        let startX, startScroll, isDragging = false;
+        track.addEventListener('mousedown', (e) => { isDragging = true; startX = e.pageX; startScroll = scrollPos; pause(); });
+        track.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            scrollPos = startScroll - (e.pageX - startX) * 0.5;
+            track.style.transform = `translateX(${scrollPos}px)`;
+        });
+        window.addEventListener('mouseup', () => { isDragging = false; });
+        track.addEventListener('touchstart', (e) => { startX = e.touches[0].pageX; startScroll = scrollPos; pause(); }, { passive: true });
+        track.addEventListener('touchmove', (e) => {
+            const dx = e.touches[0].pageX - startX;
+            if (Math.abs(dx) > 5) { scrollPos = startScroll - dx * 0.5; track.style.transform = `translateX(${scrollPos}px)`; }
+        }, { passive: true });
+        requestAnimationFrame(autoScroll);
+    }
+    initCarousel(document.getElementById('resultsTrack'), 0.6);
+    initCarousel(document.getElementById('testimonialsTrack'), 0.5);
+
+    // === LIGHTBOX ===
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const lightboxClose = lightbox.querySelector('.lightbox-close');
+    document.querySelectorAll('.gallery-track img, .testimonials-track img').forEach(img => {
+        img.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    function closeLightbox() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+    // === FAQ ACCORDION ===
+    document.querySelectorAll('.faq-q').forEach(q => {
+        q.addEventListener('click', () => {
+            const item = q.closest('.faq-item');
+            const wasOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+            if (!wasOpen) item.classList.add('open');
+        });
+    });
+
+    // === CARD GLOW FOLLOW ===
+    document.querySelectorAll('.content-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty('--mx', ((e.clientX - rect.left) / rect.width * 100) + '%');
+            card.style.setProperty('--my', ((e.clientY - rect.top) / rect.height * 100) + '%');
+        });
+    });
+
+    // === REGISTRATION FORM ===
+    const form = document.getElementById('registerForm');
+    const formError = document.getElementById('formError');
+    const submitBtn = document.getElementById('submitBtn');
+    const formView = document.getElementById('formView');
+    const successView = document.getElementById('successView');
+
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRe = /^0\d{1,2}-?\d{7}$/;
+
+    function showError(msg, field) {
+        formError.textContent = msg;
+        document.querySelectorAll('.field input').forEach(i => i.classList.remove('invalid'));
+        if (field) field.classList.add('invalid');
+    }
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const fullName = form.fullName.value.trim();
+        const email = form.email.value.trim();
+        const phone = form.phone.value.trim();
+
+        if (fullName.length < 2) return showError('נא להזין שם מלא', form.fullName);
+        if (!emailRe.test(email)) return showError('נא להזין כתובת מייל תקינה', form.email);
+        if (!phoneRe.test(phone.replace(/\s/g, ''))) return showError('נא להזין מספר טלפון תקין (לדוגמה 050-1234567)', form.phone);
+
+        showError('');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'שולח...';
+
+        const payload = {
+            name: fullName,
+            email: email,
+            phone: phone,
+            source: 'workshop-quarter-theory',
+            workshop_date: '2026-06-21'
+        };
+
+        // Email notification via formsubmit.co (hidden form post)
+        const hiddenForm = document.createElement('form');
+        hiddenForm.method = 'POST';
+        hiddenForm.action = FORMSUBMIT_ENDPOINT;
+        hiddenForm.style.display = 'none';
+        const fields = {
+            '_subject': 'הרשמה חדשה לסדנת תורת הרבעים — ' + fullName,
+            '_captcha': 'false',
+            'שם': fullName,
+            'מייל': email,
+            'טלפון': phone,
+            'סדנה': 'תורת הרבעים · 21.06.2026'
+        };
+        for (const [k, v] of Object.entries(fields)) {
+            const input = document.createElement('input');
+            input.name = k; input.value = v;
+            hiddenForm.appendChild(input);
+        }
+        document.body.appendChild(hiddenForm);
+        const formData = new FormData(hiddenForm);
+        fetch(FORMSUBMIT_ENDPOINT, { method: 'POST', body: formData }).catch(() => {});
+
+        // Backup to Google Sheets
+        fetch(SHEETS_ENDPOINT, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(() => {});
+
+        // Show success + payment step
+        formView.style.display = 'none';
+        successView.style.display = 'block';
+        successView.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+})();
+</script>
+
+</body>
+</html>

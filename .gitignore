@@ -1,0 +1,13 @@
+# OS junk
+.DS_Store
+**/.DS_Store
+
+# Lead / customer data — contains PII, must never be published (repo is public)
+leads.csv
+new_leads_raw.txt
+*.csv
+
+# Local config & internal endpoints
+sheets_config.json
+sheet_url.txt
+deploy_url.txt
