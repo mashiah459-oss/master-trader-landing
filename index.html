@@ -1540,21 +1540,20 @@ function submitNewsletter(e) {
     btn.textContent = 'שולח...';
     btn.disabled = true;
 
-    // Send to Google Sheets
-    fetch('https://script.google.com/macros/s/AKfycbzIYi6LIAuHrVEwTCr3bhHEpUoMVkQZePGomu0mjoo_wtkIVz8VQmO1TZkKji4yoHiw/exec', {
+    // Send to MailerLite via Cloudflare Worker proxy
+    fetch('https://mastertrader-newsletter.mashiah.workers.dev', {
         method: 'POST',
-        mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             name: name,
             email: email,
-            source: 'newsletter',
-            timestamp: new Date().toISOString()
+            source: 'newsletter'
         })
-    }).then(() => {
+    }).then(res => res.json()).then(data => {
         document.getElementById('newsletterForm').style.display = 'none';
         document.getElementById('nlSuccess').style.display = 'block';
     }).catch(() => {
+        // Even on network error, show success — Worker may have succeeded but CORS blocked the read
         document.getElementById('newsletterForm').style.display = 'none';
         document.getElementById('nlSuccess').style.display = 'block';
     });
