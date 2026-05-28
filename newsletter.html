@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>הניוזלטר של מתן משיח | MasterTrader</title>
+    <meta name="description" content="טיפ שבועי לסוחר היומי. תוכן ישיר, בלי שטויות, פעם בשבוע במייל. הרשמה חינמית.">
+    <meta property="og:title" content="הניוזלטר של מתן משיח | MasterTrader">
+    <meta property="og:description" content="טיפ שבועי לסוחר היומי. פעם בשבוע, בקצר ובלי שטויות.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://matanmashiah.com/newsletter.html">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #060608;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --gold: #D4AF37;
+            --gold-light: #F0D060;
+            --gold-dark: #A8872B;
+            --gold-subtle: rgba(212, 175, 55, 0.1);
+            --text: #F5F5F5;
+            --text-dim: #8A8A9A;
+            --text-muted: #555566;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --green: #22C55E;
+            --red: #ff7676;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-ambient {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+        }
+        .bg-orb-1 {
+            width: 480px; height: 480px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.12), transparent 70%);
+            top: -10%; left: -10%;
+            animation: float1 28s ease-in-out infinite;
+        }
+        .bg-orb-2 {
+            width: 380px; height: 380px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.06), transparent 70%);
+            bottom: 5%; right: -15%;
+            animation: float2 32s ease-in-out infinite;
+        }
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(40px, 30px); }
+        }
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, -40px); }
+        }
+
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: 540px;
+            margin: 0 auto;
+            padding: 56px 22px 80px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 56px;
+            opacity: 0.92;
+        }
+        .brand-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0a0a0a;
+            font-weight: 900;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+        }
+        .brand-name {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+        }
+
+        .eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(32px, 6vw, 44px);
+            font-weight: 800;
+            line-height: 1.15;
+            text-align: center;
+            margin-bottom: 18px;
+            letter-spacing: -0.02em;
+        }
+        h1 .accent {
+            color: var(--gold);
+        }
+
+        .lede {
+            font-size: 16px;
+            color: var(--text-dim);
+            text-align: center;
+            max-width: 440px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .promise-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: 28px 24px;
+            margin-bottom: 28px;
+            backdrop-filter: blur(10px);
+        }
+        .promise-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .promise-list {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+        }
+        .promise-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--text);
+            line-height: 1.55;
+        }
+        .promise-list .check {
+            color: var(--gold);
+            font-weight: 800;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .promise-list strong {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: 32px 26px;
+            backdrop-filter: blur(10px);
+        }
+        .form-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+        .form-card-sub {
+            font-size: 13px;
+            color: var(--text-dim);
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .field {
+            position: relative;
+        }
+        .field label {
+            position: absolute;
+            top: 50%;
+            right: 16px;
+            transform: translateY(-50%);
+            font-size: 13px;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: all 0.2s ease;
+            background: var(--bg);
+            padding: 0 6px;
+        }
+        .field input:focus + label,
+        .field input:not(:placeholder-shown) + label {
+            top: 0;
+            transform: translateY(-50%);
+            font-size: 11px;
+            color: var(--gold);
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text);
+            font-family: 'Heebo', sans-serif;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s, background 0.2s;
+            direction: rtl;
+        }
+        input[type="email"] {
+            direction: ltr;
+            text-align: right;
+        }
+        input[type="text"]:focus, input[type="email"]:focus {
+            border-color: rgba(212, 175, 55, 0.5);
+            background: rgba(212, 175, 55, 0.04);
+        }
+
+        .consent {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 6px 2px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .consent input[type="checkbox"] {
+            margin-top: 3px;
+            width: 16px;
+            height: 16px;
+            accent-color: var(--gold);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .consent span {
+            font-size: 12.5px;
+            color: var(--text-dim);
+            line-height: 1.55;
+        }
+
+        button[type="submit"] {
+            margin-top: 8px;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: #0a0a0a;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+            letter-spacing: 0.3px;
+        }
+        button[type="submit"]:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+        }
+        button[type="submit"]:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
+        .fine {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 16px;
+            line-height: 1.6;
+        }
+
+        .success {
+            display: none;
+            text-align: center;
+            padding: 24px 16px 8px;
+        }
+        .success .check-big {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--gold);
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+        .success h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .success p {
+            font-size: 14px;
+            color: var(--text-dim);
+            line-height: 1.7;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .error {
+            display: none;
+            color: var(--red);
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .footer {
+            margin-top: 48px;
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+        .footer a {
+            color: var(--text-dim);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--text-muted);
+            margin: 0 4px;
+        }
+        .footer a:hover { color: var(--gold); border-color: var(--gold); }
+
+        @media (max-width: 480px) {
+            .page { padding: 36px 18px 60px; }
+            .form-card, .promise-card { padding: 24px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-ambient">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+    </div>
+
+    <main class="page">
+        <div class="brand">
+            <div class="brand-mark">M</div>
+            <div class="brand-name">MasterTrader</div>
+        </div>
+
+        <div class="eyebrow">פעם בשבוע · במייל · חינם</div>
+
+        <h1>הניוזלטר של<br><span class="accent">מתן משיח</span></h1>
+
+        <p class="lede">
+            טיפ שבועי קצר לסוחר היומי.
+            ישיר, בלי שטויות, בלי קליק-בייט.
+        </p>
+
+        <div class="promise-card">
+            <div class="promise-title">מה תקבל</div>
+            <ul class="promise-list">
+                <li><span class="check">✓</span> <span><strong>מייל אחד בכל יום שישי.</strong> לא יותר.</span></li>
+                <li><span class="check">✓</span> <span>סיכום קצר של <strong>שבוע המסחר</strong> — מה ראיתי, מה למדתי, מה אתה צריך להזכיר לעצמך</span></li>
+                <li><span class="check">✓</span> <span><strong>טכניקה אחת מעשית</strong> שאתה יכול ליישם כבר ביום ראשון</span></li>
+                <li><span class="check">✓</span> <span>הכל בעברית, בקצב שאתה יכול לקרוא <strong>בזמן הקפה</strong></span></li>
+            </ul>
+        </div>
+
+        <div class="form-card">
+            <div class="form-card-title">הצטרף חינם</div>
+            <div class="form-card-sub">בלי ספאם. ביטול בקליק אחד.</div>
+
+            <form id="newsletterForm" onsubmit="submitNewsletter(event)">
+                <div class="field">
+                    <input type="text" id="nlName" placeholder=" " required autocomplete="given-name">
+                    <label for="nlName">שם מלא</label>
+                </div>
+                <div class="field">
+                    <input type="email" id="nlEmail" placeholder=" " required autocomplete="email">
+                    <label for="nlEmail">כתובת אימייל</label>
+                </div>
+
+                <label class="consent">
+                    <input type="checkbox" id="nlConsent" required>
+                    <span>אני מאשר/ת קבלת מסרים פרסומיים מאת מתן משיח במייל. ניתן להסיר בכל עת בלחיצה על קישור ביטול הרשמה בכל מייל.</span>
+                </label>
+
+                <button type="submit" id="nlBtn">הצטרף לניוזלטר ←</button>
+            </form>
+
+            <p id="nlError" class="error"></p>
+
+            <p class="fine">
+                אני שולח רק תוכן שאני בעצמי הייתי רוצה לקבל.
+                לעולם לא אמכור או אעביר את המייל שלך לאף אחד.
+            </p>
+
+            <div id="nlSuccess" class="success">
+                <div class="check-big">✓</div>
+                <h2>נרשמת בהצלחה</h2>
+                <p>שלחתי לך מייל ראשון לאישור הכתובת. בדוק את התיבה (וגם את ספאם — לא יזיק).</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            © <span id="year"></span> Matan Mashiah Trades LTD ·
+            <a href="/index.html">חזרה לאתר</a>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function submitNewsletter(e) {
+            e.preventDefault();
+            const name = document.getElementById('nlName').value.trim();
+            const email = document.getElementById('nlEmail').value.trim();
+            const consent = document.getElementById('nlConsent').checked;
+            const errEl = document.getElementById('nlError');
+            errEl.style.display = 'none';
+
+            if (!name || !email) return;
+            if (!consent) {
+                errEl.textContent = 'יש לאשר קבלת מסרים פרסומיים כדי להירשם';
+                errEl.style.display = 'block';
+                return;
+            }
+
+            const btn = document.getElementById('nlBtn');
+            btn.textContent = 'שולח...';
+            btn.disabled = true;
+
+            fetch('https://mastertrader-newsletter.mashiah.workers.dev', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    source: 'newsletter-page',
+                    consent: true
+                })
+            }).then(res => res.json()).then(data => {
+                if (data.status === 'ok') {
+                    document.getElementById('newsletterForm').style.display = 'none';
+                    document.querySelector('.form-card-title').style.display = 'none';
+                    document.querySelector('.form-card-sub').style.display = 'none';
+                    document.querySelector('.fine').style.display = 'none';
+                    document.getElementById('nlSuccess').style.display = 'block';
+                } else {
+                    errEl.textContent = data.message === 'Consent required'
+                        ? 'יש לאשר קבלת מסרים פרסומיים'
+                        : 'משהו השתבש — נסה שוב בעוד דקה';
+                    errEl.style.display = 'block';
+                    btn.textContent = 'הצטרף לניוזלטר ←';
+                    btn.disabled = false;
+                }
+            }).catch(() => {
+                errEl.textContent = 'בעיית רשת — נסה שוב';
+                errEl.style.display = 'block';
+                btn.textContent = 'הצטרף לניוזלטר ←';
+                btn.disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>
