@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>תחקיר עסקה — מתן משיח</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0E1116; --bg2:#161A21; --card:#1C212B; --card2:#20262F;
+  --gold:#C9A24A; --goldL:#E3C879; --text:#F2EFE9; --muted:#A7AEBB; --line:#2A313D;
+  --good:#3FB58E; --goodbg:#13241F; --bad:#D9605A; --badbg:#251515;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Heebo',system-ui,'Segoe UI',Arial,sans-serif;
+  line-height:1.6; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px; margin:0 auto; padding:28px 20px 80px}
+header.top{display:flex; align-items:center; justify-content:space-between; padding:8px 0 22px; border-bottom:1px solid var(--line); margin-bottom:26px}
+.brand{display:flex; align-items:center; gap:12px}
+.brand .mark{width:46px;height:46px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.brand .mark img{width:46px;height:46px;object-fit:contain;display:block}
+.brand h1{font-size:21px; font-weight:800; margin:0}
+.brand .sub{font-size:12px; color:var(--muted); margin-top:1px}
+.stepdots{display:flex; gap:7px}
+.stepdots i{width:8px;height:8px;border-radius:50%;background:var(--line);display:block;transition:.2s}
+.stepdots i.on{background:var(--gold)}
+
+.meta{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:10px; margin-bottom:22px}
+.meta label{font-size:11px;color:var(--muted);display:block;margin-bottom:4px}
+.meta input,.meta select{
+  width:100%; background:var(--bg2); border:1px solid var(--line); color:var(--text);
+  border-radius:9px; padding:9px 11px; font-family:inherit; font-size:14px; text-align:right;
+}
+.meta input:focus,.meta select:focus{outline:none;border-color:var(--gold)}
+
+.q{font-size:22px; font-weight:700; margin:6px 0 18px}
+.hint{color:var(--muted); font-size:14px; margin:-10px 0 20px}
+
+.opts{display:grid; gap:12px}
+.opts.three{grid-template-columns:1fr 1fr 1fr}
+.opts.two{grid-template-columns:1fr 1fr}
+.opt{
+  background:var(--card); border:1.5px solid var(--line); border-radius:13px;
+  padding:20px 16px; cursor:pointer; text-align:center; transition:.15s; color:var(--text);
+  font-family:inherit;
+}
+.opt:hover{border-color:var(--gold); transform:translateY(-2px)}
+.opt .big{font-size:18px; font-weight:700; display:block}
+.opt .small{font-size:12px; color:var(--muted); margin-top:5px; display:block}
+.opt.win .big{color:var(--good)}
+.opt.loss .big{color:var(--bad)}
+.opt.flat .big{color:var(--goldL)}
+
+.badge{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:5px 13px;border-radius:999px;margin-bottom:18px}
+.badge.good{background:var(--goodbg);color:var(--good);border:1px solid #234a3e}
+.badge.bad{background:var(--badbg);color:var(--bad);border:1px solid #4a2626}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+
+.rfield{margin-bottom:16px}
+.rfield .rq{font-size:15px;font-weight:500;margin-bottom:7px}
+.rfield textarea{
+  width:100%; min-height:64px; background:var(--bg2); border:1px solid var(--line);
+  color:var(--text); border-radius:10px; padding:11px 13px; font-family:inherit; font-size:14px;
+  text-align:right; resize:vertical;
+}
+.rfield textarea:focus{outline:none;border-color:var(--gold)}
+
+.row{display:flex; gap:12px; margin-top:24px}
+.btn{
+  font-family:inherit; font-size:15px; font-weight:700; border-radius:10px; padding:12px 22px;
+  cursor:pointer; border:1px solid var(--line); background:transparent; color:var(--text); transition:.15s;
+}
+.btn:hover{border-color:var(--gold)}
+.btn.primary{background:var(--gold); color:#1a1305; border-color:var(--gold)}
+.btn.primary:hover{background:var(--goldL)}
+.btn.ghost{color:var(--muted)}
+.spacer{flex:1}
+
+/* insight card */
+.insight{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:16px;padding:24px;margin-top:6px}
+.insight.good{border-top:3px solid var(--good)}
+.insight.bad{border-top:3px solid var(--bad)}
+.insight h2{font-size:19px;margin:6px 0 12px}
+.insight .body{font-size:15.5px;color:#E7E4DD}
+.insight .focus{margin-top:16px;padding:13px 15px;background:rgba(201,162,74,.08);border:1px solid rgba(201,162,74,.35);border-radius:10px;font-size:14.5px}
+.insight .focus b{color:var(--goldL)}
+.qa{margin-top:20px;border-top:1px solid var(--line);padding-top:16px}
+.qa .item{margin-bottom:12px}
+.qa .item .k{font-size:12.5px;color:var(--muted)}
+.qa .item .v{font-size:14px;color:var(--text)}
+.qa .item .v.empty{color:#5d6470;font-style:italic}
+.note{margin-top:18px}
+.note label{font-size:12px;color:var(--muted)}
+.note textarea{width:100%;min-height:150px;background:#0b0e12;border:1px solid var(--line);color:#cfd6df;border-radius:10px;padding:13px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;text-align:right;direction:rtl;margin-top:6px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--gold);color:#1a1305;font-weight:700;padding:10px 20px;border-radius:10px;opacity:0;transition:.25s;pointer-events:none;font-size:14px}
+.toast.show{opacity:1}
+.aiflag{font-size:11.5px;color:var(--muted);margin-top:14px;text-align:center}
+.aiflag b{color:var(--goldL)}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="mark" id="brandMark">
+        <img src="assets/mark.png" alt="מתן משיח">
+      </div>
+      <div>
+        <h1>תחקיר עסקה</h1>
+        <div class="sub">מתן משיח · התשאול שהופך עסקה ללמידה</div>
+      </div>
+    </div>
+    <div class="stepdots"><i id="d1" class="on"></i><i id="d2"></i><i id="d3"></i><i id="d4"></i></div>
+  </header>
+
+  <!-- meta -->
+  <div class="meta">
+    <div><label>סימול / נכס</label><input id="m_sym" placeholder="NQ, ES, AAPL..."></div>
+    <div><label>תאריך</label><input id="m_date" type="date"></div>
+    <div><label>כיוון</label>
+      <select id="m_dir"><option value="">—</option><option>Long</option><option>Short</option></select>
+    </div>
+  </div>
+
+  <!-- STEP 1 -->
+  <section id="step1">
+    <div class="q">מה הייתה תוצאת העסקה?</div>
+    <div class="opts three">
+      <button class="opt win" onclick="pickOutcome('win')"><span class="big">רווח</span><span class="small">Win</span></button>
+      <button class="opt loss" onclick="pickOutcome('loss')"><span class="big">הפסד</span><span class="small">Loss</span></button>
+      <button class="opt flat" onclick="pickOutcome('flat')"><span class="big">לא נכנסתי</span><span class="small">No Trade</span></button>
+    </div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section id="step2" class="hidden">
+    <div class="q" id="gateQ"></div>
+    <div class="hint" id="gateH"></div>
+    <div class="opts two">
+      <button class="opt" onclick="pickGate('yes')"><span class="big" id="gateYes">כן</span></button>
+      <button class="opt" onclick="pickGate('no')"><span class="big" id="gateNo">לא</span></button>
+    </div>
+    <div class="row"><button class="btn ghost" onclick="back(1)">← חזרה</button></div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section id="step3" class="hidden">
+    <div id="catBadge"></div>
+    <div class="q" style="font-size:19px">שאלות התחקיר</div>
+    <div id="rfields"></div>
+    <div class="row">
+      <button class="btn ghost" onclick="back(2)">← חזרה</button>
+      <div class="spacer"></div>
+      <button class="btn primary" onclick="generate()">קבל הבחנה ←</button>
+    </div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section id="step4" class="hidden">
+    <div id="insightHost"></div>
+    <div class="note">
+      <label>📋 ה-note המוכן להעתקה ליומן / Tradezella</label>
+      <textarea id="noteOut" readonly></textarea>
+    </div>
+    <div class="row">
+      <button class="btn ghost" onclick="restart()">תחקיר חדש</button>
+      <div class="spacer"></div>
+      <button class="btn" onclick="download()">הורדה</button>
+      <button class="btn primary" onclick="copyNote()">העתק note</button>
+    </div>
+    <div class="aiflag" id="aiflag"></div>
+  </section>
+</div>
+<div class="toast" id="toast">הועתק ✓</div>
+
+<script>
+// ===== question tree (translated from the AM Trades decision tree) =====
+const TREE = {
+  win:  {gateQ:'היית לוקח את העסקה הזו שוב — בלי לדעת שהתוצאה רווח?',
+         gateH:'לא כל רווח הוא חיובי. אנחנו מפרידים בין אדג\' אמיתי לבין מזל.',
+         yes:'good_win', no:'bad_win'},
+  loss: {gateQ:'היית לוקח את העסקה הזו שוב — בלי לדעת שהתוצאה הפסד?',
+         gateH:'לא כל הפסד הוא שלילי. עסקה תקפה שספגה הפסד היא עדיין עסקה נכונה.',
+         yes:'good_loss', no:'bad_loss'},
+  flat: {gateQ:'הייתה עסקה תקפה שפספסת היום?',
+         gateH:'גם אי-כניסה היא החלטה. נבדוק אם צדקת שלא נכנסת, או שפספסת.',
+         yes:'bad_pass', no:'good_pass', yesLabel:'כן, פספסתי', noLabel:'לא, לא היה'}
+};
+const CATS = {
+  good_win:{label:'רווח טוב',kind:'good',
+    qs:['מה היית משפר בביצוע של העסקה הזו?','איך יכולת לנהל אותה כדי להוציא ממנה יותר רווח?','מה תעשה כדי לחזור על הסוג הזה של עסקה בעתיד?']},
+  bad_win:{label:'רווח פגום',kind:'bad',
+    qs:['איפה סטית מהתוכנית או מהגישה שלך — ולמה?','איך אפשר היה להימנע מהניצחון הפגום הזה בעתיד?','מה בדיוק נעשה לא נכון בעסקה הזו, למרות שהיא הרוויחה?']},
+  good_loss:{label:'הפסד טוב',kind:'good',
+    qs:['הייתה דרך הגיונית להימנע מההפסד ברגע אמת?','מה בדיוק נעשה טוב בעסקה הזו, למרות התוצאה?','האם שלטת ברגשות אחרי שההפסד מומש?']},
+  bad_loss:{label:'הפסד רע',kind:'bad',
+    qs:['איפה סטית מהתוכנית או מהגישה שלך — ולמה?','מה היו סימני האזהרה שהובילו להפסד הזה?','האם התגובה שלך לתוצאה השפיעה על העסקאות שאחריה?']},
+  good_pass:{label:'פסיחה טובה',kind:'good',
+    qs:['אילו תנאים חסרו שמנעו setup תקף?','מה חיזק את הביטחון שלך להישאר בחוץ היום?','האם ההימנעות מסיכון מיותר שמרה על הבהירות או ההון שלך?']},
+  bad_pass:{label:'פסיחה רעה',kind:'bad',
+    qs:['מה בדיוק גרם לך לפספס את ההזדמנות התקפה?','האם זיהית את ה-setup בזמן אמת או רק בדיעבד?','איזה שיפור בתהליך היה מאפשר לך לבצע?']}
+};
+// rule-based fallback insight (works with no API key)
+const TEMPL = {
+  good_win:{t:'עבודה נקייה. זו עסקה תקפה שגם הרוויחה — בדיוק מה שבונה אדג\' לאורך זמן.',
+    f:'תזקק את מה שעבד ותחפש להגדיל את ניהול העסקה — לא את הסיכון.'},
+  bad_win:{t:'הרווחת, אבל לא בזכות המערכת — בזכות מזל. אם נחזור על זה, התוצאה לא תחזור. אין כאן אדג\'.',
+    f:'הכלל שנשבר כאן הוא מה שצריך לתפוס מחר. רווח פגום הוא אזהרה, לא פרס.'},
+  good_loss:{t:'הפסד תקף לפי המערכת. זה החלק שאי אפשר לשלוט בו — וזה בסדר גמור.',
+    f:'אם עצרת בנקודת הפסילה ושלטת ברגש אחרי — עשית הכל נכון. שמור על זה.'},
+  bad_loss:{t:'ההפסד הזה לא היה חייב לקרות. הוא לא חולשה במערכת — הוא סטייה ממנה.',
+    f:'זהה את סימן האזהרה שהופיע לפני הכניסה. הוא יחזור — ואתה רוצה לראות אותו בזמן.'},
+  good_pass:{t:'לא להיכנס זו אחת ההחלטות הכי קשות — ועשית אותה נכון. אין setup, אין עסקה.',
+    f:'יום שבו שמרת על ההון והבהירות הוא יום מנצח. תיעד אותו ככה.'},
+  bad_pass:{t:'האדג\' היה שם ולא ביצעת. כשההזדמנות תקפה — אי-כניסה עולה לך בדיוק כמו הפסד.',
+    f:'מה שמנע ממך לבצע — היסוס או חוסר הכנה — זה מה שצריך לתקן עד מחר.'}
+};
+
+let state={outcome:null,gate:null,cat:null,answers:[]};
+function dots(n){[1,2,3,4].forEach(i=>document.getElementById('d'+i).classList.toggle('on',i<=n));}
+function show(step){[1,2,3,4].forEach(i=>document.getElementById('step'+i).classList.toggle('hidden',i!==step));dots(step);window.scrollTo({top:0,behavior:'smooth'});}
+
+function pickOutcome(o){
+  state.outcome=o; const t=TREE[o];
+  document.getElementById('gateQ').textContent=t.gateQ;
+  document.getElementById('gateH').textContent=t.gateH;
+  document.getElementById('gateYes').textContent=t.yesLabel||'כן';
+  document.getElementById('gateNo').textContent=t.noLabel||'לא';
+  show(2);
+}
+function pickGate(g){
+  state.gate=g; state.cat=TREE[state.outcome][g];
+  const c=CATS[state.cat];
+  const b=document.getElementById('catBadge');
+  b.innerHTML='<span class="badge '+c.kind+'"><span class="dot"></span>'+c.label+'</span>';
+  const host=document.getElementById('rfields'); host.innerHTML='';
+  c.qs.forEach((q,i)=>{
+    host.insertAdjacentHTML('beforeend',
+      '<div class="rfield"><div class="rq">'+(i+1)+'. '+q+'</div><textarea data-i="'+i+'" placeholder="כתוב את התשובה שלך..."></textarea></div>');
+  });
+  show(3);
+}
+function back(s){show(s);}
+function collect(){
+  state.answers=[...document.querySelectorAll('#rfields textarea')].map(t=>t.value.trim());
+}
+function generate(){
+  collect();
+  const c=CATS[state.cat], tp=TEMPL[state.cat];
+  const host=document.getElementById('insightHost');
+  let qa='';
+  c.qs.forEach((q,i)=>{const a=state.answers[i];qa+='<div class="item"><div class="k">'+q+'</div><div class="v'+(a?'':' empty')+'">'+(a||'— לא נענה —')+'</div></div>';});
+  host.innerHTML=
+    '<div class="insight '+c.kind+'">'+
+      '<span class="badge '+c.kind+'"><span class="dot"></span>'+c.label+'</span>'+
+      '<h2>ההבחנה שלך</h2>'+
+      '<div class="body">'+tp.t+'</div>'+
+      '<div class="focus"><b>מיקוד למחר:</b> '+tp.f+'</div>'+
+      '<div class="qa">'+qa+'</div>'+
+    '</div>';
+  document.getElementById('noteOut').value=buildNote(tp);
+  document.getElementById('aiflag').innerHTML='האבחון הזה <b>מבוסס-כללים</b> (עובד בלי מפתח). עם מפתח Anthropic — Claude יכתוב אבחון אישי מהתשובות שלך.';
+  show(4);
+}
+function buildNote(tp){
+  const c=CATS[state.cat];
+  const sym=document.getElementById('m_sym').value||'—';
+  const date=document.getElementById('m_date').value||new Date().toISOString().slice(0,10);
+  const dir=document.getElementById('m_dir').value||'—';
+  let s='תחקיר עסקה — MasterTrader\n';
+  s+='סימול: '+sym+'  |  תאריך: '+date+'  |  כיוון: '+dir+'\n';
+  s+='סיווג: '+c.label+'\n';
+  s+='────────────────────\n';
+  s+='ההבחנה: '+tp.t+'\n';
+  s+='מיקוד למחר: '+tp.f+'\n';
+  s+='────────────────────\n';
+  c.qs.forEach((q,i)=>{s+='• '+q+'\n  '+(state.answers[i]||'—')+'\n';});
+  return s;
+}
+function copyNote(){navigator.clipboard.writeText(document.getElementById('noteOut').value);toast('הועתק ✓');}
+function download(){
+  const blob=new Blob([document.getElementById('noteOut').value],{type:'text/plain'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='trade-debrief-'+(document.getElementById('m_date').value||'today')+'.txt';a.click();
+}
+function restart(){state={outcome:null,gate:null,cat:null,answers:[]};document.querySelectorAll('#rfields textarea').forEach(t=>t.value='');show(1);}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1400);}
+document.getElementById('m_date').valueAsDate=new Date();
+</script>
+</body>
+</html>
