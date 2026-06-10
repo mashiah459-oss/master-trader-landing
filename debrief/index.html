@@ -44,6 +44,7 @@ header.top{display:flex; align-items:center; justify-content:space-between; padd
 .opts{display:grid; gap:12px}
 .opts.three{grid-template-columns:1fr 1fr 1fr}
 .opts.two{grid-template-columns:1fr 1fr}
+.opts.quad{grid-template-columns:1fr 1fr}
 .opt{
   background:var(--card); border:1.5px solid var(--line); border-radius:13px;
   padding:20px 16px; cursor:pointer; text-align:center; transition:.15s; color:var(--text);
@@ -54,7 +55,8 @@ header.top{display:flex; align-items:center; justify-content:space-between; padd
 .opt .small{font-size:12px; color:var(--muted); margin-top:5px; display:block}
 .opt.win .big{color:var(--good)}
 .opt.loss .big{color:var(--bad)}
-.opt.flat .big{color:var(--goldL)}
+.opt.be .big{color:var(--goldL)}
+.opt.flat .big{color:#9aa6bd}
 
 .badge{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:5px 13px;border-radius:999px;margin-bottom:18px}
 .badge.good{background:var(--goodbg);color:var(--good);border:1px solid #234a3e}
@@ -131,9 +133,10 @@ header.top{display:flex; align-items:center; justify-content:space-between; padd
   <!-- STEP 1 -->
   <section id="step1">
     <div class="q">מה הייתה תוצאת העסקה?</div>
-    <div class="opts three">
+    <div class="opts quad">
       <button class="opt win" onclick="pickOutcome('win')"><span class="big">רווח</span><span class="small">Win</span></button>
       <button class="opt loss" onclick="pickOutcome('loss')"><span class="big">הפסד</span><span class="small">Loss</span></button>
+      <button class="opt be" onclick="pickOutcome('be')"><span class="big">ברייק איבן</span><span class="small">Break Even</span></button>
       <button class="opt flat" onclick="pickOutcome('flat')"><span class="big">לא נכנסתי</span><span class="small">No Trade</span></button>
     </div>
   </section>
@@ -188,6 +191,9 @@ const TREE = {
   loss: {gateQ:'היית לוקח את העסקה הזו שוב — בלי לדעת שהתוצאה הפסד?',
          gateH:'לא כל הפסד הוא שלילי. עסקה תקפה שספגה הפסד היא עדיין עסקה נכונה.',
          yes:'good_loss', no:'bad_loss'},
+  be:   {gateQ:'היית לוקח את העסקה הזו שוב — בלי לדעת שהיא תיגמר ב-break even?',
+         gateH:'נבדיל בין break even שנובע מניהול נכון (כמו הזזת סטופ ל-BE) לבין יציאה מוקדמת מהיסוס או פחד.',
+         yes:'good_be', no:'bad_be'},
   flat: {gateQ:'הייתה עסקה תקפה שפספסת היום?',
          gateH:'גם אי-כניסה היא החלטה. נבדוק אם צדקת שלא נכנסת, או שפספסת.',
          yes:'bad_pass', no:'good_pass', yesLabel:'כן, פספסתי', noLabel:'לא, לא היה'}
@@ -204,7 +210,11 @@ const CATS = {
   good_pass:{label:'פסיחה טובה',kind:'good',
     qs:['אילו תנאים חסרו שמנעו setup תקף?','מה חיזק את הביטחון שלך להישאר בחוץ היום?','האם ההימנעות מסיכון מיותר שמרה על הבהירות או ההון שלך?']},
   bad_pass:{label:'פסיחה רעה',kind:'bad',
-    qs:['מה בדיוק גרם לך לפספס את ההזדמנות התקפה?','האם זיהית את ה-setup בזמן אמת או רק בדיעבד?','איזה שיפור בתהליך היה מאפשר לך לבצע?']}
+    qs:['מה בדיוק גרם לך לפספס את ההזדמנות התקפה?','האם זיהית את ה-setup בזמן אמת או רק בדיעבד?','איזה שיפור בתהליך היה מאפשר לך לבצע?']},
+  good_be:{label:'ברייק-איבן מנוהל',kind:'good',
+    qs:['מה הוביל ל-break even — ניהול לפי תוכנית (כמו הזזת סטופ ל-BE), או יציאה מוקדמת?','האם התנהלת לפי סיסטם קבוע שהכנת מראש, או אלתרת תוך כדי?','היה אפשר למנוע את ה-break even בלי להגדיל סיכון? איך?']},
+  bad_be:{label:'ברייק-איבן מהיסוס',kind:'bad',
+    qs:['מה גרם לך לצאת מהעסקה — היסוס, פחד, או חוסר אמון בתוכנית?','האם נתת לרגש להוציא אותך מעסקה תקפה לפני שהתוכנית באמת נפסלה?','מה תעשה אחרת בפעם הבאה כדי להישאר עם העסקה לפי הכללים?']}
 };
 // rule-based fallback insight (works with no API key)
 const TEMPL = {
@@ -219,7 +229,11 @@ const TEMPL = {
   good_pass:{t:'לא להיכנס זו אחת ההחלטות הכי קשות — ועשית אותה נכון. אין setup, אין עסקה.',
     f:'יום שבו שמרת על ההון והבהירות הוא יום מנצח. תיעד אותו ככה.'},
   bad_pass:{t:'האדג\' היה שם ולא ביצעת. כשההזדמנות תקפה — אי-כניסה עולה לך בדיוק כמו הפסד.',
-    f:'מה שמנע ממך לבצע — היסוס או חוסר הכנה — זה מה שצריך לתקן עד מחר.'}
+    f:'מה שמנע ממך לבצע — היסוס או חוסר הכנה — זה מה שצריך לתקן עד מחר.'},
+  good_be:{t:'סגירה ב-break even היא לא הפסד ולא כישלון — לפעמים זו בדיוק התוצאה של ניהול סיכון נכון. אם הזזת את הסטופ ל-BE לפי כלל קבוע, עשית את שלך; השוק פשוט לא נתן את ההמשך.',
+    f:'ודא שהזזת הסטופ ל-BE היא חלק מהסיסטם הקבוע שלך — לא החלטה רגעית מתוך פחד.'},
+  bad_be:{t:'יצאת מהעסקה לפני שהתוכנית נפסלה — וזה לא ניהול, זה רגש. break even מתוך היסוס שווה לפספוס: ויתרת על האדג\' שלך באמצע הדרך.',
+    f:'הגדר מראש מתי אתה יוצא — ותן לעסקה להגיע לשם, גם כשלא נוח.'}
 };
 
 let state={outcome:null,gate:null,cat:null,answers:[]};
