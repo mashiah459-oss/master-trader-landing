@@ -325,14 +325,22 @@ function renderInsight(insight,focus,source){
 }
 function buildNote(insight,focus){
   const c=CATS[state.cat], m=metaVals();
-  let s='תחקיר עסקה — מתן משיח\n';
-  s+='סימול: '+(m.sym||'—')+'  |  תאריך: '+m.date+'  |  כיוון: '+(m.dir||'—')+'\n';
+  const L='──────────────────────────────';
+  let s='תחקיר עסקה\n';
+  s+=L+'\n';
+  s+='סימול: '+(m.sym||'—')+'   |   תאריך: '+m.date+'   |   כיוון: '+(m.dir||'—')+'\n';
   s+='סיווג: '+c.label+'\n';
-  s+='────────────────────\n';
-  s+='ההבחנה: '+insight+'\n';
-  if(focus) s+='מיקוד למחר: '+focus+'\n';
-  s+='────────────────────\n';
-  c.qs.forEach((q,i)=>{s+='• '+q+'\n  '+(state.answers[i]||'—')+'\n';});
+  s+=L+'\n\n';
+  s+='▌ ההבחנה\n';
+  s+=insight+'\n\n';
+  if(focus){ s+='▌ מיקוד למחר\n'+focus+'\n\n'; }
+  s+=L+'\n';
+  s+='▌ שאלות התחקיר\n';
+  s+=L+'\n';
+  c.qs.forEach((q,i)=>{
+    s+='\n◆ '+q+'\n';
+    s+='   '+(state.answers[i]||'—')+'\n';
+  });
   return s;
 }
 function copyNote(){navigator.clipboard.writeText(document.getElementById('noteOut').value);toast('הועתק ✓');}
