@@ -247,38 +247,76 @@ function pickGate(g){
   show(3);
 }
 function back(s){show(s);}
+// Cloudflare Worker (Workers AI) — אבחון ה-AI
+const WORKER_URL = "https://debrief-ai.mashiah.workers.dev";
+
 function collect(){
   state.answers=[...document.querySelectorAll('#rfields textarea')].map(t=>t.value.trim());
 }
-function generate(){
+function metaVals(){
+  return {
+    sym:document.getElementById('m_sym').value.trim(),
+    date:document.getElementById('m_date').value||new Date().toISOString().slice(0,10),
+    dir:document.getElementById('m_dir').value
+  };
+}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function qaHtml(){
+  const c=CATS[state.cat]; let qa='';
+  c.qs.forEach((q,i)=>{const a=state.answers[i];qa+='<div class="item"><div class="k">'+esc(q)+'</div><div class="v'+(a?'':' empty')+'">'+(esc(a)||'— לא נענה —')+'</div></div>';});
+  return qa;
+}
+async function generate(){
   collect();
-  const c=CATS[state.cat], tp=TEMPL[state.cat];
-  const host=document.getElementById('insightHost');
-  let qa='';
-  c.qs.forEach((q,i)=>{const a=state.answers[i];qa+='<div class="item"><div class="k">'+q+'</div><div class="v'+(a?'':' empty')+'">'+(a||'— לא נענה —')+'</div></div>';});
-  host.innerHTML=
+  show(4);
+  renderLoading();
+  let insight=null, focus=null, source='rules';
+  if(WORKER_URL){
+    try{
+      const c=CATS[state.cat];
+      const res=await fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({categoryLabel:c.label,qa:c.qs.map((q,i)=>({q,a:state.answers[i]||''})),meta:metaVals()})});
+      if(res.ok){const d=await res.json(); if(d.insight){insight=d.insight; focus=d.focus||''; source='gemini';}}
+    }catch(e){/* נפילה למבוסס-כללים */}
+  }
+  if(!insight){const tp=TEMPL[state.cat]; insight=tp.t; focus=tp.f; source='rules';}
+  renderInsight(insight,focus,source);
+}
+function renderLoading(){
+  const c=CATS[state.cat];
+  document.getElementById('insightHost').innerHTML=
     '<div class="insight '+c.kind+'">'+
       '<span class="badge '+c.kind+'"><span class="dot"></span>'+c.label+'</span>'+
       '<h2>ההבחנה שלך</h2>'+
-      '<div class="body">'+tp.t+'</div>'+
-      '<div class="focus"><b>מיקוד למחר:</b> '+tp.f+'</div>'+
-      '<div class="qa">'+qa+'</div>'+
+      '<div class="body" style="color:#A7AEBB">מנתח את התחקיר שלך…</div>'+
+      '<div class="qa">'+qaHtml()+'</div>'+
     '</div>';
-  document.getElementById('noteOut').value=buildNote(tp);
-  document.getElementById('aiflag').innerHTML='האבחון הזה <b>מבוסס-כללים</b> (עובד בלי מפתח). עם מפתח Anthropic — Claude יכתוב אבחון אישי מהתשובות שלך.';
-  show(4);
+  document.getElementById('noteOut').value='';
+  document.getElementById('aiflag').textContent='';
 }
-function buildNote(tp){
+function renderInsight(insight,focus,source){
   const c=CATS[state.cat];
-  const sym=document.getElementById('m_sym').value||'—';
-  const date=document.getElementById('m_date').value||new Date().toISOString().slice(0,10);
-  const dir=document.getElementById('m_dir').value||'—';
-  let s='תחקיר עסקה — MasterTrader\n';
-  s+='סימול: '+sym+'  |  תאריך: '+date+'  |  כיוון: '+dir+'\n';
+  document.getElementById('insightHost').innerHTML=
+    '<div class="insight '+c.kind+'">'+
+      '<span class="badge '+c.kind+'"><span class="dot"></span>'+c.label+'</span>'+
+      '<h2>ההבחנה שלך</h2>'+
+      '<div class="body">'+esc(insight)+'</div>'+
+      (focus?'<div class="focus"><b>מיקוד למחר:</b> '+esc(focus)+'</div>':'')+
+      '<div class="qa">'+qaHtml()+'</div>'+
+    '</div>';
+  document.getElementById('noteOut').value=buildNote(insight,focus);
+  document.getElementById('aiflag').innerHTML = source==='gemini'
+    ? 'האבחון נכתב על־ידי <b>AI</b> מהתשובות שלך.'
+    : 'אבחון <b>מבוסס-כללים</b>'+(WORKER_URL?' (לא הצליח להתחבר ל-AI כרגע)':'')+'.';
+}
+function buildNote(insight,focus){
+  const c=CATS[state.cat], m=metaVals();
+  let s='תחקיר עסקה — מתן משיח\n';
+  s+='סימול: '+(m.sym||'—')+'  |  תאריך: '+m.date+'  |  כיוון: '+(m.dir||'—')+'\n';
   s+='סיווג: '+c.label+'\n';
   s+='────────────────────\n';
-  s+='ההבחנה: '+tp.t+'\n';
-  s+='מיקוד למחר: '+tp.f+'\n';
+  s+='ההבחנה: '+insight+'\n';
+  if(focus) s+='מיקוד למחר: '+focus+'\n';
   s+='────────────────────\n';
   c.qs.forEach((q,i)=>{s+='• '+q+'\n  '+(state.answers[i]||'—')+'\n';});
   return s;
