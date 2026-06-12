@@ -18,8 +18,8 @@
 
 <style>
 :root{
-  --bg:#0c0e12;
-  --bg-soft:#11141a;
+  --bg:#101218;
+  --bg-soft:#161a22;
   --panel:rgba(255,255,255,0.035);
   --panel-2:rgba(255,255,255,0.06);
   --text:#eef1f6;
@@ -178,6 +178,24 @@ h3{font-size:clamp(1.12rem,2.4vw,1.42rem);font-weight:600;letter-spacing:-.01em}
 /* hero device showcase */
 .hero-devices{margin:clamp(30px,5vw,48px) auto 0;max-width:1040px}
 .hero-devices img{width:100%;height:auto;display:block;filter:drop-shadow(0 30px 60px rgba(0,0,0,.6)) saturate(.92)}
+/* hero portrait (real face + blue laptop mockup) */
+.hero-portrait{margin:clamp(30px,5vw,50px) auto 0;max-width:760px;padding:0 4px}
+.hero-portrait img{width:100%;height:auto;display:block;border-radius:20px;
+  border:1px solid var(--border-gold);
+  box-shadow:0 0 80px rgba(143,184,255,.12),0 28px 70px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.04)}
+/* hero chart panel (Lens-style muted blue chart) */
+.hero-chart{margin:clamp(30px,5vw,50px) auto 0;max-width:980px;padding:0 4px}
+.chart-panel{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:16/7;
+  border:1px solid var(--border-gold);
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(143,184,255,.12), transparent 60%),
+    linear-gradient(165deg, rgba(22,26,35,.85), rgba(13,15,20,.92));
+  box-shadow:0 0 70px rgba(143,184,255,.10),0 26px 70px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.04)}
+.chart-panel svg{display:block;width:100%;height:100%}
+.chart-tag{position:absolute;top:14px;right:16px;z-index:2;font-size:.74rem;font-weight:600;letter-spacing:.04em;
+  color:var(--gold);border:1px solid var(--border-gold);border-radius:999px;padding:4px 13px;
+  background:rgba(12,14,18,.6);backdrop-filter:blur(4px)}
+@media(max-width:600px){.chart-panel{aspect-ratio:5/4}}
 /* bio portrait */
 .bio-photo{width:clamp(150px,32vw,196px);height:clamp(150px,32vw,196px);margin:0 auto 22px;border-radius:50%;
   overflow:hidden;border:1px solid var(--border-gold);box-shadow:0 0 44px rgba(143,184,255,.16),0 10px 40px rgba(0,0,0,.5)}
@@ -365,17 +383,16 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="wrap">
-    <div class="hero-copy reveal in" style="text-align:center;max-width:800px;margin:0 auto">
-      <p class="tag">בלי תוכנית, כל כניסה היא הימור עם גרף יפה.</p>
-      <h1>הפסקת להיות מהמר.<br/><span class="gold">הגיע הזמן לנהל עסק.</span></h1>
+    <div class="hero-portrait reveal in">
+      <img src="images/club-hero-baked-1.png" alt="מועדון הסוחר המתמיד — המקום הבריא לסוחר היומי" />
+    </div>
+    <div class="hero-copy reveal" style="text-align:center;max-width:800px;margin:clamp(34px,5vw,52px) auto 0">
+      <h1>הפסקת להיות מהמר. <span class="gold">הגיע הזמן לנהל עסק.</span></h1>
       <p class="lead sub" style="margin-inline:auto">המועדון שמלמד אותך לסחור בריא — להפוך מסחר יומי מכאוס רגשי לעסק מדיד, עם מבנה, בקרה וניהול סיכונים, כל יום מחדש. לייבים בזמן אמת, שקיפות מלאה על עסקאות <span class="b">(כולל ההפסדים)</span>, וקהילה של מאות סוחרים שעובדים כמו מקצוענים.</p>
       <div class="cta-wrap">
         <a class="cta" href="#join" data-cta>אני רוצה לנהל את זה כמו עסק</a>
         <div class="cta-sub">149₪ לחודש · בלי התחייבות · ביטול בכל רגע</div>
       </div>
-    </div>
-    <div class="hero-devices reveal">
-      <img src="images/club-devices.png" alt="מועדון הסוחר המתמיד — קהילה, ידע, אסטרטגיה ותוצאות, בכל מכשיר" />
     </div>
     <div class="stats reveal">
       <div class="stat"><div class="n">מאות</div><div class="l">סוחרים במועדון</div></div>
@@ -496,7 +513,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 <!-- creative: business not casino -->
 <section class="creative-section">
   <div class="creative reveal" style="flex-direction:column;text-align:center">
-    <p class="serif gold" style="font-size:clamp(2rem,6.5vw,3.6rem);font-weight:700;line-height:1.12;margin:0">מסחר זה עסק.<br>לא קזינו.</p>
+    <img src="images/club-business-not-casino-blue.png" alt="מסחר זה עסק, לא קזינו" loading="lazy" />
     <p class="lead" style="margin-top:16px">משמעת · מבנה · עקביות</p>
   </div>
 </section>
@@ -553,7 +570,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 <!-- creative: framework not course -->
 <section class="creative-section">
   <div class="creative reveal" style="flex-direction:column;text-align:center">
-    <p class="serif gold" style="font-size:clamp(2rem,6.5vw,3.6rem);font-weight:700;line-height:1.12;margin:0">זה לא עוד קורס.<br>זאת מסגרת.</p>
+    <img src="images/club-framework-blue.png" alt="זה לא עוד קורס, זאת מסגרת" loading="lazy" />
     <p class="lead" style="margin-top:16px">ידע נשכח. מבנה נשאר.</p>
   </div>
 </section>
@@ -725,7 +742,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 <!-- creative: stop gambling start building -->
 <section class="creative-section">
   <div class="creative reveal" style="flex-direction:column;text-align:center">
-    <p class="serif gold" style="font-size:clamp(2rem,6.5vw,3.6rem);font-weight:700;line-height:1.12;margin:0">תפסיק להמר.<br>תתחיל לסחור בריא.</p>
+    <img src="images/club-stop-gambling-blue.png" alt="תפסיק להמר, תתחיל לסחור בריא" loading="lazy" />
     <p class="lead" style="margin-top:16px">החופש נמצא בצד השני של המשמעת.</p>
   </div>
 </section>
@@ -860,6 +877,39 @@ grid.innerHTML = TESTIMONIALS.map(t=>`
     <div class="quote">"${t.q}"</div>
     <div class="who"><span class="nm">${t.n}</span><span class="du">${t.d} במועדון</span></div>
   </div>`).join('');
+
+// ---- hero candlestick chart (clean, Lens-style) ----
+(function(){
+  const svg=document.getElementById('heroChart'); if(!svg) return;
+  const W=1000,H=420,padX=46,padTop=34,padBot=30;
+  const closes=[30,27,33,30,36,33,39,36,34,41,44,40,47,45,51,48,54,57,53,59,56,62,65,61,68,71,67,75,73,79];
+  const n=closes.length, opens=[],highs=[],lows=[];
+  for(let i=0;i<n;i++){ const o=i?closes[i-1]:closes[0]-2, c=closes[i];
+    opens.push(o); highs.push(Math.max(o,c)+(2+(i*37%5))); lows.push(Math.min(o,c)-(2+(i*53%5))); }
+  const min=Math.min(...lows), max=Math.max(...highs);
+  const x=i=>padX+i*((W-2*padX)/(n-1));
+  const y=v=>padTop+(H-padTop-padBot)*(1-(v-min)/(max-min));
+  const NS='http://www.w3.org/2000/svg';
+  const el=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+  for(let g=0;g<=4;g++){const yy=padTop+(H-padTop-padBot)*g/4;
+    svg.appendChild(el('line',{x1:padX,y1:yy,x2:W-padX,y2:yy,stroke:'rgba(255,255,255,0.05)','stroke-width':1}));}
+  let d='M '+x(0)+' '+y(closes[0]);
+  for(let i=1;i<n;i++) d+=' L '+x(i)+' '+y(closes[i]);
+  const defs=el('defs',{}), grad=el('linearGradient',{id:'cg',x1:0,y1:0,x2:0,y2:1});
+  grad.appendChild(el('stop',{offset:'0%','stop-color':'rgba(143,184,255,0.30)'}));
+  grad.appendChild(el('stop',{offset:'100%','stop-color':'rgba(143,184,255,0)'}));
+  defs.appendChild(grad); svg.appendChild(defs);
+  svg.appendChild(el('path',{d:d+' L '+x(n-1)+' '+(H-padBot)+' L '+x(0)+' '+(H-padBot)+' Z',fill:'url(#cg)'}));
+  svg.appendChild(el('path',{d:d,fill:'none',stroke:'rgba(143,184,255,0.45)','stroke-width':1.5}));
+  const cw=Math.min(16,(W-2*padX)/n*0.55);
+  for(let i=0;i<n;i++){ const up=closes[i]>=opens[i];
+    const col=up?'#8fb8ff':'rgba(124,138,162,0.85)';
+    svg.appendChild(el('line',{x1:x(i),y1:y(highs[i]),x2:x(i),y2:y(lows[i]),stroke:col,'stroke-width':1.4}));
+    const yo=y(opens[i]),yc=y(closes[i]),top=Math.min(yo,yc),h=Math.max(2,Math.abs(yc-yo));
+    svg.appendChild(el('rect',{x:x(i)-cw/2,y:top,width:cw,height:h,rx:2,
+      fill:up?'rgba(143,184,255,0.85)':'rgba(124,138,162,0.5)',stroke:col,'stroke-width':1}));
+  }
+})();
 
 // ---- scroll reveal ----
 const io = new IntersectionObserver((entries)=>{
