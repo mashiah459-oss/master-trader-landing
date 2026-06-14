@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניתוח יומן מסחר · מתן משיח | Master Trader</title>
+    <meta name="description" content="ניתוח יומן מסחר אמיתי של סוחר מהמועדון. תראה איך גורמים חיצוניים משפיעים על קבלת ההחלטות שלך בשוק, ומה עושים עם זה.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <meta property="og:title" content="ניתוח יומן מסחר · מתן משיח">
+    <meta property="og:description" content="ניתוח יומן מסחר אמיתי: איך גורמים חיצוניים משפיעים על המסחר שלך, ומה עושים עם זה.">
+    <meta property="og:type" content="video.other">
+    <meta property="og:url" content="https://matanmashiah.com/shachaf.html">
+    <meta property="og:image" content="https://matanmashiah.com/images/og-workshop.jpg">
+    <meta property="og:locale" content="he_IL">
+
+    <!-- Meta Pixel -->
+    <script>
+    (function () {
+        var PIXEL_ID = '908946385496717';
+        if (PIXEL_ID && PIXEL_ID !== 'PIXEL_ID') {
+            !function (f, b, e, v, n, t, s) {
+                if (f.fbq) return; n = f.fbq = function () { n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
+                if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+                n.queue = []; t = b.createElement(e); t.async = !0; t.src = v;
+                s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+            }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', PIXEL_ID);
+            fbq('track', 'PageView');
+        }
+    })();
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #060608;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --gold: #D4AF37;
+            --gold-light: #F0D060;
+            --gold-dark: #A8872B;
+            --gold-glow: rgba(212, 175, 55, 0.35);
+            --gold-subtle: rgba(212, 175, 55, 0.08);
+            --text: #F5F5F5;
+            --text-dim: #8A8A9A;
+            --text-muted: #555566;
+            --glass-border: rgba(255, 255, 255, 0.07);
+            --glass-border-hover: rgba(212, 175, 55, 0.25);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        /* === AMBIENT BACKGROUND === */
+        .bg-ambient { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+        .bg-ambient::before {
+            content: ''; position: absolute; top: -20%; right: -10%;
+            width: 60vw; height: 60vw; max-width: 700px; max-height: 700px;
+            background: radial-gradient(circle, var(--gold-subtle) 0%, transparent 70%);
+            filter: blur(40px);
+        }
+        .bg-ambient::after {
+            content: ''; position: absolute; bottom: -20%; left: -10%;
+            width: 55vw; height: 55vw; max-width: 650px; max-height: 650px;
+            background: radial-gradient(circle, rgba(80,80,140,0.08) 0%, transparent 70%);
+            filter: blur(40px);
+        }
+
+        .wrap { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 0 22px; }
+
+        /* === HEADER === */
+        header { padding: 28px 0 6px; text-align: center; }
+        .brand { font-size: 0.78rem; letter-spacing: 0.28em; color: var(--gold); font-weight: 700; text-transform: uppercase; }
+
+        /* === HERO === */
+        .hero { padding: 30px 0 26px; text-align: center; }
+        .kicker {
+            display: inline-block; font-size: 0.82rem; font-weight: 600; color: var(--gold);
+            background: var(--gold-subtle); border: 1px solid var(--glass-border-hover);
+            padding: 7px 16px; border-radius: 100px; margin-bottom: 22px;
+        }
+        h1 {
+            font-size: clamp(1.7rem, 5.5vw, 2.9rem); font-weight: 800; line-height: 1.18;
+            letter-spacing: -0.01em; margin-bottom: 16px;
+        }
+        h1 .gold { color: var(--gold); }
+        .sub { font-size: clamp(1rem, 2.6vw, 1.18rem); color: var(--text-dim); max-width: 620px; margin: 0 auto; }
+
+        /* === VIDEO === */
+        .video-shell { margin: 34px 0 8px; }
+        .video-frame {
+            position: relative; width: 100%; padding-top: 56.25%;
+            border-radius: 18px; overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,175,55,0.06);
+            background: #0b0b10;
+        }
+        .video-frame iframe, .video-frame video {
+            position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+        }
+        /* placeholder when no video set */
+        .video-placeholder {
+            position: absolute; inset: 0; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: 14px; text-align: center; padding: 24px;
+            background:
+                radial-gradient(circle at 50% 40%, rgba(212,175,55,0.07), transparent 60%),
+                #0b0b10;
+        }
+        .video-placeholder .play {
+            width: 74px; height: 74px; border-radius: 50%;
+            border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center;
+            color: var(--gold); font-size: 1.5rem;
+        }
+        .video-placeholder p { color: var(--text-muted); font-size: 0.92rem; }
+
+        /* === REVEAL HINT === */
+        .reveal-hint {
+            text-align: center; color: var(--text-muted); font-size: 0.9rem;
+            margin: 18px 0 0; opacity: 0.75;
+        }
+        .skip-link {
+            display: inline-block; margin-top: 8px; color: var(--gold-dark);
+            font-size: 0.86rem; font-weight: 600; background: none; border: none;
+            cursor: pointer; text-decoration: underline; text-underline-offset: 3px;
+        }
+        .skip-link:hover { color: var(--gold); }
+
+        /* === QUIZ / FUNNEL === */
+        .quiz {
+            margin: 40px 0 60px; opacity: 0;
+            transform: translateY(24px); pointer-events: none;
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .quiz.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+        .card {
+            background: linear-gradient(180deg, var(--bg-card-hover), var(--bg-card));
+            border: 1px solid var(--glass-border); border-radius: 20px;
+            padding: clamp(26px, 5vw, 44px); text-align: center;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+        }
+        .card .eyebrow {
+            font-size: 0.8rem; letter-spacing: 0.18em; color: var(--gold);
+            font-weight: 700; text-transform: uppercase; margin-bottom: 14px;
+        }
+        .card h2 { font-size: clamp(1.35rem, 4vw, 2rem); font-weight: 800; line-height: 1.25; margin-bottom: 12px; }
+        .card p.lead { color: var(--text-dim); font-size: 1.05rem; max-width: 540px; margin: 0 auto 26px; }
+
+        .btn-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+        .btn {
+            font-family: inherit; font-size: 1.02rem; font-weight: 700; cursor: pointer;
+            padding: 15px 34px; border-radius: 100px; transition: all 0.2s ease;
+            min-width: 140px; border: 1px solid transparent;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+            color: #0a0a0a; box-shadow: 0 10px 30px var(--gold-glow);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px var(--gold-glow); }
+        .btn-ghost {
+            background: transparent; color: var(--text-dim); border-color: var(--glass-border);
+        }
+        .btn-ghost:hover { color: var(--text); border-color: var(--glass-border-hover); background: var(--bg-card); }
+
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.45s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+        .meta-line { margin-top: 22px; color: var(--text-muted); font-size: 0.9rem; }
+        .meta-line strong { color: var(--gold); font-weight: 700; }
+
+        .result-icon { font-size: 2.4rem; margin-bottom: 10px; }
+
+        footer { text-align: center; padding: 30px 0 40px; color: var(--text-muted); font-size: 0.82rem; }
+        footer a { color: var(--text-dim); text-decoration: none; }
+
+        @media (max-width: 520px) {
+            .btn { width: 100%; }
+            .btn-row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-ambient"></div>
+
+    <div class="wrap">
+        <header>
+            <div class="brand">Master Trader · מתן משיח</div>
+        </header>
+
+        <section class="hero">
+            <span class="kicker">המשך לסרטון שצפית בו ביוטיוב</span>
+            <h1>הטעות שדיברתי עליה, <span class="gold">בפעולה אמיתית</span></h1>
+            <p class="sub">לקחתי יומן מסחר אמיתי של שחף, סוחר מהמועדון, וניתחתי אותו לעומק. תראה בעצמך איך גורמים חיצוניים נכנסים לתוך ההחלטות שלך בשוק, בלי שאתה שם לב.</p>
+        </section>
+
+        <section class="video-shell">
+            <div class="video-frame" id="videoFrame">
+                <!-- הסרטון נטען כאן אוטומטית מהקונפיג למטה -->
+                <div class="video-placeholder" id="videoPlaceholder">
+                    <div class="play">▶</div>
+                    <p>הסרטון יתווסף כאן — מחליפים מזהה אחד בקובץ וזהו.</p>
+                </div>
+            </div>
+            <p class="reveal-hint" id="revealHint">
+                צפה בניתוח עד הסוף, ואז נדבר רגע אמת.
+                <br>
+                <button class="skip-link" id="skipBtn">סיימתי לצפות, קדימה ←</button>
+            </p>
+        </section>
+
+        <!-- ===== FUNNEL ===== -->
+        <section class="quiz" id="quiz">
+
+            <!-- שאלה 1 -->
+            <div class="step active card" id="step-q1">
+                <div class="eyebrow">רגע אמת</div>
+                <h2>אתה מרוצה מהתוצאות שלך במסחר?</h2>
+                <p class="lead">בלי לספר לאף אחד. רק אתה והאמת.</p>
+                <div class="btn-row">
+                    <button class="btn btn-primary" data-go="happy">כן, אני במקום טוב</button>
+                    <button class="btn btn-ghost" data-go="offer">לא ממש</button>
+                </div>
+            </div>
+
+            <!-- מרוצה -->
+            <div class="step card" id="step-happy">
+                <div class="result-icon">🙌</div>
+                <h2>כל הכבוד.</h2>
+                <p class="lead">זה אומר שאתה כבר מבצע במשמעת. תמשיך לתעד, תמשיך לבקר, ואל תיתן לרגש לקחת לך את ההגה. בהצלחה גדולה.</p>
+            </div>
+
+            <!-- הצעה לסדנה -->
+            <div class="step card" id="step-offer">
+                <div class="eyebrow">אתה לא לבד</div>
+                <h2>רוב הסוחרים תקועים באותו מקום בדיוק.</h2>
+                <p class="lead">לא כי אין להם אסטרטגיה. כי אין להם מבנה. בדיוק בשביל זה בניתי את סדנת תורת הרבעים שמתקיימת ב-<strong>21.6</strong>. אפשר להראות לך על מה מדובר?</p>
+                <div class="btn-row">
+                    <button class="btn btn-primary" id="toWorkshop">כן, תראה לי ←</button>
+                    <button class="btn btn-ghost" data-go="thanks">לא עכשיו</button>
+                </div>
+            </div>
+
+            <!-- תודה -->
+            <div class="step card" id="step-thanks">
+                <div class="result-icon">🤝</div>
+                <h2>סבבה לגמרי.</h2>
+                <p class="lead">תמשיך לעבוד על עצמך. זה הסוחר שאתה הופך להיות שעושה את ההבדל, לא העסקה הבאה. בהצלחה גדולה.</p>
+            </div>
+
+        </section>
+
+        <footer>
+            <a href="https://matanmashiah.com">matanmashiah.com</a> · מסחר הוא עסק, לא קזינו
+        </footer>
+    </div>
+
+    <!-- YouTube IFrame API (נטען רק אם צריך) -->
+    <script>
+    /* ============================================================
+       קונפיג — כל מה שצריך לערוך נמצא כאן
+       ============================================================ */
+    const CONFIG = {
+        // סוג הסרטון: 'youtube' או 'mp4'
+        videoType: 'youtube',
+        // אם youtube: הדבק את מזהה הסרטון בלבד (החלק שאחרי v= או youtu.be/)
+        youtubeId: 'mpeRRrNw4GE',          // ← לדוגמה: 'dQw4w9WgXcQ'
+        // אם mp4: כתובת ישירה לקובץ
+        mp4Url: '',
+        // לאן שולחים את מי שלוחץ "כן, תראה לי"
+        workshopUrl: '/workshop.html',
+        // כמה שניות לחכות כגיבוי אם זיהוי סוף-הסרטון לא עובד (אז השאלה תופיע ממילא)
+        revealFallbackSeconds: 120
+    };
+    /* ============================================================ */
+
+    const quiz = document.getElementById('quiz');
+    const placeholder = document.getElementById('videoPlaceholder');
+    const frame = document.getElementById('videoFrame');
+    const skipBtn = document.getElementById('skipBtn');
+    let revealed = false;
+
+    function revealQuiz() {
+        if (revealed) return;
+        revealed = true;
+        quiz.classList.add('show');
+        quiz.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function showStep(id) {
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        const el = document.getElementById('step-' + id);
+        if (el) el.classList.add('active');
+    }
+
+    // ניווט בין שלבי השאלון
+    document.querySelectorAll('[data-go]').forEach(btn => {
+        btn.addEventListener('click', () => showStep(btn.dataset.go));
+    });
+
+    // לחצן "כן, תראה לי" → Pixel Lead + מעבר לדף הסדנה
+    document.getElementById('toWorkshop').addEventListener('click', () => {
+        if (window.fbq) fbq('track', 'Lead', { content_name: 'quarter-theory-workshop', source: 'shachaf-journal' });
+        window.location.href = CONFIG.workshopUrl;
+    });
+
+    // כפתור "סיימתי לצפות"
+    skipBtn.addEventListener('click', revealQuiz);
+
+    // גיבוי זמן — אם משום מה לא זיהינו סוף סרטון
+    setTimeout(revealQuiz, CONFIG.revealFallbackSeconds * 1000);
+
+    // ===== טעינת הסרטון =====
+    function loadVideo() {
+        if (CONFIG.videoType === 'mp4' && CONFIG.mp4Url) {
+            placeholder.remove();
+            const v = document.createElement('video');
+            v.src = CONFIG.mp4Url; v.controls = true; v.playsInline = true;
+            v.addEventListener('ended', revealQuiz);
+            frame.appendChild(v);
+            return;
+        }
+        if (CONFIG.videoType === 'youtube' && CONFIG.youtubeId) {
+            placeholder.remove();
+            // טוען את YouTube IFrame API לזיהוי סוף הסרטון
+            const tag = document.createElement('script');
+            tag.src = 'https://www.youtube.com/iframe_api';
+            document.head.appendChild(tag);
+        }
+        // אם אין סרטון מוגדר — נשאר ה-placeholder, והשאלון יופיע אחרי הגיבוי
+    }
+
+    // נקרא אוטומטית ע"י YouTube API
+    window.onYouTubeIframeAPIReady = function () {
+        new YT.Player('videoFrame', {
+            videoId: CONFIG.youtubeId,
+            playerVars: { rel: 0, modestbranding: 1, playsinline: 1 },
+            events: {
+                onStateChange: (e) => { if (e.data === YT.PlayerState.ENDED) revealQuiz(); }
+            }
+        });
+    };
+
+    loadVideo();
+    </script>
+</body>
+</html>
