@@ -927,7 +927,25 @@ heroIO.observe(hero);
 
 // ---- CTA -> Whop (all CTAs lead to checkout) ----
 const WHOP = "https://whop.com/master-trader-club/";
+// Forward attribution to Whop so every join is sourced (acquisition_data).
+// Inherits params the Meta ad passes to this page; falls back to sane defaults.
+function whopUrl(){
+  const p = new URLSearchParams(location.search);
+  // Meta auto-appends fbclid to every ad click -> reliably separates paid from organic
+  // without editing any creative (so the WANTED winner's learning is never reset).
+  const fromAd = p.has('fbclid') || p.get('utm_source') === 'meta';
+  const out = new URLSearchParams();
+  out.set('utm_source',   fromAd ? 'meta' : (p.get('utm_source') || 'organic'));
+  out.set('utm_medium',   fromAd ? 'paid' : (p.get('utm_medium') || 'web'));
+  out.set('utm_campaign', p.get('utm_campaign') || 'club');
+  const content = p.get('utm_content') || p.get('ad') || '';   // which creative, once ads tag it
+  if(content) out.set('utm_content', content);
+  if(p.get('fbclid')) out.set('fbclid', p.get('fbclid'));      // carry click id for later matching
+  return WHOP + '?' + out.toString();
+}
 function fireCheckout(){ if(window.fbq) fbq('track','InitiateCheckout',{value:149,currency:'ILS'}); }
+// Point every real <a data-final> at the tagged Whop URL up front.
+document.querySelectorAll('a[data-cta][data-final]').forEach(a=>{ a.href = whopUrl(); });
 document.querySelectorAll('[data-cta]').forEach(a=>{
   a.addEventListener('click',(ev)=>{
     const href = a.getAttribute('href');
@@ -936,7 +954,7 @@ document.querySelectorAll('[data-cta]').forEach(a=>{
     fireCheckout();                     // click that leads to Whop checkout
     if(a.dataset.final) return;         // real <a> to Whop navigates normally
     ev.preventDefault();
-    window.open(WHOP,'_blank','noopener');
+    window.open(whopUrl(),'_blank','noopener');
   });
 });
 
