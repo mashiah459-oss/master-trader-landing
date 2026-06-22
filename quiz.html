@@ -280,9 +280,12 @@ function submitLead(){
   const consent=document.getElementById('lead-consent').checked;
   if(name.length<2 || phone.replace(/\D/g,'').length<9){ alert('מלא שם וטלפון תקין'); return; }
   if(email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ alert('כתובת אימייל לא תקינה'); return; }
-  if(window.fbq) fbq('track','Lead');
+  // shared event_id so the browser Lead + the server-side CAPI Lead dedupe (counted once)
+  const eid='L_'+Date.now()+'_'+Math.floor(Math.random()*1e6);
+  if(window.fbq) fbq('track','Lead',{},{eventID:eid});
   const clean=s=>String(s||'').replace(/[~|\r\n\t]/g,' ').trim();   // strip field-delimiters only (keep @ for emails)
-  const leadLine='@@Q@@'+[clean(email)||'-',clean(name),clean(phone),consent?'1':'0',track,clean(SOURCE.utm_content)||'-'].join('~')+'@@/Q@@';
+  const leadLine='@@Q@@'+[clean(email)||'-',clean(name),clean(phone),consent?'1':'0',track,
+                          clean(SOURCE.utm_content)||'-',clean(SOURCE.fbclid)||'-',eid].join('~')+'@@/Q@@';
   const payload={ _subject:'ליד חדש משאלון המועדון', name, phone, email,
                   'אישור דיוור':consent?'כן':'לא', track, ...answers,
                   מקור:SOURCE.utm_source, מודעה:SOURCE.utm_content, lead_line:leadLine, _template:'table' };
