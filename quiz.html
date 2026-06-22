@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>שאלון התאמה — מועדון הסוחר המתמיד</title>
+<meta name="description" content="בוא נראה אם המועדון מתאים לך. 7 שאלות קצרות.">
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','3092602027607133');fbq('track','PageView');
+</script>
+<style>
+  :root{
+    --bg:#05090f; --bg2:#0a1422;
+    --azure:#4fc3ff; --azure-bright:#84d6ff; --azure-deep:#1f80c4;
+    --ink:#eef5fc; --muted:#90a6c2; --line:rgba(79,195,255,.22);
+    --glass:rgba(120,200,255,.055);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;width:100%;max-width:100%;overflow-x:hidden}
+  body{
+    font-family:-apple-system,"SF Hebrew","Heebo","Assistant","Arial",sans-serif;
+    background:var(--bg);color:var(--ink);overflow-y:hidden;
+    position:fixed;inset:0;-webkit-font-smoothing:antialiased;
+  }
+  /* progress */
+  #bar{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(120,170,220,.10);z-index:30}
+  #bar>i{display:block;height:100%;width:0;border-radius:0 3px 3px 0;
+    background:linear-gradient(90deg,var(--azure-deep),var(--azure-bright));
+    box-shadow:0 0 14px rgba(79,195,255,.6);transition:width .5s cubic-bezier(.4,0,.2,1)}
+  /* card stage */
+  #stage{position:absolute;inset:0;z-index:1}
+  .card{
+    position:absolute;top:0;bottom:0;left:0;right:0;width:100%;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;padding:46px 24px 48px;
+    opacity:0;transform:translateY(26px) scale(.99);pointer-events:none;
+    transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.2,1);
+  }
+  .card.active{opacity:1;transform:none;pointer-events:auto}
+  /* proof background — a WALL of profit/loss screenshots fills the screen, faint */
+  .bg{position:absolute;inset:0;background-size:cover;background-position:center;z-index:-2;opacity:.34}
+  .bg-scrim{position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(180deg,rgba(5,9,15,.42) 0%,rgba(5,9,15,.60) 50%,rgba(5,9,15,.72) 100%)}
+  .gradient{position:absolute;inset:0;z-index:-2;
+    background:
+      radial-gradient(75% 55% at 50% -8%,rgba(79,195,255,.16),transparent 60%),
+      radial-gradient(120% 90% at 50% 12%,#0c1c30 0%,#05090f 62%)}
+  .inner{width:100%;max-width:440px;margin-inline:auto;text-align:center;z-index:2}
+  .kicker{color:var(--azure);font-size:13px;letter-spacing:4px;margin-bottom:22px;font-weight:700;
+    text-transform:uppercase}
+  h1{font-size:31px;line-height:1.3;font-weight:800;margin-bottom:10px;letter-spacing:-.5px}
+  h2{font-size:27px;line-height:1.42;font-weight:700;margin-bottom:30px;letter-spacing:-.4px;
+    text-shadow:0 2px 18px rgba(0,0,0,.55)}
+  .sub{color:var(--muted);font-size:16px;margin-bottom:30px;line-height:1.65;
+    text-shadow:0 2px 14px rgba(0,0,0,.5)}
+  .consent{display:flex;gap:10px;align-items:flex-start;text-align:right;margin:4px 2px 2px;
+    font-size:13.5px;color:var(--muted);line-height:1.5;cursor:pointer}
+  .consent input{accent-color:var(--azure);width:18px;height:18px;margin-top:1px;flex:0 0 auto}
+  .answers{display:flex;flex-direction:column;gap:13px;width:100%}
+  .opt{
+    background:var(--glass);border:1.5px solid var(--line);color:var(--ink);
+    padding:19px 22px;border-radius:16px;font-size:17.5px;font-weight:600;cursor:pointer;
+    text-align:right;transition:.2s cubic-bezier(.3,.7,.3,1);backdrop-filter:blur(8px);
+    animation:rise .5s both;
+  }
+  .opt:nth-child(1){animation-delay:.05s}.opt:nth-child(2){animation-delay:.11s}
+  .opt:nth-child(3){animation-delay:.17s}.opt:nth-child(4){animation-delay:.23s}
+  .opt:hover,.opt:active{background:rgba(79,195,255,.13);border-color:var(--azure);
+    box-shadow:0 12px 34px -12px rgba(79,195,255,.6);transform:translateY(-2px)}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .field{width:100%;padding:19px;border-radius:16px;border:1.5px solid var(--line);
+    background:var(--glass);color:var(--ink);font-size:18px;margin-bottom:13px;text-align:right;
+    backdrop-filter:blur(8px);transition:.2s}
+  .field::placeholder{color:#6f86a3}
+  .field:focus{outline:none;border-color:var(--azure);box-shadow:0 0 0 4px rgba(79,195,255,.14)}
+  .btn{display:inline-block;background:linear-gradient(180deg,var(--azure-bright),var(--azure-deep));
+    color:#04121f;font-weight:800;font-size:19px;padding:19px 30px;border-radius:40px;
+    border:none;cursor:pointer;width:100%;margin-top:8px;letter-spacing:-.2px;
+    box-shadow:0 12px 32px -8px rgba(79,195,255,.55);transition:.2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -8px rgba(79,195,255,.7)}
+  .btn:active{transform:translateY(0)}
+  .video-wrap{width:100%;aspect-ratio:9/16;max-height:52vh;border-radius:18px;overflow:hidden;
+    border:1px solid var(--line);margin-bottom:24px;background:#000;display:flex;align-items:center;
+    justify-content:center;box-shadow:0 20px 50px -20px rgba(79,195,255,.4)}
+  .video-wrap video,.video-wrap iframe{width:100%;height:100%;object-fit:cover;border:0}
+  .ph{color:var(--muted);font-size:14px;padding:20px;text-align:center}
+  .step-n{position:fixed;top:18px;right:20px;color:var(--azure);font-size:13px;font-weight:700;
+    letter-spacing:2px;z-index:30;opacity:.85}
+  #back{position:fixed;top:13px;left:16px;z-index:31;display:none;cursor:pointer;
+    background:rgba(120,200,255,.08);border:1px solid var(--line);color:var(--azure);
+    font:600 13px -apple-system,"Heebo",Arial;padding:8px 15px;border-radius:30px;
+    backdrop-filter:blur(6px);transition:.2s}
+  #back:hover{background:rgba(79,195,255,.16)}
+  .small{font-size:13px;color:var(--muted);margin-top:16px;line-height:1.6}
+  a{color:var(--azure)}
+</style>
+</head>
+<body>
+<div id="bar"><i></i></div>
+<div class="step-n"></div>
+<button id="back" type="button">חזרה ←</button>
+<div id="stage"></div>
+
+<script>
+// ====== attribution: capture source on load, carry to lead + Whop ======
+const Q = new URLSearchParams(location.search);
+const fromAd = Q.has('fbclid') || Q.get('utm_source')==='meta';
+const SOURCE = {
+  utm_source: fromAd ? 'meta' : (Q.get('utm_source')||'organic'),
+  utm_content: Q.get('utm_content') || Q.get('ad') || '',
+  fbclid: Q.get('fbclid') || ''
+};
+const WHOP = "https://whop.com/master-trader-club/";
+function whopUrl(){
+  const p=new URLSearchParams();
+  p.set('utm_source',SOURCE.utm_source); p.set('utm_medium',fromAd?'paid':'web');
+  p.set('utm_campaign','club'); if(SOURCE.utm_content)p.set('utm_content',SOURCE.utm_content);
+  if(SOURCE.fbclid)p.set('fbclid',SOURCE.fbclid);
+  return WHOP+'?'+p.toString();
+}
+
+// ====== lead destination (FormSubmit -> email; no PII in repo) ======
+const LEAD_ENDPOINT = "https://formsubmit.co/ajax/mashiah459@gmail.com";
+
+// ====== helpers ======
+const YT = "https://www.youtube.com/@matanmashiah";
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+// ====== branching diagnostic flow ======
+// Each option: {l:label, v:value, next:stepId|'lead', track?:'youtube'}
+const STEPS = {
+  trader: { kicker:'נתחיל', q:'קודם כל — אתה כבר סוחר?',
+    opts:[
+      {l:'כן, אני סוחר פעיל', v:'active', next:'happy'},
+      {l:'התחלתי לאחרונה', v:'beginner', next:'happy'},
+      {l:'עדיין לא, אבל בא לי להיכנס', v:'interested', track:'youtube', next:'lead'},
+      {l:'לא ממש, רק מסתכל', v:'curious', track:'youtube', next:'lead'},
+    ]},
+  happy: { kicker:'שאלה', q:'אתה מרוצה מהתוצאות שלך במסחר?',
+    opts:[
+      {l:'כן, רווחי ויציב', v:'profitable', next:'p_live'},
+      {l:'ככה ככה, לא יציב', v:'unstable', next:'why'},
+      {l:'לא, אני בעיקר מפסיד', v:'losing', next:'why'},
+    ]},
+  why: { kicker:'תהיה כן עם עצמך', q:'למה לדעתך התוצאות לא מגיעות?',
+    opts:[
+      {l:'אני שובר את החוקים של עצמי', v:'rules', next:'p_live'},
+      {l:'אני נכנס מתוך רגש ו-FOMO', v:'emotion', next:'p_live'},
+      {l:'אני פשוט לא עקבי', v:'consistency', next:'p_live'},
+      {l:'אין לי שיטה או מסגרת ברורה', v:'nosystem', next:'p_live'},
+    ]},
+  p_live: { kicker:'תאר לעצמך', bg:'images/wins-wall.png',
+    q:'לראות סוחר מקצועי ומנוסה סוחר בלייב כל יום — יעזור לך?',
+    sub:'מסחר חי ואמיתי, בלי פילטרים.',
+    opts:[
+      {l:'בטוח שכן', v:'yes', next:'p_loss'},
+      {l:'כן', v:'yes', next:'p_loss'},
+      {l:'אולי', v:'maybe', next:'p_loss'},
+    ]},
+  p_loss: { kicker:'וגם', bg:'images/losses-wall.png',
+    q:'ולראות מנטור שמפסיד בלייב, מנהל סיכון ושומר על הפסדים קטנים — יעזור לך?',
+    sub:'כי מסחר זה עסק, לא קזינו. גם הפסד מנוהל הוא חלק מהמקצוע.',
+    opts:[
+      {l:'זה בדיוק מה שחסר לי', v:'yes', next:'p_frame'},
+      {l:'כן, חשוב לי', v:'yes', next:'p_frame'},
+      {l:'אולי', v:'maybe', next:'p_frame'},
+    ]},
+  p_frame: { kicker:'ועכשיו', bg:'images/reviews-wall.png',
+    q:'מסגרת יומית, ליווי וקהילה של מאות שמחזיקים אותך לחוקים — זה יעזור לך?',
+    opts:[
+      {l:'בדיוק את זה אני צריך', v:'yes', next:'lead'},
+      {l:'כן', v:'yes', next:'lead'},
+      {l:'אולי', v:'maybe', next:'lead'},
+    ]},
+};
+
+// personalized verdict line, keyed by the stated reason (or profitable-grower)
+const PAIN = {
+  rules:'אתה יודע בדיוק מה לעשות — פשוט אין מי שמחזיק אותך לזה. מסגרת עם בקרה יומית משנה את כל המשחק.',
+  emotion:'הבעיה שלך היא לא ידע, היא שליטה עצמית. לייבים יומיים וקהילה הם בדיוק התרופה לרגש.',
+  consistency:'עקביות לא נבנית לבד מול המסך. עם קבוצה ובקרה יומית — היא נבנית כמעט מעצמה.',
+  nosystem:'אתה צריך שיטה אחת ברורה ומישהו שילווה אותך ביישום שלה. בדיוק זה מה שמחכה לך.',
+  profitable:'אתה כבר רווחי — עכשיו האתגר הוא יציבות וצמיחה. קהילה ברמה גבוהה תיקח אותך לשלב הבא.',
+};
+
+const answers = {};
+let track = 'club';
+let path = [];          // stack of question step-ids currently in history
+let leadOpen = false;   // lead gate showing
+let done = false;       // verdict reached
+const STEP_TARGET = 7;
+const stage = document.getElementById('stage');
+const barI = document.querySelector('#bar > i');
+const stepN = document.querySelector('.step-n');
+const backBtn = document.getElementById('back');
+
+function setProgress(n,label){ barI.style.width = Math.min(100,100*n/STEP_TARGET)+'%'; stepN.textContent = label||''; }
+function updateBack(){ backBtn.style.display = (!done && (leadOpen || path.length>=1)) ? 'block' : 'none'; }
+
+function go(id){ path.push(id); renderStep(id); }   // advance to a question
+function openLead(){ leadOpen = true; renderLeadGate(); }
+function back(){
+  if(done) return;
+  if(leadOpen){ leadOpen = false; renderStep(path[path.length-1]); return; }  // lead -> last question
+  if(path.length <= 1){ path = []; renderIntro(); return; }                   // first question -> intro
+  path.pop(); const prev = path.pop(); go(prev);                              // step -> previous step
+}
+backBtn.addEventListener('click', back);
+
+function card(html, bg){
+  const c=document.createElement('div'); c.className='card';
+  const base = bg ? `<div class="bg"></div><div class="bg-scrim"></div>` : `<div class="gradient"></div>`;
+  c.innerHTML = base + html;
+  if(bg) c.querySelector('.bg').style.backgroundImage = `url("${bg}")`; // bg is a static asset path
+  stage.appendChild(c);
+  requestAnimationFrame(()=>{ document.querySelectorAll('.card.active').forEach(e=>e.classList.remove('active'));
+    requestAnimationFrame(()=>c.classList.add('active')); });
+  setTimeout(()=>{ [...stage.children].slice(0,-2).forEach(e=>e.remove()); },600);
+  return c;
+}
+
+function renderIntro(){
+  done = false; leadOpen = false; path = [];
+  setProgress(0,''); updateBack();
+  const c = card(`<div class="inner">
+      <div class="kicker">מועדון הסוחר המתמיד</div>
+      <h1>שאלון התאמה</h1>
+      <div class="sub">כמה שאלות קצרות שיגידו לך בדיוק באיזה שלב המסחר שלך — ומה הצעד הנכון הבא שלך.</div>
+      <button class="btn" id="start">התחל ←</button>
+      <div class="small">פחות מדקה. בלי התחייבות.</div>
+    </div>`);
+  c.querySelector('#start').addEventListener('click',()=>go('trader'));
+}
+
+function renderStep(id){
+  const s = STEPS[id];
+  setProgress(path.length, String(path.length)); updateBack();
+  const c = card(`<div class="inner">
+      <div class="kicker">${s.kicker}</div>
+      <h2>${s.q}</h2>${s.sub?`<div class="sub">${s.sub}</div>`:''}
+      <div class="answers"></div>
+    </div>`, s.bg);
+  const wrap = c.querySelector('.answers');
+  s.opts.forEach(o=>{
+    const b=document.createElement('button'); b.className='opt'; b.textContent=o.l;   // XSS-safe
+    b.addEventListener('click',()=>{
+      answers[id]=o.v; if(o.track) track=o.track;
+      if(o.next==='lead') openLead(); else go(o.next);
+    });
+    wrap.appendChild(b);
+  });
+}
+
+function renderLeadGate(){
+  setProgress(STEP_TARGET-0.5,''); updateBack();
+  const c = card(`<div class="inner">
+      <div class="kicker">כמעט סיימנו</div>
+      <h2>הכנו לך הבחנה אישית.</h2>
+      <div class="sub">לאן לשלוח לך אותה? (וגם נשמור לך את הגישה)</div>
+      <input class="field" id="lead-name" placeholder="השם שלך" autocomplete="given-name">
+      <input class="field" id="lead-phone" placeholder="טלפון (וואטסאפ)" inputmode="tel" autocomplete="tel">
+      <input class="field" id="lead-email" placeholder="אימייל (לקבלת ההבחנה והתוכן)" inputmode="email" autocomplete="email">
+      <label class="consent"><input type="checkbox" id="lead-consent" checked>
+        <span>אישור קבלת תוכן שמקדם אותך ואת המסחר שלך (אפשר לבטל בכל עת)</span></label>
+      <button class="btn" id="lead-go">לקבלת ההבחנה ←</button>
+      <div class="small">הפרטים נשמרים אצלנו במערכת בלבד. לא ספאם.</div>
+    </div>`);
+  c.querySelector('#lead-go').addEventListener('click',submitLead);
+}
+
+function submitLead(){
+  const name=(document.getElementById('lead-name').value||'').trim();
+  const phone=(document.getElementById('lead-phone').value||'').trim();
+  const email=(document.getElementById('lead-email').value||'').trim();
+  const consent=document.getElementById('lead-consent').checked;
+  if(name.length<2 || phone.replace(/\D/g,'').length<9){ alert('מלא שם וטלפון תקין'); return; }
+  if(email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ alert('כתובת אימייל לא תקינה'); return; }
+  if(window.fbq) fbq('track','Lead');
+  const clean=s=>String(s||'').replace(/[~|\r\n\t]/g,' ').trim();   // strip field-delimiters only (keep @ for emails)
+  const leadLine='@@Q@@'+[clean(email)||'-',clean(name),clean(phone),consent?'1':'0',track,clean(SOURCE.utm_content)||'-'].join('~')+'@@/Q@@';
+  const payload={ _subject:'ליד חדש משאלון המועדון', name, phone, email,
+                  'אישור דיוור':consent?'כן':'לא', track, ...answers,
+                  מקור:SOURCE.utm_source, מודעה:SOURCE.utm_content, lead_line:leadLine, _template:'table' };
+  fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+    .catch(()=>{}); // best-effort; never block the user
+  renderVerdict(name);
+}
+
+function renderVerdict(name){
+  done = true; setProgress(STEP_TARGET,''); updateBack();
+  const nm = esc(name);
+  if(track==='youtube'){
+    card(`<div class="inner">
+      <div class="kicker">ההבחנה שלך</div>
+      <h2>${nm}, אתה בשלב הבסיס.</h2>
+      <div class="sub">לפני שמשקיעים בליווי — הכי חשוב לבנות יסודות נכון. תתחיל מהערוץ ביוטיוב, לפי הסדר:</div>
+      <div class="answers">
+        <a class="opt" style="display:block;text-decoration:none" target="_blank" rel="noopener"
+           href="https://www.youtube.com/playlist?list=PLxf3Ml18PULClOY53kjEdEIVy0HJ3SzSr">1. הקורס החינמי — היסודות ←</a>
+        <a class="opt" style="display:block;text-decoration:none" target="_blank" rel="noopener"
+           href="https://www.youtube.com/playlist?list=PLxf3Ml18PULDt2SCFPqAL5qhcsy-f5r2t">2. מנטורשיפ 2026 ←</a>
+      </div>
+      <a class="btn" href="${YT}" target="_blank" rel="noopener">לכל הערוץ ←</a>
+      <div class="small">כשתתחיל לסחור בקביעות — תחזור. מועדון הסוחר המתמיד יחכה לך.</div>
+    </div>`);
+  } else {
+    const line = PAIN[answers.why] || (answers.happy==='profitable'?PAIN.profitable:PAIN.consistency);
+    card(`<div class="inner">
+      <div class="kicker">ההבחנה שלך</div>
+      <h2>${nm}, אתה לא צריך עוד אסטרטגיה.</h2>
+      <div class="sub">${line}</div>
+      <div class="sub">אתה צריך <b style="color:var(--azure)">מסגרת</b>. מועדון הסוחר המתמיד הוא הפתרון הכי טוב שאתה יכול להשיג עכשיו לשלב שאתה בו.</div>
+      <a class="btn" href="${whopUrl()}" target="_blank" rel="noopener">לנסות חודש אחד ←</a>
+      <div class="small">בלי התחייבות. אם אחרי חודש זה לא בשבילך — מבטלים בלי שאלות.</div>
+    </div>`);
+  }
+}
+
+renderIntro();
+</script>
+</body>
+</html>
