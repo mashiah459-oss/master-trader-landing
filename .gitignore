@@ -11,3 +11,8 @@ new_leads_raw.txt
 sheets_config.json
 sheet_url.txt
 deploy_url.txt
+
+# Local scripts containing PII (participant emails/phones) — never publish
+send_*.py
+manychat_create_contacts.py
+gmail_auth.py
