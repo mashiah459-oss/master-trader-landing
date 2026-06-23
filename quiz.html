@@ -113,7 +113,17 @@ const fromAd = Q.has('fbclid') || Q.get('utm_source')==='meta';
 const SOURCE = {
   utm_source: fromAd ? 'meta' : (Q.get('utm_source')||'organic'),
   utm_content: Q.get('utm_content') || Q.get('ad') || '',
+  cre: (Q.get('cre')||'').toLowerCase(),   // creative concept -> matched intro
   fbclid: Q.get('fbclid') || ''
+};
+// per-creative opening (message match): bridges each ad's metaphor straight to trading
+const INTROS = {
+  puppet: { kicker:'רגע אמת', h1:'מי באמת שולט בעסקאות שלך?',
+            sub:'אם זה הרגש ולא אתה — אתה לא לבד, וזה שביר. בוא נבדוק איפה אתה עומד.' },
+  wheel:  { kicker:'רגע אמת', h1:'תקוע באותו לופ?',
+            sub:'קונה תיק, שורף אותו, מבטיח שהפעם לפי החוקים — ושוב שובר אותם? בוא נבין למה.' },
+  _default: { kicker:'מועדון הסוחר המתמיד', h1:'שאלון התאמה',
+            sub:'כמה שאלות קצרות שיגידו לך בדיוק באיזה שלב המסחר שלך — ומה הצעד הנכון הבא שלך.' },
 };
 const WHOP = "https://whop.com/master-trader-club/";
 function whopUrl(){
@@ -227,10 +237,11 @@ function card(html, bg){
 function renderIntro(){
   done = false; leadOpen = false; path = [];
   setProgress(0,''); updateBack();
+  const it = INTROS[SOURCE.cre] || INTROS._default;
   const c = card(`<div class="inner">
-      <div class="kicker">מועדון הסוחר המתמיד</div>
-      <h1>שאלון התאמה</h1>
-      <div class="sub">כמה שאלות קצרות שיגידו לך בדיוק באיזה שלב המסחר שלך — ומה הצעד הנכון הבא שלך.</div>
+      <div class="kicker">${it.kicker}</div>
+      <h1>${it.h1}</h1>
+      <div class="sub">${it.sub}</div>
       <button class="btn" id="start">התחל ←</button>
       <div class="small">פחות מדקה. בלי התחייבות.</div>
     </div>`);
