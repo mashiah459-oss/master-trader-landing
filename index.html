@@ -54,10 +54,7 @@
   .path{ display:flex; align-items:center; gap:14px; text-decoration:none; color:var(--text);
     border:1px solid var(--line); border-radius:8px; padding:16px 22px; min-width:270px;
     background:rgba(8,9,12,.35); backdrop-filter:blur(6px); transition:border-color .3s, background .3s, transform .3s; }
-  .path .idx{ font-family:'Space Mono',monospace; font-size:12px; color:var(--accent); font-weight:700; }
-  .path .body{ flex:1; }
-  .path .t{ display:block; font-size:17px; font-weight:800; letter-spacing:-.3px; }
-  .path .d{ display:block; font-size:12px; color:var(--dim); margin-top:4px; }
+  .path .t{ flex:1; font-size:18px; font-weight:800; letter-spacing:-.3px; }
   .path .arw{ font-size:20px; color:var(--mute); transition:transform .3s, color .3s; }
   .path:hover{ border-color:var(--accent); background:rgba(228,50,42,.1); transform:translateY(-3px); }
   .path:hover .arw{ color:var(--accent); transform:translateX(-6px); }
@@ -102,13 +99,11 @@
 
       <nav class="paths">
         <a class="path" href="trader.html">
-          <span class="idx">01</span>
-          <span class="body"><span class="t">אני כבר סוחר</span><span class="d">מועדון · חדר מצב · קורס</span></span>
+          <span class="t">אני כבר סוחר</span>
           <span class="arw">←</span>
         </a>
         <a class="path" href="learn.html">
-          <span class="idx">02</span>
-          <span class="body"><span class="t">אני רוצה ללמוד מסחר מ-0</span><span class="d">חינם — יוטיוב · קהילה · ניוזלטר</span></span>
+          <span class="t">אני רוצה ללמוד מסחר מ-0</span>
           <span class="arw">←</span>
         </a>
       </nav>
