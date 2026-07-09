@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אני כבר סוחר | מתן משיח</title>
+    <meta name="description" content="הכלים לסוחר שכבר בשוק — מועדון הסוחר המתמיד, חדר מצב וקורס עסק או עסקה.">
+    <meta property="og:title" content="אני כבר סוחר | מתן משיח">
+    <meta property="og:url" content="https://matanmashiah.com/trader.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        :root {
+            --bg:#060608; --gold:#D4AF37; --gold-light:#F0D060; --gold-glow:rgba(212,175,55,0.35);
+            --gold-subtle:rgba(212,175,55,0.08); --text:#F5F5F5; --text-dim:#8A8A9A; --text-muted:#555566;
+            --glass-border:rgba(255,255,255,0.07); --glass-border-hover:rgba(212,175,55,0.28);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family:'Heebo',sans-serif; background:var(--bg); color:var(--text);
+            min-height:100dvh; overflow-x:hidden; -webkit-font-smoothing:antialiased; position:relative;
+        }
+        .bg-glow {
+            position:fixed; inset:0; z-index:0; pointer-events:none;
+            background:
+                radial-gradient(1000px 620px at 20% -10%, rgba(212,175,55,0.10), transparent 60%),
+                radial-gradient(900px 600px at 100% 100%, rgba(212,175,55,0.05), transparent 60%);
+        }
+        .grain {
+            position:fixed; inset:0; z-index:1; pointer-events:none; opacity:0.04;
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+        .wrap { position:relative; z-index:2; max-width:1080px; margin:0 auto; padding:clamp(20px,4vw,40px) clamp(18px,4vw,32px) 60px; }
+
+        .nav { display:flex; align-items:center; justify-content:space-between; margin-bottom:clamp(28px,6vh,56px); }
+        .back { display:inline-flex; align-items:center; gap:8px; color:var(--text-dim); text-decoration:none; font-size:14px; font-weight:600; transition:color .3s; }
+        .back:hover { color:var(--gold); }
+        .back svg { width:16px; height:16px; transition:transform .3s; }
+        .back:hover svg { transform:translateX(5px); }
+        .brand { font-family:'Inter',sans-serif; letter-spacing:5px; font-size:11px; font-weight:700; color:var(--gold); }
+
+        .head { text-align:center; margin-bottom:clamp(30px,6vh,54px); }
+        .head .tag {
+            display:inline-block; font-family:'Inter',sans-serif; letter-spacing:3px; font-size:11px; font-weight:600;
+            color:var(--gold); border:1px solid rgba(212,175,55,0.3); border-radius:999px; padding:6px 16px;
+            background:var(--gold-subtle); margin-bottom:20px; text-transform:uppercase;
+        }
+        .head h1 { font-size:clamp(30px,6vw,52px); font-weight:900; letter-spacing:-1px; line-height:1.1; }
+        .head h1 .accent { background:linear-gradient(120deg,var(--gold-light),var(--gold)); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+        .head p { margin-top:16px; color:var(--text-dim); font-size:clamp(15px,2vw,18px); max-width:54ch; margin-inline:auto; line-height:1.6; }
+
+        .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2vw,20px); }
+        .card {
+            position:relative; display:flex; flex-direction:column; padding:clamp(24px,2.6vw,32px);
+            border:1px solid var(--glass-border); border-radius:20px; text-decoration:none; color:var(--text); overflow:hidden;
+            background:linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+            transition:transform .4s cubic-bezier(.2,.8,.2,1), border-color .4s, box-shadow .5s;
+            opacity:0; transform:translateY(20px); animation:rise .8s forwards cubic-bezier(.2,.8,.2,1);
+        }
+        .card:nth-child(1){animation-delay:.1s} .card:nth-child(2){animation-delay:.2s} .card:nth-child(3){animation-delay:.3s}
+        .card::after { content:""; position:absolute; inset:0; background:radial-gradient(120% 100% at 50% 120%, var(--gold-subtle), transparent 55%); opacity:0; transition:opacity .5s; }
+        .card > * { position:relative; z-index:1; }
+        .card:hover { transform:translateY(-6px); border-color:var(--glass-border-hover); box-shadow:0 26px 70px -40px var(--gold-glow); }
+        .card:hover::after { opacity:1; }
+        .card:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
+        .card.featured { border-color:rgba(212,175,55,0.22); }
+
+        .icon-wrap {
+            width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+            background:var(--gold-subtle); border:1px solid rgba(212,175,55,0.18); margin-bottom:20px;
+        }
+        .icon-wrap svg { width:26px; height:26px; color:var(--gold); }
+        .badge {
+            position:absolute; top:clamp(20px,3vw,26px); left:clamp(20px,3vw,26px);
+            font-family:'Inter',sans-serif; font-size:10px; letter-spacing:2px; font-weight:600; text-transform:uppercase;
+            color:var(--gold); background:var(--gold-subtle); border:1px solid rgba(212,175,55,0.25); border-radius:999px; padding:4px 10px;
+        }
+        .card h3 { font-size:clamp(19px,2.4vw,23px); font-weight:800; letter-spacing:-0.3px; }
+        .card .kv { color:var(--text-muted); font-size:13px; font-weight:600; margin-top:4px; }
+        .card p { margin-top:12px; color:var(--text-dim); font-size:14.5px; line-height:1.6; flex:1; }
+        .go { display:inline-flex; align-items:center; gap:8px; margin-top:22px; color:var(--gold); font-weight:700; font-size:14.5px; }
+        .go svg { width:15px; height:15px; transition:transform .35s; }
+        .card:hover .go svg { transform:translateX(-5px); }
+
+        .soon {
+            margin-top:clamp(20px,3vh,28px); text-align:center; border:1px dashed var(--glass-border); border-radius:16px;
+            padding:22px 20px; background:rgba(255,255,255,0.015);
+            opacity:0; transform:translateY(20px); animation:rise .8s .45s forwards cubic-bezier(.2,.8,.2,1);
+        }
+        .soon strong { color:var(--text); font-weight:700; }
+        .soon span { color:var(--text-dim); font-size:14.5px; }
+        .soon a { color:var(--gold); text-decoration:none; font-weight:700; }
+        .soon a:hover { text-decoration:underline; }
+
+        .foot { text-align:center; margin-top:clamp(40px,7vh,64px); color:var(--text-muted); font-size:12.5px; }
+        .foot a { color:var(--text-dim); text-decoration:none; }
+        .foot a:hover { color:var(--gold); }
+
+        @keyframes rise { to { opacity:1; transform:none; } }
+        @media (max-width:820px){ .grid{ grid-template-columns:1fr; } }
+        @media (prefers-reduced-motion:reduce){ .card,.soon{ animation:none; opacity:1; transform:none; } * { transition:none !important; } }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="wrap">
+        <nav class="nav">
+            <a href="index.html" class="back">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                חזרה
+            </a>
+            <span class="brand">MASTER TRADER</span>
+        </nav>
+
+        <header class="head">
+            <span class="tag">מסלול הסוחר</span>
+            <h1>אתה <span class="accent">כבר בשוק</span></h1>
+            <p>עברת את שלב ההיכרות. עכשיו נבנה מבנה, משמעת ותוכנית עסקית — כדי שמסחר יפסיק להיות הימור ויתחיל להיות עסק.</p>
+        </header>
+
+        <main class="grid">
+            <!-- Matmid Club -->
+            <a href="club.html" class="card featured">
+                <span class="badge">מנוי חודשי</span>
+                <div class="icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 3.8 8.5 9 10 5.2-1.5 9-5 9-10V6l-9-4z"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <h3>מועדון הסוחר המתמיד</h3>
+                <span class="kv">קהילה · לייבים · תוכן שוטף</span>
+                <p>הבית של הסוחרים הרציניים. לייבים שבועיים, חדרי שיח, ליווי שוטף ומסגרת שמכריחה אותך להתמיד.</p>
+                <span class="go">להצטרפות למועדון
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                </span>
+            </a>
+
+            <!-- Situation Room -->
+            <a href="hadar-hamatzav/" class="card">
+                <span class="badge">מקומות מוגבלים</span>
+                <div class="icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><path d="M8 21h8"/><path d="M12 18v3"/></svg>
+                </div>
+                <h3>חדר מצב</h3>
+                <span class="kv">מפגש פיזי · מאסטרמיינד</span>
+                <p>חדר סגור לקבוצת סוחרים. עבודה פרונטלית על התיק, על הראש ועל ההחלטות שלך — פנים אל פנים.</p>
+                <span class="go">לפרטים והרשמה
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                </span>
+            </a>
+
+            <!-- Course -->
+            <a href="course.html" class="card">
+                <span class="badge">קורס דיגיטלי</span>
+                <div class="icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                </div>
+                <h3>עסק או עסקה</h3>
+                <span class="kv">בניית תוכנית עסקית</span>
+                <p>הקורס שבו אתה בונה את התוכנית העסקית שלך כסוחר — מהמספרים ועד הראש. צעד־צעד, בקצב שלך.</p>
+                <span class="go">לפרטי הקורס
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                </span>
+            </a>
+        </main>
+
+        <div class="soon">
+            <strong>סדנאות עומק</strong> <span>— הסדנה הבאה עוד לא נפתחה. </span><a href="newsletter.html">הישאר מעודכן דרך הניוזלטר ←</a>
+        </div>
+
+        <footer class="foot">
+            עוד לא בשוק? <a href="learn.html">התחל מהבסיס, בחינם ←</a>
+        </footer>
+    </div>
+</body>
+</html>

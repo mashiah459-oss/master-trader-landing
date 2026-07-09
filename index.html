@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>מתן משיח | Master Trader</title>
+    <meta name="description" content="מסחר יומי כעסק. בחר את המסלול שלך — ללמוד מהבסיס, או לחדד את מה שכבר יש לך.">
+    <meta property="og:title" content="מתן משיח | Master Trader">
+    <meta property="og:description" content="מסחר יומי כעסק. בחר את המסלול שלך.">
+    <meta property="og:url" content="https://matanmashiah.com/">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
         :root {
             --bg: #060608;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --bg-card-hover: rgba(255, 255, 255, 0.06);
             --gold: #D4AF37;
             --gold-light: #F0D060;
             --gold-dark: #A8872B;
@@ -23,1604 +25,211 @@
             --text-dim: #8A8A9A;
             --text-muted: #555566;
             --glass-border: rgba(255, 255, 255, 0.07);
-            --glass-border-hover: rgba(212, 175, 55, 0.25);
-            --green: #22C55E;
-            --green-glow: rgba(34, 197, 94, 0.15);
+            --glass-border-hover: rgba(212, 175, 55, 0.30);
         }
 
-        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
 
         body {
             font-family: 'Heebo', sans-serif;
             background: var(--bg);
             color: var(--text);
-            min-height: 100vh;
+            min-height: 100dvh;
             overflow-x: hidden;
-        }
-
-        /* === AMBIENT BACKGROUND === */
-        .bg-ambient {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .bg-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-        }
-
-        .bg-orb-1 {
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
-            top: -10%; left: -15%;
-            animation: orbFloat1 25s ease-in-out infinite;
-        }
-
-        .bg-orb-2 {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
-            bottom: 10%; right: -20%;
-            animation: orbFloat2 30s ease-in-out infinite;
-        }
-
-        .bg-orb-3 {
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            animation: orbFloat3 20s ease-in-out infinite;
-        }
-
-        @keyframes orbFloat1 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(40px, 30px); }
-        }
-        @keyframes orbFloat2 {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-30px, -40px); }
-        }
-        @keyframes orbFloat3 {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.3); }
-        }
-
-        /* Grain texture overlay */
-        .bg-ambient::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            opacity: 0.4;
-        }
-
-        /* === CONTAINER === */
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 480px;
-            margin: 0 auto;
-            padding: 48px 20px 60px;
-        }
-
-        /* === LOGO === */
-        .logo-wrap {
-            text-align: center;
-            margin-bottom: 10px;
-        }
-
-        .logo-svg {
-            width: 110px;
-            height: 121px;
-            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
-        }
-
-        /* === PROFILE === */
-        .profile {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .profile h1 {
-            font-size: 30px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #F5F5F5 0%, #D4AF37 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 6px;
-        }
-
-        .profile .tagline {
-            color: var(--text-dim);
-            font-size: 15px;
-            font-weight: 400;
-            line-height: 1.6;
-        }
-
-        .profile .tagline strong {
-            color: var(--gold);
-            font-weight: 600;
-        }
-
-        /* === STATS BAR === */
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            gap: 2px;
-            margin-bottom: 36px;
-            background: var(--bg-card);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 16px 8px;
-        }
-
-        .stat {
-            flex: 1;
-            text-align: center;
+            -webkit-font-smoothing: antialiased;
             position: relative;
         }
 
-        .stat:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 20%;
-            height: 60%;
-            width: 1px;
-            background: var(--glass-border);
-        }
-
-        .stat-number {
-            font-family: 'Inter', sans-serif;
-            font-size: 22px;
-            font-weight: 800;
-            color: var(--gold);
-            display: block;
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 10px;
-            font-weight: 500;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 6px;
-            display: block;
-        }
-
-        /* === SECTION LABEL === */
-        .section-label {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 32px 0 16px;
-        }
-
-        .section-label::before,
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to var(--dir, left), rgba(212, 175, 55, 0.15), transparent);
-        }
-        .section-label::before { --dir: left; }
-        .section-label::after { --dir: right; }
-
-        .section-label span {
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--gold-dark);
-            white-space: nowrap;
-        }
-
-        /* === GLASS CARD === */
-        .card {
-            display: block;
-            text-decoration: none;
-            color: var(--text);
-            background: var(--bg-card);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            border-radius: 18px;
-            padding: 22px 24px;
-            margin-bottom: 14px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 18px;
-            background: radial-gradient(
-                600px circle at var(--mx, 50%) var(--my, 50%),
-                rgba(212, 175, 55, 0.06) 0%,
-                transparent 40%
-            );
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-
-        .card:hover::before { opacity: 1; }
-
-        .card:hover {
-            border-color: var(--glass-border-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
-                        0 0 0 1px rgba(212, 175, 55, 0.1),
-                        0 0 60px rgba(212, 175, 55, 0.08);
-        }
-
-        .card:active { transform: translateY(-1px); }
-
-        .card-inner {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 22px;
-            position: relative;
-        }
-
-        .card-icon.gold { background: var(--gold-subtle); }
-        .card-icon.red { background: rgba(255, 50, 50, 0.08); }
-        .card-icon.blue { background: rgba(60, 130, 246, 0.08); }
-        .card-icon.green { background: var(--green-glow); }
-
-        .card-body { flex: 1; min-width: 0; }
-
-        .card-body h3 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 4px;
-            line-height: 1.3;
-        }
-
-        .card-body p {
-            font-size: 13px;
-            color: var(--text-dim);
-            line-height: 1.4;
-        }
-
-        .card-arrow {
-            font-size: 18px;
-            color: var(--text-muted);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            margin-right: auto;
-        }
-
-        .card:hover .card-arrow {
-            color: var(--gold);
-            transform: translateX(-5px);
-        }
-
-        /* === FEATURED CARD === */
-        .card.featured {
-            border-color: rgba(212, 175, 55, 0.15);
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.04) 0%, var(--bg-card) 100%);
-        }
-
-        .card.featured::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            left: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-        }
-
-        /* === BADGES === */
-        .badge {
-            display: inline-block;
-            font-size: 9px;
-            font-weight: 800;
-            padding: 3px 10px;
-            border-radius: 6px;
-            letter-spacing: 0.5px;
-            margin-bottom: 6px;
-        }
-
-        .badge.gold {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.08));
-            color: var(--gold-light);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-        }
-
-        .badge.green {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.08));
-            color: var(--green);
-            border: 1px solid rgba(34, 197, 94, 0.15);
-        }
-
-        .badge.hot {
-            background: linear-gradient(135deg, rgba(255, 80, 50, 0.2), rgba(255, 80, 50, 0.08));
-            color: #FF6B4A;
-            border: 1px solid rgba(255, 80, 50, 0.15);
-        }
-
-        /* === PROMO CODE === */
-        .promo-box {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-            padding: 8px 14px;
-            background: rgba(34, 197, 94, 0.04);
-            border: 1px dashed rgba(34, 197, 94, 0.15);
-            border-radius: 10px;
-        }
-
-        .promo-box span {
-            font-size: 12px;
-            color: var(--text-dim);
-        }
-
-        .promo-box code {
-            font-family: 'Inter', monospace;
-            font-weight: 800;
-            font-size: 16px;
-            color: var(--gold-light);
-            letter-spacing: 3px;
-        }
-
-        .promo-box .copy-btn {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--text-dim);
-            cursor: pointer;
-            font-size: 12px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            transition: all 0.2s;
-            font-family: 'Heebo', sans-serif;
-        }
-
-        .promo-box .copy-btn:hover {
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--gold);
-            border-color: rgba(212, 175, 55, 0.2);
-        }
-
-        /* === TESTIMONIALS === */
-        .testimonials-wrap {
-            margin-top: 8px;
-            margin-left: -20px;
-            margin-right: -20px;
-            position: relative;
-            overflow-x: auto;
-            overflow-y: hidden;
-            direction: ltr;
-            scrollbar-width: none;
-        }
-
-        .testimonials-wrap::-webkit-scrollbar { display: none; }
-
-        .testimonials-wrap::before,
-        .testimonials-wrap::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 40px;
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .testimonials-wrap::before {
-            right: 0;
-            background: linear-gradient(to right, transparent, var(--bg));
-        }
-
-        .testimonials-wrap::after {
-            left: 0;
-            background: linear-gradient(to left, transparent, var(--bg));
-        }
-
-        .testimonials-scroll {
-            display: flex;
-            gap: 14px;
-            scrollbar-width: none;
-            padding: 4px 20px 16px;
-            width: max-content;
-            direction: ltr;
-        }
-
-        .testimonials-scroll::-webkit-scrollbar { display: none; }
-
-        .review-img-card {
-            flex-shrink: 0;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .review-img-card:hover {
-            border-color: var(--glass-border-hover);
-            transform: scale(1.02);
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.08);
-        }
-
-        .review-img-card img {
-            height: 100px;
-            width: auto;
-            display: block;
-        }
-
-        /* Reviews use image cards — see .review-img-card above */
-
-        /* === FOOTER === */
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 24px;
-            border-top: 1px solid var(--glass-border);
-        }
-
-        .social-row {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .social-btn {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: var(--text-dim);
-            transition: fill 0.3s;
-        }
-
-        .social-btn:hover {
-            border-color: var(--glass-border-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
-        }
-
-        .social-btn:hover svg { fill: var(--gold); }
-
-        .footer-text {
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-
-        /* === TOAST === */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-            color: var(--bg);
-            padding: 10px 24px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 700;
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 100;
-            pointer-events: none;
-        }
-
-        .toast.show {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        /* === ANIMATIONS === */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .reveal {
-            opacity: 0;
-            animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .reveal-d1 { animation-delay: 0.05s; }
-        .reveal-d2 { animation-delay: 0.12s; }
-        .reveal-d3 { animation-delay: 0.19s; }
-        .reveal-d4 { animation-delay: 0.26s; }
-        .reveal-d5 { animation-delay: 0.33s; }
-        .reveal-d6 { animation-delay: 0.40s; }
-        .reveal-d7 { animation-delay: 0.47s; }
-        .reveal-d8 { animation-delay: 0.54s; }
-        .reveal-d9 { animation-delay: 0.61s; }
-        .reveal-d10 { animation-delay: 0.68s; }
-        .reveal-d11 { animation-delay: 0.75s; }
-
-        /* Count-up animation */
-        @keyframes countPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .stat-number.counted {
-            animation: countPulse 0.3s ease;
-        }
-
-        /* === SCROLLBAR === */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 4px; }
-
-        /* === RESULTS GALLERY === */
-        .results-gallery {
-            margin-top: 8px;
-            margin-left: -20px;
-            margin-right: -20px;
-            overflow-x: auto;
-            overflow-y: hidden;
-            position: relative;
-            min-height: 330px;
-            direction: ltr;
-            scrollbar-width: none;
-        }
-
-        .results-gallery::-webkit-scrollbar { display: none; }
-
-        .results-gallery::before,
-        .results-gallery::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 40px;
-            z-index: 3;
-            pointer-events: none;
-        }
-
-        .results-gallery::before {
-            right: 0;
-            background: linear-gradient(to right, transparent, var(--bg));
-        }
-
-        .results-gallery::after {
-            left: 0;
-            background: linear-gradient(to left, transparent, var(--bg));
-        }
-
-        .results-scroll {
-            display: flex;
-            gap: 14px;
-            padding: 4px 20px 16px;
-            width: max-content;
-            direction: ltr;
-        }
-
-        .result-img-card {
-            flex-shrink: 0;
-            width: 220px;
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-            background: var(--bg-card);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .result-img-card:hover {
-            border-color: var(--glass-border-hover);
-            transform: scale(1.03);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4),
-                        0 0 40px rgba(212, 175, 55, 0.08);
-        }
-
-        .result-img-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            object-position: top;
-            display: block;
-        }
-
-        /* Lightbox */
-        .lightbox {
-            position: fixed;
-            inset: 0;
-            z-index: 200;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .lightbox.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .lightbox img {
-            max-width: 90vw;
-            max-height: 85vh;
-            border-radius: 16px;
-            box-shadow: 0 0 60px rgba(212, 175, 55, 0.15);
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-
-        .lightbox.active img {
-            transform: scale(1);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
-
-        .lightbox-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        /* === EXPANDABLE CARDS === */
-        .card-chevron {
-            font-size: 10px;
-            color: var(--text-muted);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            margin-right: auto;
-        }
-
-        .card.expanded .card-chevron {
-            transform: rotate(180deg);
-            color: var(--gold);
-        }
-
-        .card-expand {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.4s ease;
-            padding: 0 4px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .card.expanded .card-expand {
-            max-height: 300px;
-            padding: 16px 4px 4px;
-        }
-
-        .card-expand p {
-            font-size: 13px;
-            color: var(--text-dim);
-            line-height: 1.7;
-            margin-bottom: 14px;
-        }
-
-        .expand-btn {
-            display: inline-block;
-            padding: 10px 22px;
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-            color: var(--bg);
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 700;
-            transition: all 0.3s;
-        }
-
-        .expand-btn:hover {
-            transform: scale(1.03);
-            box-shadow: 0 4px 20px var(--gold-glow);
-        }
-
-        .card:hover {
-            transform: none;
-        }
-
-        .card.expanded {
-            border-color: var(--glass-border-hover);
-        }
-
-        /* === CTA SECTION === */
-        .cta-section {
-            text-align: center;
-            margin: 36px 0 8px;
-            padding: 28px 20px;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.06), var(--bg-card));
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            border-radius: 18px;
-        }
-
-        .cta-section h2 {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #F5F5F5, var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .cta-section p {
-            font-size: 13px;
-            color: var(--text-dim);
-            margin-bottom: 18px;
-            line-height: 1.5;
-        }
-
-        .cta-btn {
-            display: inline-block;
-            padding: 14px 36px;
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-            color: var(--bg);
-            text-decoration: none;
-            border-radius: 14px;
-            font-size: 15px;
-            font-weight: 800;
-            transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.35);
-        }
-
-        /* === LEGAL FOOTER === */
-        .legal-links {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-top: 14px;
-        }
-
-        .legal-links a {
-            font-size: 10px;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .legal-links a:hover {
-            color: var(--text-dim);
-        }
-
-        /* === COOKIE BANNER === */
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(18, 18, 26, 0.97);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid var(--glass-border);
-            padding: 16px 20px;
-            z-index: 150;
-            display: none;
-            direction: rtl;
-        }
-
-        .cookie-banner.show { display: block; }
-
-        .cookie-inner {
-            max-width: 480px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .cookie-inner p {
-            font-size: 12px;
-            color: var(--text-dim);
-            flex: 1;
-            line-height: 1.5;
-        }
-
-        .cookie-accept {
-            padding: 8px 20px;
-            background: var(--gold);
-            color: var(--bg);
-            border: none;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            flex-shrink: 0;
-            font-family: 'Heebo', sans-serif;
-        }
-
-        /* === MOBILE === */
-        @media (max-width: 480px) {
-            .container { padding: 36px 16px 50px; }
-            .profile h1 { font-size: 26px; }
-            .stat-number { font-size: 20px; }
-            .result-card .result-value { font-size: 20px; }
-            .result-card.wide .result-value { font-size: 26px; }
+        .bg-glow {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background:
+                radial-gradient(1200px 700px at 50% -10%, rgba(212,175,55,0.10), transparent 60%),
+                radial-gradient(900px 600px at 50% 110%, rgba(212,175,55,0.06), transparent 60%);
+        }
+        .bg-astrolabe {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            display: flex; align-items: center; justify-content: center; opacity: 0.06;
+        }
+        .bg-astrolabe svg { width: min(90vh, 90vw); height: min(90vh, 90vw); animation: spin 120s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .grain {
+            position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .shell { position: relative; z-index: 2; min-height: 100dvh; display: flex; flex-direction: column; }
+
+        .top { text-align: center; padding: clamp(28px, 5vh, 56px) 20px clamp(12px, 2vh, 24px); }
+        .wordmark {
+            font-family: 'Inter', sans-serif; letter-spacing: 7px; font-size: clamp(11px, 1.4vw, 14px);
+            font-weight: 700; color: var(--gold); opacity: 0; animation: fadeDown .9s .1s forwards ease;
+        }
+        .wordmark small { display: block; letter-spacing: 5px; font-size: 8.5px; color: var(--text-muted); margin-top: 5px; font-weight: 600; }
+        .kicker {
+            margin-top: clamp(18px, 3vh, 30px); font-size: clamp(24px, 4.5vw, 42px); font-weight: 800;
+            letter-spacing: -0.5px; opacity: 0; animation: fadeDown .9s .25s forwards ease;
+        }
+        .kicker .accent {
+            background: linear-gradient(120deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .sub {
+            margin-top: 10px; color: var(--text-dim); font-size: clamp(14px, 1.8vw, 17px); font-weight: 400;
+            opacity: 0; animation: fadeDown .9s .4s forwards ease;
+        }
+
+        .doors {
+            position: relative; flex: 1; display: flex; gap: 0; align-items: stretch;
+            padding: clamp(16px, 3vh, 34px) clamp(16px, 4vw, 48px) clamp(20px, 3vh, 40px);
+        }
+        .door {
+            position: relative; flex: 1; display: flex; flex-direction: column; justify-content: flex-end;
+            padding: clamp(24px, 3.5vw, 48px); text-decoration: none; color: var(--text);
+            border: 1px solid var(--glass-border); border-radius: 22px; overflow: hidden;
+            background: linear-gradient(160deg, rgba(255,255,255,0.035), rgba(255,255,255,0.008));
+            transition: flex .55s cubic-bezier(.2,.8,.2,1), border-color .4s ease, box-shadow .5s ease;
+            opacity: 0; transform: translateY(24px); min-height: 46vh;
+        }
+        .door.d1 { animation: rise .9s .55s forwards cubic-bezier(.2,.8,.2,1); }
+        .door.d2 { animation: rise .9s .7s forwards cubic-bezier(.2,.8,.2,1); }
+
+        .divider {
+            width: 1px; align-self: stretch; margin: clamp(24px,3vw,48px) 0;
+            background: linear-gradient(180deg, transparent, var(--gold-glow), transparent);
+            opacity: 0; animation: fadeIn 1s .9s forwards ease;
+        }
+
+        .door::before {
+            content: ""; position: absolute; inset: 0; z-index: 0; opacity: .10;
+            background-position: center; background-repeat: no-repeat; background-size: 62%;
+            transition: opacity .5s ease, transform 1.2s ease; transform: scale(1);
+        }
+        .door::after {
+            content: ""; position: absolute; inset: 0; z-index: 0;
+            background: radial-gradient(120% 90% at 50% 120%, var(--gold-subtle), transparent 60%);
+            opacity: 0; transition: opacity .5s ease;
+        }
+        .door > * { position: relative; z-index: 1; }
+
+        .door-glyph { width: 54px; height: 54px; margin-bottom: auto; color: var(--gold); opacity: .85; }
+        .door-tag {
+            font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 3px; font-weight: 600;
+            color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px;
+        }
+        .door h2 { font-size: clamp(22px, 3vw, 34px); font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; }
+        .door p { margin-top: 12px; color: var(--text-dim); font-size: clamp(14px, 1.6vw, 16.5px); line-height: 1.6; max-width: 34ch; }
+        .enter { display: inline-flex; align-items: center; gap: 8px; margin-top: 26px; font-weight: 700; color: var(--gold); font-size: 15px; }
+        .enter svg { width: 16px; height: 16px; transition: transform .35s ease; }
+
+        @media (hover: hover) and (min-width: 861px) {
+            .doors:hover .door { flex: .85; opacity: 1 !important; }
+            .door:hover { flex: 1.35 !important; border-color: var(--glass-border-hover); box-shadow: 0 30px 90px -40px var(--gold-glow); }
+            .door:hover::before { opacity: .2; transform: scale(1.06); }
+            .door:hover::after { opacity: 1; }
+            .door:hover .enter svg { transform: translateX(-6px); }
+        }
+        .door:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+        .foot {
+            text-align: center; padding: 18px 20px clamp(20px, 3vh, 34px); color: var(--text-muted); font-size: 12.5px;
+            display: flex; gap: 18px; justify-content: center; align-items: center; flex-wrap: wrap;
+            opacity: 0; animation: fadeIn 1s 1.1s forwards ease;
+        }
+        .foot a { color: var(--text-dim); text-decoration: none; transition: color .3s; }
+        .foot a:hover { color: var(--gold); }
+        .foot .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-muted); }
+
+        @keyframes fadeDown { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes rise { to { opacity: 1; transform: none; } }
+
+        @media (max-width: 860px) {
+            .top { padding: clamp(22px, 4vh, 34px) 20px 6px; }
+            .kicker { margin-top: 14px; }
+            .doors { flex-direction: column; padding: 14px 16px 20px; gap: 14px; }
+            .divider { display: none; }
+            .door {
+                min-height: 33vh; justify-content: center; padding: 26px 22px;
+                border-color: rgba(212,175,55,0.14);
+                background: linear-gradient(160deg, rgba(212,175,55,0.06), rgba(255,255,255,0.012));
+            }
+            .door::after { opacity: 1; } /* keep gold wash always on since no hover */
+            .door-glyph { width: 40px; height: 40px; margin-bottom: 16px; }
+            .door::before { background-size: 46%; opacity: .14; }
+            .door h2 { font-size: 26px; }
+            .door p { font-size: 14.5px; max-width: 42ch; }
+            .enter {
+                margin-top: 20px; font-size: 15.5px; padding: 12px 18px;
+                border: 1px solid rgba(212,175,55,0.30); border-radius: 12px;
+                background: rgba(212,175,55,0.07); align-self: flex-start;
+            }
+            .door:active { transform: scale(.985); border-color: var(--glass-border-hover); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, .bg-astrolabe svg { animation: none !important; transition: none !important; }
+            .wordmark, .kicker, .sub, .door, .divider, .foot { opacity: 1 !important; transform: none !important; }
         }
     </style>
 </head>
 <body>
-
-<div class="bg-ambient">
-    <div class="bg-orb bg-orb-1"></div>
-    <div class="bg-orb bg-orb-2"></div>
-    <div class="bg-orb bg-orb-3"></div>
-</div>
-
-<div class="container">
-
-    <!-- Logo -->
-    <div class="logo-wrap reveal reveal-d1">
-        <svg class="logo-svg" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#F0D060"/>
-                    <stop offset="50%" stop-color="#D4AF37"/>
-                    <stop offset="100%" stop-color="#A8872B"/>
-                </linearGradient>
-                <linearGradient id="goldSoft" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.9"/>
-                    <stop offset="100%" stop-color="#A8872B" stop-opacity="0.5"/>
-                </linearGradient>
-                <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.2"/>
-                    <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
-                </radialGradient>
-                <filter id="softGlow">
-                    <feGaussianBlur stdDeviation="2.5" result="b"/>
-                    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-                </filter>
-            </defs>
-
-            <!-- Business frame (diamond/square rotated) -->
-            <rect x="35" y="35" width="130" height="130" rx="8" fill="none" stroke="url(#goldGrad)" stroke-width="1" opacity="0.25" transform="rotate(45 100 100)"/>
-            <!-- Soft center glow -->
-            <circle cx="100" cy="100" r="65" fill="url(#centerGlow)"/>
-
-            <!-- Hourglass frame -->
-            <!-- Top triangle -->
-            <path d="M 68 50 L 132 50 L 100 100 Z" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-linejoin="round"/>
-            <!-- Bottom triangle -->
-            <path d="M 100 100 L 132 150 L 68 150 Z" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-linejoin="round"/>
-
-            <!-- Top/bottom caps (hourglass plates) -->
-            <line x1="62" y1="50" x2="138" y2="50" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round"/>
-            <line x1="62" y1="150" x2="138" y2="150" stroke="url(#goldGrad)" stroke-width="3" stroke-linecap="round"/>
-
-            <!-- Candlesticks inside top (price) -->
-            <g opacity="0.85">
-                <rect x="78" y="62" width="4" height="12" fill="url(#goldSoft)" rx="1"/>
-                <rect x="88" y="58" width="4" height="16" fill="url(#goldSoft)" rx="1"/>
-                <rect x="98" y="64" width="4" height="10" fill="url(#goldSoft)" rx="1"/>
-                <rect x="108" y="60" width="4" height="14" fill="url(#goldSoft)" rx="1"/>
-                <rect x="118" y="66" width="4" height="8" fill="url(#goldSoft)" rx="1"/>
-            </g>
-
-            <!-- Rising chart inside bottom (results) -->
-            <polyline points="75,140 85,132 95,136 105,122 115,118 125,108"
-                fill="none" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#softGlow)"/>
-            <!-- Arrow tip -->
-            <polygon points="125,108 120,114 128,116" fill="url(#goldGrad)"/>
-
-            <!-- Center flowing sand particle -->
-            <circle cx="100" cy="100" r="2.5" fill="url(#goldGrad)">
-                <animate attributeName="cy" values="85;115;85" dur="3s" repeatCount="indefinite"/>
-                <animate attributeName="opacity" values="0;1;1;0" dur="3s" repeatCount="indefinite"/>
-            </circle>
-
-            <!-- Text -->
-            <text x="100" y="188" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="800" fill="url(#goldGrad)" letter-spacing="5">MASTER</text>
-            <text x="100" y="205" text-anchor="middle" font-family="Inter, sans-serif" font-size="9.5" font-weight="600" fill="#8A8A9A" letter-spacing="7">TRADER</text>
+    <div class="bg-glow"></div>
+    <div class="bg-astrolabe" aria-hidden="true">
+        <svg viewBox="0 0 200 200" fill="none" stroke="#D4AF37" stroke-width="0.4">
+            <circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="78"/>
+            <circle cx="100" cy="100" r="54"/><circle cx="100" cy="100" r="30"/>
+            <line x1="4" y1="100" x2="196" y2="100"/><line x1="100" y1="4" x2="100" y2="196"/>
+            <line x1="32" y1="32" x2="168" y2="168"/><line x1="168" y1="32" x2="32" y2="168"/>
+            <circle cx="100" cy="22" r="2"/><circle cx="178" cy="100" r="2"/>
+            <circle cx="100" cy="178" r="2"/><circle cx="22" cy="100" r="2"/>
         </svg>
     </div>
+    <div class="grain" aria-hidden="true"></div>
 
-    <!-- Profile -->
-    <div class="profile reveal reveal-d2">
-        <h1>מתן משיח</h1>
-        <p class="tagline">סוחר, מנטור ויוצר תוכן<br><strong>הופך מסחר לעסק אמיתי</strong></p>
-    </div>
+    <div class="shell">
+        <header class="top">
+            <div class="wordmark">MASTER TRADER<small>מתן משיח</small></div>
+            <h1 class="kicker">מאיפה <span class="accent">מתחילים</span>?</h1>
+            <p class="sub">שני מסלולים, אותה מטרה — להפוך מסחר יומי לעסק.</p>
+        </header>
 
-    <!-- Role Strip -->
-    <div class="stats-bar reveal reveal-d3">
-        <div class="stat">
-            <span class="stat-number" style="font-size:14px;">Prop Trader</span>
-            <span class="stat-label">סוחר ממומן</span>
-        </div>
-        <div class="stat">
-            <span class="stat-number" style="font-size:14px;">Mentor</span>
-            <span class="stat-label">מנטור מסחר</span>
-        </div>
-        <div class="stat">
-            <span class="stat-number" style="font-size:14px;">Creator</span>
-            <span class="stat-label">יוצר תוכן</span>
-        </div>
-    </div>
-
-    <!-- Results — Real Screenshots -->
-    <div class="section-label reveal reveal-d4">
-        <span>התוצאות שלי</span>
-    </div>
-
-    <div class="results-gallery reveal reveal-d4">
-        <div class="results-scroll" id="resultsScroll">
-            <div class="result-img-card"><img src="images/IMG_5757.jpg" alt="$27,014 payouts in 30 days" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5749.jpg" alt="Topstep — $7,823 highest day, 11 day profit streak" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5750.jpg" alt="August — $37,815 Net P&L, 87.5% win rate" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5751.jpg" alt="Withdrawal requests — succeeded" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5755.jpg" alt="Daily P&L — consistent $1,850+ profits" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5756.jpg" alt="$7,494 payout approved" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5753.jpg" alt="Wise payment — €1,895 received" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5752.jpg" alt="Take Profit Trader — payout emails" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5754.jpg" alt="4 funded PRO+ accounts" loading="lazy"></div>
-            <!-- Duplicate for seamless loop -->
-            <div class="result-img-card"><img src="images/IMG_5757.jpg" alt="$27,014 payouts in 30 days" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5749.jpg" alt="Topstep — $7,823 highest day" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5750.jpg" alt="August — $37,815 Net P&L" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5751.jpg" alt="Withdrawal requests" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5755.jpg" alt="Daily P&L" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5756.jpg" alt="$7,494 payout" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5753.jpg" alt="Wise payment" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5752.jpg" alt="Payout emails" loading="lazy"></div>
-            <div class="result-img-card"><img src="images/IMG_5754.jpg" alt="PRO+ accounts" loading="lazy"></div>
-        </div>
-    </div>
-
-    <!-- Products -->
-    <div class="section-label reveal reveal-d5">
-        <span>שירותים ומוצרים</span>
-    </div>
-
-    <!-- Workshop card removed — 21.06 event has passed -->
-
-    <!-- Course - Featured -->
-    <div class="card featured reveal reveal-d5" onclick="toggleExpand(this)">
-        <div class="card-inner">
-            <div class="card-icon gold">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1 4 3 6 3s6-2 6-3v-5"/>
+        <main class="doors">
+            <a href="trader.html" class="door d1" aria-label="אני כבר סוחר">
+                <svg class="door-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 4h6l-1 3H10L9 4z"/><path d="M8 7h8l-1.5 5h-5L8 7z"/><path d="M9 12h6v3H9z"/><path d="M7 15h10l1 5H6l1-5z"/>
                 </svg>
-            </div>
-            <div class="card-body">
-                <div class="badge hot">קורס דיגיטלי</div>
-                <h3>עסק או עסקה</h3>
-                <p>הקורס שהופך סוחרים לבעלי עסק אמיתי</p>
-            </div>
-            <span class="card-chevron">&#x25BC;</span>
-        </div>
-        <div class="card-expand">
-            <p>הקורס הדיגיטלי שמלמד אותך להתייחס למסחר כעסק אמיתי — לא עוד הימור. תלמד לבנות תוכנית מסחר, לנהל סיכונים, ולייצר עקביות ברווחים. מתאים גם למתחילים וגם לסוחרים שרוצים לעבור לשלב הבא.</p>
-            <a href="course.html" class="expand-btn">לפרטים והרשמה &larr;</a>
-        </div>
-    </div>
-
-    <!-- Club -->
-    <div class="card reveal reveal-d6" onclick="toggleExpand(this)">
-        <div class="card-inner">
-            <div class="card-icon gold">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
-            </div>
-            <div class="card-body">
-                <div class="badge gold">קהילה</div>
-                <h3>מועדון הסוחר המתמיד</h3>
-                <p>ליווי מקצועי, מסחר בלייב, ניתוחי שוק ותכנים בלעדיים</p>
-            </div>
-            <span class="card-chevron">&#x25BC;</span>
-        </div>
-        <div class="card-expand">
-            <p>קהילת סוחרים פעילה עם מסחר בלייב, ניתוחי שוק יומיים, ספריית ידע מקיפה, וליווי אישי. המקום שבו סוחרים ברמות שונות גדלים ביחד, משתפים רעיונות, ובונים עקביות אמיתית.</p>
-            <a href="https://matanmashiah.com/club.html" class="expand-btn">להצטרפות למועדון &larr;</a>
-        </div>
-    </div>
-
-    <!-- Podcast -->
-    <a href="https://youtube.com/@matanmashiah957" target="_blank" class="card reveal reveal-d8" style="text-decoration:none;color:var(--text);">
-        <div class="card-inner">
-            <div class="card-icon" style="background: rgba(180, 80, 255, 0.08);">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#B450FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
-                </svg>
-            </div>
-            <div class="card-body">
-                <div class="badge" style="background:rgba(180,80,255,0.12);color:#B450FF;border-color:rgba(180,80,255,0.25);">פודקאסט</div>
-                <h3>מאסטר פודקאסט — שיחות סוחרים</h3>
-                <p>שיחות עומק עם סוחרים על מנטליות, שיטות, וטעויות</p>
-            </div>
-            <span class="card-arrow">&#8592;</span>
-        </div>
-    </a>
-
-    <!-- Mentorship -->
-    <a href="apply.html" class="card featured reveal reveal-d9" style="text-decoration:none;color:var(--text);">
-        <div class="card-inner">
-            <div class="card-icon gold">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
-                </svg>
-            </div>
-            <div class="card-body">
-                <div class="badge gold">בלעדי</div>
-                <h3>פגישה אישית — בניית תוכנית מסחר</h3>
-                <p>מילוי שאלון התאמה קצר</p>
-            </div>
-            <span class="card-arrow">&#8592;</span>
-        </div>
-    </a>
-
-    <!-- Tools -->
-    <div class="section-label reveal reveal-d8">
-        <span>כלים שאני ממליץ</span>
-    </div>
-
-    <!-- TradeZella -->
-    <a href="https://tradezella.com/?fpr=matan82" target="_blank" class="card reveal reveal-d9" id="tradezella-card">
-        <div class="card-inner">
-            <div class="card-icon green">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 21H3V3"/><path d="M21 7l-8 8-4-4-6 6"/>
-                </svg>
-            </div>
-            <div class="card-body">
-                <div class="badge green">20% הנחה</div>
-                <h3>TradeZella &mdash; יומן מסחר</h3>
-                <p>ניתוח עסקאות, מעקב ביצועים ובניית אסטרטגיה</p>
-                <div class="promo-box" onclick="event.preventDefault(); event.stopPropagation();">
-                    <span>קוד:</span>
-                    <code>PCQF</code>
-                    <button class="copy-btn" onclick="copyCode(event)">העתק</button>
-                </div>
-            </div>
-            <span class="card-arrow">&#8592;</span>
-        </div>
-    </a>
-
-    <!-- Testimonials -->
-    <div class="section-label reveal reveal-d10">
-        <span>מה אומרים עליי</span>
-    </div>
-
-    <div class="testimonials-wrap reveal reveal-d11">
-        <div class="testimonials-scroll" id="testimonialsScroll">
-            <!-- Set 1 — 15 real review screenshots -->
-            <div class="review-img-card"><img src="images/review-1.png" alt="Amir Sadran review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-2.png" alt="Yaniv Weiss review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-3.png" alt="אורן קארו review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-4.png" alt="Arkash review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-5.png" alt="Hen Haziza review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-6.png" alt="Tair Ben Ami review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-7.png" alt="Zurab Samushia review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-8.png" alt="Ido Boker review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-9.png" alt="Eliya Madniski review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-10.png" alt="Adam Palaria review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-11.png" alt="Adam Harari review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-12.png" alt="Yeheli Raz Atias review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-13.png" alt="יאשה מצקין review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-14.png" alt="אופיר אברג׳יל review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-15.png" alt="Rani Galchenko review" loading="lazy"></div>
-            <!-- Set 2 — duplicate for seamless loop -->
-            <div class="review-img-card"><img src="images/review-1.png" alt="Amir Sadran review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-2.png" alt="Yaniv Weiss review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-3.png" alt="אורן קארו review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-4.png" alt="Arkash review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-5.png" alt="Hen Haziza review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-6.png" alt="Tair Ben Ami review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-7.png" alt="Zurab Samushia review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-8.png" alt="Ido Boker review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-9.png" alt="Eliya Madniski review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-10.png" alt="Adam Palaria review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-11.png" alt="Adam Harari review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-12.png" alt="Yeheli Raz Atias review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-13.png" alt="יאשה מצקין review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-14.png" alt="אופיר אברג׳יל review" loading="lazy"></div>
-            <div class="review-img-card"><img src="images/review-15.png" alt="Rani Galchenko review" loading="lazy"></div>
-        </div>
-    </div>
-
-    <!-- Free Content Section -->
-    <div class="section-label reveal">
-        <span>תוכן חינמי</span>
-    </div>
-
-    <!-- Free Course -->
-    <a href="https://www.youtube.com/playlist?list=PLxf3Ml18PULClOY53kjEdEIVy0HJ3SzSr" target="_blank" class="card reveal" style="text-decoration:none;color:var(--text);">
-        <div class="card-inner">
-            <div class="card-icon" style="background: rgba(34, 197, 94, 0.08);">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"/>
-                </svg>
-            </div>
-            <div class="card-body">
-                <div class="badge green">חינם</div>
-                <h3>הקורס החינמי</h3>
-                <p>סדרת שיעורים מלאה בחינם — הבסיס שכל סוחר צריך</p>
-            </div>
-            <span class="card-arrow">&#8592;</span>
-        </div>
-    </a>
-
-    <!-- Mentorship 2026 -->
-    <a href="https://www.youtube.com/playlist?list=PLxf3Ml18PULDt2SCFPqAL5qhcsy-f5r2t" target="_blank" class="card reveal" style="text-decoration:none;color:var(--text);">
-        <div class="card-inner">
-            <div class="card-icon" style="background: rgba(34, 197, 94, 0.08);">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"/>
-                </svg>
-            </div>
-            <div class="card-body">
-                <div class="badge green">חינם</div>
-                <h3>מנטורשיפ 2026</h3>
-                <p>תכנים מתקדמים מתוך המנטורשיפ — זמינים לצפייה חינמית</p>
-            </div>
-            <span class="card-arrow">&#8592;</span>
-        </div>
-    </a>
-
-    <!-- Mentorship 2025 -->
-    <a href="https://www.youtube.com/playlist?list=PLxf3Ml18PULCKiyb8IaOzlFUCziD4lZ0D" target="_blank" class="card reveal" style="text-decoration:none;color:var(--text);">
-        <div class="card-inner">
-            <div class="card-icon" style="background: rgba(34, 197, 94, 0.08);">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"/>
-                </svg>
-            </div>
-            <div class="card-body">
-                <div class="badge green">חינם</div>
-                <h3>מנטורשיפ 2025</h3>
-                <p>ארכיון המנטורשיפ מ-2025 — כל התכנים בחינם</p>
-            </div>
-            <span class="card-arrow">&#8592;</span>
-        </div>
-    </a>
-
-    <!-- Newsletter Signup -->
-    <div class="section-label reveal">
-        <span>הישאר מעודכן</span>
-    </div>
-
-    <div class="card reveal" style="cursor:default;">
-        <div style="text-align:center; padding: 8px 0 16px;">
-            <h3 style="font-size:17px; font-weight:700; margin-bottom:6px;">הצטרף לרשימת התפוצה של מתן משיח</h3>
-            <p style="font-size:13px; color:var(--text-dim); line-height:1.6; margin-bottom:20px;">תכניס את המייל שלך ותקבל <strong style="color:var(--gold);">טיפ שבועי על מסחר יומי</strong> — ישירות למייל, בחינם.</p>
-            <form id="newsletterForm" onsubmit="submitNewsletter(event)" style="display:flex; flex-direction:column; gap:10px;">
-                <input type="text" id="nlName" placeholder="שם מלא" required style="
-                    width:100%;
-                    padding:12px 16px;
-                    border-radius:10px;
-                    border:1px solid var(--glass-border);
-                    background:rgba(255,255,255,0.04);
-                    color:var(--text);
-                    font-family:'Heebo',sans-serif;
-                    font-size:14px;
-                    outline:none;
-                    direction:rtl;
-                    transition: border-color 0.3s;
-                " onfocus="this.style.borderColor='rgba(212,175,55,0.4)'" onblur="this.style.borderColor='var(--glass-border)'">
-                <input type="email" id="nlEmail" placeholder="כתובת אימייל" required style="
-                    width:100%;
-                    padding:12px 16px;
-                    border-radius:10px;
-                    border:1px solid var(--glass-border);
-                    background:rgba(255,255,255,0.04);
-                    color:var(--text);
-                    font-family:'Heebo',sans-serif;
-                    font-size:14px;
-                    outline:none;
-                    direction:ltr;
-                    text-align:right;
-                    transition: border-color 0.3s;
-                " onfocus="this.style.borderColor='rgba(212,175,55,0.4)'" onblur="this.style.borderColor='var(--glass-border)'">
-                <label style="display:flex; align-items:flex-start; gap:10px; text-align:right; cursor:pointer; padding:4px 0;">
-                    <input type="checkbox" id="nlConsent" required style="
-                        margin-top:4px;
-                        width:16px;
-                        height:16px;
-                        accent-color:var(--gold);
-                        cursor:pointer;
-                        flex-shrink:0;
-                    ">
-                    <span style="font-size:12px; color:var(--text-dim); line-height:1.5;">
-                        אני מאשר/ת קבלת מסרים פרסומיים מאת מתן משיח במייל. ניתן להסיר בכל עת בלחיצה על קישור ביטול הרשמה בכל מייל.
-                    </span>
-                </label>
-                <button type="submit" id="nlBtn" style="
-                    width:100%;
-                    padding:14px;
-                    border-radius:12px;
-                    border:none;
-                    background:linear-gradient(135deg, var(--gold-dark), var(--gold));
-                    color:#0a0a0a;
-                    font-family:'Heebo',sans-serif;
-                    font-size:15px;
-                    font-weight:800;
-                    cursor:pointer;
-                    transition:all 0.3s;
-                ">אני רוצה לקבל טיפים במייל ←</button>
-            </form>
-            <p id="nlSuccess" style="display:none; color:var(--gold); font-size:14px; font-weight:600; margin-top:16px;">✓ נרשמת. המייל הראשון מגיע ביום שישי הקרוב.</p>
-            <p id="nlError" style="display:none; color:#ff7676; font-size:13px; font-weight:600; margin-top:12px;"></p>
-            <p style="font-size:10px; color:var(--text-muted); margin-top:12px;">ניתן לבטל בכל עת. אני לא שולח ספאם.</p>
-        </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="cta-section reveal">
-        <h2>מוכן להפוך את המסחר לעסק?</h2>
-        <p>הצטרף לקהילת סוחרים שכבר עשו את הצעד ומרוויחים בעקביות</p>
-        <a href="https://mastertradermatmid.lovable.app" target="_blank" class="cta-btn">הצטרף עכשיו</a>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer reveal reveal-d11">
-        <div class="social-row">
-            <!-- YouTube -->
-            <a href="https://www.youtube.com/@matanmashiah957" target="_blank" class="social-btn" aria-label="YouTube">
-                <svg viewBox="0 0 24 24"><path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.5.5c-1 .3-1.7 1.1-2 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2.1 1.9.5 9.5.5 9.5.5s7.6 0 9.5-.5c1-.3 1.7-1.1 2-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.4 3.6-6.4 3.6z"/></svg>
+                <span class="door-tag">כבר בשוק</span>
+                <h2>אני כבר סוחר</h2>
+                <p>יש לך ניסיון וזמן מסך. עכשיו הכלים שהופכים את זה למשמעת, לביצוע ולעסק מדיד.</p>
+                <span class="enter">כניסה למסלול הסוחר
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                </span>
             </a>
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/matan.mashiah1" target="_blank" class="social-btn" aria-label="Instagram">
-                <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.97.24 2.44.41.61.24 1.05.52 1.51.98.46.46.74.9.98 1.51.17.47.36 1.27.41 2.44.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.97-.41 2.44-.24.61-.52 1.05-.98 1.51-.46.46-.9.74-1.51.98-.47.17-1.27.36-2.44.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.97-.24-2.44-.41-.61-.24-1.05-.52-1.51-.98-.46-.46-.74-.9-.98-1.51-.17-.47-.36-1.27-.41-2.44C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.24-1.97.41-2.44.24-.61.52-1.05.98-1.51.46-.46.9-.74 1.51-.98.47-.17 1.27-.36 2.44-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.78.3-1.44.71-2.1 1.37S.93 3.36.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.78.71 1.44 1.37 2.1.66.66 1.32 1.07 2.1 1.37.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.78-.3 1.44-.71 2.1-1.37.66-.66 1.07-1.32 1.37-2.1.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.78-.71-1.44-1.37-2.1C21.3 1.42 20.64 1.01 19.86.71 19.1.41 18.22.21 16.95.15 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+
+            <div class="divider" aria-hidden="true"></div>
+
+            <a href="learn.html" class="door d2" aria-label="אני רוצה ללמוד מסחר מ-0">
+                <svg class="door-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="9"/><polygon points="15.5 8.5 11 11 8.5 15.5 13 13 15.5 8.5"/><circle cx="12" cy="12" r="1"/>
+                </svg>
+                <span class="door-tag">מהבסיס</span>
+                <h2>אני רוצה ללמוד<br>מסחר מ-0</h2>
+                <p>מתחילים מהיסודות, בלי לשלם שקל. כל מה שצריך כדי להבין איך השוק באמת עובד.</p>
+                <span class="enter">כניסה חינם למסלול המתחילים
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                </span>
             </a>
-        </div>
-        <p class="footer-text">&copy; 2026 מתן משיח &bull; Master Trader</p>
-        <div class="legal-links">
-            <a href="#" onclick="showLegal('privacy')">מדיניות פרטיות</a>
-            <a href="#" onclick="showLegal('terms')">תנאי שימוש</a>
-            <a href="#" onclick="showLegal('accessibility')">הצהרת נגישות</a>
-        </div>
+        </main>
+
+        <footer class="foot">
+            <span>© מתן משיח · Master Trader</span>
+            <span class="dot"></span>
+            <a href="privacy.html">פרטיות</a>
+            <span class="dot"></span>
+            <a href="https://www.instagram.com/matan.mashiah1" target="_blank" rel="noopener">אינסטגרם</a>
+            <span class="dot"></span>
+            <a href="https://www.youtube.com/@matanmashiah957" target="_blank" rel="noopener">יוטיוב</a>
+        </footer>
     </div>
-
-</div>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-    <img id="lightboxImg" src="" alt="Result screenshot">
-</div>
-
-<!-- Cookie Banner -->
-<div class="cookie-banner" id="cookieBanner">
-    <div class="cookie-inner">
-        <p>אתר זה משתמש בעוגיות לשיפור חוויית המשתמש. בהמשך הגלישה אתה מסכים לשימוש בעוגיות.</p>
-        <button class="cookie-accept" onclick="acceptCookies()">מסכים</button>
-    </div>
-</div>
-
-<!-- Legal Modal -->
-<div class="lightbox" id="legalModal" onclick="closeLegal(event)">
-    <div style="background:var(--bg);max-width:460px;max-height:80vh;overflow-y:auto;border-radius:18px;border:1px solid var(--glass-border);padding:30px;margin:20px;direction:rtl;" onclick="event.stopPropagation()">
-        <button style="float:left;background:none;border:none;color:var(--text-dim);font-size:24px;cursor:pointer;" onclick="closeLegal()">&times;</button>
-        <div id="legalContent"></div>
-    </div>
-</div>
-
-<!-- Toast -->
-<div class="toast" id="toast">הקוד הועתק! &#10003;</div>
-
-<script>
-// Mouse glow follow
-document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
-    });
-});
-
-// Copy promo code
-function copyCode(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    navigator.clipboard.writeText('PCQF').then(() => {
-        const t = document.getElementById('toast');
-        t.classList.add('show');
-        setTimeout(() => t.classList.remove('show'), 2000);
-    });
-}
-
-// Count-up animation for stats
-function animateCounters() {
-    document.querySelectorAll('[data-target]').forEach(el => {
-        const target = parseInt(el.dataset.target);
-        const prefix = el.dataset.prefix || '';
-        const suffix = el.dataset.suffix !== undefined ? el.dataset.suffix : '+';
-        const duration = 1800;
-        const start = performance.now();
-
-        function update(now) {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 4);
-            const current = Math.floor(eased * target);
-            el.textContent = prefix + current.toLocaleString() + suffix;
-            if (progress < 1) requestAnimationFrame(update);
-            else el.classList.add('counted');
-        }
-        requestAnimationFrame(update);
-    });
-}
-
-// Trigger counters when stats bar is visible
-const statsObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateCounters();
-            statsObs.disconnect();
-        }
-    });
-}, { threshold: 0.5 });
-
-const statsBar = document.querySelector('.stats-bar');
-if (statsBar) statsObs.observe(statsBar);
-
-// Unified carousel: JS auto-scroll + smooth manual drag
-function initCarousel(wrapperId, speed, direction) {
-    const wrapper = document.getElementById(wrapperId);
-    if (!wrapper) return;
-    const container = wrapper.parentElement;
-
-    let userInteracting = false;
-    let lastInteraction = 0;
-    let isDown = false, startX, startScroll;
-    let moved = false;
-    let subPixel = 0;
-
-    // Auto-scroll loop — always runs, checks interaction timestamp
-    function tick() {
-        const idle = Date.now() - lastInteraction > 2000;
-        if (!userInteracting && idle) {
-            subPixel += direction * speed;
-            const px = Math.trunc(subPixel);
-            if (px !== 0) {
-                container.scrollLeft += px;
-                subPixel -= px;
-            }
-            // Loop reset
-            const half = wrapper.scrollWidth / 2;
-            if (direction > 0 && container.scrollLeft >= half) {
-                container.scrollLeft -= half;
-            } else if (direction < 0 && container.scrollLeft <= 0) {
-                container.scrollLeft += half;
-            }
-        }
-        requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-
-    // Mouse drag
-    container.addEventListener('mousedown', e => {
-        isDown = true;
-        moved = false;
-        startX = e.pageX;
-        startScroll = container.scrollLeft;
-        userInteracting = true;
-        container.style.cursor = 'grabbing';
-        e.preventDefault();
-    });
-
-    window.addEventListener('mousemove', e => {
-        if (!isDown) return;
-        moved = true;
-        container.scrollLeft = startScroll - (e.pageX - startX);
-    });
-
-    window.addEventListener('mouseup', () => {
-        if (!isDown) return;
-        isDown = false;
-        userInteracting = false;
-        lastInteraction = Date.now();
-        container.style.cursor = 'grab';
-    });
-
-    // Touch — only pause if actual swipe (moved > 5px)
-    let touchStartX, touchMoved;
-    container.addEventListener('touchstart', e => {
-        touchStartX = e.touches[0].pageX;
-        startScroll = container.scrollLeft;
-        touchMoved = false;
-    }, { passive: true });
-
-    container.addEventListener('touchmove', e => {
-        const dx = e.touches[0].pageX - touchStartX;
-        if (Math.abs(dx) > 5) {
-            touchMoved = true;
-            userInteracting = true;
-            container.scrollLeft = startScroll - dx;
-        }
-    }, { passive: true });
-
-    container.addEventListener('touchend', () => {
-        userInteracting = false;
-        if (touchMoved) lastInteraction = Date.now();
-    });
-
-    container.style.cursor = 'grab';
-}
-
-// Results: scroll left (positive direction)
-initCarousel('resultsScroll', 0.6, 1);
-
-// Testimonials: same direction
-initCarousel('testimonialsScroll', 0.5, 1);
-
-// Lightbox for result images
-document.querySelectorAll('.result-img-card img, .review-img-card img').forEach(img => {
-    img.addEventListener('click', () => {
-        const lb = document.getElementById('lightbox');
-        document.getElementById('lightboxImg').src = img.src;
-        lb.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-});
-
-function closeLightbox() {
-    const lb = document.getElementById('lightbox');
-    lb.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-// Expandable cards
-function toggleExpand(card) {
-    const wasExpanded = card.classList.contains('expanded');
-    document.querySelectorAll('.card.expanded').forEach(c => c.classList.remove('expanded'));
-    if (!wasExpanded) card.classList.add('expanded');
-}
-
-// Cookie banner
-if (!localStorage.getItem('cookiesAccepted')) {
-    setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1500);
-}
-
-function acceptCookies() {
-    localStorage.setItem('cookiesAccepted', 'true');
-    document.getElementById('cookieBanner').classList.remove('show');
-}
-
-// Newsletter form
-function submitNewsletter(e) {
-    e.preventDefault();
-    const name = document.getElementById('nlName').value.trim();
-    const email = document.getElementById('nlEmail').value.trim();
-    const consent = document.getElementById('nlConsent').checked;
-    const errEl = document.getElementById('nlError');
-    errEl.style.display = 'none';
-
-    if (!name || !email) return;
-    if (!consent) {
-        errEl.textContent = 'יש לאשר קבלת מסרים פרסומיים כדי להירשם';
-        errEl.style.display = 'block';
-        return;
-    }
-
-    const btn = document.getElementById('nlBtn');
-    btn.textContent = 'שולח...';
-    btn.disabled = true;
-
-    fetch('https://mastertrader-newsletter.mashiah.workers.dev', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            name: name,
-            email: email,
-            source: 'newsletter',
-            consent: true
-        })
-    }).then(res => res.json()).then(data => {
-        if (data.status === 'ok') {
-            document.getElementById('newsletterForm').style.display = 'none';
-            document.getElementById('nlSuccess').style.display = 'block';
-        } else {
-            errEl.textContent = 'משהו השתבש — נסה שוב או שלח לי הודעה';
-            errEl.style.display = 'block';
-            btn.textContent = 'אני רוצה לקבל טיפים במייל ←';
-            btn.disabled = false;
-        }
-    }).catch(() => {
-        errEl.textContent = 'בעיית רשת — נסה שוב';
-        errEl.style.display = 'block';
-        btn.textContent = 'אני רוצה לקבל טיפים במייל ←';
-        btn.disabled = false;
-    });
-}
-
-// Legal modals
-const legalTexts = {
-    privacy: `<h2 style="font-size:18px;margin-bottom:16px;color:var(--gold);">מדיניות פרטיות</h2>
-<p style="font-size:13px;color:var(--text-dim);line-height:1.8;">
-אתר זה (matanmashiah.com) מופעל על ידי מתן משיח ("האתר"). אנו מכבדים את פרטיותך ומחויבים להגן על המידע האישי שלך.<br><br>
-<strong>מידע שנאסף:</strong> האתר אינו אוסף מידע אישי מזהה. קישורים חיצוניים (Whop, YouTube, TradeZella) כפופים למדיניות הפרטיות של אותם שירותים.<br><br>
-<strong>עוגיות:</strong> האתר משתמש בעוגיות בסיסיות לשיפור חוויית הגלישה בלבד.<br><br>
-<strong>צד שלישי:</strong> האתר מכיל קישורים לאתרים חיצוניים שאינם בשליטתנו. אין לנו אחריות על תוכנם או מדיניות הפרטיות שלהם.<br><br>
-<strong>יצירת קשר:</strong> לשאלות בנושא פרטיות, ניתן לפנות דרך הרשתות החברתיות.
-</p>`,
-    terms: `<h2 style="font-size:18px;margin-bottom:16px;color:var(--gold);">תנאי שימוש</h2>
-<p style="font-size:13px;color:var(--text-dim);line-height:1.8;">
-<strong>כללי:</strong> השימוש באתר matanmashiah.com מהווה הסכמה לתנאים אלה.<br><br>
-<strong>תוכן האתר:</strong> התוכן באתר הוא למטרות מידע ולימוד בלבד ואינו מהווה ייעוץ השקעות, המלצה לביצוע עסקאות, או הבטחה לתשואה כלשהי.<br><br>
-<strong>סיכון:</strong> מסחר בשוק ההון כרוך בסיכון משמעותי להפסד כספי. ביצועי עבר אינם מעידים על תוצאות עתידיות. כל החלטת מסחר היא באחריות המשתמש בלבד.<br><br>
-<strong>קניין רוחני:</strong> כל התכנים באתר, לרבות טקסטים, תמונות ועיצוב, הם קניינו של מתן משיח ואין לעשות בהם שימוש ללא אישור.<br><br>
-<strong>שינויים:</strong> האתר רשאי לעדכן תנאים אלה מעת לעת.
-</p>`,
-    accessibility: `<h2 style="font-size:18px;margin-bottom:16px;color:var(--gold);">הצהרת נגישות</h2>
-<p style="font-size:13px;color:var(--text-dim);line-height:1.8;">
-אתר matanmashiah.com מחויב לאפשר שימוש נוח ונגיש לכלל הציבור, לרבות אנשים עם מוגבלויות, בהתאם לחוק שוויון זכויות לאנשים עם מוגבלות, התשנ"ח-1998, ולתקנות שהותקנו מכוחו.<br><br>
-<strong>פעולות נגישות שננקטו:</strong><br>
-• שימוש בניגודיות צבעים גבוהה<br>
-• תמיכה בהגדלת טקסט בדפדפן<br>
-• שימוש ב-HTML סמנטי<br>
-• תיאורי alt לתמונות<br>
-• תמיכה בניווט מקלדת<br><br>
-<strong>נתקלת בבעיית נגישות?</strong><br>
-אנא פנה אלינו דרך הרשתות החברתיות ונשתדל לטפל בהקדם.<br><br>
-הצהרה זו עודכנה לאחרונה באפריל 2026.
-</p>`
-};
-
-function showLegal(type) {
-    event.preventDefault();
-    document.getElementById('legalContent').innerHTML = legalTexts[type];
-    document.getElementById('legalModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeLegal(e) {
-    if (e && e.target !== e.currentTarget) return;
-    document.getElementById('legalModal').classList.remove('active');
-    document.body.style.overflow = '';
-}
-</script>
-
 </body>
 </html>
