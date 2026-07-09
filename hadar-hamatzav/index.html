@@ -5,102 +5,164 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>חדר המצב — קבוצה פיזית סגורה · מתן משיח</title>
 <meta name="description" content="5 מפגשים פיזיים, 20 סוחרים, שולחן אחד. כל עסקה של כל סוחר נבדקת. מסחר הופך לעסק.">
+<meta property="og:title" content="חדר המצב · מתן משיח">
+<meta property="og:description" content="קבוצת מאסטרמיינד פיזית סגורה. 20 מקומות. המחזור נפתח 26.07.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   /* ====== מתן: הדבר היחיד להשלים כאן ======
-     PRICE = הצג מחיר (או השאר ריק כדי להסתיר). CHECKOUT = קישור תשלום Whop (או השאר '#' למסלול מועמדות בלבד). */
-  :root{ --gold:#E4C15A; --gold-deep:#C9A227; --ink:#05070c; }
+     CHECKOUT = קישור תשלום Whop (או השאר '' למסלול מועמדות בלבד). */
+  :root{
+    --red:#E4322A; --red-bright:#FF4A3D; --red-deep:#B01E17;
+    --red-glow:rgba(228,50,42,.40); --red-dim:rgba(228,50,42,.14);
+    --ink:#06070A; --panel:#0c0e13; --line:rgba(228,50,42,.16);
+    --text:#EDF1F6; --text-dim:#98A2B0; --text-mute:#5c6675;
+  }
   *{ margin:0; padding:0; box-sizing:border-box; }
-  html,body{ background:#04060a; color:#eef2f7; font-family:'Heebo',sans-serif; -webkit-font-smoothing:antialiased; }
-  body{ overflow-x:hidden; }
+  html,body{ background:var(--ink); color:var(--text); font-family:'Heebo',sans-serif; -webkit-font-smoothing:antialiased; }
+  body{ overflow-x:hidden; position:relative; }
   a{ color:inherit; text-decoration:none; }
-  .wrap{ max-width:960px; margin:0 auto; padding:0 20px; }
+  .wrap{ max-width:960px; margin:0 auto; padding:0 20px; position:relative; z-index:2; }
   .mono{ font-family:'Space Mono',monospace; }
 
-  /* hero */
-  header{ position:relative; min-height:94vh; display:flex; align-items:flex-end; text-align:center; overflow:hidden; }
-  .hero-img{ position:absolute; inset:0; z-index:0; background:url('concept_chess.png') center 26%/cover no-repeat; }
-  .hero-scrim{ position:absolute; inset:0; z-index:1;
-    background:linear-gradient(180deg,rgba(5,7,12,.55) 0%,rgba(5,7,12,.15) 30%,rgba(5,7,12,.80) 66%,#05070c 100%); }
-  header .wrap{ position:relative; z-index:2; padding:40px 20px 48px; }
-  .brand{ font-weight:800; letter-spacing:2px; font-size:16px; color:#fff; text-shadow:0 2px 12px rgba(0,0,0,.7); }
-  .brand b{ color:var(--gold); }
-  .eyebrow{ margin-top:16px; font-size:14px; letter-spacing:4px; color:var(--gold); font-weight:700; text-shadow:0 2px 12px rgba(0,0,0,.85); }
-  h1{ margin-top:14px; font-weight:900; font-size:clamp(30px,5.8vw,52px); line-height:1.08; letter-spacing:-1px; color:#fff;
-    max-width:780px; margin-inline:auto; text-shadow:0 4px 30px rgba(0,0,0,.92); }
-  h1 .l2{ display:block; font-size:.58em; font-weight:800; color:var(--gold); margin-top:12px; }
-  .lead{ margin:22px auto 0; max-width:620px; font-size:clamp(18px,4.5vw,24px); font-weight:500; color:#e7ecf3; line-height:1.55; }
-  .lead b{ color:var(--gold); font-weight:700; }
-  .subhook{ margin:16px auto 0; max-width:600px; font-size:16px; color:#e7ecf3; line-height:1.55; text-shadow:0 2px 16px rgba(0,0,0,.92); }
-  .cta-row{ margin-top:28px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-  .btn{ display:inline-block; padding:16px 34px; border-radius:8px; font-weight:800; font-size:17px;
-    background:linear-gradient(180deg,#fbe7b0,#C9A227); color:var(--ink); box-shadow:0 10px 30px rgba(228,193,90,.3); }
-  .btn.ghost{ background:rgba(5,7,12,.45); color:#fff; border:1px solid rgba(228,193,90,.5); box-shadow:none; }
-  .seats{ margin-top:16px; font-size:14px; color:#e7ecf3; text-shadow:0 2px 12px rgba(0,0,0,.85); }
-  .seats b{ color:var(--gold); }
+  /* global tactical texture */
+  .scan{ position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.5;
+    background:repeating-linear-gradient(0deg, rgba(255,255,255,.022) 0 1px, transparent 1px 3px); }
+  .vignette{ position:fixed; inset:0; z-index:1; pointer-events:none;
+    background:radial-gradient(120% 80% at 50% 0%, transparent 40%, rgba(0,0,0,.55) 100%); }
 
-  section{ padding:44px 0; border-top:1px solid rgba(228,193,90,.1); }
-  .kick{ font-size:12px; letter-spacing:4px; color:var(--gold-deep); text-align:center; }
-  h2{ text-align:center; font-weight:900; font-size:clamp(28px,7vw,40px); margin-top:10px; }
-  .sub{ text-align:center; color:#aab3c0; margin-top:12px; max-width:600px; margin-inline:auto; font-size:16px; line-height:1.6; }
+  /* hero — radar / war-room */
+  header{ position:relative; min-height:96vh; display:flex; align-items:center; text-align:center; overflow:hidden;
+    border-bottom:1px solid var(--line); }
+  .radar{ position:absolute; inset:0; z-index:0; display:flex; align-items:center; justify-content:center; }
+  .radar svg{ width:min(150vh,150vw); height:min(150vh,150vw); opacity:.5; }
+  .sweep{ position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:conic-gradient(from 205deg at 62% 24%, rgba(228,50,42,.26), rgba(228,50,42,.04) 22%, transparent 40%); }
+  .hero-fade{ position:absolute; inset:0; z-index:0;
+    background:linear-gradient(180deg, rgba(6,7,10,.35) 0%, transparent 35%, rgba(6,7,10,.75) 85%, var(--ink) 100%); }
+  header .wrap{ padding:60px 20px; }
+
+  .brand{ font-family:'Space Mono',monospace; font-weight:700; letter-spacing:5px; font-size:12px; color:var(--text-dim); }
+  .brand b{ color:var(--red); }
+  .eyebrow{ margin-top:22px; font-family:'Space Mono',monospace; font-size:12px; letter-spacing:4px; color:var(--red); font-weight:700; }
+
+  .wordmark{ margin-top:20px; font-weight:900; font-size:clamp(64px,17vw,150px); line-height:.9; letter-spacing:-2px; color:#fff;
+    transform:scaleY(1.06); text-shadow:0 8px 60px rgba(0,0,0,.9); }
+  .wm-rule{ width:min(320px,68%); height:2px; margin:22px auto 0;
+    background:linear-gradient(90deg,transparent,var(--red),transparent); box-shadow:0 0 22px 2px var(--red-glow); }
+  .datechip{ margin:26px auto 0; display:inline-flex; flex-direction:column; align-items:center; gap:4px;
+    border:1.5px solid var(--red); border-radius:4px; padding:12px 30px; transform:skewX(-7deg);
+    box-shadow:0 0 30px rgba(228,50,42,.25), inset 0 0 20px rgba(228,50,42,.06); background:rgba(228,50,42,.05); }
+  .datechip > *{ transform:skewX(7deg); }
+  .datechip .lbl{ font-family:'Space Mono',monospace; font-size:10px; letter-spacing:3px; color:var(--text-dim); }
+  .datechip .d{ font-family:'Space Mono',monospace; font-weight:700; font-size:clamp(28px,7vw,40px); color:var(--red-bright); letter-spacing:2px; }
+
+  h1{ margin:30px auto 0; font-weight:900; font-size:clamp(24px,4.4vw,38px); line-height:1.12; letter-spacing:-.6px; color:#fff; max-width:720px; }
+  h1 .l2{ display:block; font-size:.62em; font-weight:800; color:var(--red); margin-top:12px; }
+  .subhook{ margin:18px auto 0; max-width:600px; font-size:16px; color:var(--text-dim); line-height:1.6; }
+  .cta-row{ margin-top:28px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn{ display:inline-block; padding:16px 34px; border-radius:6px; font-weight:800; font-size:17px; letter-spacing:.3px;
+    background:linear-gradient(180deg,var(--red-bright),var(--red-deep)); color:#fff;
+    box-shadow:0 12px 34px rgba(228,50,42,.35), inset 0 1px 0 rgba(255,255,255,.15); transition:transform .2s, box-shadow .3s; }
+  .btn:hover{ transform:translateY(-2px); box-shadow:0 18px 44px rgba(228,50,42,.5); }
+  .btn.ghost{ background:rgba(228,50,42,.06); color:#fff; border:1px solid var(--red); box-shadow:none; }
+  .seats{ margin-top:18px; font-family:'Space Mono',monospace; font-size:13px; letter-spacing:1px; color:var(--text-dim); }
+  .seats b{ color:var(--red-bright); }
+
+  section{ padding:52px 0; border-top:1px solid var(--line); position:relative; z-index:2; }
+  .kick{ font-family:'Space Mono',monospace; font-size:12px; letter-spacing:5px; color:var(--red); text-align:center; text-transform:uppercase; }
+  h2{ text-align:center; font-weight:900; font-size:clamp(28px,7vw,42px); margin-top:12px; letter-spacing:-.5px; }
+  .sub{ text-align:center; color:var(--text-dim); margin-top:14px; max-width:600px; margin-inline:auto; font-size:16px; line-height:1.65; }
 
   /* dates */
-  .dates{ margin-top:30px; display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
-  .day{ background:#0b1018; border:1px solid rgba(228,193,90,.14); border-radius:12px; padding:18px 8px; text-align:center; }
-  .day .d{ font-family:'Space Mono',monospace; font-weight:700; font-size:clamp(20px,5vw,30px); color:#fff; }
-  .day .m{ font-size:12px; color:#8b96a5; margin-top:6px; }
-  .when{ text-align:center; color:#cfd6e0; margin-top:18px; font-size:15px; }
+  .dates{ margin-top:32px; display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+  .day{ background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:20px 8px; text-align:center; position:relative; overflow:hidden; }
+  .day::before{ content:""; position:absolute; top:0; right:0; left:0; height:2px; background:var(--red); opacity:.55; }
+  .day .d{ font-family:'Space Mono',monospace; font-weight:700; font-size:clamp(20px,5vw,28px); color:#fff; }
+  .day .m{ font-family:'Space Mono',monospace; font-size:11px; letter-spacing:1px; color:var(--text-mute); margin-top:8px; }
+  .when{ text-align:center; color:var(--text-dim); margin-top:20px; font-size:15px; }
 
   /* pillars */
-  .pillars{ margin-top:30px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
-  .card{ background:#0b1018; border:1px solid rgba(228,193,90,.14); border-radius:14px; padding:22px; }
-  .card .n{ color:var(--gold); font-weight:900; font-size:34px; line-height:1; }
-  .card h3{ font-size:18px; margin-top:12px; }
-  .card p{ color:#aab3c0; margin-top:8px; font-size:14.5px; line-height:1.55; }
-  .showcase{ display:block; width:100%; max-width:820px; margin:30px auto 0; border-radius:16px;
-    border:1px solid rgba(228,193,90,.25); box-shadow:0 20px 60px rgba(0,0,0,.55); }
+  .pillars{ margin-top:32px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
+  .card{ background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:24px; transition:border-color .3s, transform .3s; }
+  .card:hover{ border-color:var(--red); transform:translateY(-4px); }
+  .card .n{ font-family:'Space Mono',monospace; color:var(--red); font-weight:700; font-size:34px; line-height:1; }
+  .card h3{ font-size:18px; margin-top:14px; font-weight:800; }
+  .card p{ color:var(--text-dim); margin-top:8px; font-size:14.5px; line-height:1.6; }
+  .showcase{ display:block; width:100%; max-width:820px; margin:32px auto 0; border-radius:14px;
+    border:1px solid var(--red-dim); box-shadow:0 24px 64px rgba(0,0,0,.6), 0 0 40px rgba(228,50,42,.08); }
 
-  .for{ margin-top:24px; max-width:640px; margin-inline:auto; }
-  .for li{ list-style:none; padding:12px 0; border-bottom:1px solid rgba(228,193,90,.1); color:#dfe5ee; font-size:16px; display:flex; gap:12px; }
-  .for li::before{ content:"◆"; color:var(--gold); }
+  .for{ margin-top:26px; max-width:640px; margin-inline:auto; }
+  .for li{ list-style:none; padding:14px 0; border-bottom:1px solid var(--line); color:#dfe5ee; font-size:16px; display:flex; gap:12px; line-height:1.5; }
+  .for li::before{ content:"▸"; color:var(--red); font-weight:700; }
 
   /* form */
-  .formbox{ max-width:520px; margin:28px auto 0; background:#0b1018; border:1px solid rgba(228,193,90,.18); border-radius:16px; padding:28px; }
-  .formbox label{ display:block; font-size:13px; color:#aab3c0; margin:14px 0 6px; }
-  .formbox input{ width:100%; padding:14px 16px; border-radius:10px; border:1px solid rgba(228,193,90,.2); background:#05070c; color:#fff; font-family:inherit; font-size:16px; }
-  .formbox input:focus{ outline:none; border-color:var(--gold); }
-  .formbox .btn{ width:100%; margin-top:22px; border:0; cursor:pointer; }
-  .price{ text-align:center; font-size:15px; color:#cfd6e0; margin-bottom:4px; }
-  .price b{ color:var(--gold); font-size:22px; }
+  .formbox{ max-width:520px; margin:30px auto 0; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:30px; position:relative; overflow:hidden; }
+  .formbox::before{ content:""; position:absolute; top:0; right:0; left:0; height:3px; background:linear-gradient(90deg,transparent,var(--red),transparent); }
+  .formbox label{ display:block; font-size:13px; color:var(--text-dim); margin:16px 0 6px; }
+  .formbox input{ width:100%; padding:14px 16px; border-radius:8px; border:1px solid rgba(228,50,42,.22); background:#05060a; color:#fff; font-family:inherit; font-size:16px; transition:border-color .2s; }
+  .formbox input:focus{ outline:none; border-color:var(--red); box-shadow:0 0 0 3px rgba(228,50,42,.12); }
+  .formbox .btn{ width:100%; margin-top:24px; border:0; cursor:pointer; }
+  .price{ text-align:center; font-size:15px; color:var(--text-dim); margin-bottom:4px; }
+  .price b{ color:var(--red-bright); font-size:22px; font-family:'Space Mono',monospace; }
   .hide{ display:none; }
   #done{ text-align:center; }
-  #done .v{ font-size:26px; font-weight:900; color:var(--gold); }
-  .fineprint{ text-align:center; color:#6b7484; font-size:12px; margin-top:16px; line-height:1.6; }
-  footer{ text-align:center; padding:40px 0; color:#6b7484; font-size:13px; }
-  footer b{ color:#cfd6e0; }
+  #done .v{ font-size:26px; font-weight:900; color:var(--red-bright); }
+  .fineprint{ text-align:center; color:var(--text-mute); font-size:12px; margin-top:18px; line-height:1.6; }
+  footer{ text-align:center; padding:44px 0; color:var(--text-mute); font-size:13px; border-top:1px solid var(--line); position:relative; z-index:2; }
+  footer b{ color:var(--text-dim); }
+  .back-home{ position:fixed; top:16px; right:16px; z-index:5; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:2px;
+    color:var(--text-dim); border:1px solid var(--line); border-radius:6px; padding:8px 12px; background:rgba(6,7,10,.6); backdrop-filter:blur(6px); }
+  .back-home:hover{ color:var(--red); border-color:var(--red); }
+
   @media(max-width:560px){
     .dates{ grid-template-columns:repeat(2,1fr); }
-    h1{ font-size:clamp(26px,7vw,40px); }
-    h2{ font-size:clamp(22px,6vw,30px); word-break:break-word; }
-    .lead{ font-size:19px; }
-    .day .d{ font-size:22px; }
-    .btn{ padding:15px 24px; font-size:16px; }
+    h2{ font-size:clamp(24px,7vw,32px); word-break:break-word; }
+    .wordmark{ font-size:clamp(56px,22vw,110px); }
+    .btn{ padding:15px 26px; font-size:16px; }
+    header .wrap{ padding:64px 18px 48px; }
   }
+  @media (prefers-reduced-motion:reduce){ *{ animation:none !important; } }
 </style>
 </head>
 <body>
+<div class="scan" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<a href="../trader.html" class="back-home">← חזרה</a>
+
 <header>
-  <div class="hero-img"></div>
-  <div class="hero-scrim"></div>
+  <div class="radar" aria-hidden="true">
+    <svg viewBox="0 0 400 400" fill="none" stroke="#E4322A" stroke-width="0.6">
+      <circle cx="200" cy="200" r="196" stroke-opacity="0.25"/>
+      <circle cx="200" cy="200" r="150" stroke-opacity="0.30"/>
+      <circle cx="200" cy="200" r="104" stroke-opacity="0.35"/>
+      <circle cx="200" cy="200" r="58" stroke-opacity="0.45"/>
+      <line x1="4" y1="200" x2="396" y2="200" stroke-opacity="0.18"/>
+      <line x1="200" y1="4" x2="200" y2="396" stroke-opacity="0.18"/>
+      <line x1="60" y1="60" x2="340" y2="340" stroke-opacity="0.12"/>
+      <line x1="340" y1="60" x2="60" y2="340" stroke-opacity="0.12"/>
+      <circle cx="200" cy="44" r="3" fill="#E4322A" stroke="none"/>
+      <circle cx="308" cy="150" r="2.4" fill="#E4322A" stroke="none"/>
+      <circle cx="120" cy="278" r="2.4" fill="#FF4A3D" stroke="none"/>
+    </svg>
+  </div>
+  <div class="sweep" aria-hidden="true"></div>
+  <div class="hero-fade" aria-hidden="true"></div>
   <div class="wrap">
     <div class="brand">MASTER<b>TRADER</b></div>
-    <div class="eyebrow">חדר המצב · קבוצה פיזית סגורה · 20 מקומות</div>
+    <div class="eyebrow">קבוצה פיזית סגורה · 20 מקומות</div>
+    <div class="wordmark">חדר מצב</div>
+    <div class="wm-rule"></div>
+    <div class="datechip">
+      <span class="lbl">המחזור נפתח</span>
+      <span class="d">26.07</span>
+    </div>
     <h1>למדת לנתח גרף.<br>לא למדת לנהל עסק.<span class="l2">זה ההבדל בין סוחר עקבי לאחד שנשבר.</span></h1>
-    <div class="subhook">חדר המצב: קבוצת מאסטרמיינד פיזית של 20 סוחרים, שבה עוברים על כל עסקה שלך — עד שהמסחר הופך לעסק.</div>
+    <div class="subhook">קבוצת מאסטרמיינד פיזית של 20 סוחרים, שבה עוברים על כל עסקה שלך — עד שהמסחר הופך לעסק.</div>
     <div class="cta-row">
-      <a href="#gap" class="btn">איך זה עובד ←</a>
+      <a href="#register" class="btn">אני רוצה מקום בחדר ←</a>
+      <a href="#gap" class="btn ghost">איך זה עובד</a>
     </div>
     <div class="seats"><b>20 מקומות בלבד</b> · קדימות לחברי הקהילה</div>
   </div>
@@ -117,7 +179,7 @@
       <li>סוגר עסקאות טובות מוקדם, ונשאר בגרועות יותר מדי.</li>
       <li>וכשהשוק מתהפך — אתה מתפרק.</li>
     </ul>
-    <p class="sub" style="margin-top:24px;color:#e7ecf3;font-size:19px">זו לא בעיית ידע. זו בעיית מערכת. <b style="color:var(--gold)">בעיית עסק.</b></p>
+    <p class="sub" style="margin-top:24px;color:var(--text);font-size:19px">זו לא בעיית ידע. זו בעיית מערכת. <b style="color:var(--red)">בעיית עסק.</b></p>
   </div>
 </section>
 
@@ -155,7 +217,7 @@
       <div class="day"><div class="d">25.10</div><div class="m">מפגש 05</div></div>
     </div>
     <div class="when">3 שעות כל מפגש · פרונטלי · חדר סגור</div>
-    <div class="when" style="color:var(--gold);margin-top:6px">רחוב לח״י 21, בני ברק</div>
+    <div class="when" style="color:var(--red);margin-top:6px">רחוב לח״י 21, בני ברק</div>
   </div>
 </section>
 
@@ -169,7 +231,7 @@
       <li>אתה נשבר בתקופות קשות — ורוצה עסק שצומח גם אז.</li>
       <li>נמאס לך לסחור לבד, בלי אף אחד שרואה את ההחלטות שלך.</li>
     </ul>
-    <p class="sub" style="margin-top:20px">זה <b style="color:#e7ecf3">לא</b> בשבילך אם אתה עוד לומד את היסודות — כאן מדברים על מערכת, לא על נרות ראשונים.</p>
+    <p class="sub" style="margin-top:20px">זה <b style="color:var(--text)">לא</b> בשבילך אם אתה עוד לומד את היסודות — כאן מדברים על מערכת, לא על נרות ראשונים.</p>
   </div>
 </section>
 
@@ -177,8 +239,8 @@
   <div class="wrap">
     <div class="kick">ההשקעה</div>
     <h2>₪2,470 למחזור המלא</h2>
-    <p class="sub">15 שעות ליווי פרונטלי בקבוצה קטנה, ועוד פגישה אישית איתי בסוף. יוצא בערך <b style="color:var(--gold)">₪165 לשעה</b> — ליווי מסחר אישי נע בדרך כלל בהרבה יותר.</p>
-    <p class="sub" style="margin-top:14px;color:#e7ecf3">זו לא עוד הוצאה על קורס. זו מערכת שנשארת איתך הרבה אחרי שהמפגש האחרון נגמר.</p>
+    <p class="sub">15 שעות ליווי פרונטלי בקבוצה קטנה, ועוד פגישה אישית איתי בסוף. יוצא בערך <b style="color:var(--red)">₪165 לשעה</b> — ליווי מסחר אישי נע בדרך כלל בהרבה יותר.</p>
+    <p class="sub" style="margin-top:14px;color:var(--text)">זו לא עוד הוצאה על קורס. זו מערכת שנשארת איתך הרבה אחרי שהמפגש האחרון נגמר.</p>
   </div>
 </section>
 
@@ -188,7 +250,7 @@
     <h2>20 מקומות. זהו.</h2>
     <p class="sub">המחזור מתחיל ב-26.07, וההרשמה נסגרת כשהחדר מתמלא. ההצטרפות דרך שיחת התאמה קצרה עם מתן — לוודא שהחדר מתאים לך, ולהיפך. משאירים פרטים, ומתן חוזר אישית.</p>
     <form class="formbox" id="form">
-      <div class="price">השקעה במחזור המלא: <b>₪2,470</b><br><span style="font-size:12px;color:#8b96a5">5 מפגשים · 15 שעות פרונטליות · כל עסקה שלך נבדקת אישית</span></div>
+      <div class="price">השקעה במחזור המלא: <b>₪2,470</b><br><span style="font-size:12px;color:var(--text-mute)">5 מפגשים · 15 שעות פרונטליות · כל עסקה שלך נבדקת אישית</span></div>
       <label>שם מלא</label>
       <input type="text" name="name" required placeholder="השם שלך">
       <label>טלפון (וואטסאפ)</label>
@@ -200,19 +262,19 @@
     </form>
     <div class="formbox hide" id="done">
       <div class="v">קיבלתי. ✓</div>
-      <p style="color:#aab3c0;margin-top:12px;line-height:1.6">הפרטים שלך אצלי. מתן חוזר אליך בוואטסאפ לשיחת התאמה קצרה, לוודא שזה מתאים לך ולסגור מקום.<br>מאחלים לך כל הכבוד על הצעד המשמעותי בדרך לצמיחה של העסק שלך.</p>
+      <p style="color:var(--text-dim);margin-top:12px;line-height:1.6">הפרטים שלך אצלי. מתן חוזר אליך בוואטסאפ לשיחת התאמה קצרה, לוודא שזה מתאים לך ולסגור מקום.<br>מאחלים לך כל הכבוד על הצעד המשמעותי בדרך לצמיחה של העסק שלך.</p>
     </div>
   </div>
 </section>
 
 <section>
   <div class="wrap" style="text-align:center">
-    <p class="lead" style="max-width:640px">החופש שאתה מחפש נמצא בצד השני של המשמעת.<br><b>בחדר הזה בונים אותה.</b></p>
+    <p class="sub" style="max-width:640px;font-size:clamp(19px,4.5vw,24px);color:var(--text);font-weight:500">החופש שאתה מחפש נמצא בצד השני של המשמעת.<br><b style="color:var(--red)">בחדר הזה בונים אותה.</b></p>
     <div class="cta-row"><a href="#register" class="btn">לשמירת מקום ←</a></div>
   </div>
 </section>
 
-<footer>מתן משיח · <b>MasterTrader</b> · חדר המצב 2026<br><span style="color:#8b96a5">רחוב לח״י 21, בני ברק</span></footer>
+<footer>מתן משיח · <b>MasterTrader</b> · חדר המצב 2026<br><span style="color:var(--text-mute)">רחוב לח״י 21, בני ברק</span></footer>
 
 <script>
   // מתן: אם תרצה מסלול תשלום ישיר במקום מועמדות — שים כאן קישור Whop והכפתור יפנה אליו.
