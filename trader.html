@@ -11,137 +11,84 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --ink:#06070A; --panel:#0c0e13;
-            --red:#E4322A; --red-bright:#FF4A3D; --red-deep:#B01E17;
-            --red-glow:rgba(228,50,42,.40); --red-dim:rgba(228,50,42,.14); --line:rgba(228,50,42,.16);
-            --text:#EDF1F6; --text-dim:#98A2B0; --text-mute:#5c6675;
+        :root{
+            --ink:#08090c; --panel:rgba(255,255,255,.022); --panel-h:rgba(255,255,255,.04);
+            --text:#F4F5F7; --dim:#9aa0aa; --mute:#5b616b;
+            --accent:#E4322A; --accent-bright:#FF4A3D; --line:rgba(244,245,247,.11);
         }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            font-family:'Heebo',sans-serif; background:var(--ink); color:var(--text);
-            min-height:100dvh; overflow-x:hidden; -webkit-font-smoothing:antialiased; position:relative;
-        }
-        .mono { font-family:'Space Mono',monospace; }
-        .bg-radar { position:fixed; inset:0; z-index:0; pointer-events:none; display:flex; align-items:flex-start; justify-content:center; }
-        .bg-radar svg { width:min(120vh,120vw); height:min(120vh,120vw); opacity:.4; margin-top:-30vh; }
-        .sweep { position:fixed; inset:0; z-index:0; pointer-events:none;
-            background:conic-gradient(from 205deg at 30% 12%, rgba(228,50,42,.16), rgba(228,50,42,.02) 22%, transparent 42%); }
-        .scan { position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.5;
-            background:repeating-linear-gradient(0deg, rgba(255,255,255,.022) 0 1px, transparent 1px 3px); }
-        .vignette { position:fixed; inset:0; z-index:1; pointer-events:none;
-            background:radial-gradient(120% 80% at 50% 0%, transparent 45%, rgba(0,0,0,.55) 100%); }
-        .wrap { position:relative; z-index:2; max-width:1080px; margin:0 auto; padding:clamp(20px,4vw,40px) clamp(18px,4vw,32px) 60px; }
+        *{ margin:0; padding:0; box-sizing:border-box; }
+        body{ font-family:'Heebo',sans-serif; background:var(--ink); color:var(--text); min-height:100dvh; overflow-x:hidden; -webkit-font-smoothing:antialiased; position:relative; }
+        .mono{ font-family:'Space Mono',monospace; }
+        .grain{ position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+        .vignette{ position:fixed; inset:0; z-index:0; pointer-events:none;
+            background:radial-gradient(130% 90% at 50% -10%, rgba(228,50,42,.05), transparent 45%), radial-gradient(120% 80% at 50% 100%, rgba(0,0,0,.5), transparent 60%); }
+        .wrap{ position:relative; z-index:2; max-width:1120px; margin:0 auto; padding:clamp(20px,4vw,40px) clamp(18px,4vw,36px) 60px; }
 
-        .nav { display:flex; align-items:center; justify-content:space-between; margin-bottom:clamp(28px,6vh,56px); }
-        .back { display:inline-flex; align-items:center; gap:8px; color:var(--text-dim); text-decoration:none; font-size:14px; font-weight:600; transition:color .3s; }
-        .back:hover { color:var(--red); }
-        .back svg { width:16px; height:16px; transition:transform .3s; }
-        .back:hover svg { transform:translateX(5px); }
-        .brand { font-family:'Space Mono',monospace; letter-spacing:4px; font-size:11px; font-weight:700; color:var(--text-dim); }
-        .brand b { color:var(--red); }
+        .nav{ display:flex; align-items:center; justify-content:space-between; margin-bottom:clamp(30px,7vh,64px); }
+        .back{ display:inline-flex; align-items:center; gap:8px; color:var(--dim); text-decoration:none; font-size:13px; font-family:'Space Mono',monospace; letter-spacing:1px; transition:color .3s; }
+        .back:hover{ color:var(--accent); }
+        .back svg{ width:15px; height:15px; transition:transform .3s; }
+        .back:hover svg{ transform:translateX(5px); }
+        .brand{ font-family:'Space Mono',monospace; letter-spacing:4px; font-size:12px; font-weight:700; }
+        .brand b{ color:var(--accent); }
 
-        .head { text-align:center; margin-bottom:clamp(30px,6vh,54px); }
-        .head .tag {
-            display:inline-block; font-family:'Space Mono',monospace; letter-spacing:3px; font-size:11px; font-weight:700;
-            color:var(--red); border:1px solid var(--line); border-radius:6px; padding:6px 14px;
-            background:var(--red-dim); margin-bottom:20px; text-transform:uppercase;
-        }
-        .head h1 { font-size:clamp(30px,6vw,52px); font-weight:900; letter-spacing:-1px; line-height:1.1; }
-        .head h1 .accent { color:var(--red); }
-        .head p { margin-top:16px; color:var(--text-dim); font-size:clamp(15px,2vw,18px); max-width:54ch; margin-inline:auto; line-height:1.6; }
+        .head{ margin-bottom:clamp(34px,7vh,60px); max-width:760px; }
+        .eyebrow{ font-family:'Space Mono',monospace; letter-spacing:4px; font-size:12px; color:var(--dim); }
+        .eyebrow b{ color:var(--accent); }
+        .head h1{ margin-top:16px; font-size:clamp(40px,7vw,76px); font-weight:900; letter-spacing:-1.5px; line-height:.98; }
+        .head h1 .out{ color:transparent; -webkit-text-stroke:1.2px rgba(244,245,247,.8); }
+        .rule{ width:96px; height:3px; background:var(--accent); margin:24px 0 0; box-shadow:0 0 20px 1px rgba(228,50,42,.45); }
+        .head p{ margin-top:22px; color:var(--dim); font-size:clamp(15px,1.7vw,18px); line-height:1.65; max-width:56ch; }
 
-        .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(14px,2vw,20px); }
-        .card {
-            position:relative; display:flex; flex-direction:column; padding:clamp(24px,2.6vw,32px);
-            border:1px solid var(--line); border-radius:14px; text-decoration:none; color:var(--text); overflow:hidden;
-            background:linear-gradient(160deg, rgba(228,50,42,.045), rgba(255,255,255,0.008));
-            transition:transform .4s cubic-bezier(.2,.8,.2,1), border-color .4s, box-shadow .5s;
-            opacity:0; transform:translateY(20px); animation:rise .8s forwards cubic-bezier(.2,.8,.2,1);
-        }
-        .card::before { content:""; position:absolute; top:0; right:0; left:0; height:2px; background:var(--red); opacity:.35; }
-        .card:nth-child(1){animation-delay:.1s} .card:nth-child(2){animation-delay:.2s} .card:nth-child(3){animation-delay:.3s}
-        .card::after { content:""; position:absolute; inset:0; background:radial-gradient(120% 100% at 50% 120%, var(--red-dim), transparent 55%); opacity:0; transition:opacity .5s; }
-        .card > * { position:relative; z-index:1; }
-        .card:hover { transform:translateY(-6px); border-color:var(--red); box-shadow:0 26px 70px -40px var(--red-glow); }
-        .card:hover::after { opacity:1; }
-        .card:focus-visible { outline:2px solid var(--red); outline-offset:3px; }
-        .card.featured { border-color:rgba(228,50,42,.4); }
-        .card.featured::before { opacity:.7; box-shadow:0 0 16px var(--red-glow); }
+        .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.6vw,18px); }
+        .tile{ position:relative; display:flex; flex-direction:column; padding:clamp(24px,2.4vw,30px);
+            border:1px solid var(--line); border-radius:12px; text-decoration:none; color:var(--text); overflow:hidden;
+            background:var(--panel); transition:border-color .35s, background .35s, transform .35s; min-height:230px; }
+        .tile:hover{ border-color:rgba(228,50,42,.5); background:var(--panel-h); transform:translateY(-5px); }
+        .tile:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+        .tile.featured{ border-color:rgba(228,50,42,.28); }
+        .tile-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:auto; }
+        .idx{ font-family:'Space Mono',monospace; font-size:13px; font-weight:700; color:var(--accent); }
+        .tag{ font-family:'Space Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--mute); border:1px solid var(--line); border-radius:4px; padding:3px 8px; }
+        .tile h3{ margin-top:26px; font-size:clamp(20px,2.3vw,24px); font-weight:800; letter-spacing:-.4px; }
+        .tile .kv{ font-family:'Space Mono',monospace; font-size:12px; color:var(--mute); margin-top:6px; }
+        .tile p{ margin-top:12px; color:var(--dim); font-size:14px; line-height:1.6; }
+        .go{ display:inline-flex; align-items:center; gap:8px; margin-top:20px; color:var(--accent-bright); font-weight:700; font-size:14px; }
+        .go svg{ width:14px; height:14px; transition:transform .35s; }
+        .tile:hover .go svg{ transform:translateX(-5px); }
 
-        .icon-wrap {
-            width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center;
-            background:var(--red-dim); border:1px solid rgba(228,50,42,.25); margin-bottom:20px;
-        }
-        .icon-wrap svg { width:26px; height:26px; color:var(--red-bright); }
-        .badge {
-            position:absolute; top:clamp(20px,3vw,26px); left:clamp(20px,3vw,26px);
-            font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; font-weight:700; text-transform:uppercase;
-            color:var(--red); background:var(--red-dim); border:1px solid rgba(228,50,42,.3); border-radius:5px; padding:4px 10px;
-        }
-        .card h3 { font-size:clamp(19px,2.4vw,23px); font-weight:800; letter-spacing:-0.3px; }
-        .card .kv { color:var(--text-mute); font-size:13px; font-weight:600; margin-top:4px; font-family:'Space Mono',monospace; }
-        .card p { margin-top:12px; color:var(--text-dim); font-size:14.5px; line-height:1.6; flex:1; }
-        .go2 { display:inline-flex; align-items:center; gap:8px; margin-top:22px; color:var(--red-bright); font-weight:700; font-size:14.5px; text-decoration:none; }
-        .go2 svg { width:15px; height:15px; transition:transform .35s; }
-        .card:hover .go2 svg { transform:translateX(-5px); }
+        .section-label{ display:flex; align-items:center; gap:16px; margin:clamp(40px,7vh,64px) 0 24px; }
+        .section-label span{ font-family:'Space Mono',monospace; font-size:12px; letter-spacing:3px; color:var(--dim); text-transform:uppercase; white-space:nowrap; }
+        .section-label::before, .section-label::after{ content:""; height:1px; background:var(--line); flex:1; }
+        .journal-intro{ color:var(--dim); font-size:14.5px; line-height:1.6; margin:-8px 0 22px; max-width:60ch; }
 
-        /* journal */
-        .journal { margin-top:clamp(34px,6vh,56px); }
-        .journal-head { text-align:center; margin-bottom:22px; }
-        .journal-head h2 { font-size:clamp(22px,3vw,29px); font-weight:900; letter-spacing:-.3px; }
-        .journal-head p { margin-top:10px; color:var(--text-dim); font-size:15px; max-width:50ch; margin-inline:auto; line-height:1.6; }
-        .journal-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(14px,2vw,20px); }
-        .tool {
-            position:relative; display:flex; flex-direction:column; padding:clamp(22px,2.6vw,30px);
-            border:1px solid var(--line); border-radius:14px; overflow:hidden;
-            background:linear-gradient(160deg, rgba(228,50,42,.045), rgba(255,255,255,0.008));
-        }
-        .tool::before { content:""; position:absolute; top:0; right:0; left:0; height:2px; background:var(--red); opacity:.35; }
-        .tool h3 { font-size:21px; font-weight:800; letter-spacing:.3px; font-family:'Space Mono',monospace; }
-        .tool .desc { margin-top:8px; color:var(--text-dim); font-size:14px; line-height:1.6; flex:1; }
-        .coupon {
-            display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:18px;
-            border:1px dashed rgba(228,50,42,.4); border-radius:10px; padding:11px 14px; background:var(--red-dim);
-        }
-        .coupon .code { font-family:'Space Mono',monospace; font-weight:700; letter-spacing:2px; color:var(--red-bright); font-size:17px; }
-        .coupon .disc { font-size:12px; color:var(--text-dim); margin-top:3px; line-height:1.4; }
-        .copy { cursor:pointer; font-size:11px; color:var(--red-bright); border:1px solid rgba(228,50,42,.4); border-radius:7px; padding:6px 11px; background:transparent; font-family:'Heebo',sans-serif; font-weight:700; transition:transform .15s, background .2s; white-space:nowrap; }
-        .copy:hover { background:rgba(228,50,42,.1); }
-        .copy:active { transform:scale(.94); }
-        .tool .go2 { margin-top:16px; }
+        .journal-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(12px,1.6vw,18px); }
+        .tool{ position:relative; display:flex; flex-direction:column; padding:clamp(22px,2.4vw,28px); border:1px solid var(--line); border-radius:12px; background:var(--panel); }
+        .tool h3{ font-family:'Space Mono',monospace; font-size:19px; font-weight:700; letter-spacing:.5px; }
+        .tool .desc{ margin-top:8px; color:var(--dim); font-size:13.5px; line-height:1.6; flex:1; }
+        .coupon{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:18px; border:1px dashed rgba(228,50,42,.35); border-radius:9px; padding:11px 14px; }
+        .coupon .code{ font-family:'Space Mono',monospace; font-weight:700; letter-spacing:2px; color:var(--accent-bright); font-size:16px; }
+        .coupon .disc{ font-size:12px; color:var(--dim); margin-top:3px; line-height:1.4; }
+        .copy{ cursor:pointer; font-size:11px; color:var(--accent-bright); border:1px solid rgba(228,50,42,.4); border-radius:7px; padding:6px 11px; background:transparent; font-family:'Heebo',sans-serif; font-weight:700; white-space:nowrap; transition:transform .15s, background .2s; }
+        .copy:hover{ background:rgba(228,50,42,.1); } .copy:active{ transform:scale(.94); }
+        .tool .go{ margin-top:16px; }
 
-        .soon {
-            margin-top:clamp(20px,3vh,28px); text-align:center; border:1px dashed var(--line); border-radius:12px;
-            padding:22px 20px; background:rgba(228,50,42,.03);
-            opacity:0; transform:translateY(20px); animation:rise .8s .45s forwards cubic-bezier(.2,.8,.2,1);
-        }
-        .soon strong { color:var(--text); font-weight:700; }
-        .soon span { color:var(--text-dim); font-size:14.5px; }
-        .soon a { color:var(--red-bright); text-decoration:none; font-weight:700; }
-        .soon a:hover { text-decoration:underline; }
+        .soon{ margin-top:20px; display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; text-align:center;
+            border:1px solid var(--line); border-radius:10px; padding:20px; background:var(--panel); font-size:14px; color:var(--dim); }
+        .soon strong{ color:var(--text); } .soon a{ color:var(--accent-bright); text-decoration:none; font-weight:700; }
+        .soon a:hover{ text-decoration:underline; }
 
-        .foot { text-align:center; margin-top:clamp(40px,7vh,64px); color:var(--text-mute); font-size:13px; font-family:'Space Mono',monospace; }
-        .foot a { color:var(--text-dim); text-decoration:none; }
-        .foot a:hover { color:var(--red); }
+        .foot{ text-align:center; margin-top:clamp(44px,7vh,68px); color:var(--mute); font-size:12px; font-family:'Space Mono',monospace; letter-spacing:1px; }
+        .foot a{ color:var(--dim); text-decoration:none; } .foot a:hover{ color:var(--accent); }
 
-        @keyframes rise { to { opacity:1; transform:none; } }
-        @media (max-width:820px){ .grid{ grid-template-columns:1fr; } }
+        @media (max-width:820px){ .grid{ grid-template-columns:1fr; } .tile{ min-height:auto; } }
         @media (max-width:680px){ .journal-grid{ grid-template-columns:1fr; } }
-        @media (prefers-reduced-motion:reduce){ .card,.soon{ animation:none; opacity:1; transform:none; } * { transition:none !important; } }
     </style>
 </head>
 <body>
-    <div class="bg-radar" aria-hidden="true">
-        <svg viewBox="0 0 400 400" fill="none" stroke="#E4322A" stroke-width="0.6">
-            <circle cx="200" cy="200" r="196" stroke-opacity="0.18"/><circle cx="200" cy="200" r="150" stroke-opacity="0.24"/>
-            <circle cx="200" cy="200" r="104" stroke-opacity="0.28"/><circle cx="200" cy="200" r="58" stroke-opacity="0.36"/>
-            <line x1="4" y1="200" x2="396" y2="200" stroke-opacity="0.14"/><line x1="200" y1="4" x2="200" y2="396" stroke-opacity="0.14"/>
-        </svg>
-    </div>
-    <div class="sweep" aria-hidden="true"></div>
-    <div class="scan" aria-hidden="true"></div>
     <div class="vignette" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
 
     <div class="wrap">
         <nav class="nav">
@@ -153,84 +100,72 @@
         </nav>
 
         <header class="head">
-            <span class="tag">מסלול הסוחר</span>
-            <h1>אתה <span class="accent">כבר בשוק</span></h1>
-            <p>עברת את שלב ההיכרות. עכשיו נבנה מבנה, משמעת ותוכנית עסקית — כדי שמסחר יפסיק להיות הימור ויתחיל להיות עסק.</p>
+            <div class="eyebrow">מסלול הסוחר <b>·</b> אתה כבר בשוק</div>
+            <h1><span class="out">עברת את שלב</span><br>ההיכרות.</h1>
+            <div class="rule"></div>
+            <p>עכשיו בונים מבנה, משמעת ותוכנית עסקית — כדי שמסחר יפסיק להיות הימור ויתחיל להתנהג כמו עסק. אלה הכלים.</p>
         </header>
 
         <main class="grid">
-            <a href="club.html" class="card featured">
-                <span class="badge">מנוי חודשי</span>
-                <div class="icon-wrap">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 3.8 8.5 9 10 5.2-1.5 9-5 9-10V6l-9-4z"/><path d="m9 12 2 2 4-4"/></svg>
-                </div>
+            <a href="club.html" class="tile featured">
+                <div class="tile-top"><span class="idx">01</span><span class="tag">מנוי חודשי</span></div>
                 <h3>מועדון הסוחר המתמיד</h3>
                 <span class="kv">קהילה · לייבים · תוכן שוטף</span>
-                <p>הבית של הסוחרים הרציניים. לייבים שבועיים, חדרי שיח, ליווי שוטף ומסגרת שמכריחה אותך להתמיד.</p>
-                <span class="go2">להצטרפות למועדון
+                <p>הבית של הסוחרים הרציניים. לייבים שבועיים, חדרי שיח, ליווי שוטף ומסגרת שמחזיקה אותך בקו.</p>
+                <span class="go">להצטרפות למועדון
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
                 </span>
             </a>
 
-            <a href="hadar-hamatzav/" class="card">
-                <span class="badge">מקומות מוגבלים</span>
-                <div class="icon-wrap">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/><path d="M8 21h8"/><path d="M12 18v3"/></svg>
-                </div>
+            <a href="hadar-hamatzav/" class="tile">
+                <div class="tile-top"><span class="idx">02</span><span class="tag">מקומות מוגבלים</span></div>
                 <h3>חדר מצב</h3>
                 <span class="kv">מפגש פיזי · מאסטרמיינד</span>
                 <p>חדר סגור לקבוצת סוחרים. עבודה פרונטלית על התיק, על הראש ועל ההחלטות שלך — פנים אל פנים.</p>
-                <span class="go2">לפרטים והרשמה
+                <span class="go">לפרטים והרשמה
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
                 </span>
             </a>
 
-            <a href="course.html" class="card">
-                <span class="badge">קורס דיגיטלי</span>
-                <div class="icon-wrap">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                </div>
+            <a href="course.html" class="tile">
+                <div class="tile-top"><span class="idx">03</span><span class="tag">קורס דיגיטלי</span></div>
                 <h3>עסק או עסקה</h3>
                 <span class="kv">בניית תוכנית עסקית</span>
-                <p>הקורס שבו אתה בונה את התוכנית העסקית שלך כסוחר — מהמספרים ועד הראש. צעד־צעד, בקצב שלך.</p>
-                <span class="go2">לפרטי הקורס
+                <p>הקורס שבו אתה בונה את התוכנית העסקית שלך כסוחר — מהמספרים ועד הראש. בקצב שלך.</p>
+                <span class="go">לפרטי הקורס
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
                 </span>
             </a>
         </main>
 
-        <section class="journal">
-            <div class="journal-head">
-                <h2>יומן מסחר — הכלים שאני ממליץ</h2>
-                <p>סוחר בלי יומן הוא מהמר עם זיכרון קצר. אלה שתי המערכות שאני ממליץ עליהן לתיעוד וניתוח — עם קופון.</p>
-            </div>
-            <div class="journal-grid">
-                <div class="tool">
-                    <h3>Tradezella</h3>
-                    <p class="desc">המערכת המקיפה לניתוח, סטטיסטיקה ותיוג עסקאות. רואה בדיוק מה עובד לך ומה מפיל אותך.</p>
-                    <div class="coupon">
-                        <div><div class="code">PCQF</div><div class="disc">20% הנחה לחודש הראשון</div></div>
-                        <button class="copy" data-code="PCQF" type="button">העתק</button>
-                    </div>
-                    <a href="https://tradezella.com/?fpr=matan82" target="_blank" rel="noopener noreferrer" class="go2">למערכת
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                    </a>
+        <div class="section-label"><span>יומן מסחר</span></div>
+        <p class="journal-intro">סוחר בלי יומן הוא מהמר עם זיכרון קצר. אלה שתי המערכות שאני ממליץ עליהן לתיעוד וניתוח — עם קופון.</p>
+        <div class="journal-grid">
+            <div class="tool">
+                <h3>Tradezella</h3>
+                <p class="desc">המערכת המקיפה לניתוח, סטטיסטיקה ותיוג עסקאות. רואה בדיוק מה עובד לך ומה מפיל אותך.</p>
+                <div class="coupon">
+                    <div><div class="code">PCQF</div><div class="disc">20% הנחה לחודש הראשון</div></div>
+                    <button class="copy" data-code="PCQF" type="button">העתק</button>
                 </div>
-                <div class="tool">
-                    <h3>TradeReport</h3>
-                    <p class="desc">יומן מסחר נקי ופשוט לתיעוד יומיומי, בעברית. מתאים למי שרוצה משהו ישיר, בלי עומס.</p>
-                    <div class="coupon">
-                        <div><div class="code">15%</div><div class="disc">הנחה על כל מנוי · מוחלת אוטומטית דרך הקישור</div></div>
-                    </div>
-                    <a href="https://app.tradereport.co.il/auth/register?ref=mmt15" target="_blank" rel="noopener noreferrer" class="go2">להרשמה עם ההנחה
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                    </a>
-                </div>
+                <a href="https://tradezella.com/?fpr=matan82" target="_blank" rel="noopener noreferrer" class="go">למערכת
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                </a>
             </div>
-        </section>
+            <div class="tool">
+                <h3>TradeReport</h3>
+                <p class="desc">יומן מסחר נקי ופשוט לתיעוד יומיומי, בעברית. מתאים למי שרוצה משהו ישיר, בלי עומס.</p>
+                <div class="coupon">
+                    <div><div class="code">15%</div><div class="disc">הנחה על כל מנוי · מוחלת אוטומטית דרך הקישור</div></div>
+                </div>
+                <a href="https://app.tradereport.co.il/auth/register?ref=mmt15" target="_blank" rel="noopener noreferrer" class="go">להרשמה עם ההנחה
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                </a>
+            </div>
+        </div>
 
         <div class="soon">
-            <strong>סדנאות עומק</strong> <span>— הסדנה הבאה עוד לא נפתחה. </span><a href="newsletter.html">הישאר מעודכן דרך הניוזלטר ←</a>
+            <strong>סדנאות עומק</strong><span>— הסדנה הבאה עוד לא נפתחה.</span><a href="newsletter.html">הישאר מעודכן דרך הניוזלטר ←</a>
         </div>
 
         <footer class="foot">
@@ -241,12 +176,10 @@
         document.querySelectorAll('.copy').forEach(function (btn) {
             btn.setAttribute('aria-label', 'העתק קוד קופון');
             btn.addEventListener('click', function () {
-                var code = btn.dataset.code;
-                if (!code) return;
+                var code = btn.dataset.code; if (!code) return;
                 if (navigator.clipboard) { navigator.clipboard.writeText(code); }
-                var original = btn.textContent;
-                btn.textContent = 'הועתק ✓';
-                setTimeout(function () { btn.textContent = original; }, 1500);
+                var o = btn.textContent; btn.textContent = 'הועתק ✓';
+                setTimeout(function () { btn.textContent = o; }, 1500);
             });
         });
     </script>

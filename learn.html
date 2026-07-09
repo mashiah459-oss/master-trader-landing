@@ -11,102 +11,59 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --ink:#06070A; --panel:#0c0e13;
-            --red:#E4322A; --red-bright:#FF4A3D; --red-deep:#B01E17;
-            --red-glow:rgba(228,50,42,.40); --red-dim:rgba(228,50,42,.14); --line:rgba(228,50,42,.16);
-            --text:#EDF1F6; --text-dim:#98A2B0; --text-mute:#5c6675;
-            --go:#3DDC7E; --go-dim:rgba(61,220,126,.10); --go-line:rgba(61,220,126,.30);
+        :root{
+            --ink:#08090c; --panel:rgba(255,255,255,.022); --panel-h:rgba(255,255,255,.04);
+            --text:#F4F5F7; --dim:#9aa0aa; --mute:#5b616b;
+            --accent:#E4322A; --accent-bright:#FF4A3D; --line:rgba(244,245,247,.11);
+            --go:#3DDC7E; --go-line:rgba(61,220,126,.32);
         }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            font-family:'Heebo',sans-serif; background:var(--ink); color:var(--text);
-            min-height:100dvh; overflow-x:hidden; -webkit-font-smoothing:antialiased; position:relative;
-        }
-        .mono { font-family:'Space Mono',monospace; }
-        .bg-radar { position:fixed; inset:0; z-index:0; pointer-events:none; display:flex; align-items:flex-start; justify-content:center; }
-        .bg-radar svg { width:min(120vh,120vw); height:min(120vh,120vw); opacity:.4; margin-top:-30vh; }
-        .sweep { position:fixed; inset:0; z-index:0; pointer-events:none;
-            background:conic-gradient(from 205deg at 70% 12%, rgba(228,50,42,.16), rgba(228,50,42,.02) 22%, transparent 42%); }
-        .scan { position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.5;
-            background:repeating-linear-gradient(0deg, rgba(255,255,255,.022) 0 1px, transparent 1px 3px); }
-        .vignette { position:fixed; inset:0; z-index:1; pointer-events:none;
-            background:radial-gradient(120% 80% at 50% 0%, transparent 45%, rgba(0,0,0,.55) 100%); }
-        .wrap { position:relative; z-index:2; max-width:1080px; margin:0 auto; padding:clamp(20px,4vw,40px) clamp(18px,4vw,32px) 60px; }
+        *{ margin:0; padding:0; box-sizing:border-box; }
+        body{ font-family:'Heebo',sans-serif; background:var(--ink); color:var(--text); min-height:100dvh; overflow-x:hidden; -webkit-font-smoothing:antialiased; position:relative; }
+        .mono{ font-family:'Space Mono',monospace; }
+        .grain{ position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+        .vignette{ position:fixed; inset:0; z-index:0; pointer-events:none;
+            background:radial-gradient(130% 90% at 50% -10%, rgba(61,220,126,.04), transparent 45%), radial-gradient(120% 80% at 50% 100%, rgba(0,0,0,.5), transparent 60%); }
+        .wrap{ position:relative; z-index:2; max-width:1120px; margin:0 auto; padding:clamp(20px,4vw,40px) clamp(18px,4vw,36px) 60px; }
 
-        .nav { display:flex; align-items:center; justify-content:space-between; margin-bottom:clamp(28px,6vh,56px); }
-        .back { display:inline-flex; align-items:center; gap:8px; color:var(--text-dim); text-decoration:none; font-size:14px; font-weight:600; transition:color .3s; }
-        .back:hover { color:var(--red); }
-        .back svg { width:16px; height:16px; transition:transform .3s; }
-        .back:hover svg { transform:translateX(5px); }
-        .brand { font-family:'Space Mono',monospace; letter-spacing:4px; font-size:11px; font-weight:700; color:var(--text-dim); }
-        .brand b { color:var(--red); }
+        .nav{ display:flex; align-items:center; justify-content:space-between; margin-bottom:clamp(30px,7vh,64px); }
+        .back{ display:inline-flex; align-items:center; gap:8px; color:var(--dim); text-decoration:none; font-size:13px; font-family:'Space Mono',monospace; letter-spacing:1px; transition:color .3s; }
+        .back:hover{ color:var(--accent); } .back svg{ width:15px; height:15px; transition:transform .3s; } .back:hover svg{ transform:translateX(5px); }
+        .brand{ font-family:'Space Mono',monospace; letter-spacing:4px; font-size:12px; font-weight:700; } .brand b{ color:var(--accent); }
 
-        .head { text-align:center; margin-bottom:clamp(30px,6vh,54px); }
-        .head .tag {
-            display:inline-flex; align-items:center; gap:8px; font-family:'Space Mono',monospace; letter-spacing:3px; font-size:11px; font-weight:700;
-            color:var(--go); border:1px solid var(--go-line); border-radius:6px; padding:6px 14px;
-            background:var(--go-dim); margin-bottom:20px; text-transform:uppercase;
-        }
-        .head .tag .led { width:7px; height:7px; border-radius:50%; background:var(--go); box-shadow:0 0 10px var(--go); }
-        .head h1 { font-size:clamp(30px,6vw,52px); font-weight:900; letter-spacing:-1px; line-height:1.1; }
-        .head h1 .accent { color:var(--red); }
-        .head p { margin-top:16px; color:var(--text-dim); font-size:clamp(15px,2vw,18px); max-width:52ch; margin-inline:auto; line-height:1.6; }
+        .head{ margin-bottom:clamp(34px,7vh,60px); max-width:760px; }
+        .eyebrow{ display:inline-flex; align-items:center; gap:9px; font-family:'Space Mono',monospace; letter-spacing:3px; font-size:12px; color:var(--go); }
+        .eyebrow .led{ width:7px; height:7px; border-radius:50%; background:var(--go); box-shadow:0 0 10px var(--go); }
+        .head h1{ margin-top:16px; font-size:clamp(40px,7vw,76px); font-weight:900; letter-spacing:-1.5px; line-height:.98; }
+        .head h1 .out{ color:transparent; -webkit-text-stroke:1.2px rgba(244,245,247,.8); }
+        .rule{ width:96px; height:3px; background:var(--go); margin:24px 0 0; box-shadow:0 0 20px 1px rgba(61,220,126,.4); }
+        .head p{ margin-top:22px; color:var(--dim); font-size:clamp(15px,1.7vw,18px); line-height:1.65; max-width:56ch; }
 
-        .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(14px,2vw,20px); }
-        .card {
-            position:relative; display:flex; flex-direction:column; padding:clamp(24px,3vw,34px);
-            border:1px solid var(--line); border-radius:14px; text-decoration:none; color:var(--text); overflow:hidden;
-            background:linear-gradient(160deg, rgba(228,50,42,.045), rgba(255,255,255,0.008));
-            transition:transform .4s cubic-bezier(.2,.8,.2,1), border-color .4s, box-shadow .5s;
-            opacity:0; transform:translateY(20px); animation:rise .8s forwards cubic-bezier(.2,.8,.2,1);
-        }
-        .card::before { content:""; position:absolute; top:0; right:0; left:0; height:2px; background:var(--red); opacity:.35; }
-        .card:nth-child(1){animation-delay:.1s} .card:nth-child(2){animation-delay:.2s}
-        .card:nth-child(3){animation-delay:.3s} .card:nth-child(4){animation-delay:.4s}
-        .card::after { content:""; position:absolute; inset:0; background:radial-gradient(120% 100% at 50% 120%, var(--red-dim), transparent 55%); opacity:0; transition:opacity .5s; }
-        .card > * { position:relative; z-index:1; }
-        .card:hover { transform:translateY(-6px); border-color:var(--red); box-shadow:0 26px 70px -40px var(--red-glow); }
-        .card:hover::after { opacity:1; }
-        .card:focus-visible { outline:2px solid var(--red); outline-offset:3px; }
+        .grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(12px,1.6vw,18px); }
+        .tile{ position:relative; display:flex; flex-direction:column; padding:clamp(24px,2.4vw,30px);
+            border:1px solid var(--line); border-radius:12px; text-decoration:none; color:var(--text); overflow:hidden;
+            background:var(--panel); transition:border-color .35s, background .35s, transform .35s; min-height:210px; }
+        .tile:hover{ border-color:var(--go-line); background:var(--panel-h); transform:translateY(-5px); }
+        .tile:focus-visible{ outline:2px solid var(--go); outline-offset:3px; }
+        .tile-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:auto; }
+        .idx{ font-family:'Space Mono',monospace; font-size:13px; font-weight:700; color:var(--dim); }
+        .tag{ font-family:'Space Mono',monospace; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--go); border:1px solid var(--go-line); border-radius:4px; padding:3px 9px; }
+        .tile h3{ margin-top:26px; font-size:clamp(20px,2.3vw,24px); font-weight:800; letter-spacing:-.4px; }
+        .tile .kv{ font-family:'Space Mono',monospace; font-size:12px; color:var(--mute); margin-top:6px; }
+        .tile p{ margin-top:12px; color:var(--dim); font-size:14px; line-height:1.6; }
+        .go{ display:inline-flex; align-items:center; gap:8px; margin-top:20px; color:var(--text); font-weight:700; font-size:14px; }
+        .go svg{ width:14px; height:14px; transition:transform .35s; color:var(--go); }
+        .tile:hover .go svg{ transform:translateX(-5px); }
 
-        .icon-wrap {
-            width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center;
-            background:var(--red-dim); border:1px solid rgba(228,50,42,.25); margin-bottom:20px;
-        }
-        .icon-wrap svg { width:26px; height:26px; color:var(--red-bright); }
-        .badge {
-            position:absolute; top:clamp(20px,3vw,28px); left:clamp(20px,3vw,28px);
-            font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; font-weight:700; text-transform:uppercase;
-            color:var(--go); background:var(--go-dim); border:1px solid var(--go-line); border-radius:5px; padding:4px 10px;
-        }
-        .card h3 { font-size:clamp(19px,2.4vw,23px); font-weight:800; letter-spacing:-0.3px; }
-        .card .kv { color:var(--text-mute); font-size:13px; font-weight:700; margin-top:4px; font-family:'Space Mono',monospace; letter-spacing:.3px; }
-        .card p { margin-top:12px; color:var(--text-dim); font-size:14.5px; line-height:1.6; flex:1; }
-        .go2 { display:inline-flex; align-items:center; gap:8px; margin-top:22px; color:var(--red-bright); font-weight:700; font-size:14.5px; }
-        .go2 svg { width:15px; height:15px; transition:transform .35s; }
-        .card:hover .go2 svg { transform:translateX(-5px); }
+        .foot{ text-align:center; margin-top:clamp(44px,7vh,68px); color:var(--mute); font-size:12px; font-family:'Space Mono',monospace; letter-spacing:1px; }
+        .foot a{ color:var(--dim); text-decoration:none; } .foot a:hover{ color:var(--accent); }
 
-        .foot { text-align:center; margin-top:clamp(40px,7vh,64px); color:var(--text-mute); font-size:13px; font-family:'Space Mono',monospace; }
-        .foot a { color:var(--text-dim); text-decoration:none; }
-        .foot a:hover { color:var(--red); }
-
-        @keyframes rise { to { opacity:1; transform:none; } }
-        @media (max-width:680px){ .grid{ grid-template-columns:1fr; } }
-        @media (prefers-reduced-motion:reduce){ .card{ animation:none; opacity:1; transform:none; } * { transition:none !important; } }
+        @media (max-width:680px){ .grid{ grid-template-columns:1fr; } .tile{ min-height:auto; } }
     </style>
 </head>
 <body>
-    <div class="bg-radar" aria-hidden="true">
-        <svg viewBox="0 0 400 400" fill="none" stroke="#E4322A" stroke-width="0.6">
-            <circle cx="200" cy="200" r="196" stroke-opacity="0.18"/><circle cx="200" cy="200" r="150" stroke-opacity="0.24"/>
-            <circle cx="200" cy="200" r="104" stroke-opacity="0.28"/><circle cx="200" cy="200" r="58" stroke-opacity="0.36"/>
-            <line x1="4" y1="200" x2="396" y2="200" stroke-opacity="0.14"/><line x1="200" y1="4" x2="200" y2="396" stroke-opacity="0.14"/>
-        </svg>
-    </div>
-    <div class="sweep" aria-hidden="true"></div>
-    <div class="scan" aria-hidden="true"></div>
     <div class="vignette" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
 
     <div class="wrap">
         <nav class="nav">
@@ -118,60 +75,49 @@
         </nav>
 
         <header class="head">
-            <span class="tag"><span class="led"></span>הכל חינם</span>
-            <h1>ללמוד מסחר <span class="accent">מ-0</span></h1>
+            <div class="eyebrow"><span class="led"></span>הכל חינם</div>
+            <h1><span class="out">ללמוד מסחר</span><br>מ-0.</h1>
+            <div class="rule"></div>
             <p>אין צורך לשלם כדי להתחיל. כל המקומות שבהם אני מלמד את הבסיס — פתוחים, כאן, עכשיו.</p>
         </header>
 
         <main class="grid">
-            <a href="https://www.youtube.com/@matanmashiah957" target="_blank" rel="noopener noreferrer" class="card">
-                <span class="badge">חינם</span>
-                <div class="icon-wrap">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.8-.5-5.6a2.9 2.9 0 0 0-2-2C18.7 4 12 4 12 4s-6.7 0-8.5.4a2.9 2.9 0 0 0-2 2C1 8.2 1 12 1 12s0 3.8.5 5.6a2.9 2.9 0 0 0 2 2C5.3 20 12 20 12 20s6.7 0 8.5-.4a2.9 2.9 0 0 0 2-2C23 15.8 23 12 23 12zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
-                </div>
+            <a href="https://www.youtube.com/@matanmashiah957" target="_blank" rel="noopener noreferrer" class="tile">
+                <div class="tile-top"><span class="idx">01</span><span class="tag">חינם</span></div>
                 <h3>ערוץ היוטיוב</h3>
                 <span class="kv">@matanmashiah957</span>
                 <p>שיעורים, ניתוחי שוק ולייבים. המקום להבין איך מסחר יומי באמת עובד, צעד אחרי צעד.</p>
-                <span class="go2">לצפייה בערוץ
+                <span class="go">לצפייה בערוץ
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
                 </span>
             </a>
 
-            <a href="community.html" class="card">
-                <span class="badge">חינם</span>
-                <div class="icon-wrap">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                </div>
+            <a href="community.html" class="tile">
+                <div class="tile-top"><span class="idx">02</span><span class="tag">חינם</span></div>
                 <h3>הקהילה החינמית</h3>
                 <span class="kv">משפחת משיח</span>
                 <p>קבוצת וואטסאפ עם סוחרים שנמצאים בדיוק איפה שאתה. שיח יומי, שאלות, ותוכן שוטף בלי עלות.</p>
-                <span class="go2">להצטרפות לקהילה
+                <span class="go">להצטרפות לקהילה
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
                 </span>
             </a>
 
-            <a href="newsletter.html" class="card">
-                <span class="badge">חינם</span>
-                <div class="icon-wrap">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
-                </div>
+            <a href="newsletter.html" class="tile">
+                <div class="tile-top"><span class="idx">03</span><span class="tag">חינם</span></div>
                 <h3>הניוזלטר</h3>
                 <span class="kv">מייל שבועי</span>
                 <p>פעם בשבוע, ישר למייל: לקח אחד מהשוק, זווית מחשבה, ומה שחשוב לשים לב אליו בשבוע הקרוב.</p>
-                <span class="go2">להרשמה לניוזלטר
+                <span class="go">להרשמה לניוזלטר
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
                 </span>
             </a>
 
-            <a href="https://www.instagram.com/matan.mashiah1" target="_blank" rel="noopener noreferrer" class="card">
-                <span class="badge">חינם</span>
-                <div class="icon-wrap">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
-                </div>
+            <a href="https://www.instagram.com/matan.mashiah1" target="_blank" rel="noopener noreferrer" class="tile">
+                <div class="tile-top"><span class="idx">04</span><span class="tag">חינם</span></div>
                 <h3>אינסטגרם</h3>
                 <span class="kv">@matan.mashiah1</span>
                 <p>תוכן יומי קצר, זוויות מהשוק ומאחורי הקלעים של החיים כסוחר. עקוב כדי להישאר מחובר.</p>
-                <span class="go2">למעקב באינסטגרם
+                <span class="go">למעקב באינסטגרם
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
                 </span>
             </a>
