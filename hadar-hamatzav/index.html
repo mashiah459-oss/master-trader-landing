@@ -106,6 +106,10 @@
   .proofrow .stat{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px; text-align:center; }
   .proofrow .stat b{ display:block; font-family:'Space Mono',monospace; color:var(--accent-bright); font-size:22px; }
   .proofrow .stat span{ color:var(--dim); font-size:12px; letter-spacing:.5px; }
+  .paystrip{ margin-top:24px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .payshot{ margin:0; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#05060a; }
+  .payshot img{ width:100%; height:auto; display:block; }
+  .paycap{ text-align:center; color:var(--mute); font-size:12px; margin-top:12px; line-height:1.5; }
   .proofwall{ margin-top:30px; column-count:2; column-gap:16px; }
   .pshot{ break-inside:avoid; margin:0 0 16px; background:var(--panel); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
   .pshot img{ width:100%; height:auto; display:block; border-bottom:1px solid var(--line); }
@@ -113,12 +117,17 @@
   .pshot figcaption b{ color:#fff; font-size:15px; }
   .pshot figcaption span{ display:block; color:var(--dim); font-size:13px; margin-top:5px; line-height:1.55; }
   .disclaimer{ text-align:center; color:var(--mute); font-size:12px; margin-top:22px; line-height:1.6; max-width:640px; margin-inline:auto; }
+  .prequote{ max-width:520px; margin:28px auto 0; text-align:center; color:#eef1f5; font-size:18px; line-height:1.55; font-style:italic; }
+  .prequote span{ display:block; font-style:normal; font-family:'Space Mono',monospace; font-size:12px; color:var(--dim); margin-top:10px; letter-spacing:1px; }
+  .steps{ text-align:center; font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.5px; color:var(--dim); margin:18px auto 0; }
+  .steps b{ color:var(--accent-bright); }
 
   @media(max-width:560px){
     .dates{ grid-template-columns:repeat(2,1fr); }
     .about-grid{ grid-template-columns:1fr; text-align:center; }
     .about-photo{ margin:0 auto; }
     .proofwall{ column-count:1; }
+    .paystrip{ grid-template-columns:1fr; }
     h2{ font-size:clamp(26px,7vw,34px); word-break:break-word; }
     .wordmark{ font-size:clamp(64px,22vw,120px); }
     .hero-photo{ background-position:center 22%; }
@@ -137,9 +146,9 @@
     <div class="eyebrow">קבוצה פיזית סגורה · 20 מקומות</div>
     <div class="wordmark">חדר מצב</div>
     <div class="rule"></div>
-    <div class="promise">הופכים מסחר תנודתי לרווחיות עקבית.<br>מאסטרמיינד פיזי סגור של 20 סוחרים.</div>
+    <div class="promise">יודע לנתח גרף, אבל עדיין מחזיר את הרווח לשוק?<br>5 מפגשים פרונטליים שהופכים את המסחר שלך מהימור רגשי לעסק עם מערכת.</div>
     <div class="datechip"><span class="lbl">המחזור נפתח</span><span class="d">26.07</span></div>
-    <div class="subhook">חמישה מפגשים ופגישה אישית, שבהם עוברים על כל עסקה אמיתית שלך, אחת אחת. יוצאים עם תוכנית מסחר מסודרת שיודעת מה לעשות בכל רגע, גם כשקשה. עד שהמסחר מפסיק להיות הימור ומתחיל להתנהג כמו עסק.</div>
+    <div class="subhook">מאסטרמיינד פיזי סגור של 20 סוחרים. אתה מביא את העסקאות האמיתיות שלך לשולחן, ואנחנו בונים לך מערכת שמחזיקה.</div>
     <div class="cta-row">
       <a href="#register" class="btn">אני רוצה מקום בחדר ←</a>
       <a href="#gap" class="btn ghost">איך זה עובד</a>
@@ -190,6 +199,11 @@
       <div class="stat"><b>4+ שנים</b><span>מלמד מסחר כעסק</span></div>
       <div class="stat"><b>מאות</b><span>סוחרים שכבר עברו איתו</span></div>
     </div>
+    <div class="paystrip">
+      <figure class="payshot"><img src="../images/IMG_5749.jpg" alt="Topstep + Take Profit Trader — ימי רווח ורצף 11 ימים" loading="lazy"></figure>
+      <figure class="payshot"><img src="../images/IMG_5757.jpg" alt="משיכות בסך 27,014$ ב-30 יום, 13 משיכות" loading="lazy"></figure>
+    </div>
+    <p class="paycap">משיכות אמיתיות מחשבונות ממומן (Topstep / Take Profit Trader). תוצאות אישיות, מסחר כרוך בסיכון.</p>
   </div>
 </section>
 
@@ -290,6 +304,8 @@
     <div class="kick">שמירת מקום</div>
     <h2>20 מקומות. זהו.</h2>
     <p class="sub">המחזור מתחיל ב-26.07, וההרשמה נסגרת כשהחדר מתמלא. ההצטרפות היא דרך שיחת התאמה קצרה עם מתן, בלי התחייבות: עוברים יחד על איפה אתה תקוע היום, ומתן אומר לך בכנות אם החדר יזיז לך את המחט או לא. סוגרים מקום ומשלמים רק אחרי ששניכם ראיתם שזה מתאים. אתה לא זורק כסף על משהו שאולי לא בשבילך.</p>
+    <blockquote class="prequote">"עוד יומיים ירוקים מאז המפגש. היום כבר מבקש משיכה."<span>גלעד · מהחדר</span></blockquote>
+    <div class="steps">משאירים פרטים <b>←</b> שיחה קצרה <b>←</b> רק אז סוגרים מקום ומשלמים</div>
     <form class="formbox" id="form">
       <div class="price">השקעה במחזור המלא: <b>₪2,470</b><br><span style="font-size:12px;color:var(--mute)">5 מפגשים · 15 שעות פרונטליות · כל עסקה שלך נבדקת אישית</span></div>
       <label>שם מלא</label>
@@ -298,7 +314,7 @@
       <input type="tel" name="phone" required placeholder="05x-xxxxxxx">
       <label>אימייל</label>
       <input type="email" name="email" required placeholder="you@email.com">
-      <button type="submit" class="btn">אני רוצה מקום בחדר ←</button>
+      <button type="submit" class="btn">אני רוצה שיחת התאמה ←</button>
       <div class="fineprint">קדימות לחברי הקהילה · 20 מקומות בלבד. השארת פרטים אינה מחייבת — קודם שיחת התאמה, ורק אז סוגרים מקום.</div>
     </form>
     <div class="formbox hide" id="done">
