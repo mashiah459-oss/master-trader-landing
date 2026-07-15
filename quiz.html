@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>שאלון התאמה — מועדון הסוחר המתמיד</title>
-<meta name="description" content="בוא נראה אם המועדון מתאים לך. 7 שאלות קצרות.">
+<title>אבחון: מה שובר לך את המסחר?</title>
+<meta name="description" content="6 שאלות שיגלו את הדליפה שמוציאה לך את הרווחים מהיד — ומה הצעד הראשון לתקן אותה.">
 <!-- Meta Pixel -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -84,10 +84,12 @@ fbq('init','3092602027607133');fbq('track','PageView');
     box-shadow:0 12px 32px -8px rgba(79,195,255,.55);transition:.2s}
   .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -8px rgba(79,195,255,.7)}
   .btn:active{transform:translateY(0)}
-  .video-wrap{width:100%;aspect-ratio:9/16;max-height:52vh;border-radius:18px;overflow:hidden;
-    border:1px solid var(--line);margin-bottom:24px;background:#000;display:flex;align-items:center;
-    justify-content:center;box-shadow:0 20px 50px -20px rgba(79,195,255,.4)}
-  .video-wrap video,.video-wrap iframe{width:100%;height:100%;object-fit:cover;border:0}
+  .leak-badge{display:inline-block;background:rgba(79,195,255,.12);border:1px solid var(--line);
+    color:var(--azure-bright);font-weight:700;font-size:14px;letter-spacing:1px;
+    padding:7px 16px;border-radius:30px;margin-bottom:18px}
+  .action-box{background:var(--glass);border:1px solid var(--line);border-radius:14px;
+    padding:16px 18px;margin:6px 0 22px;text-align:right;font-size:15.5px;line-height:1.6}
+  .action-box b{color:var(--azure-bright)}
   .ph{color:var(--muted);font-size:14px;padding:20px;text-align:center}
   .step-n{position:fixed;top:18px;right:20px;color:var(--azure);font-size:13px;font-weight:700;
     letter-spacing:2px;z-index:30;opacity:.85}
@@ -116,14 +118,14 @@ const SOURCE = {
   cre: (Q.get('cre')||'').toLowerCase(),   // creative concept -> matched intro
   fbclid: Q.get('fbclid') || ''
 };
-// per-creative opening (message match): bridges each ad's metaphor straight to trading
+// per-creative opening (message match): every ad bridges to the same enemy — "the chase for another strategy"
 const INTROS = {
   puppet: { kicker:'רגע אמת', h1:'מי באמת שולט בעסקאות שלך?',
-            sub:'אם זה הרגש ולא אתה — אתה לא לבד, וזה שביר. בוא נבדוק איפה אתה עומד.' },
+            sub:'אם זה הרגש ולא אתה — יש לזה שם.<br>6 שאלות, ותבין בדיוק מה עוצר אותך.' },
   wheel:  { kicker:'רגע אמת', h1:'תקוע באותו לופ?',
-            sub:'קונה תיק, שורף אותו, מבטיח שהפעם לפי החוקים — ושוב שובר אותם? בוא נבין למה.' },
-  _default: { kicker:'מועדון הסוחר המתמיד', h1:'שאלון התאמה',
-            sub:'כמה שאלות קצרות שיגידו לך בדיוק באיזה שלב המסחר שלך — ומה הצעד הנכון הבא שלך.' },
+            sub:'קונה שיטה, שורף אותה, מבטיח שהפעם לפי החוקים — ושוב.<br>בוא נבין למה, באמת.' },
+  _default: { kicker:'רגע אמת', h1:'למה הרווח לא נשאר אצלך?',
+            sub:'לצדוק בכיוון זה לא אותו דבר כמו להרוויח.<br>6 שאלות, ותבין בדיוק מה עוצר אותך.' },
 };
 const WHOP = "https://whop.com/master-trader-club/";
 function whopUrl(){
@@ -136,97 +138,103 @@ function whopUrl(){
 
 // ====== lead destination (FormSubmit -> email; no PII in repo) ======
 const LEAD_ENDPOINT = "https://formsubmit.co/ajax/mashiah459@gmail.com";
-
-// ====== helpers ======
 const YT = "https://www.youtube.com/@matanmashiah";
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 
-// ====== branching diagnostic flow ======
-// Each option: {l:label, v:value, next:stepId|'lead', track?:'youtube'}
-const STEPS = {
-  trader: { kicker:'נתחיל', q:'קודם כל — אתה כבר סוחר?',
+// ====== the diagnostic: 4 leak archetypes, scored across the questions ======
+// arch keys: chase (המרדף) · emotion (הרגשן) · nostruct (חסר-המבנה) · gambler (המהמר) · '' = healthy
+const QUESTIONS = [
+  { id:'trader', kicker:'נתחיל', q:'קודם כל — אתה כבר סוחר בפועל?',
     opts:[
-      {l:'כן, אני סוחר פעיל', v:'active', next:'happy'},
-      {l:'התחלתי לאחרונה', v:'beginner', next:'happy'},
-      {l:'עדיין לא, אבל בא לי להיכנס', v:'interested', track:'youtube', next:'lead'},
-      {l:'לא ממש, רק מסתכל', v:'curious', track:'youtube', next:'lead'},
+      {l:'כן, אני סוחר פעיל', arch:''},
+      {l:'התחלתי לא מזמן', arch:''},
+      {l:'עדיין לא, רק לומד', arch:'', beginner:true},
     ]},
-  happy: { kicker:'שאלה', q:'אתה מרוצה מהתוצאות שלך במסחר?',
+  { id:'lookback', kicker:'שאלה 1', q:'בשנה האחרונה — מה הכי נכון לגביך?',
     opts:[
-      {l:'כן, רווחי ויציב', v:'profitable', next:'p_live'},
-      {l:'ככה ככה, לא יציב', v:'unstable', next:'why'},
-      {l:'לא, אני בעיקר מפסיד', v:'losing', next:'why'},
+      {l:'החלפתי כמה שיטות. עדיין מחפש את זו שתעבוד', arch:'chase'},
+      {l:'יש לי שיטה. פשוט לא תמיד דבק בה', arch:'nostruct'},
+      {l:'אני נכנס הרבה מהתחושה של הרגע', arch:'emotion'},
+      {l:'אני מגדיל כשאני מרגיש שאני צודק', arch:'gambler'},
     ]},
-  why: { kicker:'תהיה כן עם עצמך', q:'למה לדעתך התוצאות לא מגיעות?',
+  { id:'afterloss', kicker:'שאלה 2', q:'אחרי הפסד — מה קורה לך, באמת?',
     opts:[
-      {l:'אני שובר את החוקים של עצמי', v:'rules', next:'p_live'},
-      {l:'אני נכנס מתוך רגש ו-FOMO', v:'emotion', next:'p_live'},
-      {l:'אני פשוט לא עקבי', v:'consistency', next:'p_live'},
-      {l:'אין לי שיטה או מסגרת ברורה', v:'nosystem', next:'p_live'},
+      {l:'מחפש סטאפ או שיטה אחרת', arch:'chase'},
+      {l:'נכנס לעסקת נקמה כדי להחזיר', arch:'emotion'},
+      {l:'מגדיל את העסקה הבאה כדי להחזיר מהר', arch:'gambler'},
+      {l:'ממשיך לפי התוכנית. בלי לשנות כלום', arch:''},
     ]},
-  p_live: { kicker:'תאר לעצמך', bg:'images/wins-wall.png',
-    q:'לראות סוחר מקצועי ומנוסה סוחר בלייב כל יום — יעזור לך?',
-    sub:'מסחר חי ואמיתי, בלי פילטרים.',
+  { id:'structure', kicker:'שאלה 3', q:'יש לך תוכנית כתובה ויומן שאתה ממלא?',
     opts:[
-      {l:'בטוח שכן', v:'yes', next:'p_loss'},
-      {l:'כן', v:'yes', next:'p_loss'},
-      {l:'אולי', v:'maybe', next:'p_loss'},
+      {l:'לא. אני סוחר לפי זיכרון ותחושה', arch:'nostruct'},
+      {l:'יש תוכנית. יומן — לא ממש', arch:'nostruct'},
+      {l:'יש לי הכל. פשוט לא דבק בזה', arch:'emotion'},
+      {l:'כן, הכל מסודר אצלי', arch:''},
     ]},
-  p_loss: { kicker:'וגם', bg:'images/losses-wall.png',
-    q:'ולראות מנטור שמפסיד בלייב, מנהל סיכון ושומר על הפסדים קטנים — יעזור לך?',
-    sub:'כי מסחר זה עסק, לא קזינו. גם הפסד מנוהל הוא חלק מהמקצוע.',
+  { id:'unplanned', kicker:'שאלה 4', q:'מה הכי מכניס אותך לעסקה שלא תכננת?',
     opts:[
-      {l:'זה בדיוק מה שחסר לי', v:'yes', next:'p_frame'},
-      {l:'כן, חשוב לי', v:'yes', next:'p_frame'},
-      {l:'אולי', v:'maybe', next:'p_frame'},
+      {l:'פחד לפספס את התנועה', arch:'emotion'},
+      {l:'שיטה חדשה שראיתי, והתלהבתי', arch:'chase'},
+      {l:'שעמום. סתם בא לי פעולה', arch:'gambler'},
+      {l:'כמעט לא קורה לי', arch:''},
     ]},
-  p_frame: { kicker:'ועכשיו', bg:'images/reviews-wall.png',
-    q:'מסגרת יומית, ליווי וקהילה של מאות שמחזיקים אותך לחוקים — זה יעזור לך?',
+  { id:'size', kicker:'שאלה 5', q:'גודל העסקה שלך נקבע לפי—',
     opts:[
-      {l:'בדיוק את זה אני צריך', v:'yes', next:'lead'},
-      {l:'כן', v:'yes', next:'lead'},
-      {l:'אולי', v:'maybe', next:'lead'},
+      {l:'אחוז סיכון קבוע. תמיד', arch:''},
+      {l:'כמה שאני בטוח בעסקה', arch:'gambler'},
+      {l:'גדל אחרי הפסד, כדי להחזיר', arch:'gambler'},
+      {l:'האמת? לא באמת מחשב סיכון', arch:'nostruct'},
     ]},
+];
+
+// personalized result per archetype (spoken, short-line, in Matan's voice)
+const RESULTS = {
+  chase: { title:'אתה רודף אחרי השיטה הבאה.',
+    body:'כל שיטה חדשה מרגישה כמו הישועה.<br>אבל אף אחת לא מקבלת מספיק זמן כדי לעבוד.<br>הבעיה שלך היא לא ידע.<br>היא שאתה לא נשאר עם כלום.<br>וזה בדיוק מה שמוציא לך את הרווח מהיד.',
+    action:'השבוע: בחר <b>שיטה אחת</b> שאתה כבר מכיר.<br>תן לה 20 עסקאות מלאות לפני שאתה שופט. בלי לקפוץ.' },
+  emotion: { title:'הרגש מנהל לך את היד.',
+    body:'FOMO. נקמה בשוק. טילט אחרי רצף הפסדים.<br>אתה יודע בדיוק מה נכון לעשות.<br>ברגע האמת מישהו אחר לוחץ על הכפתור.<br>זו לא בעיה של אסטרטגיה.<br>זו שליטה עצמית.',
+    action:'כלל אחד להשבוע:<br>לפני כל כניסה, כתוב במשפט אחד למה.<br><b>אין משפט? אין עסקה.</b>' },
+  nostruct: { title:'אתה סוחר בלי מבנה שמחזיק אותך.',
+    body:'בלי תוכנית כתובה. בלי יומן.<br>כל בוקר מתחיל מאפס,<br>ואתה סומך על הזיכרון והתחושה.<br>בלי מבנה אין איך להשתפר —<br>כי אין לך מה לבדוק.',
+    action:'תתחיל <b>יומן מסחר היום</b>.<br>גם שורה אחת לעסקה:<br>מה ראית, למה נכנסת, מה יצא.' },
+  gambler: { title:'אתה מתייחס למסחר כמו קזינו.',
+    body:'עסקאות שגדלות מהתחושה.<br>סיכון שמשתנה לפי כמה אתה בטוח.<br>הכפלה אחרי הפסד.<br>זה מרגיש כמו ביטחון.<br>זה מה שמוחק חשבונות.<br>מסחר זה עסק, לא רולטה.',
+    action:'קבע <b>סיכון קבוע לעסקה</b> — למשל 1% מהתיק.<br>ואל תחרוג. לא משנה כמה "בטוח" זה מרגיש.' },
 };
 
-// personalized verdict line, keyed by the stated reason (or profitable-grower)
-const PAIN = {
-  rules:'אתה יודע בדיוק מה לעשות — פשוט אין מי שמחזיק אותך לזה. מסגרת עם בקרה יומית משנה את כל המשחק.',
-  emotion:'הבעיה שלך היא לא ידע, היא שליטה עצמית. לייבים יומיים וקהילה הם בדיוק התרופה לרגש.',
-  consistency:'עקביות לא נבנית לבד מול המסך. עם קבוצה ובקרה יומית — היא נבנית כמעט מעצמה.',
-  nosystem:'אתה צריך שיטה אחת ברורה ומישהו שילווה אותך ביישום שלה. בדיוק זה מה שמחכה לך.',
-  profitable:'אתה כבר רווחי — עכשיו האתגר הוא יציבות וצמיחה. קהילה ברמה גבוהה תיקח אותך לשלב הבא.',
-};
-
-const answers = {};
-let track = 'club';
-let path = [];          // stack of question step-ids currently in history
-let leadOpen = false;   // lead gate showing
-let done = false;       // verdict reached
-const STEP_TARGET = 7;
+const answers = {};    // id -> chosen label (for the lead email)
+const picks = {};      // id -> archetype key (scoring is recomputed from this, never mutated incrementally)
+let idx = 0;           // current question index
+let track = 'club';    // becomes archetype or 'youtube' -> stored with the lead
+let leadOpen = false;
+let done = false;
+let beginner = false;
+const STEP_TARGET = QUESTIONS.length + 1;
 const stage = document.getElementById('stage');
 const barI = document.querySelector('#bar > i');
 const stepN = document.querySelector('.step-n');
 const backBtn = document.getElementById('back');
 
 function setProgress(n,label){ barI.style.width = Math.min(100,100*n/STEP_TARGET)+'%'; stepN.textContent = label||''; }
-function updateBack(){ backBtn.style.display = (!done && (leadOpen || path.length>=1)) ? 'block' : 'none'; }
+function updateBack(){ backBtn.style.display = (!done && (leadOpen || idx>0)) ? 'block' : 'none'; }
 
-function go(id){ path.push(id); renderStep(id); }   // advance to a question
-function openLead(){ leadOpen = true; renderLeadGate(); }
-function back(){
-  if(done) return;
-  if(leadOpen){ leadOpen = false; renderStep(path[path.length-1]); return; }  // lead -> last question
-  if(path.length <= 1){ path = []; renderIntro(); return; }                   // first question -> intro
-  path.pop(); const prev = path.pop(); go(prev);                              // step -> previous step
+function topArchetype(){
+  // recompute fresh from picks every time — no incremental state to get out of sync
+  const sc={chase:0,emotion:0,nostruct:0,gambler:0};
+  for(const id in picks){ const a=picks[id]; if(a && sc[a]!=null) sc[a]++; }
+  // tie-break priority: the hero enemy (chase) first, then emotion, nostruct, gambler
+  const order=['chase','emotion','nostruct','gambler'];
+  let best=order[0];
+  for(const k of order){ if(sc[k] > sc[best]) best=k; }
+  return sc[best]>0 ? best : 'nostruct';  // default if all-healthy: structure is the safe first fix
 }
-backBtn.addEventListener('click', back);
 
 function card(html, bg){
   const c=document.createElement('div'); c.className='card';
   const base = bg ? `<div class="bg"></div><div class="bg-scrim"></div>` : `<div class="gradient"></div>`;
   c.innerHTML = base + html;
-  if(bg) c.querySelector('.bg').style.backgroundImage = `url("${bg}")`; // bg is a static asset path
+  if(bg) c.querySelector('.bg').style.backgroundImage = `url("${bg}")`;
   stage.appendChild(c);
   requestAnimationFrame(()=>{ document.querySelectorAll('.card.active').forEach(e=>e.classList.remove('active'));
     requestAnimationFrame(()=>c.classList.add('active')); });
@@ -235,22 +243,24 @@ function card(html, bg){
 }
 
 function renderIntro(){
-  done = false; leadOpen = false; path = [];
+  done=false; leadOpen=false; idx=0; beginner=false;
+  for(const k in picks) delete picks[k];
   setProgress(0,''); updateBack();
   const it = INTROS[SOURCE.cre] || INTROS._default;
   const c = card(`<div class="inner">
       <div class="kicker">${it.kicker}</div>
       <h1>${it.h1}</h1>
       <div class="sub">${it.sub}</div>
-      <button class="btn" id="start">התחל ←</button>
+      <button class="btn" id="start">בוא נראה ←</button>
       <div class="small">פחות מדקה. בלי התחייבות.</div>
     </div>`);
-  c.querySelector('#start').addEventListener('click',()=>go('trader'));
+  c.querySelector('#start').addEventListener('click',()=>renderQuestion(0));
 }
 
-function renderStep(id){
-  const s = STEPS[id];
-  setProgress(path.length, String(path.length)); updateBack();
+function renderQuestion(i){
+  idx=i;
+  const s=QUESTIONS[i];
+  setProgress(i, String(i+1)+'/'+QUESTIONS.length); updateBack();
   const c = card(`<div class="inner">
       <div class="kicker">${s.kicker}</div>
       <h2>${s.q}</h2>${s.sub?`<div class="sub">${s.sub}</div>`:''}
@@ -258,27 +268,42 @@ function renderStep(id){
     </div>`, s.bg);
   const wrap = c.querySelector('.answers');
   s.opts.forEach(o=>{
-    const b=document.createElement('button'); b.className='opt'; b.textContent=o.l;   // XSS-safe
+    const b=document.createElement('button'); b.className='opt'; b.textContent=o.l;  // XSS-safe
     b.addEventListener('click',()=>{
-      answers[id]=o.v; if(o.track) track=o.track;
-      if(o.next==='lead') openLead(); else go(o.next);
+      answers[s.id]=o.l; picks[s.id]=o.arch;
+      if(o.beginner){ beginner=true; track='youtube'; openLead(); return; }
+      beginner=false;
+      if(i+1 < QUESTIONS.length) renderQuestion(i+1);
+      else { track = topArchetype(); openLead(); }
     });
     wrap.appendChild(b);
   });
 }
 
+function openLead(){ leadOpen=true; renderLeadGate(); }
+
+function back(){
+  if(done) return;
+  // scoring is recomputed from picks at the end, so navigating back needs no score bookkeeping;
+  // re-answering simply overwrites picks[id].
+  if(leadOpen){ leadOpen=false; renderQuestion(idx); return; }
+  if(idx<=0){ renderIntro(); return; }
+  renderQuestion(idx-1);
+}
+backBtn.addEventListener('click', back);
+
 function renderLeadGate(){
   setProgress(STEP_TARGET-0.5,''); updateBack();
   const c = card(`<div class="inner">
-      <div class="kicker">כמעט סיימנו</div>
-      <h2>הכנו לך הבחנה אישית.</h2>
-      <div class="sub">לאן לשלוח לך אותה? (וגם נשמור לך את הגישה)</div>
+      <div class="kicker">רגע אחרון</div>
+      <h2>סיימת. יש לי בשבילך תשובה.</h2>
+      <div class="sub">לאן לשלוח לך אותה — עם הצעד הראשון לתקן?</div>
       <input class="field" id="lead-name" placeholder="השם שלך" autocomplete="given-name">
       <input class="field" id="lead-phone" placeholder="טלפון (וואטסאפ)" inputmode="tel" autocomplete="tel">
-      <input class="field" id="lead-email" placeholder="אימייל (לקבלת ההבחנה והתוכן)" inputmode="email" autocomplete="email">
+      <input class="field" id="lead-email" placeholder="אימייל (לקבלת האבחון והתוכן)" inputmode="email" autocomplete="email">
       <label class="consent"><input type="checkbox" id="lead-consent" checked>
         <span>אישור קבלת תוכן שמקדם אותך ואת המסחר שלך (אפשר לבטל בכל עת)</span></label>
-      <button class="btn" id="lead-go">לקבלת ההבחנה ←</button>
+      <button class="btn" id="lead-go">לקבל את התשובה ←</button>
       <div class="small">הפרטים נשמרים אצלנו במערכת בלבד. לא ספאם.</div>
     </div>`);
   c.querySelector('#lead-go').addEventListener('click',submitLead);
@@ -291,28 +316,27 @@ function submitLead(){
   const consent=document.getElementById('lead-consent').checked;
   if(name.length<2 || phone.replace(/\D/g,'').length<9){ alert('מלא שם וטלפון תקין'); return; }
   if(email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ alert('כתובת אימייל לא תקינה'); return; }
-  // shared event_id so the browser Lead + the server-side CAPI Lead dedupe (counted once)
   const eid='L_'+Date.now()+'_'+Math.floor(Math.random()*1e6);
   if(window.fbq) fbq('track','Lead',{},{eventID:eid});
-  const clean=s=>String(s||'').replace(/[~|\r\n\t]/g,' ').trim();   // strip field-delimiters only (keep @ for emails)
+  const clean=s=>String(s||'').replace(/[~|\r\n\t]/g,' ').trim();
   const leadLine='@@Q@@'+[clean(email)||'-',clean(name),clean(phone),consent?'1':'0',track,
                           clean(SOURCE.utm_content)||'-',clean(SOURCE.fbclid)||'-',eid].join('~')+'@@/Q@@';
   const payload={ _subject:'ליד חדש משאלון המועדון', name, phone, email,
-                  'אישור דיוור':consent?'כן':'לא', track, ...answers,
+                  'אישור דיוור':consent?'כן':'לא', 'דליפה':track, ...answers,
                   מקור:SOURCE.utm_source, מודעה:SOURCE.utm_content, lead_line:leadLine, _template:'table' };
   fetch(LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
-    .catch(()=>{}); // best-effort; never block the user
+    .catch(()=>{});
   renderVerdict(name);
 }
 
 function renderVerdict(name){
-  done = true; setProgress(STEP_TARGET,''); updateBack();
-  const nm = esc(name);
-  if(track==='youtube'){
+  done=true; setProgress(STEP_TARGET,''); updateBack();
+  const nm=esc(name);
+  if(beginner){
     card(`<div class="inner">
-      <div class="kicker">ההבחנה שלך</div>
-      <h2>${nm}, אתה בשלב הבסיס.</h2>
-      <div class="sub">לפני שמשקיעים בליווי — הכי חשוב לבנות יסודות נכון. תתחיל מהערוץ ביוטיוב, לפי הסדר:</div>
+      <div class="kicker">האבחון שלך</div>
+      <h2>${nm}, אתה בשלב הבסיס — וזה בסדר גמור.</h2>
+      <div class="sub">לפני שמשקיעים בליווי, בונים יסודות נכון. תתחיל מהערוץ ביוטיוב, לפי הסדר:</div>
       <div class="answers">
         <a class="opt" style="display:block;text-decoration:none" target="_blank" rel="noopener"
            href="https://www.youtube.com/playlist?list=PLxf3Ml18PULClOY53kjEdEIVy0HJ3SzSr">1. הקורס החינמי — היסודות ←</a>
@@ -320,19 +344,20 @@ function renderVerdict(name){
            href="https://www.youtube.com/playlist?list=PLxf3Ml18PULDt2SCFPqAL5qhcsy-f5r2t">2. מנטורשיפ 2026 ←</a>
       </div>
       <a class="btn" href="${YT}" target="_blank" rel="noopener">לכל הערוץ ←</a>
-      <div class="small">כשתתחיל לסחור בקביעות — תחזור. מועדון הסוחר המתמיד יחכה לך.</div>
+      <div class="small">כשתתחיל לסחור בקביעות — תחזור. נשמח ללוות אותך משם.</div>
     </div>`);
-  } else {
-    const line = PAIN[answers.why] || (answers.happy==='profitable'?PAIN.profitable:PAIN.consistency);
-    card(`<div class="inner">
-      <div class="kicker">ההבחנה שלך</div>
-      <h2>${nm}, אתה לא צריך עוד אסטרטגיה.</h2>
-      <div class="sub">${line}</div>
-      <div class="sub">אתה צריך <b style="color:var(--azure)">מסגרת</b>. מועדון הסוחר המתמיד הוא הפתרון הכי טוב שאתה יכול להשיג עכשיו לשלב שאתה בו.</div>
-      <a class="btn" href="${whopUrl()}" target="_blank" rel="noopener">לנסות חודש אחד ←</a>
-      <div class="small">בלי התחייבות. אם אחרי חודש זה לא בשבילך — מבטלים בלי שאלות.</div>
-    </div>`);
+    return;
   }
+  const r = RESULTS[track] || RESULTS.nostruct;
+  card(`<div class="inner">
+      <div class="kicker">האבחון שלך</div>
+      <h2>${nm}, ${r.title}</h2>
+      <div class="sub">${r.body}</div>
+      <div class="action-box">🎯 <b>הצעד הראשון שלך:</b><br>${r.action}</div>
+      <div class="sub" style="margin-bottom:18px">וזו בדיוק העבודה שאנחנו עושים במועדון.<br>לא עוד אסטרטגיה —<br>להפוך אותך לאדם שמבצע.<br>כל בוקר, לייב, ביחד.</div>
+      <a class="btn" href="${whopUrl()}" target="_blank" rel="noopener">בוא תראה איך זה עובד ←</a>
+      <div class="small">בלי התחייבות. קודם תיישם את הצעד הראשון — הוא שלך, במתנה.</div>
+    </div>`);
 }
 
 renderIntro();
