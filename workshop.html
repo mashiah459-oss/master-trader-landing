@@ -74,17 +74,22 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   .wordmark{ margin-top:14px; font-weight:900; font-size:clamp(60px,13vw,132px); line-height:.86; letter-spacing:-3px; color:#fff; text-shadow:0 8px 60px rgba(0,0,0,.8); }
   .rule{ width:150px; height:3px; background:var(--accent); margin:24px 0 0; box-shadow:0 0 22px 1px rgba(228,50,42,.5); }
   .promise{ margin-top:22px; max-width:640px; font-weight:800; color:#fff; font-size:clamp(22px,4.2vw,34px); line-height:1.18; letter-spacing:-.5px; }
-  .datechip{ margin-top:22px; display:inline-flex; align-items:center; gap:12px; border:1.5px solid var(--accent); border-radius:5px; padding:10px 20px; background:rgba(228,50,42,.06); }
-  .datechip .lbl{ font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--dim); }
-  .datechip .d{ font-family:'Space Mono',monospace; font-weight:700; font-size:clamp(22px,5vw,30px); color:var(--accent-bright); letter-spacing:1px; }
-  .subhook{ margin-top:22px; max-width:620px; font-size:clamp(16px,2vw,19px); color:var(--dim); line-height:1.6; }
+  .datechip{ margin-top:22px; display:inline-flex; align-items:center; gap:14px; border:1.5px solid var(--accent); border-radius:5px;
+    padding:12px 22px; background:rgba(228,50,42,.14); backdrop-filter:blur(6px); box-shadow:0 10px 30px rgba(0,0,0,.5); }
+  .datechip .lbl{ font-weight:800; font-size:clamp(17px,3.4vw,22px); color:#fff; letter-spacing:-.3px; }
+  .datechip .sep{ width:1px; align-self:stretch; background:rgba(255,255,255,.28); }
+  .datechip .d{ font-family:'Space Mono',monospace; font-weight:700; font-size:clamp(22px,5vw,30px); color:#fff; letter-spacing:1px; }
+  .subhook{ margin-top:22px; max-width:620px; font-size:clamp(16px,2vw,19px); color:#e9edf3; line-height:1.6;
+    text-shadow:0 2px 14px rgba(0,0,0,.85); }
   .cta-row{ margin-top:26px; display:flex; gap:14px; flex-wrap:wrap; }
   .btn{ display:inline-block; padding:16px 32px; border-radius:6px; font-weight:800; font-size:16px;
     background:linear-gradient(180deg,var(--accent-bright),#B01E17); color:#fff; box-shadow:0 12px 34px rgba(228,50,42,.32), inset 0 1px 0 rgba(255,255,255,.14); transition:transform .2s, box-shadow .3s; }
   .btn:hover{ transform:translateY(-2px); box-shadow:0 18px 44px rgba(228,50,42,.5); }
   .btn.ghost{ background:rgba(8,9,12,.4); color:#fff; border:1px solid var(--line); box-shadow:none; backdrop-filter:blur(6px); }
   .btn.ghost:hover{ border-color:var(--accent); }
-  .seats{ margin-top:18px; font-family:'Space Mono',monospace; font-size:13px; letter-spacing:1px; color:var(--dim); }
+  .btn.disabled{ background:#2a2c33; color:var(--dim); box-shadow:none; cursor:not-allowed; }
+  .btn.disabled:hover{ transform:none; box-shadow:none; }
+  .seats{ margin-top:18px; font-family:'Space Mono',monospace; font-size:13px; letter-spacing:1px; color:#cdd4de; text-shadow:0 2px 12px rgba(0,0,0,.9); }
   .seats b{ color:var(--accent-bright); }
 
   section{ padding:clamp(48px,8vh,80px) 0; border-top:1px solid var(--line); position:relative; z-index:2; }
@@ -116,10 +121,34 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   .proofrow .stat{ background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:16px; text-align:center; }
   .proofrow .stat b{ display:block; font-family:'Space Mono',monospace; color:var(--accent-bright); font-size:22px; }
   .proofrow .stat span{ color:var(--dim); font-size:12px; letter-spacing:.5px; }
-  .paystrip{ margin-top:24px; display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .payshot{ margin:0; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#05060a; }
-  .payshot img{ width:100%; height:auto; display:block; }
-  .paycap{ text-align:center; color:var(--mute); font-size:12px; margin-top:12px; line-height:1.5; }
+  .railhead{ margin-top:34px; text-align:center; }
+  .railhead .t{ font-weight:800; font-size:clamp(19px,3.6vw,24px); color:#fff; }
+  .railhead .s{ margin-top:8px; color:var(--dim); font-size:14px; }
+  .proofrail{ margin-top:20px; display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding:2px 2px 14px; scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin; scrollbar-color:rgba(228,50,42,.55) rgba(255,255,255,.04); }
+  .proofrail::-webkit-scrollbar{ height:6px; }
+  .proofrail::-webkit-scrollbar-track{ background:rgba(255,255,255,.04); border-radius:3px; }
+  .proofrail::-webkit-scrollbar-thumb{ background:rgba(228,50,42,.55); border-radius:3px; }
+  .pcard{ flex:none; width:clamp(238px,74vw,286px); scroll-snap-align:center; margin:0;
+    background:#05060a; border:1px solid var(--line); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; }
+  .pcard img{ width:100%; height:340px; object-fit:contain; display:block; background:#05060a; cursor:zoom-in; }
+  .pcard figcaption{ padding:12px 14px; border-top:1px solid var(--line); }
+  .tagp{ font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; border-radius:4px; padding:3px 8px; display:inline-block; }
+  .tagp.w{ color:#fff; background:rgba(228,50,42,.22); border:1px solid rgba(228,50,42,.6); }
+  .tagp.p{ color:#cfd6e0; border:1px solid rgba(244,245,247,.22); }
+  .pcard .cap{ display:block; margin-top:9px; color:var(--dim); font-size:13px; line-height:1.5; }
+  .railnav{ display:flex; gap:10px; justify-content:center; align-items:center; margin-top:6px; }
+  .railnav button{ width:40px; height:40px; border-radius:50%; cursor:pointer; background:var(--panel);
+    border:1px solid var(--line); color:var(--text); font-size:17px; line-height:1; transition:border-color .25s, background .25s; }
+  .railnav button:hover{ border-color:var(--accent); background:rgba(228,50,42,.12); }
+  .railnav .hint{ font-family:'Space Mono',monospace; font-size:11px; letter-spacing:1px; color:var(--mute); }
+  .paycap{ text-align:center; color:var(--mute); font-size:12px; margin-top:14px; line-height:1.5; }
+
+  .lightbox{ position:fixed; inset:0; z-index:30; background:rgba(4,5,8,.95); display:none; align-items:center; justify-content:center; padding:24px; }
+  .lightbox.active{ display:flex; }
+  .lightbox img{ max-width:100%; max-height:88vh; border-radius:10px; border:1px solid var(--line); }
+  .lightbox button{ position:absolute; top:16px; left:16px; background:none; border:0; color:#fff; font-size:38px; cursor:pointer; line-height:1; }
 
   .reviews{ margin-top:30px; display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
   .rev{ background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px; display:flex; flex-direction:column; }
@@ -175,7 +204,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   .choice input:checked + label{ border-color:var(--accent); background:rgba(228,50,42,.1); }
   .choice input:checked + label .cp{ color:var(--accent-bright); }
   .choice input:focus-visible + label{ outline:2px solid var(--accent); outline-offset:2px; }
-  .err{ color:var(--accent-bright); font-size:13px; margin-top:12px; min-height:18px; text-align:center; }
+  .picked{ margin-top:18px; text-align:center; color:#dfe5ee; font-size:14.5px; line-height:1.6; min-height:44px; }
   .fineprint{ text-align:center; color:var(--mute); font-size:12px; margin-top:18px; line-height:1.6; }
   .hide{ display:none; }
   #done{ text-align:center; }
@@ -228,7 +257,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     <div class="wordmark">תורת<br>הרבעים</div>
     <div class="rule"></div>
     <div class="promise">תפסיק לנחש בכל עסקה.<br>תסחור לפי שיטה אחת ברורה.</div>
-    <div class="datechip"><span class="lbl">יום ראשון</span><span class="d">30.08</span></div>
+    <div class="datechip"><span class="lbl">יום ראשון</span><span class="sep" aria-hidden="true"></span><span class="d">30.08</span></div>
     <div class="subhook">שלוש שעות חיות עם מתן משיח, פנים אל פנים במיי קמפוס בבני ברק. אתה יוצא עם שיטת עבודה שלמה לכל עסקה: כיוון, כניסה, סטופ ויעד. כזו שאתה מיישם כבר ביום המסחר הבא.</div>
     <div class="cta-row">
       <a href="#register" class="btn">אני בפנים, שריינו לי מקום ←</a>
@@ -302,11 +331,48 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       <div class="stat"><b>4+ שנים</b><span>מלמד מסחר כעסק</span></div>
       <div class="stat"><b>מאות</b><span>סוחרים שכבר עברו איתו</span></div>
     </div>
-    <div class="paystrip">
-      <figure class="payshot"><img src="images/IMG_5749.jpg" alt="Topstep ו-Take Profit Trader, ימי רווח ורצף" loading="lazy"></figure>
-      <figure class="payshot"><img src="images/IMG_5757.jpg" alt="דשבורד משיכות מחשבון ממומן" loading="lazy"></figure>
+    <div class="railhead">
+      <div class="t">רווחים ומשיכות אמיתיות</div>
+      <div class="s">כל תמונה מסומנת במה שהיא באמת מראה: ימי מסחר, או כסף שיצא מהחשבון אליי. לחיצה מגדילה.</div>
     </div>
-    <p class="paycap">משיכות אמיתיות מחשבונות ממומנים (Topstep / Take Profit Trader). תוצאות אישיות, מסחר כרוך בסיכון.</p>
+
+    <div class="proofrail" id="proofrail">
+      <figure class="pcard">
+        <img src="images/IMG_5757.jpg" alt="דשבורד משיכות: 27,014 דולר ב-13 משיכות ב-30 יום" loading="lazy">
+        <figcaption><span class="tagp w">משיכות</span><span class="cap">‏$27,014 שהתקבלו בפועל ב-13 משיכות, ב-30 יום.</span></figcaption>
+      </figure>
+      <figure class="pcard">
+        <img src="images/IMG_5751.jpg" alt="חמש בקשות משיכה שאושרו בחברת נוסטרו" loading="lazy">
+        <figcaption><span class="tagp w">משיכות</span><span class="cap">חמש משיכות רצופות שאושרו, מחברת נוסטרו אחת.</span></figcaption>
+      </figure>
+      <figure class="pcard">
+        <img src="images/IMG_5755.jpg" alt="אישור משיכה של 7,494 דולר מ-Take Profit Trader" loading="lazy">
+        <figcaption><span class="tagp w">משיכה</span><span class="cap">משיכה בודדת של ‏$7,494, אושרה ושולמה.</span></figcaption>
+      </figure>
+      <figure class="pcard">
+        <img src="images/IMG_5753.jpg" alt="התראת Wise: התקבלו 1,895 יורו מ-Take Profit Trader" loading="lazy">
+        <figcaption><span class="tagp w">משיכה</span><span class="cap">הכסף נוחת בחשבון: ‏€1,895 מ-Take Profit Trader.</span></figcaption>
+      </figure>
+      <figure class="pcard">
+        <img src="images/IMG_5752.jpg" alt="מיילים על אישור משיכה והעברת כסף" loading="lazy">
+        <figcaption><span class="tagp w">משיכות</span><span class="cap">אישורי משיכה והעברת כסף, ישירות מהמייל.</span></figcaption>
+      </figure>
+      <figure class="pcard">
+        <img src="images/IMG_5749.jpg" alt="ימי מסחר ורצף רווח של 11 ימים ב-Topstep ו-Take Profit Trader" loading="lazy">
+        <figcaption><span class="tagp p">רווחים</span><span class="cap">ימי מסחר ורצף של 11 ימים ירוקים, Topstep ו-TPT.</span></figcaption>
+      </figure>
+      <figure class="pcard">
+        <img src="images/IMG_5754.jpg" alt="ימי מסחר רווחיים לצד אישורי משיכה" loading="lazy">
+        <figcaption><span class="tagp p">רווחים</span><span class="cap">ימי מסחר רצופים, ומתחתם אישורי המשיכה שיצאו מהם.</span></figcaption>
+      </figure>
+    </div>
+    <div class="railnav">
+      <button type="button" id="rail-prev" aria-label="הקודם">→</button>
+      <span class="hint">החלק לצדדים</span>
+      <button type="button" id="rail-next" aria-label="הבא">←</button>
+    </div>
+
+    <p class="paycap">חשבונות ממומנים (Topstep / Take Profit Trader) וחברת נוסטרו. תוצאות אישיות, אינן מייצגות ואינן הבטחה לתוצאה. מסחר כרוך בסיכון.</p>
   </div>
 </section>
 
@@ -383,7 +449,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     <div class="anchor">
       <div class="t">בוא נדבר תכל׳ס על מחיר</div>
       <div class="lines">
-        <div>סדנת מסחר חיה של 3 שעות עם סוחר ממומן בשוק עולה <s>1,690 ₪</s></div>
+        <div>סדנת מסחר פרונטלית של 3 שעות עם סוחר ממומן בדרך כלל עולה <s>1,690 ₪</s></div>
         <div>גם ב-<s>990 ₪</s> זו היתה עסקה משתלמת</div>
         <div>וגם ב-<s>700 ₪</s> לא היית מתלונן</div>
       </div>
@@ -425,8 +491,8 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   <div class="wrap">
     <div class="kick">שמירת מקום</div>
     <h2>30 מקומות. זהו.</h2>
-    <p class="sub">משאירים פרטים, בוחרים כרטיס, ומשלימים תשלום. כל הפרטים המלאים (כתובת מדויקת והנחיות) יישלחו בוואטסאפ כשבוע לפני המועד.</p>
-    <form class="formbox" id="form" novalidate>
+    <p class="sub">בוחרים כרטיס וממשיכים ישר לתשלום. את הפרטים ממלאים פעם אחת בלבד, בעמוד הסליקה. כל ההנחיות והכתובת המדויקת יישלחו בוואטסאפ כשבוע לפני המועד.</p>
+    <div class="formbox">
       <label>בחר כרטיס</label>
       <div class="choice">
         <input type="radio" name="ticket" id="t-regular" value="regular" checked>
@@ -434,22 +500,9 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
         <input type="radio" name="ticket" id="t-premium" value="premium">
         <label for="t-premium"><span class="cn">פרימיום</span><span class="cp">1,590 ₪</span></label>
       </div>
-      <label for="f-name">שם מלא</label>
-      <input type="text" id="f-name" name="name" autocomplete="name" required placeholder="השם שלך">
-      <label for="f-email">כתובת מייל</label>
-      <input type="email" id="f-email" name="email" autocomplete="email" required placeholder="name@example.com" dir="ltr" style="text-align:right">
-      <label for="f-phone">טלפון (וואטסאפ)</label>
-      <input type="tel" id="f-phone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="05x-xxxxxxx" dir="ltr" style="text-align:right">
-      <div class="err" id="err"></div>
-      <button type="submit" class="btn" id="submit">המשך לשריון המקום ←</button>
-      <div class="fineprint">תשלום מאובטח · קבלה תישלח למייל · 30 מקומות בלבד</div>
-    </form>
-
-    <div class="formbox hide" id="done">
-      <div class="v">כמעט סיימת ✓</div>
-      <p id="done-text">הפרטים שלך נקלטו. כדי לשריין סופית את המקום, השלם את התשלום.</p>
-      <a href="#" class="btn hide" id="pay-btn" target="_blank" rel="noopener">להשלמת התשלום ←</a>
-      <div class="fineprint">אחרי התשלום כל הפרטים המלאים יישלחו אליך בהודעת וואטסאפ.</div>
+      <div class="picked" id="picked">הכרטיס הרגיל: 3 שעות סדנה חיה, השיטה המלאה ותרגול על השוק.</div>
+      <a href="#" class="btn" id="pay-btn" target="_blank" rel="noopener">המשך לשריון המקום ←</a>
+      <div class="fineprint">תשלום מאובטח דרך Morning · קבלה תישלח למייל · 30 מקומות בלבד</div>
     </div>
   </div>
 </section>
@@ -461,7 +514,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     <div class="faq">
       <details>
         <summary>הסדנה מתאימה גם למתחילים?</summary>
-        <div class="a">כן. השיטה נבנתה כך שגם מי שבתחילת הדרך יוכל ליישם אותה, וגם סוחר מנוסה ייקח ממנה שדרוג אמיתי. כל מה שצריך זה ידע בסיסי בקריאת גרף ורצון ליישם.</div>
+        <div class="a">כן. השיטה נבנתה כך שגם מי שבתחילת הדרך יוכל ליישם אותה, וגם סוחר מנוסה ייקח ממנה שדרוג אמיתי. כל מה שצריך זה ידע בסיסי בקריאת גרף ורצון ליישם. אם אתה ממש בהתחלה, שווה לעבור לפני הסדנה על <a href="https://www.youtube.com/@matanmashiah957" target="_blank" rel="noopener">ערוץ היוטיוב שלי</a>. יש שם את כל הבסיס, בחינם, ותגיע לסדנה מוכן.</div>
       </details>
       <details>
         <summary>מה ההבדל בין הכרטיס הרגיל לפרימיום?</summary>
@@ -473,15 +526,15 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       </details>
       <details>
         <summary>יש לי כבר שיטת מסחר, זה רלוונטי לי?</summary>
-        <div class="a">בהחלט. תורת הרבעים היא שיטת עבודה שלמה שמכתיבה גם מתי לא לסחור. אם יש לך שיטה שעובדת, הסדנה תוסיף לה שכבת תזמון וכיוון. ואם אתה מדלג בין שיטות, זו ההזדמנות לעצור ולעבור לשיטה אחת ברורה ועקבית.</div>
+        <div class="a">אני אענה בכנות: אם יש לך שיטה שאתה מאמין בה, עובד לפיה, והיא מכניסה לך כסף, הסדנה הזו פחות רלוונטית לך. אל תבוא בשביל לבוא.<br><br>אבל תהיה כן עם עצמך רגע: יש לך באמת שיטה אחת שאתה מאמין בה ב-100% ובלב שלם, או שיש לך אוסף של כללים שאתה משנה כל פעם שהשוק מכאיב לך? רוב הסוחרים שאומרים "יש לי שיטה" מתכוונים לשני.<br><br>ואם השיטה שלך באמת עובדת ואתה עדיין רוצה להגיע, אתה מוזמן. תיקח את מה שמתחבר לך, תרחיב את הידע, ותסתכל על השוק מזווית של סוחר אחר.</div>
       </details>
       <details>
         <summary>אין לי הון גדול לסחור איתו, זה בשבילי?</summary>
-        <div class="a">כן. אני עצמי סוחר על כסף של חברות מימון בחשבונות PRO+, והשיטה בנויה בדיוק בשביל זה: לעמוד ב-Challenges ולסחור על הון של חברת מימון, בלי לסכן הון עצמי גדול.</div>
+        <div class="a">כן. אני עצמי סוחר על כסף של חברות מימון בחשבונות PRO+, והשיטה בנויה בדיוק בשביל זה: לעמוד ב-Challenges ולסחור על הון של חברת מימון, בלי לסכן הון עצמי גדול. בחשבונות מימון אפשר להתחיל מ-100 דולר בערך, אז ההון העצמי שלך הוא לא החסם.</div>
       </details>
       <details>
-        <summary>יש הקלטה למי שלא מגיע?</summary>
-        <div class="a">לא. זו סדנה חיה אחת, בתאריך אחד, עם תרגול ומענה אישי בחדר. הערך נמצא בנוכחות. אם משהו משתנה אצלך אחרי ההרשמה, כתוב לנו בוואטסאפ מראש ונמצא פתרון.</div>
+        <summary>האם הסדנה מוקלטת ואפשר לחזור על התוכן?</summary>
+        <div class="a">כן. הסדנה מצולמת, וההקלטה תעבור למשתתפים אחרי המועד, כדי שתוכל לחזור על החומר ולתרגל אותו שוב. עדיין, הערך האמיתי הוא בחדר עצמו: התרגול החי, השאלות והמענה האישי. ההקלטה היא לחזרה, לא תחליף להגעה.</div>
       </details>
     </div>
   </div>
@@ -491,7 +544,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   <div class="wrap">
     <div class="warnbox">
       <div class="t">שים לב</div>
-      <p>סדנה חיה אחת, בתאריך אחד, עם <b>30 מקומות בלבד.</b> אין הקלטה חוזרת ואין מועד נוסף מובטח. מי שרוצה להיות בחדר, שומר מקום עכשיו.</p>
+      <p>סדנה חיה אחת, בתאריך אחד, עם <b>30 מקומות בלבד.</b> אין מועד נוסף מובטח, והתרגול החי, השאלות והמענה האישי קורים רק בחדר. מי שרוצה להיות שם, שומר מקום עכשיו.</p>
     </div>
     <p class="statement">אפשר להמשיך לנחש בכל עסקה.<br>ואפשר לצאת מהחדר הזה עם שיטה אחת שמייצרת כיוון, תזמון ועקביות.</p>
     <div class="cta-row" style="justify-content:center"><a href="#register" class="btn">אני בפנים, שריינו לי מקום ←</a></div>
@@ -513,18 +566,21 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   <a href="#register" class="btn">לשריון מקום ←</a>
 </div>
 
+<div class="lightbox" id="lightbox"><button type="button" aria-label="סגור">×</button><img src="" alt=""></div>
+
 <script>
 (function(){
   // ==== CONFIG ====
   var WORKSHOP_DATE = new Date('2026-08-30T17:00:00+03:00');
-  var LEAD_ENDPOINT = 'https://formsubmit.co/ajax/mashiah459@gmail.com';
-  var SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzIYi6LIAuHrVEwTCr3bhHEpUoMVkQZePGomu0mjoo_wtkIVz8VQmO1TZkKji4yoHiw/exec';
-  // קישורי סליקה (Morning). אם קישור ריק, הנרשם מקבל הודעה שמתן שולח קישור בוואטסאפ.
-  var PAY = {
-    regular: 'https://mrng.to/U3kgBcemZv',
-    premium: 'https://mrng.to/0oiXOoUtd3'
+  // מקור אמת יחיד לכרטיסים. שינוי מחיר כאן מתעדכן גם בכפתור וגם בדיווח לפיקסל.
+  // אם קישור סליקה ריק, הכפתור מנוטרל ומוצגת הודעת וואטסאפ במקום קישור שבור.
+  var TICKETS = {
+    regular: { price: 590,   label: 'כרטיס רגיל',    pay: 'https://mrng.to/U3kgBcemZv' },
+    premium: { price: 1590,  label: 'כרטיס פרימיום', pay: 'https://mrng.to/0oiXOoUtd3' }
   };
-  var LABEL = { regular: 'כרטיס רגיל · 590 ₪', premium: 'כרטיס פרימיום · 1,590 ₪' };
+  function ticketLabel(key){
+    return TICKETS[key].label + ' · ' + TICKETS[key].price.toLocaleString('en-US') + ' ₪';
+  }
 
   // ==== COUNTDOWN ====
   var box = document.getElementById('countdown');
@@ -548,6 +604,34 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     bar.classList.toggle('visible', window.scrollY > hero.offsetHeight * 0.9);
   }, { passive:true });
 
+  // ==== PROOF CAROUSEL ====
+  var rail = document.getElementById('proofrail');
+  function railStep(){
+    var card = rail.querySelector('.pcard');
+    return card ? card.getBoundingClientRect().width + 14 : 300;
+  }
+  // RTL: "next" (←) moves deeper into the rail, which is a NEGATIVE scrollLeft in RTL browsers.
+  document.getElementById('rail-next').addEventListener('click', function(){
+    rail.scrollBy({ left: -railStep(), behavior: 'smooth' });
+  });
+  document.getElementById('rail-prev').addEventListener('click', function(){
+    rail.scrollBy({ left: railStep(), behavior: 'smooth' });
+  });
+
+  // ==== LIGHTBOX ====
+  var lb = document.getElementById('lightbox');
+  var lbImg = lb.querySelector('img');
+  document.querySelectorAll('.pcard img').forEach(function(img){
+    img.addEventListener('click', function(){
+      lbImg.src = img.src; lbImg.alt = img.alt;
+      lb.classList.add('active'); document.body.style.overflow = 'hidden';
+    });
+  });
+  function closeLb(){ lb.classList.remove('active'); document.body.style.overflow = ''; }
+  lb.querySelector('button').addEventListener('click', closeLb);
+  lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLb(); });
+
   // ==== TICKET PICK BUTTONS ====
   document.querySelectorAll('.pick').forEach(function(btn){
     btn.addEventListener('click', function(){
@@ -556,64 +640,45 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     });
   });
 
-  // ==== FORM ====
-  var form = document.getElementById('form');
-  var err = document.getElementById('err');
-  var submit = document.getElementById('submit');
-  var done = document.getElementById('done');
-  var doneText = document.getElementById('done-text');
+  // ==== TICKET → CHECKOUT ====
+  // בלי טופס באתר: הפרטים נמסרים פעם אחת בלבד בעמוד הסליקה של Morning.
+  var BLURB = {
+    regular: 'הכרטיס הרגיל: 3 שעות סדנה חיה, השיטה המלאה ותרגול על השוק.',
+    premium: 'כרטיס הפרימיום: כל הסדנה, ובנוסף פגישה אישית איתי לבניית תוכנית מסחר אישית.'
+  };
   var payBtn = document.getElementById('pay-btn');
-  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  var phoneRe = /^0\d{1,2}-?\d{7}$/;
+  var picked = document.getElementById('picked');
 
-  function fail(msg, field){
-    err.textContent = msg;
-    form.querySelectorAll('input[type=text],input[type=email],input[type=tel]').forEach(function(i){ i.classList.remove('bad'); });
-    if (field){ field.classList.add('bad'); field.focus(); }
-    return false;
+  function currentTicket(){
+    var checked = document.querySelector('input[name=ticket]:checked');
+    return checked ? checked.value : 'regular';
   }
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var ticket = form.querySelector('input[name=ticket]:checked').value;
-    var name = form.name.value.trim();
-    var email = form.email.value.trim();
-    var phone = form.phone.value.trim();
+  function syncTicket(){
+    var ticket = currentTicket();
+    picked.textContent = BLURB[ticket];
+    payBtn.textContent = 'המשך לשריון המקום · ' + ticketLabel(ticket) + ' ←';
+    payBtn.href = TICKETS[ticket].pay || '#';
+    payBtn.classList.toggle('disabled', !TICKETS[ticket].pay);
+  }
 
-    if (name.length < 2) return fail('נא להזין שם מלא', form.name);
-    if (!emailRe.test(email)) return fail('נא להזין כתובת מייל תקינה', form.email);
-    if (!phoneRe.test(phone.replace(/\s/g,''))) return fail('נא להזין מספר טלפון תקין (לדוגמה 050-1234567)', form.phone);
+  document.querySelectorAll('input[name=ticket]').forEach(function(radio){
+    radio.addEventListener('change', syncTicket);
+  });
+  syncTicket();
 
-    err.textContent = '';
-    submit.disabled = true;
-    submit.textContent = 'שולח...';
-
-    var payload = {
-      _subject: 'הרשמה לסדנת תורת הרבעים 30.08: ' + name,
-      name: name, email: email, phone: phone,
-      ticket: LABEL[ticket],
-      source: 'workshop-quarter-theory-30-08',
-      workshop_date: '2026-08-30'
-    };
-
-    fetch(LEAD_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) }).catch(function(){});
-    fetch(SHEETS_ENDPOINT, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) }).catch(function(){});
-    if (window.fbq) fbq('track','Lead', { content_name: LABEL[ticket] });
-
-    var url = PAY[ticket];
-    if (url){
-      payBtn.href = url;
-      payBtn.textContent = 'להשלמת התשלום · ' + LABEL[ticket] + ' ←';
-      payBtn.classList.remove('hide');
-      doneText.textContent = 'הפרטים שלך נקלטו. כדי לשריין סופית את המקום, השלם את התשלום.';
-    } else {
-      payBtn.classList.add('hide');
-      doneText.textContent = 'הפרטים שלך נקלטו. מתן שולח לך בוואטסאפ קישור לתשלום לשריון המקום, ומתאם איתך את הפגישה האישית.';
+  payBtn.addEventListener('click', function(e){
+    var ticket = currentTicket();
+    if (!TICKETS[ticket].pay){
+      e.preventDefault();
+      picked.textContent = 'קישור התשלום לכרטיס הזה יעלה בקרוב. כתוב לי בוואטסאפ ואשלח לך אותו ישירות.';
+      return;
     }
-
-    form.classList.add('hide');
-    done.classList.remove('hide');
-    done.scrollIntoView({ behavior:'smooth', block:'center' });
+    if (window.fbq) fbq('track','InitiateCheckout', {
+      content_name: ticketLabel(ticket),
+      value: TICKETS[ticket].price,
+      currency: 'ILS'
+    });
   });
 })();
 </script>
