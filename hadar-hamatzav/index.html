@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>חדר המצב — קבוצה פיזית סגורה · מתן משיח</title>
-<meta name="description" content="5 מפגשים פיזיים, 20 סוחרים, שולחן אחד. כל עסקה של כל סוחר נבדקת. מסחר הופך לעסק.">
+<title>חדר המצב · קבוצה פיזית סגורה · מתן משיח</title>
+<meta name="description" content="5 מפגשים פיזיים, 20 סוחרים, שולחן אחד. כל עסקה של כל סוחר נבדקת. המחזור הנוכחי מלא, נרשמים לרשימת ההמתנה למחזור הבא.">
 <meta property="og:title" content="חדר המצב · מתן משיח">
-<meta property="og:description" content="קבוצת מאסטרמיינד פיזית סגורה. 20 מקומות. המחזור נפתח 26.07.">
+<meta property="og:description" content="קבוצת מאסטרמיינד פיזית סגורה. המחזור הנוכחי מלא. רשימת המתנה למחזור הבא פתוחה.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -47,6 +47,10 @@
   .datechip{ margin-top:22px; display:inline-flex; align-items:center; gap:12px; border:1.5px solid var(--accent); border-radius:5px; padding:10px 20px; background:rgba(228,50,42,.06); }
   .datechip .lbl{ font-family:'Space Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--dim); }
   .datechip .d{ font-family:'Space Mono',monospace; font-weight:700; font-size:clamp(22px,5vw,30px); color:var(--accent-bright); letter-spacing:1px; }
+  .soldchip{ margin-top:22px; display:inline-flex; align-items:center; gap:14px; flex-wrap:wrap;
+    border:1.5px solid var(--accent); border-radius:5px; padding:10px 20px; background:rgba(228,50,42,.08); }
+  .soldchip .so{ font-family:'Space Mono',monospace; font-weight:700; font-size:clamp(18px,4vw,24px); letter-spacing:4px; color:var(--accent-bright); }
+  .soldchip .lbl{ font-size:14px; color:var(--dim); }
   .subhook{ margin-top:22px; max-width:600px; font-size:clamp(16px,2vw,19px); color:var(--dim); line-height:1.6; }
   .cta-row{ margin-top:26px; display:flex; gap:14px; flex-wrap:wrap; }
   .btn{ display:inline-block; padding:16px 32px; border-radius:6px; font-weight:800; font-size:16px;
@@ -147,13 +151,13 @@
     <div class="wordmark">חדר מצב</div>
     <div class="rule"></div>
     <div class="promise">יודע לנתח גרף, אבל עדיין מחזיר את הרווח לשוק?<br>5 מפגשים פרונטליים שהופכים את המסחר שלך מהימור רגשי לעסק עם מערכת.</div>
-    <div class="datechip"><span class="lbl">המחזור נפתח</span><span class="d">26.07</span></div>
-    <div class="subhook">מאסטרמיינד פיזי סגור של 20 סוחרים. אתה מביא את העסקאות האמיתיות שלך לשולחן, ואנחנו בונים לך מערכת שמחזיקה.</div>
+    <div class="soldchip"><span class="so">SOLD OUT</span><span class="lbl">המחזור הנוכחי מלא</span></div>
+    <div class="subhook">מאסטרמיינד פיזי סגור של 20 סוחרים. אתה מביא את העסקאות האמיתיות שלך לשולחן, ואנחנו בונים לך מערכת שמחזיקה. כל 20 המקומות במחזור הנוכחי נתפסו.</div>
     <div class="cta-row">
-      <a href="#register" class="btn">אני רוצה מקום בחדר ←</a>
+      <a href="#register" class="btn">לרשימת ההמתנה למחזור הבא ←</a>
       <a href="#gap" class="btn ghost">איך זה עובד</a>
     </div>
-    <div class="seats"><b>20 מקומות בלבד</b> · קדימות לחברי הקהילה</div>
+    <div class="seats">המחזור הבא ייפתח בהמשך · <b>קדימות לרשימה</b></div>
   </div>
 </header>
 
@@ -164,9 +168,9 @@
     <p class="sub">למדת לנתח גרף. לקרוא נר. אולי אפילו יש לך ימים ירוקים. אבל אז...</p>
     <ul class="for">
       <li>אתה מחזיר את הרווח יום אחרי שעשית אותו.</li>
-      <li>מגדיל סיכון אחרי הפסד — כדי "להחזיר".</li>
+      <li>מגדיל סיכון אחרי הפסד, כדי "להחזיר".</li>
       <li>סוגר עסקאות טובות מוקדם, ונשאר בגרועות יותר מדי.</li>
-      <li>וכשהשוק מתהפך — אתה מתפרק.</li>
+      <li>וכשהשוק מתהפך, אתה מתפרק.</li>
     </ul>
     <p class="sub" style="margin-top:24px;color:var(--text);font-size:19px">זו לא בעיית ידע. זו בעיית מערכת. <b style="color:var(--accent-bright)">בעיית עסק.</b></p>
   </div>
@@ -176,9 +180,9 @@
   <div class="wrap">
     <div class="kick">הפתרון</div>
     <h2>נכנסים לחדר המצב.</h2>
-    <p class="sub">חדר המצב הוא קבוצת מאסטרמיינד פיזית וסגורה של 20 סוחרים. חמישה מפגשים, ובסוף פגישה אישית איתי, שבהם עוברים על העסקאות האמיתיות שלך, אחת-אחת, ובונים לך מערכת שמחזיקה — עד שהמסחר מפסיק להיות הימור ומתחיל להתנהג כמו עסק.</p>
+    <p class="sub">חדר המצב הוא קבוצת מאסטרמיינד פיזית וסגורה של 20 סוחרים. חמישה מפגשים, ובסוף פגישה אישית איתי, שבהם עוברים על העסקאות האמיתיות שלך, אחת-אחת, ובונים לך מערכת שמחזיקה, עד שהמסחר מפסיק להיות הימור ומתחיל להתנהג כמו עסק.</p>
     <p class="sub" style="margin-top:22px;color:var(--text)">למה חדר פיזי ולא עוד קורס? כי קורס נותן לך עוד ידע, והבעיה שלך היא לא ידע. בחדר אתה מביא את העסקאות האמיתיות שלך לשולחן, מול 20 סוחרים ומולי, ויש מי שרואה בדיוק איפה אתה מדמם כסף ולא נותן לך לחזור לאותם דפוסים. את זה שום וידאו מוקלט לא עושה לך.</p>
-    <img class="showcase" src="../images/meeting-room.jpg" alt="חדר המצב — 20 סוחרים סביב שולחן אחד">
+    <img class="showcase" src="../images/meeting-room.jpg" alt="חדר המצב, 20 סוחרים סביב שולחן אחד">
   </div>
 </section>
 
@@ -200,7 +204,7 @@
       <div class="stat"><b>מאות</b><span>סוחרים שכבר עברו איתו</span></div>
     </div>
     <div class="paystrip">
-      <figure class="payshot"><img src="../images/IMG_5749.jpg" alt="Topstep + Take Profit Trader — ימי רווח ורצף 11 ימים" loading="lazy"></figure>
+      <figure class="payshot"><img src="../images/IMG_5749.jpg" alt="Topstep + Take Profit Trader, ימי רווח ורצף 11 ימים" loading="lazy"></figure>
       <figure class="payshot"><img src="../images/IMG_5757.jpg" alt="משיכות בסך 27,014$ ב-30 יום, 13 משיכות" loading="lazy"></figure>
     </div>
     <p class="paycap">משיכות אמיתיות מחשבונות ממומן (Topstep / Take Profit Trader). תוצאות אישיות, מסחר כרוך בסיכון.</p>
@@ -212,9 +216,9 @@
     <div class="kick">השיטה</div>
     <h2>מה שקורה בפנים</h2>
     <div class="pillars">
-      <div class="card"><div class="n">5</div><h3>מערכת, לא טיפ</h3><p>5 מפגשים על פני 3 חודשים. בונים הרגלים ומבנה שנשארים — לא יום אחד של השראה שמתאדה למחרת.</p></div>
+      <div class="card"><div class="n">5</div><h3>מערכת, לא טיפ</h3><p>5 מפגשים על פני 3 חודשים. בונים הרגלים ומבנה שנשארים, לא יום אחד של השראה שמתאדה למחרת.</p></div>
       <div class="card"><div class="n">1:1</div><h3>כל עסקה נבדקת</h3><p>מביאים עסקאות אמיתיות לשולחן. בונים את החוקים שלך, וחושפים בדיוק איפה אתה מדמם כסף.</p></div>
-      <div class="card"><div class="n">20</div><h3>חדר קטן, לא קהל</h3><p>20 סוחרים סביב שולחן אחד. אחריות אמיתית — בחדר הזה קשה להתחבא מעצמך.</p></div>
+      <div class="card"><div class="n">20</div><h3>חדר קטן, לא קהל</h3><p>20 סוחרים סביב שולחן אחד. אחריות אמיתית. בחדר הזה קשה להתחבא מעצמך.</p></div>
       <div class="card"><div class="n">★</div><h3>פגישה אישית עם מתן</h3><p>בסוף המסלול, 1:1 עם מתן: תוכנית יישום אישית שתחזיק אותך גם כשאתה חוזר לסחור לבד.</p></div>
     </div>
   </div>
@@ -235,8 +239,9 @@
 
 <section id="what">
   <div class="wrap">
-    <div class="kick">חמשת המפגשים</div>
+    <div class="kick">כך בנוי מחזור</div>
     <h2>יום ראשון · 17:00–20:00</h2>
+    <p class="sub">אלה המועדים של המחזור הנוכחי, שכבר מלא. המחזור הבא ייבנה באותו מבנה, במועדים חדשים שיפורסמו בהמשך.</p>
     <div class="dates">
       <div class="day"><div class="d">26.07</div><div class="m">מפגש 01</div></div>
       <div class="day"><div class="d">16.08</div><div class="m">מפגש 02</div></div>
@@ -254,12 +259,12 @@
     <div class="kick">בשביל מי</div>
     <h2>זה בשבילך אם</h2>
     <ul class="for">
-      <li>אתה כבר יודע לנתח ולסחור — אבל זה עדיין לא הפך לרווחיות עקבית.</li>
+      <li>אתה כבר יודע לנתח ולסחור, אבל זה עדיין לא הפך לרווחיות עקבית.</li>
       <li>יש לך ימים ירוקים, ואז אתה מחזיר את הכל. חסרה לך מערכת.</li>
-      <li>אתה נשבר בתקופות קשות — ורוצה עסק שצומח גם אז.</li>
+      <li>אתה נשבר בתקופות קשות, ורוצה עסק שצומח גם אז.</li>
       <li>נמאס לך לסחור לבד, בלי אף אחד שרואה את ההחלטות שלך.</li>
     </ul>
-    <p class="sub" style="margin-top:20px">זה <b style="color:var(--text)">לא</b> בשבילך אם אתה עוד לומד את היסודות — כאן מדברים על מערכת, לא על נרות ראשונים.</p>
+    <p class="sub" style="margin-top:20px">זה <b style="color:var(--text)">לא</b> בשבילך אם אתה עוד לומד את היסודות. כאן מדברים על מערכת, לא על נרות ראשונים.</p>
   </div>
 </section>
 
@@ -270,19 +275,19 @@
     <p class="sub">סוחרים מהחדר, במילים שלהם. עקביות, משיכות, וכסף שבאמת מגיע לחשבון.</p>
     <div class="proofwall">
       <figure class="pshot">
-        <img src="proof-2-liroy.png" alt="עדות סוחר — התיק ממשיך לצמוח אחרי משיכה" loading="lazy">
+        <img src="proof-2-liroy.png" alt="עדות סוחר, התיק ממשיך לצמוח אחרי משיכה" loading="lazy">
         <figcaption><b>לירוי</b><span>התיק ממשיך לצמוח, גם אחרי משיכה.</span></figcaption>
       </figure>
       <figure class="pshot">
-        <img src="proof-1-gilad.png" alt="עדות סוחר — ימים ירוקים רצופים מאז המפגש" loading="lazy">
+        <img src="proof-1-gilad.png" alt="עדות סוחר, ימים ירוקים רצופים מאז המפגש" loading="lazy">
         <figcaption><b>גלעד</b><span>ימים ירוקים רצופים מאז המפגש, ומבקש משיכה.</span></figcaption>
       </figure>
       <figure class="pshot">
-        <img src="proof-3-maayan.png" alt="עדות סוחר — סוגר מסחר ברווח ומתייעץ מתי למשוך" loading="lazy">
+        <img src="proof-3-maayan.png" alt="עדות סוחר, סוגר מסחר ברווח ומתייעץ מתי למשוך" loading="lazy">
         <figcaption><b>מעיין</b><span>סוגר מסחר ברווח, ומתייעץ מתי למשוך.</span></figcaption>
       </figure>
       <figure class="pshot">
-        <img src="proof-4-roi.png" alt="עדות סוחר — המשיכה עברה והכסף בחשבון" loading="lazy">
+        <img src="proof-4-roi.png" alt="עדות סוחר, המשיכה עברה והכסף בחשבון" loading="lazy">
         <figcaption><b>רועי</b><span>המשיכה עברה. הכסף כבר בחשבון.</span></figcaption>
       </figure>
     </div>
@@ -290,36 +295,27 @@
   </div>
 </section>
 
-<section id="value">
-  <div class="wrap">
-    <div class="kick">ההשקעה</div>
-    <h2>₪2,470 למחזור המלא</h2>
-    <p class="sub">15 שעות ליווי פרונטלי בקבוצה קטנה, ועוד פגישה אישית איתי בסוף. יוצא בערך <b style="color:var(--accent-bright)">₪165 לשעה</b> — ליווי מסחר אישי נע בדרך כלל בהרבה יותר.</p>
-    <p class="sub" style="margin-top:14px;color:var(--text)">זו לא עוד הוצאה על קורס. זו מערכת שנשארת איתך הרבה אחרי שהמפגש האחרון נגמר.</p>
-  </div>
-</section>
-
 <section id="register">
   <div class="wrap">
-    <div class="kick">שמירת מקום</div>
-    <h2>20 מקומות. זהו.</h2>
-    <p class="sub">המחזור מתחיל ב-26.07, וההרשמה נסגרת כשהחדר מתמלא. ההצטרפות היא דרך שיחת התאמה קצרה עם מתן, בלי התחייבות: עוברים יחד על איפה אתה תקוע היום, ומתן אומר לך בכנות אם החדר יזיז לך את המחט או לא. סוגרים מקום ומשלמים רק אחרי ששניכם ראיתם שזה מתאים. אתה לא זורק כסף על משהו שאולי לא בשבילך.</p>
+    <div class="kick">רשימת המתנה</div>
+    <h2>המחזור הנוכחי מלא.</h2>
+    <p class="sub">כל 20 המקומות נתפסו, וההרשמה למחזור הזה סגורה. המחזור הבא ייפתח בהמשך, במועדים ובתנאים חדשים שיפורסמו בהמשך. מי שנמצא ברשימת ההמתנה שומע ממני ראשון, לפני שהחדר נפתח לכולם.</p>
     <blockquote class="prequote">"עוד יומיים ירוקים מאז המפגש. היום כבר מבקש משיכה."<span>גלעד · מהחדר</span></blockquote>
-    <div class="steps">משאירים פרטים <b>←</b> שיחה קצרה <b>←</b> רק אז סוגרים מקום ומשלמים</div>
+    <div class="steps">משאירים פרטים <b>←</b> אני מעדכן ראשון על המחזור הבא <b>←</b> שיחת התאמה</div>
     <form class="formbox" id="form">
-      <div class="price">השקעה במחזור המלא: <b>₪2,470</b><br><span style="font-size:12px;color:var(--mute)">5 מפגשים · 15 שעות פרונטליות · כל עסקה שלך נבדקת אישית</span></div>
+      <div class="price">רשימת המתנה למחזור הבא<br><span style="font-size:12px;color:var(--mute)">5 מפגשים · 15 שעות פרונטליות · כל עסקה שלך נבדקת אישית</span></div>
       <label>שם מלא</label>
       <input type="text" name="name" required placeholder="השם שלך">
       <label>טלפון (וואטסאפ)</label>
       <input type="tel" name="phone" required placeholder="05x-xxxxxxx">
       <label>אימייל</label>
       <input type="email" name="email" required placeholder="you@email.com">
-      <button type="submit" class="btn">אני רוצה שיחת התאמה ←</button>
-      <div class="fineprint">קדימות לחברי הקהילה · 20 מקומות בלבד. השארת פרטים אינה מחייבת — קודם שיחת התאמה, ורק אז סוגרים מקום.</div>
+      <button type="submit" class="btn">צרפו אותי לרשימת ההמתנה ←</button>
+      <div class="fineprint">השארת פרטים אינה מחייבת ואינה שומרת מקום. כשהמחזור הבא נפתח, אני חוזר אליך עם המועדים והתנאים.</div>
     </form>
     <div class="formbox hide" id="done">
       <div class="v">קיבלתי. ✓</div>
-      <p style="color:var(--dim);margin-top:12px;line-height:1.6">הפרטים שלך אצלי. מתן חוזר אליך בוואטסאפ לשיחת התאמה קצרה, לוודא שזה מתאים לך ולסגור מקום.<br>מאחלים לך כל הכבוד על הצעד המשמעותי בדרך לצמיחה של העסק שלך.</p>
+      <p style="color:var(--dim);margin-top:12px;line-height:1.6">אתה ברשימת ההמתנה למחזור הבא של חדר המצב.<br>כשהמחזור נפתח, אני חוזר אליך בוואטסאפ עם המועדים והתנאים, לפני שזה יוצא לכולם.</p>
     </div>
   </div>
 </section>
@@ -327,7 +323,7 @@
 <section>
   <div class="wrap" style="text-align:center">
     <p class="sub" style="max-width:640px;font-size:clamp(19px,4.5vw,24px);color:var(--text);font-weight:500">החופש שאתה מחפש נמצא בצד השני של המשמעת.<br><b style="color:var(--accent-bright)">בחדר הזה בונים אותה.</b></p>
-    <div class="cta-row" style="justify-content:center"><a href="#register" class="btn">לשמירת מקום ←</a></div>
+    <div class="cta-row" style="justify-content:center"><a href="#register" class="btn">לרשימת ההמתנה למחזור הבא ←</a></div>
   </div>
 </section>
 
@@ -342,9 +338,9 @@
     var btn = form.querySelector('button');
     btn.textContent = 'שולח...'; btn.disabled = true;
     var payload = {
-      _subject: 'הרשמה חדר המצב — ' + (form.name.value || ''),
+      _subject: 'רשימת המתנה חדר המצב: ' + (form.name.value || ''),
       name: form.name.value, phone: form.phone.value, email: form.email.value,
-      source: 'situation-room/register'
+      source: 'situation-room/waitlist'
     };
     fetch(LEAD_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
       .then(function(){ show(); })

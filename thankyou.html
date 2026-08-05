@@ -16,7 +16,17 @@
     document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '3092602027607133');
     fbq('track', 'PageView');
-    fbq('track', 'Purchase', {value: 590.00, currency: 'ILS'});
+    // סכום הרכישה נקבע לפי הפרמטר ?ticket= (thankyou.html?ticket=premium לכרטיס פרימיום).
+    // רשימה סגורה של מחירים, כדי שלא יהיה אפשר להזריק סכום שרירותי לפיקסל.
+    (function () {
+        var TICKET_PRICES = { regular: 590, premium: 1590 };
+        var DEFAULT_TICKET = 'regular';
+        var raw = new URLSearchParams(location.search).get('ticket') || '';
+        var ticket = raw.trim().toLowerCase();
+        if (!Object.prototype.hasOwnProperty.call(TICKET_PRICES, ticket)) { ticket = DEFAULT_TICKET; }
+        var amount = TICKET_PRICES[ticket];
+        fbq('track', 'Purchase', {value: amount, currency: 'ILS'});
+    })();
     </script>
     <noscript><img height="1" width="1" style="display:none"
         src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></noscript>
