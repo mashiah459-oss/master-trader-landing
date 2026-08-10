@@ -468,34 +468,100 @@
             margin-top: 2px;
         }
 
-        /* === GALLERY === */
+        /* === AUTHORITY === */
+        .authority-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 32px;
+            display: flex;
+            gap: 28px;
+            align-items: flex-start;
+        }
+
+        .authority-card img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 18px;
+            border: 1px solid var(--glass-border-hover);
+            flex-shrink: 0;
+        }
+
+        .authority-card h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .authority-card p {
+            font-size: 14px;
+            color: var(--text-dim);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .authority-facts {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .authority-facts span {
+            font-size: 12px;
+            color: var(--text-dim);
+            padding: 5px 14px;
+            border-radius: 100px;
+            background: var(--gold-subtle);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            .authority-card { flex-direction: column; align-items: center; text-align: center; }
+            .authority-facts { justify-content: center; }
+        }
+
+        /* === RESULTS GRID === */
         .gallery-section {
             padding: 64px 0;
-            overflow: hidden;
         }
 
-        .gallery-track {
-            display: flex;
-            gap: 14px;
-            width: max-content;
-            padding: 4px 0 16px;
+        .results-grid {
+            columns: 2;
+            column-gap: 16px;
         }
 
-        .gallery-track img {
-            height: 180px;
-            border-radius: 12px;
+        .results-grid figure {
+            break-inside: avoid;
+            margin: 0 0 16px;
+            background: var(--bg-card);
             border: 1px solid var(--glass-border);
-            flex-shrink: 0;
-            cursor: pointer;
-            transition: all 0.35s ease;
-            user-select: none;
-            -webkit-user-drag: none;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
         }
 
-        .gallery-track img:hover {
+        .results-grid figure:hover {
             border-color: var(--glass-border-hover);
-            transform: scale(1.03);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        .results-grid img {
+            width: 100%;
+            display: block;
+            cursor: pointer;
+        }
+
+        .results-grid figcaption {
+            padding: 12px 16px;
+            font-size: 13px;
+            color: var(--text-dim);
+            line-height: 1.6;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        @media (max-width: 600px) {
+            .results-grid { columns: 1; }
         }
 
         /* === COURSE CONTENT CARDS === */
@@ -567,28 +633,74 @@
         }
 
         /* === TESTIMONIALS === */
-        .testimonials-track {
-            display: flex;
+        .testimonial-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 14px;
-            width: max-content;
-            padding: 4px 0 16px;
         }
 
-        .testimonials-track img {
-            height: 100px;
-            border-radius: 10px;
+        @media (max-width: 600px) {
+            .testimonial-cards { grid-template-columns: 1fr; }
+        }
+
+        .t-card {
+            background: var(--bg-card);
             border: 1px solid var(--glass-border);
-            flex-shrink: 0;
-            cursor: pointer;
-            transition: all 0.35s ease;
-            user-select: none;
-            -webkit-user-drag: none;
+            border-radius: 18px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: border-color 0.3s ease;
         }
 
-        .testimonials-track img:hover {
+        .t-card:hover {
             border-color: var(--glass-border-hover);
-            transform: scale(1.05);
         }
+
+        .t-stars {
+            color: var(--gold);
+            font-size: 13px;
+            letter-spacing: 3px;
+        }
+
+        .t-quote {
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.8;
+            flex: 1;
+        }
+
+        .t-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .t-name {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .t-source {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .t-proof {
+            font-size: 12px;
+            color: var(--gold-dark);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: 'Heebo', sans-serif;
+            text-decoration: underline dotted;
+            padding: 0;
+        }
+
+        .t-proof:hover { color: var(--gold); }
 
         /* === BONUSES === */
         .bonus-card {
@@ -663,6 +775,15 @@
             line-height: 1;
             margin-bottom: 16px;
             text-shadow: 0 0 60px rgba(212, 175, 55, 0.2);
+        }
+
+        .price-old {
+            font-family: 'Inter', sans-serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            margin-bottom: 4px;
         }
 
         .price-desc {
@@ -900,7 +1021,6 @@
             .framework-steps { flex-direction: column; align-items: stretch; }
             .framework-step { max-width: 100%; }
             .framework-arrow { transform: rotate(90deg); text-align: center; display: block; width: 100%; }
-            .gallery-track img { height: 140px; }
             .pricing { padding: 48px 0; }
         }
     </style>
@@ -936,8 +1056,8 @@
         <div class="reveal">
             <span class="hero-label">קורס עסק או עסקה · קורס דיגיטלי מלא</span>
         </div>
-        <h1 class="reveal reveal-d1">ההחלטה שתכריע אם תישאר סוחר שמנסה – או תהפוך את המסחר שלך לעסק יציב ושיטתי</h1>
-        <p class="subtitle reveal reveal-d2">קורס דיגיטלי מקיף שבו תלמד לבנות את המערכת העסקית של המסחר שלך – כזו שמייצרת יציבות, שליטה וצמיחה לאורך זמן.</p>
+        <h1 class="reveal reveal-d1">תפסיק לסחור לפי תחושה.<br>תתחיל לנהל את המסחר שלך כמו עסק.</h1>
+        <p class="subtitle reveal reveal-d2">זו ההחלטה שתכריע אם תישאר סוחר שמנסה, או תבנה עסק יציב ושיטתי. קורס דיגיטלי מקיף שבו תבנה את המערכת העסקית של המסחר שלך: יציבות, שליטה וצמיחה לאורך זמן.</p>
 
         <div class="usp-pills reveal reveal-d3">
             <span class="usp-pill">גישה מיידית</span>
@@ -1003,33 +1123,60 @@
         </ul>
     </section>
 
+    <div class="divider"></div>
+
+    <!-- AUTHORITY -->
+    <section class="section">
+        <div class="section-label"><span>רגע, מי אני בכלל</span></div>
+        <div class="authority-card reveal">
+            <img src="images/matan-community.png" alt="מתן משיח" loading="lazy">
+            <div>
+                <h3>מתן משיח. סוחר יומי.</h3>
+                <p>ב-4 השנים האחרונות ליוויתי מאות סוחרים במנטורינג, בסדנאות ובמועדון הסוחר המתמיד. אבל לפני שלימדתי מישהו, הייתי בדיוק איפה שאתה עכשיו.</p>
+                <p>סחרתי בלי מבנה. נכנסתי מהרגש, הגדלתי סיכון אחרי הפסד, וכל חודש הרגיש כמו הימור מחדש. מה ששינה לי את התמונה לא היה עוד אסטרטגיה. זה היה היום שהתחלתי לנהל את המסחר כעסק: תקציב סיכון, מדדים, כללים. את המערכת הזאת בדיוק אתה מקבל בקורס.</p>
+                <div class="authority-facts">
+                    <span>סוחר יומי פעיל</span>
+                    <span>4 שנים מלמד סוחרים</span>
+                    <span>מאות תלמידים במנטורינג</span>
+                    <span>מסחר בלייב מול הקהילה</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </div>
 
-<!-- RESULTS GALLERY (full width) -->
+<!-- RESULTS GALLERY -->
 <section class="gallery-section">
     <div class="container">
-        <div class="section-label"><span>התוצאות שלי — מספרים, לא מילים</span></div>
-    </div>
-    <div class="gallery-track" id="resultsTrack">
-        <img src="images/IMG_5757.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5756.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5755.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5754.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5750.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5751.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5753.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5752.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5749.jpg" alt="תוצאות מסחר" loading="lazy">
-        <!-- Duplicates for seamless loop -->
-        <img src="images/IMG_5757.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5756.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5755.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5754.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5750.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5751.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5753.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5752.jpg" alt="תוצאות מסחר" loading="lazy">
-        <img src="images/IMG_5749.jpg" alt="תוצאות מסחר" loading="lazy">
+        <div class="section-label"><span>התוצאות שלי: מספרים, לא מילים</span></div>
+        <p class="section-sub reveal">כל צילום כאן מוסבר, כי הוכחה בלי הקשר היא רעש. לחיצה על תמונה מגדילה אותה.</p>
+        <div class="results-grid">
+            <figure class="reveal">
+                <img src="images/IMG_5750.jpg" alt="סיכום חודש אוגוסט בשלושה תיקי נוסטרו" loading="lazy">
+                <figcaption>סיכום חודש אוגוסט על 3 תיקי נוסטרו: 37,815$ רווח נקי, 87.5% אחוז הצלחה.</figcaption>
+            </figure>
+            <figure class="reveal">
+                <img src="images/IMG_5751.jpg" alt="בקשות משיכה מחברת נוסטרו" loading="lazy">
+                <figcaption>בקשות משיכה מחברת נוסטרו אחת, בשבועיים. כולן אושרו ושולמו.</figcaption>
+            </figure>
+            <figure class="reveal">
+                <img src="images/IMG_5757.jpg" alt="יומן המסחר של דצמבר" loading="lazy">
+                <figcaption>דצמבר: שבוע וחצי כמעט בלי עסקאות, ועדיין 27,014$ במשיכות מחשבונות ממומנים. משמעת, לא ריגוש.</figcaption>
+            </figure>
+            <figure class="reveal">
+                <img src="images/IMG_5755.jpg" alt="משיכה מ-Take Profit Trader" loading="lazy">
+                <figcaption>משיכה של 7,494$ מ-Take Profit Trader, עם אישורי התשלום במייל.</figcaption>
+            </figure>
+            <figure class="reveal">
+                <img src="images/IMG_5749.jpg" alt="נתוני חשבון Topstep" loading="lazy">
+                <figcaption>מסלול המימון ב-Topstep: 11 ימי רווח רצופים, והיום הגרוע ביותר נעצר ב-80$-. ככה נראה ניהול סיכונים.</figcaption>
+            </figure>
+            <figure class="reveal">
+                <img src="images/IMG_5754.jpg" alt="יום מסחר בלייב בקהילה" loading="lazy">
+                <figcaption>יום מסחר משוקף בלייב לקהילה בדיסקורד, עסקה אחרי עסקה.</figcaption>
+            </figure>
+        </div>
     </div>
 </section>
 
@@ -1052,7 +1199,7 @@
             </div>
             <div class="content-card reveal reveal-d3">
                 <span class="card-num">03</span>
-                <h3>ניהול רווחים וחכונות</h3>
+                <h3>ניהול רווחים והחלטות</h3>
                 <p>איך לנהל את הכסף שנכנס ויוצא, מתי למשוך ומתי להשקיע חזרה.</p>
             </div>
             <div class="content-card reveal reveal-d4">
@@ -1075,43 +1222,73 @@
 
 </div>
 
-<!-- TESTIMONIALS (full width) -->
+<!-- TESTIMONIALS -->
 <section class="gallery-section">
     <div class="container">
         <div class="section-label"><span>מה אומרים עליי</span></div>
-    </div>
-    <div class="testimonials-track" id="testimonialsTrack">
-        <img src="images/review-1.png" alt="עדות" loading="lazy">
-        <img src="images/review-2.png" alt="עדות" loading="lazy">
-        <img src="images/review-3.png" alt="עדות" loading="lazy">
-        <img src="images/review-4.png" alt="עדות" loading="lazy">
-        <img src="images/review-5.png" alt="עדות" loading="lazy">
-        <img src="images/review-6.png" alt="עדות" loading="lazy">
-        <img src="images/review-7.png" alt="עדות" loading="lazy">
-        <img src="images/review-8.png" alt="עדות" loading="lazy">
-        <img src="images/review-9.png" alt="עדות" loading="lazy">
-        <img src="images/review-10.png" alt="עדות" loading="lazy">
-        <img src="images/review-11.png" alt="עדות" loading="lazy">
-        <img src="images/review-12.png" alt="עדות" loading="lazy">
-        <img src="images/review-13.png" alt="עדות" loading="lazy">
-        <img src="images/review-14.png" alt="עדות" loading="lazy">
-        <img src="images/review-15.png" alt="עדות" loading="lazy">
-        <!-- Duplicates for loop -->
-        <img src="images/review-1.png" alt="עדות" loading="lazy">
-        <img src="images/review-2.png" alt="עדות" loading="lazy">
-        <img src="images/review-3.png" alt="עדות" loading="lazy">
-        <img src="images/review-4.png" alt="עדות" loading="lazy">
-        <img src="images/review-5.png" alt="עדות" loading="lazy">
-        <img src="images/review-6.png" alt="עדות" loading="lazy">
-        <img src="images/review-7.png" alt="עדות" loading="lazy">
-        <img src="images/review-8.png" alt="עדות" loading="lazy">
-        <img src="images/review-9.png" alt="עדות" loading="lazy">
-        <img src="images/review-10.png" alt="עדות" loading="lazy">
-        <img src="images/review-11.png" alt="עדות" loading="lazy">
-        <img src="images/review-12.png" alt="עדות" loading="lazy">
-        <img src="images/review-13.png" alt="עדות" loading="lazy">
-        <img src="images/review-14.png" alt="עדות" loading="lazy">
-        <img src="images/review-15.png" alt="עדות" loading="lazy">
+        <p class="section-sub reveal">עדיף מעט עדויות שאפשר לקרוא מהרבה שאי אפשר. איפה שיש צילום מקורי, אפשר לפתוח אותו בלחיצה.</p>
+        <div class="testimonial-cards">
+            <div class="t-card reveal">
+                <p class="t-quote">"השיפור ניכר אצלי מיום ליום, בבהירות שלי על הגרף, בביצוע ובתחושה. הייתה לי רק עסקה אחת כל השבוע האחרון וזה שיא מבחינתי. אני מבסוט וגאה, ואנחנו רק בהתחלה."</p>
+                <div class="t-meta">
+                    <div>
+                        <div class="t-name">איתמר ששון</div>
+                        <div class="t-source">קבוצת הוואטסאפ של התלמידים</div>
+                    </div>
+                    <button class="t-proof" data-lightbox="images/testimonial-itamar.jpg">לצילום המקורי</button>
+                </div>
+            </div>
+            <div class="t-card reveal reveal-d1">
+                <p class="t-quote">"אני 3 שנים בתחום, אבל חייב להגיד שזו פעם ראשונה שאני מסתכל על הגרף באותה צורה כל יום. סוחר ולא מסתבך, עם רוגע פנימי שקשה להסביר. תודה, מעריך מאוד."</p>
+                <div class="t-meta">
+                    <div>
+                        <div class="t-name">סוחר עם 3 שנים בשוק</div>
+                        <div class="t-source">הודעה בוואטסאפ</div>
+                    </div>
+                    <button class="t-proof" data-lightbox="images/testimonial-veteran.jpg">לצילום המקורי</button>
+                </div>
+            </div>
+            <div class="t-card reveal">
+                <p class="t-quote">"מרגיש שבזמן האחרון אני באמת נותן עבודה פנימית לגבי התחום וההתנהגות שלי בו. מתחיל להבין את העניין של 'לא עסקה, אלא עסק'. גם הלייבים איתך מאוד עוזרים לי."</p>
+                <div class="t-meta">
+                    <div>
+                        <div class="t-name">תלמיד בליווי</div>
+                        <div class="t-source">הודעה בוואטסאפ</div>
+                    </div>
+                    <button class="t-proof" data-lightbox="images/testimonial-journal.jpg">לצילום המקורי</button>
+                </div>
+            </div>
+            <div class="t-card reveal reveal-d1">
+                <div class="t-stars">★★★★★</div>
+                <p class="t-quote">"כשהבעיה היחידה שלך זה מאיפה להתחיל בגלל כמות התוכן האיכותי, אתה יודע שאתה בטוב!"</p>
+                <div class="t-meta">
+                    <div>
+                        <div class="t-name">Yaniv Weiss</div>
+                        <div class="t-source">ביקורת מאומתת ב-Whop</div>
+                    </div>
+                </div>
+            </div>
+            <div class="t-card reveal">
+                <div class="t-stars">★★★★★</div>
+                <p class="t-quote">"ספריית ידע ברמה גבוהה מאוד, מסודרת וממוקצעת. מתן מעביר את החומר בצורה מעניינת וברורה. פשוט זהב!"</p>
+                <div class="t-meta">
+                    <div>
+                        <div class="t-name">אורן קארו</div>
+                        <div class="t-source">ביקורת מאומתת ב-Whop</div>
+                    </div>
+                </div>
+            </div>
+            <div class="t-card reveal reveal-d1">
+                <div class="t-stars">★★★★★</div>
+                <p class="t-quote">"מקצוענות. אכפתיות. רמה עולמית."</p>
+                <div class="t-meta">
+                    <div>
+                        <div class="t-name">AMIR SADRAN</div>
+                        <div class="t-source">ביקורת מאומתת ב-Whop</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -1201,7 +1378,7 @@
             </div>
             <div class="reveal reveal-d5" style="display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.04);">
                 <span style="font-size: 14px; display: flex; align-items: center; gap: 10px; color: var(--text);">✅ צ׳אט קהילתי פעיל עם חברי הקורס</span>
-                <span style="font-size: 13px; color: var(--text-muted);">שווי לא ניתן לתיאור</span>
+                <span style="font-size: 13px; color: var(--text-muted);">לא נמכר בנפרד</span>
             </div>
 
             <!-- Total value -->
@@ -1218,9 +1395,11 @@
     <!-- PRICING -->
     <section class="pricing" style="padding-top: 32px;">
         <div style="background: var(--bg-card); border: 2px solid var(--glass-border-hover); border-radius: 24px; padding: 40px 32px; max-width: 480px; margin: 0 auto; position: relative;">
-            <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--gold-dark), var(--gold)); color: #0a0a0a; font-size: 11px; font-weight: 800; padding: 5px 20px; border-radius: 100px; letter-spacing: 1px; text-transform: uppercase;" class="reveal">הצעה מיוחדת</div>
-            <div class="price-label reveal" style="margin-top: 8px;">הקורס המלא עולה היום:</div>
-            <div class="price-amount reveal reveal-d1">387 ₪</div>
+            <div style="position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--gold-dark), var(--gold)); color: #0a0a0a; font-size: 11px; font-weight: 800; padding: 5px 20px; border-radius: 100px; letter-spacing: 1px; text-transform: uppercase;" class="reveal">הטבה לזמן מוגבל</div>
+            <div class="price-label reveal" style="margin-top: 8px;">המחיר המלא של הקורס:</div>
+            <div class="price-old reveal">387 ₪</div>
+            <div class="price-label reveal" style="margin-top: 4px;">המחיר שלך היום:</div>
+            <div class="price-amount reveal reveal-d1">297 ₪</div>
             <p class="price-desc reveal reveal-d2">תשלום חד פעמי. גישה מלאה לקורס + הקלטת סדנה + צ׳אט קהילתי.</p>
             <p class="price-desc reveal reveal-d3" style="color: var(--gold); font-weight: 600; font-size: 13px;">כולל מע״מ. בלי תשלומים נוספים. בלי הפתעות.</p>
             <div class="reveal reveal-d4" style="margin-top: 24px;">
@@ -1298,7 +1477,7 @@
 
         <div class="faq-item reveal reveal-d6">
             <div class="faq-q">
-                <span>387 ₪ — למה כל כך זול?</span>
+                <span>297 ₪, למה כל כך זול?</span>
                 <span class="faq-chevron">▼</span>
             </div>
             <div class="faq-a">
@@ -1312,7 +1491,7 @@
                 <span class="faq-chevron">▼</span>
             </div>
             <div class="faq-a">
-                <div class="faq-a-inner">אם עברת על הקורס ולא קיבלת ערך — תכתוב לי. אני עומד מאחורי התוכן שלי. אבל בינינו? אם אתה סוחר שרוצה להתקדם ואתה מוכן ליישם — הקורס הזה ישנה לך את הראש.</div>
+                <div class="faq-a-inner">אגיד לך את האמת: ב-297 ₪ אני לא עובד עם מדיניות החזרים. המחיר כבר נמוך בכוונה, כדי שההחלטה תהיה פשוטה. אם עברת על הקורס ומשהו לא ברור לך, תכתוב לי, אני זמין בצ׳אט הקהילתי. אבל אם אתה סוחר שרוצה להתקדם ומוכן ליישם, הקורס הזה ישנה לך את הראש.</div>
             </div>
         </div>
     </section>
@@ -1323,7 +1502,7 @@
     <section class="section" style="text-align: center;">
         <div class="reveal" style="background: var(--bg-card); border: 1px solid var(--glass-border-hover); border-radius: 18px; padding: 32px 24px; max-width: 520px; margin: 0 auto;">
             <p style="font-size: 14px; color: var(--gold); font-weight: 600; margin-bottom: 16px;">💡 שים לב</p>
-            <p style="font-size: 15px; line-height: 1.7; color: var(--text-dim);">המחיר הזה לא ישאר ככה לנצח. ככל שנוספים תכנים, הקלטות, וכלים — המחיר עולה. מי שנכנס עכשיו, נועל את המחיר הזה <strong style="color: var(--text);">לצמיתות.</strong></p>
+            <p style="font-size: 15px; line-height: 1.7; color: var(--text-dim);">המחיר המלא של הקורס הוא 387 ₪. המחיר של 297 ₪ הוא הטבה לזמן מוגבל, וככל שנוספים תכנים, הקלטות וכלים, המחיר רק עולה. מי שנכנס עכשיו נועל את המחיר הזה <strong style="color: var(--text);">לצמיתות.</strong></p>
         </div>
     </section>
 
@@ -1332,7 +1511,7 @@
         <p class="statement reveal">הצלחה במסחר היא לא תוצאה של כישרון רגעי.<br>היא תוצאה של מערכת שמנוהלת נכון לאורך זמן.</p>
         <h2 class="reveal reveal-d1">האם אתה בונה עסק –<br>או רק מחפש את העסקה הבאה?</h2>
         <div class="reveal reveal-d2" style="margin-bottom: 16px;">
-            <a href="https://whop.com/trading-as-a-business/58c43258-c998-4f1d-a2db-6707625723a3/" target="_blank" class="cta-btn" style="width: 100%; max-width: 400px; text-align: center;">להרשמה לקורס — 387 ₪ בלבד ←</a>
+            <a href="https://whop.com/trading-as-a-business/58c43258-c998-4f1d-a2db-6707625723a3/" target="_blank" class="cta-btn" style="width: 100%; max-width: 400px; text-align: center;">להרשמה לקורס: 297 ₪ במקום 387 ₪ ←</a>
         </div>
         <p class="reveal reveal-d3" style="font-size: 12px; color: var(--text-muted);">🔒 תשלום מאובטח · גישה מיידית · צ׳אט קהילתי כלול</p>
     </section>
@@ -1402,79 +1581,23 @@
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // === AUTO-SCROLL CAROUSELS ===
-    function initCarousel(track, speed) {
-        if (!track) return;
-        let scrollPos = 0;
-        let isIdle = true;
-        let idleTimer = null;
-        const halfWidth = track.scrollWidth / 2;
-
-        function autoScroll() {
-            if (isIdle && halfWidth > 0) {
-                scrollPos += speed;
-                if (scrollPos >= halfWidth) scrollPos -= halfWidth;
-                track.style.transform = `translateX(${scrollPos}px)`;
-            }
-            requestAnimationFrame(autoScroll);
-        }
-
-        function pause() {
-            isIdle = false;
-            clearTimeout(idleTimer);
-            idleTimer = setTimeout(() => { isIdle = true; }, 2000);
-        }
-
-        // Touch/drag support
-        let startX, startScroll, isDragging = false;
-
-        track.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.pageX;
-            startScroll = scrollPos;
-            pause();
-        });
-
-        track.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            const dx = e.pageX - startX;
-            scrollPos = startScroll - dx * 0.5;
-            track.style.transform = `translateX(${scrollPos}px)`;
-        });
-
-        window.addEventListener('mouseup', () => { isDragging = false; });
-
-        track.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].pageX;
-            startScroll = scrollPos;
-            pause();
-        }, { passive: true });
-
-        track.addEventListener('touchmove', (e) => {
-            const dx = e.touches[0].pageX - startX;
-            if (Math.abs(dx) > 5) {
-                scrollPos = startScroll - dx * 0.5;
-                track.style.transform = `translateX(${scrollPos}px)`;
-            }
-        }, { passive: true });
-
-        requestAnimationFrame(autoScroll);
-    }
-
-    initCarousel(document.getElementById('resultsTrack'), 0.6);
-    initCarousel(document.getElementById('testimonialsTrack'), 0.5);
-
     // === LIGHTBOX ===
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('img');
     const lightboxClose = lightbox.querySelector('.lightbox-close');
 
-    document.querySelectorAll('.gallery-track img, .testimonials-track img').forEach(img => {
-        img.addEventListener('click', () => {
-            lightboxImg.src = img.src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
+    function openLightbox(src) {
+        lightboxImg.src = src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    document.querySelectorAll('.results-grid img').forEach(img => {
+        img.addEventListener('click', () => openLightbox(img.src));
+    });
+
+    document.querySelectorAll('.t-proof').forEach(btn => {
+        btn.addEventListener('click', () => openLightbox(btn.dataset.lightbox));
     });
 
     function closeLightbox() {
