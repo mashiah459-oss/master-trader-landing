@@ -91,6 +91,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   .btn.disabled:hover{ transform:none; box-shadow:none; }
   .seats{ margin-top:18px; font-family:'Space Mono',monospace; font-size:13px; letter-spacing:1px; color:#cdd4de; text-shadow:0 2px 12px rgba(0,0,0,.9); }
   .seats b{ color:var(--accent-bright); }
+  .seatsleft.low b{ color:#ff6b5e; }
 
   section{ padding:clamp(48px,8vh,80px) 0; border-top:1px solid var(--line); position:relative; z-index:2; }
   .kick{ font-family:'Space Mono',monospace; font-size:12px; letter-spacing:4px; color:var(--accent); text-align:center; text-transform:uppercase; }
@@ -272,7 +273,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       <a href="#register" class="btn">אני בפנים, שריינו לי מקום ←</a>
       <a href="#agenda" class="btn ghost">מה לומדים בסדנה</a>
     </div>
-    <div class="seats"><b>30 מקומות בלבד</b> · 17:00 עד 20:00</div>
+    <div class="seats seatsleft"><b>נשארו <span data-seats-left>24</span> מקומות</b> מתוך 30 · 17:00 עד 20:00</div>
   </div>
 </header>
 
@@ -443,7 +444,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       </div>
       <div class="lrow">
         <div class="ic" aria-hidden="true">👥</div>
-        <div><div class="lbl">מקומות</div><div class="val">30 משתתפים בלבד</div></div>
+        <div><div class="lbl">מקומות</div><div class="val">נשארו <span data-seats-left>24</span> מתוך 30</div></div>
       </div>
       <div class="countdown" id="countdown" aria-label="ספירה לאחור לסדנה">
         <div class="cd"><div class="num" id="cd-d">--</div><div class="unit">ימים</div></div>
@@ -504,7 +505,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 <section id="register">
   <div class="wrap">
     <div class="kick">שמירת מקום</div>
-    <h2>30 מקומות. זהו.</h2>
+    <h2>נשארו <span data-seats-left>24</span> מקומות.</h2>
     <p class="sub">בוחרים כרטיס וממשיכים ישר לתשלום. את הפרטים ממלאים פעם אחת בלבד, בעמוד הסליקה. כל ההנחיות והכתובת המדויקת יישלחו בוואטסאפ כשבוע לפני המועד.</p>
     <div class="formbox">
       <label>בחר כרטיס</label>
@@ -517,7 +518,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       <!-- טקסט ברירת המחדל תואם ל-BLURB.regular בסקריפט, ונדרס בטעינה ובכל החלפת כרטיס -->
       <div class="picked" id="picked">הכרטיס הרגיל: 3 שעות סדנה חיה, השיטה המלאה, המון דוגמאות אמיתיות ותרגול על השוק.</div>
       <a href="#" class="btn" id="pay-btn" target="_blank" rel="noopener">המשך לשריון המקום ←</a>
-      <div class="fineprint">תשלום מאובטח דרך Morning · קבלה תישלח למייל · 30 מקומות בלבד</div>
+      <div class="fineprint">תשלום מאובטח דרך Morning · קבלה תישלח למייל · נשארו <span data-seats-left>24</span> מקומות</div>
     </div>
   </div>
 </section>
@@ -707,6 +708,16 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     });
   });
 })();
+</script>
+
+<script>
+/* מקומות שנותרו. לעדכן את המספר הזה בלבד אחרי כל מכירה. */
+const SEATS_TOTAL = 30, SEATS_SOLD = 6;
+document.addEventListener('DOMContentLoaded', () => {
+  const left = SEATS_TOTAL - SEATS_SOLD;
+  document.querySelectorAll('[data-seats-left]').forEach(el => { el.textContent = left; });
+  if (left <= 10) document.querySelectorAll('.seatsleft').forEach(el => el.classList.add('low'));
+});
 </script>
 </body>
 </html>
