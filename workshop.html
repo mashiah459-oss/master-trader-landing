@@ -91,6 +91,14 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   .btn.disabled:hover{ transform:none; box-shadow:none; }
   .seats{ margin-top:18px; font-family:'Space Mono',monospace; font-size:13px; letter-spacing:1px; color:#cdd4de; text-shadow:0 2px 12px rgba(0,0,0,.9); }
   .seats b{ color:var(--accent-bright); }
+  .fillbar{ max-width:360px; margin:14px auto 0; }
+  .fillbar .track{ height:6px; border-radius:99px; background:rgba(244,245,247,.10); overflow:hidden; }
+  .fillbar .fill{ height:100%; width:0; border-radius:99px; background:linear-gradient(90deg,var(--accent),var(--accent-bright)); box-shadow:0 0 14px rgba(228,50,42,.5); transition:width .9s cubic-bezier(.2,.8,.2,1); }
+  .fillbar .cap{ margin-top:9px; font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.6px; color:#cdd4de; text-shadow:0 2px 12px rgba(0,0,0,.9); }
+  .fillbar .cap b{ color:var(--accent-bright); }
+  #register .fillbar{ margin:0 auto 18px; }
+  #register .fillbar .cap{ color:var(--dim); text-shadow:none; }
+  @media (max-width:520px){ .fillbar .cap{ font-size:11px; letter-spacing:.2px; } }
   .seatsleft.low b{ color:#ff6b5e; }
 
   section{ padding:clamp(48px,8vh,80px) 0; border-top:1px solid var(--line); position:relative; z-index:2; }
@@ -273,7 +281,8 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       <a href="#register" class="btn">אני בפנים, שריינו לי מקום ←</a>
       <a href="#agenda" class="btn ghost">מה לומדים בסדנה</a>
     </div>
-    <div class="seats seatsleft"><b>נשארו <span data-seats-left>24</span> מקומות</b> מתוך 30 · 17:00 עד 20:00</div>
+    <div class="seats seatsleft"><b data-seats-phrase>נשארו 4 מקומות</b> מתוך 30 · 17:00 עד 20:00</div>
+    <div class="fillbar"><div class="track"><div class="fill" data-fill></div></div><div class="cap" data-fill-cap></div></div>
   </div>
 </header>
 
@@ -440,11 +449,11 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       </div>
       <div class="lrow">
         <div class="ic" aria-hidden="true">📍</div>
-        <div><div class="lbl">מיקום</div><div class="val">מיי קמפוס, רחוב לח״י 21, בני ברק</div></div>
+        <div><div class="lbl">מיקום</div><div class="val">מיי קמפוס, אולם נגב · רחוב לח״י 21, בני ברק · קומת קרקע</div></div>
       </div>
       <div class="lrow">
         <div class="ic" aria-hidden="true">👥</div>
-        <div><div class="lbl">מקומות</div><div class="val">נשארו <span data-seats-left>24</span> מתוך 30</div></div>
+        <div><div class="lbl">מקומות</div><div class="val"><span data-seats-phrase-short>נשארו 4</span> מתוך 30</div></div>
       </div>
       <div class="countdown" id="countdown" aria-label="ספירה לאחור לסדנה">
         <div class="cd"><div class="num" id="cd-d">--</div><div class="unit">ימים</div></div>
@@ -505,7 +514,8 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 <section id="register">
   <div class="wrap">
     <div class="kick">שמירת מקום</div>
-    <h2>נשארו <span data-seats-left>24</span> מקומות.</h2>
+    <h2><span data-seats-phrase>נשארו 4 מקומות</span>.</h2>
+    <div class="fillbar"><div class="track"><div class="fill" data-fill></div></div><div class="cap" data-fill-cap></div></div>
     <p class="sub">בוחרים כרטיס וממשיכים ישר לתשלום. את הפרטים ממלאים פעם אחת בלבד, בעמוד הסליקה. כל ההנחיות והכתובת המדויקת יישלחו בוואטסאפ כשבוע לפני המועד.</p>
     <div class="formbox">
       <label>בחר כרטיס</label>
@@ -518,7 +528,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       <!-- טקסט ברירת המחדל תואם ל-BLURB.regular בסקריפט, ונדרס בטעינה ובכל החלפת כרטיס -->
       <div class="picked" id="picked">הכרטיס הרגיל: 3 שעות סדנה חיה, השיטה המלאה, המון דוגמאות אמיתיות ותרגול על השוק.</div>
       <a href="#" class="btn" id="pay-btn" target="_blank" rel="noopener">המשך לשריון המקום ←</a>
-      <div class="fineprint">תשלום מאובטח דרך Morning · קבלה תישלח למייל · נשארו <span data-seats-left>24</span> מקומות</div>
+      <div class="fineprint">תשלום מאובטח דרך Morning · קבלה תישלח למייל · <span data-seats-phrase>נשארו 4 מקומות</span></div>
     </div>
   </div>
 </section>
@@ -538,7 +548,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       </details>
       <details>
         <summary>הסדנה אונליין או פיזית?</summary>
-        <div class="a">פיזית, פנים אל פנים. מיי קמפוס, רחוב לח״י 21 בבני ברק, ביום ראשון 30.08.2026 בין 17:00 ל-20:00. הכתובת המדויקת וההנחיות יישלחו לנרשמים בוואטסאפ.</div>
+        <div class="a">פיזית, פנים אל פנים. מיי קמפוס, אולם נגב, רחוב לח״י 21 בבני ברק, קומת קרקע, ביום ראשון 30.08.2026 בין 17:00 ל-20:00. הכתובת המדויקת וההנחיות יישלחו לנרשמים בוואטסאפ.</div>
       </details>
       <details>
         <summary>יש לי כבר שיטת מסחר, זה רלוונטי לי?</summary>
@@ -575,7 +585,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     </div>
     <p class="statement">אפשר להמשיך לנחש בכל עסקה.<br>ואפשר לצאת מהחדר הזה עם שיטה אחת שמייצרת כיוון, תזמון ועקביות.</p>
     <div class="cta-row" style="justify-content:center"><a href="#register" class="btn">אני בפנים, שריינו לי מקום ←</a></div>
-    <p class="sub" style="margin-top:18px">30.08.2026 · 17:00 עד 20:00 · מיי קמפוס, רחוב לח״י 21, בני ברק</p>
+    <p class="sub" style="margin-top:18px">30.08.2026 · 17:00 עד 20:00 · מיי קמפוס, אולם נגב · לח״י 21, בני ברק</p>
   </div>
 </section>
 
@@ -712,10 +722,35 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 
 <script>
 /* מקומות שנותרו. לעדכן את המספר הזה בלבד אחרי כל מכירה. */
-const SEATS_TOTAL = 30, SEATS_SOLD = 6;
+const SEATS_TOTAL = 30, SEATS_SOLD = 28;
+
+/* משפט המילוי נגזר מהמספר האמיתי, כדי שלא ייאמר יותר ממה שנמכר בפועל */
+function fillPhrase(pct){
+  if (pct >= 80) return 'האולם כמעט מלא';
+  if (pct >= 66) return 'שני שליש מהאולם כבר מלאים';
+  if (pct >= 50) return 'יותר מחצי האולם כבר מלא';
+  if (pct >= 40) return 'כמעט חצי מהאולם כבר מלא';
+  return 'המקומות נתפסים';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const left = SEATS_TOTAL - SEATS_SOLD;
+  const pct = Math.round(SEATS_SOLD / SEATS_TOTAL * 100);
   document.querySelectorAll('[data-seats-left]').forEach(el => { el.textContent = left; });
+  /* מתחת ל-10 עוברים ל"X מקומות אחרונים" — נכון רק כשבאמת נשאר מעט */
+  const last = left <= 10;
+  document.querySelectorAll('[data-seats-phrase]').forEach(el => {
+    el.textContent = last ? (left + ' מקומות אחרונים') : ('נשארו ' + left + ' מקומות');
+  });
+  document.querySelectorAll('[data-seats-phrase-short]').forEach(el => {
+    el.textContent = last ? (left + ' אחרונים') : ('נשארו ' + left);
+  });
+  document.querySelectorAll('[data-fill-cap]').forEach(el => {
+    el.innerHTML = '<b>' + fillPhrase(pct) + '</b> · ' + SEATS_SOLD + ' מתוך ' + SEATS_TOTAL + ' מקומות נתפסו';
+  });
+  requestAnimationFrame(() => {
+    document.querySelectorAll('[data-fill]').forEach(el => { el.style.width = pct + '%'; });
+  });
   if (left <= 10) document.querySelectorAll('.seatsleft').forEach(el => el.classList.add('low'));
 });
 </script>
