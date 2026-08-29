@@ -722,7 +722,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 
 <script>
 /* מקומות שנותרו. לעדכן את המספר הזה בלבד אחרי כל מכירה. */
-const SEATS_TOTAL = 30, SEATS_SOLD = 28;
+const SEATS_TOTAL = 30, SEATS_SOLD = 29;
 
 /* משפט המילוי נגזר מהמספר האמיתי, כדי שלא ייאמר יותר ממה שנמכר בפועל */
 function fillPhrase(pct){
@@ -740,10 +740,10 @@ document.addEventListener('DOMContentLoaded', () => {
   /* מתחת ל-10 עוברים ל"X מקומות אחרונים" — נכון רק כשבאמת נשאר מעט */
   const last = left <= 10;
   document.querySelectorAll('[data-seats-phrase]').forEach(el => {
-    el.textContent = last ? (left + ' מקומות אחרונים') : ('נשארו ' + left + ' מקומות');
+    el.textContent = left === 1 ? 'מקום אחרון אחד' : (last ? (left + ' מקומות אחרונים') : ('נשארו ' + left + ' מקומות'));
   });
   document.querySelectorAll('[data-seats-phrase-short]').forEach(el => {
-    el.textContent = last ? (left + ' אחרונים') : ('נשארו ' + left);
+    el.textContent = left === 1 ? 'מקום אחרון' : (last ? (left + ' אחרונים') : ('נשארו ' + left));
   });
   document.querySelectorAll('[data-fill-cap]').forEach(el => {
     el.innerHTML = '<b>' + fillPhrase(pct) + '</b> · ' + SEATS_SOLD + ' מתוך ' + SEATS_TOTAL + ' מקומות נתפסו';
