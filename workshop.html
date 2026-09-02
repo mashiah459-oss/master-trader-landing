@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>סדנת תורת הרבעים · 30.08 · מתן משיח</title>
-<meta name="description" content="סדנה חיה של 3 שעות עם מתן משיח. שיטת תורת הרבעים המלאה: כיוון, כניסה, סטופ ויעד. 30.08.2026, מיי קמפוס בני ברק, 30 מקומות בלבד.">
+<title>סדנת תורת הרבעים · מתן משיח</title>
+<meta name="description" content="סדנה של 3 שעות עם מתן משיח, פנים אל פנים. שיטת תורת הרבעים המלאה: כיוון, כניסה, סטופ ויעד. המועד הבא טרם נקבע. הצטרפו לרשימת ההמתנה ותהיו הראשונים לדעת.">
 <meta property="og:title" content="סדנת תורת הרבעים · מתן משיח">
-<meta property="og:description" content="3 שעות חיות, פנים אל פנים. שיטה אחת ברורה לכל עסקה. 30.08.2026, מיי קמפוס בני ברק, 30 מקומות.">
+<meta property="og:description" content="3 שעות פנים אל פנים. שיטה אחת ברורה לכל עסקה. המועד הבא טרם נקבע, ורשימת ההמתנה מקבלת אותו ראשונה.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://matanmashiah.com/workshop.html">
 <meta property="og:image" content="https://matanmashiah.com/images/og-workshop.jpg">
@@ -96,8 +96,10 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   .fillbar .fill{ height:100%; width:0; border-radius:99px; background:linear-gradient(90deg,var(--accent),var(--accent-bright)); box-shadow:0 0 14px rgba(228,50,42,.5); transition:width .9s cubic-bezier(.2,.8,.2,1); }
   .fillbar .cap{ margin-top:9px; font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.6px; color:#cdd4de; text-shadow:0 2px 12px rgba(0,0,0,.9); }
   .fillbar .cap b{ color:var(--accent-bright); }
-  #register .fillbar{ margin:0 auto 18px; }
-  #register .fillbar .cap{ color:var(--dim); text-shadow:none; }
+  .hide{ display:none !important; }
+  .wl-consent{ display:flex; align-items:center; gap:9px; margin-top:20px !important; font-size:13px; color:var(--dim); cursor:pointer; }
+  .wl-consent input{ width:auto; accent-color:var(--accent); }
+  .wl-ok{ font-size:24px; font-weight:800; color:var(--accent-bright); text-align:center; }
   @media (max-width:520px){ .fillbar .cap{ font-size:11px; letter-spacing:.2px; } }
   .seatsleft.low b{ color:#ff6b5e; }
 
@@ -173,8 +175,6 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   .lrow .ic{ width:38px; height:38px; flex:none; display:flex; align-items:center; justify-content:center; border:1px solid var(--line); border-radius:9px; font-size:17px; background:#05060a; }
   .lrow .lbl{ font-family:'Space Mono',monospace; font-size:11px; letter-spacing:2px; color:var(--mute); }
   .lrow .val{ font-size:16px; font-weight:700; color:#fff; margin-top:3px; }
-  .countdown{ margin-top:22px; display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
-  .cd{ background:#05060a; border:1px solid var(--line); border-radius:9px; padding:14px 6px; text-align:center; }
   .cd .num{ font-family:'Space Mono',monospace; font-weight:700; font-size:clamp(22px,5vw,28px); color:var(--accent-bright); }
   .cd .unit{ font-size:11px; color:var(--mute); margin-top:5px; letter-spacing:1px; }
 
@@ -271,17 +271,16 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   <div class="hero-grade" aria-hidden="true"></div>
   <div class="wrap">
     <div class="brand">MASTER<b>TRADER</b></div>
-    <div class="eyebrow">סדנה חיה · 30 מקומות בלבד</div>
+    <div class="eyebrow">המחזור האחרון הסתיים</div>
     <div class="wordmark">תורת<br>הרבעים</div>
     <div class="rule"></div>
     <div class="promise">תפסיק לנחש בכל עסקה.<br>תסחור לפי שיטה אחת ברורה.</div>
-    <div class="datechip"><span class="lbl">יום ראשון</span><span class="sep" aria-hidden="true"></span><span class="d">30.08</span></div>
+    <div class="datechip"><span class="lbl">המועד הבא</span><span class="sep" aria-hidden="true"></span><span class="d">יפורסם</span></div>
     <div class="subhook">שלוש שעות חיות עם מתן משיח, פנים אל פנים במיי קמפוס בבני ברק. אתה יוצא עם שיטת עבודה שלמה לכל עסקה: כיוון, כניסה, סטופ ויעד. כזו שאתה מיישם כבר ביום המסחר הבא.</div>
     <div class="cta-row">
-      <a href="#register" class="btn">אני בפנים, שריינו לי מקום ←</a>
+      <a href="#waitlist" class="btn">שריינו לי מקום למועד הבא ←</a>
       <a href="#agenda" class="btn ghost">מה לומדים בסדנה</a>
     </div>
-    <div class="seats seatsleft"><b data-seats-phrase>נשארו 4 מקומות</b> מתוך 30 · 17:00 עד 20:00</div>
     <div class="fillbar"><div class="track"><div class="fill" data-fill></div></div><div class="cap" data-fill-cap></div></div>
   </div>
 </header>
@@ -436,12 +435,12 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 
 <section id="details">
   <div class="wrap">
-    <div class="kick">הלוגיסטיקה</div>
-    <h2>פרטי הסדנה</h2>
+    <div class="kick">המתכונת</div>
+    <h2>איך הסדנה עובדת</h2>
     <div class="logistics">
       <div class="lrow">
         <div class="ic" aria-hidden="true">🗓</div>
-        <div><div class="lbl">תאריך</div><div class="val">יום ראשון, 30.08.2026</div></div>
+        <div><div class="lbl">המועד הבא</div><div class="val">טרם נקבע · יפורסם לרשימת ההמתנה ראשונה</div></div>
       </div>
       <div class="lrow">
         <div class="ic" aria-hidden="true">🕔</div>
@@ -453,82 +452,37 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       </div>
       <div class="lrow">
         <div class="ic" aria-hidden="true">👥</div>
-        <div><div class="lbl">מקומות</div><div class="val"><span data-seats-phrase-short>נשארו 4</span> מתוך 30</div></div>
-      </div>
-      <div class="countdown" id="countdown" aria-label="ספירה לאחור לסדנה">
-        <div class="cd"><div class="num" id="cd-d">--</div><div class="unit">ימים</div></div>
-        <div class="cd"><div class="num" id="cd-h">--</div><div class="unit">שעות</div></div>
-        <div class="cd"><div class="num" id="cd-m">--</div><div class="unit">דקות</div></div>
-        <div class="cd"><div class="num" id="cd-s">--</div><div class="unit">שניות</div></div>
+        <div><div class="lbl">מקומות</div><div class="val">30 בלבד · במחזור האחרון נתפסו 29</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="pricing">
+<section id="waitlist">
   <div class="wrap">
-    <div class="kick">ההשקעה</div>
-    <h2>שני כרטיסים. אתה בוחר.</h2>
-    <div class="anchor">
-      <div class="t">בוא נדבר תכל׳ס על מחיר</div>
-      <div class="lines">
-        <div>סדנת מסחר פרונטלית של 3 שעות עם סוחר ממומן בדרך כלל עולה <s>1,690 ₪</s></div>
-        <div>גם ב-<s>990 ₪</s> זו היתה עסקה משתלמת</div>
-        <div>וגם ב-<s>700 ₪</s> לא היית מתלונן</div>
-      </div>
+    <div class="kick">המועד הבא</div>
+    <h2>אין כרגע מועד פתוח.</h2>
+    <p class="sub">המחזור האחרון הסתיים, ומועד חדש עוד לא נקבע. מי שברשימת ההמתנה מקבל את התאריך ואת האפשרות להירשם לפני כולם, לפני שהוא עולה לאתר.</p>
+
+    <div class="formbox" id="wl-form">
+      <label for="wl-name">שם מלא</label>
+      <input type="text" id="wl-name" autocomplete="name" placeholder="השם שלך">
+
+      <label for="wl-phone">טלפון</label>
+      <input type="tel" id="wl-phone" dir="ltr" inputmode="tel" autocomplete="tel" placeholder="050-0000000">
+
+      <label for="wl-email">אימייל</label>
+      <input type="email" id="wl-email" dir="ltr" inputmode="email" autocomplete="email" placeholder="name@example.com">
+
+      <label class="wl-consent"><input type="checkbox" id="wl-consent" checked> אני מאשר קבלת עדכון על המועד הבא</label>
+
+      <a href="#" class="btn" id="wl-btn">תעדכנו אותי כשייפתח מועד ←</a>
+      <div class="fineprint">בלי ספאם. הודעה אחת כשנקבע תאריך, וזהו.</div>
     </div>
 
-    <div class="tickets">
-      <div class="ticket">
-        <div class="name">כרטיס רגיל</div>
-        <div class="amount">590<span> ₪</span></div>
-        <div class="note">תשלום חד פעמי</div>
-        <ul>
-          <li>3 שעות סדנה חיה פנים אל פנים</li>
-          <li>שיטת תורת הרבעים המלאה: תמונה ראשית, נטייה, מודל כניסה, סטופ, יעד וניהול</li>
-          <li>המון דוגמאות אמיתיות, גם מתי השיטה עובדת וגם מתי לא</li>
-          <li>תרגול חי על השוק עם מתן בזמן אמת</li>
-          <li>מענה לכל שאלה שלך בחדר</li>
-        </ul>
-        <a href="#register" class="btn ghost pick" data-pick="regular">אני רוצה כרטיס רגיל ←</a>
-      </div>
-
-      <div class="ticket best">
-        <span class="flag">כולל פגישה אישית</span>
-        <div class="name">כרטיס פרימיום</div>
-        <div class="amount">1,590<span> ₪</span></div>
-        <div class="note">תשלום חד פעמי</div>
-        <ul>
-          <li>כל מה שיש בכרטיס הרגיל</li>
-          <li class="plus">פגישה אישית עם מתן, אחד על אחד</li>
-          <li class="plus">בונים לך תוכנית מסחר אישית, על המספרים והמסחר שלך</li>
-          <li class="plus">יוצא עם תוכנית כתובה שאתה עובד לפיה, לא עם עוד רעיונות</li>
-        </ul>
-        <a href="#register" class="btn pick" data-pick="premium">אני רוצה כרטיס פרימיום ←</a>
-      </div>
-    </div>
-    <p class="sub" style="margin-top:22px">ההרשמה לפי סדר הגעה. כשהחדר מתמלא, ההרשמה נסגרת.</p>
-  </div>
-</section>
-
-<section id="register">
-  <div class="wrap">
-    <div class="kick">שמירת מקום</div>
-    <h2><span data-seats-phrase>נשארו 4 מקומות</span>.</h2>
-    <div class="fillbar"><div class="track"><div class="fill" data-fill></div></div><div class="cap" data-fill-cap></div></div>
-    <p class="sub">בוחרים כרטיס וממשיכים ישר לתשלום. את הפרטים ממלאים פעם אחת בלבד, בעמוד הסליקה. כל ההנחיות והכתובת המדויקת יישלחו בוואטסאפ כשבוע לפני המועד.</p>
-    <div class="formbox">
-      <label>בחר כרטיס</label>
-      <div class="choice">
-        <input type="radio" name="ticket" id="t-regular" value="regular" checked>
-        <label for="t-regular"><span class="cn">רגיל</span><span class="cp">590 ₪</span></label>
-        <input type="radio" name="ticket" id="t-premium" value="premium">
-        <label for="t-premium"><span class="cn">פרימיום</span><span class="cp">1,590 ₪</span></label>
-      </div>
-      <!-- טקסט ברירת המחדל תואם ל-BLURB.regular בסקריפט, ונדרס בטעינה ובכל החלפת כרטיס -->
-      <div class="picked" id="picked">הכרטיס הרגיל: 3 שעות סדנה חיה, השיטה המלאה, המון דוגמאות אמיתיות ותרגול על השוק.</div>
-      <a href="#" class="btn" id="pay-btn" target="_blank" rel="noopener">המשך לשריון המקום ←</a>
-      <div class="fineprint">תשלום מאובטח דרך Morning · קבלה תישלח למייל · <span data-seats-phrase>נשארו 4 מקומות</span></div>
+    <div class="formbox hide" id="wl-done">
+      <div class="wl-ok">אתה ברשימה.</div>
+      <p class="sub" style="margin-top:10px">כשייקבע מועד, אתה מהראשונים שיודעים. בינתיים, המדריך החינמי למטה הוא המקום להתחיל בו.</p>
     </div>
   </div>
 </section>
@@ -548,7 +502,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       </details>
       <details>
         <summary>הסדנה אונליין או פיזית?</summary>
-        <div class="a">פיזית, פנים אל פנים. מיי קמפוס, אולם נגב, רחוב לח״י 21 בבני ברק, קומת קרקע, ביום ראשון 30.08.2026 בין 17:00 ל-20:00. הכתובת המדויקת וההנחיות יישלחו לנרשמים בוואטסאפ.</div>
+        <div class="a">פיזית, פנים אל פנים. המחזורים הקודמים התקיימו במיי קמפוס, רחוב לח״י 21 בבני ברק, בשעות 17:00 עד 20:00. המיקום והשעות של המועד הבא ייסגרו יחד עם התאריך, ויישלחו לנרשמים בוואטסאפ.</div>
       </details>
       <details>
         <summary>יש לי כבר שיטת מסחר, זה רלוונטי לי?</summary>
@@ -581,11 +535,11 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   <div class="wrap">
     <div class="warnbox">
       <div class="t">שים לב</div>
-      <p>סדנה חיה אחת, בתאריך אחד, עם <b>30 מקומות בלבד.</b> אין מועד נוסף מובטח, והתרגול החי, השאלות והמענה האישי קורים רק בחדר. מי שרוצה להיות שם, שומר מקום עכשיו.</p>
+      <p>הסדנה רצה במחזורים, <b>30 מקומות בכל אחד.</b> במחזור האחרון נתפסו 29 מתוך 30, ומועד חדש עוד לא נקבע. מי שברשימת ההמתנה מקבל את התאריך ראשון, לפני שהוא עולה לאתר.</p>
     </div>
     <p class="statement">אפשר להמשיך לנחש בכל עסקה.<br>ואפשר לצאת מהחדר הזה עם שיטה אחת שמייצרת כיוון, תזמון ועקביות.</p>
-    <div class="cta-row" style="justify-content:center"><a href="#register" class="btn">אני בפנים, שריינו לי מקום ←</a></div>
-    <p class="sub" style="margin-top:18px">30.08.2026 · 17:00 עד 20:00 · מיי קמפוס, אולם נגב · לח״י 21, בני ברק</p>
+    <div class="cta-row" style="justify-content:center"><a href="#waitlist" class="btn">תעדכנו אותי כשייפתח מועד ←</a></div>
+    <p class="sub" style="margin-top:18px">3 שעות · מיי קמפוס, לח״י 21 בני ברק · המועד הבא יפורסם</p>
   </div>
 </section>
 
@@ -599,41 +553,14 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 </footer>
 
 <div class="stickybar" id="stickybar">
-  <div class="info">30.08 · <b>30 מקומות</b></div>
-  <a href="#register" class="btn">לשריון מקום ←</a>
+  <div class="info">המועד הבא · <b>יפורסם</b></div>
+  <a href="#waitlist" class="btn">לרשימת ההמתנה ←</a>
 </div>
 
 <div class="lightbox" id="lightbox"><button type="button" aria-label="סגור">×</button><img src="" alt=""></div>
 
 <script>
 (function(){
-  // ==== CONFIG ====
-  var WORKSHOP_DATE = new Date('2026-08-30T17:00:00+03:00');
-  // מקור אמת יחיד לכרטיסים. שינוי מחיר כאן מתעדכן גם בכפתור וגם בדיווח לפיקסל.
-  // אם קישור סליקה ריק, הכפתור מנוטרל ומוצגת הודעת וואטסאפ במקום קישור שבור.
-  var TICKETS = {
-    regular: { price: 590,   label: 'כרטיס רגיל',    pay: 'https://mrng.to/U3kgBcemZv' },
-    premium: { price: 1590,  label: 'כרטיס פרימיום', pay: 'https://mrng.to/0oiXOoUtd3' }
-  };
-  function ticketLabel(key){
-    return TICKETS[key].label + ' · ' + TICKETS[key].price.toLocaleString('en-US') + ' ₪';
-  }
-
-  // ==== COUNTDOWN ====
-  var box = document.getElementById('countdown');
-  var el = { d:document.getElementById('cd-d'), h:document.getElementById('cd-h'), m:document.getElementById('cd-m'), s:document.getElementById('cd-s') };
-  function pad(n){ return String(n).padStart(2,'0'); }
-  function tick(){
-    var diff = WORKSHOP_DATE.getTime() - Date.now();
-    if (diff <= 0){ box.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:var(--accent-bright);font-weight:700">הסדנה יצאה לדרך</p>'; return false; }
-    el.d.textContent = Math.floor(diff/86400000);
-    el.h.textContent = pad(Math.floor(diff%86400000/3600000));
-    el.m.textContent = pad(Math.floor(diff%3600000/60000));
-    el.s.textContent = pad(Math.floor(diff%60000/1000));
-    return true;
-  }
-  if (tick()){ var timer = setInterval(function(){ if(!tick()) clearInterval(timer); }, 1000); }
-
   // ==== STICKY BAR ====
   var bar = document.getElementById('stickybar');
   var hero = document.getElementById('hero');
@@ -669,89 +596,65 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   lb.addEventListener('click', function(e){ if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLb(); });
 
-  // ==== TICKET PICK BUTTONS ====
-  document.querySelectorAll('.pick').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var radio = document.getElementById('t-' + btn.dataset.pick);
-      if (radio) radio.checked = true;
-    });
+  // ==== WAITLIST ====
+  // אותו צינור לידים כמו שאר הדפים באתר: formsubmit במייל.
+  var LEAD_ENDPOINT = 'https://formsubmit.co/ajax/mashiah459@gmail.com';
+  var Q = new URLSearchParams(location.search);
+  var SRC = Q.get('utm_source') || (Q.has('fbclid') ? 'meta' : 'organic');
+
+  var wlBtn = document.getElementById('wl-btn');
+
+  function field(id){ return document.getElementById(id); }
+
+  function markBad(el, bad){ el.classList.toggle('bad', bad); return !bad; }
+
+  wlBtn.addEventListener('click', function(e){
+    e.preventDefault();
+    var name  = field('wl-name').value.trim();
+    var phone = field('wl-phone').value.trim();
+    var email = field('wl-email').value.trim();
+    var consent = field('wl-consent').checked;
+
+    var okName  = markBad(field('wl-name'),  name.length < 2);
+    var okPhone = markBad(field('wl-phone'), phone.replace(/\D/g,'').length < 9);
+    var okMail  = markBad(field('wl-email'), email !== '' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email));
+    if (!okName || !okPhone || !okMail) return;
+
+    var eid = 'WL_' + Date.now() + '_' + Math.floor(Math.random() * 1e6);
+    if (window.fbq) fbq('track', 'Lead', { content_name: 'רשימת המתנה תורת הרבעים' }, { eventID: eid });
+
+    fetch(LEAD_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'רשימת המתנה · סדנת תורת הרבעים',
+        name: name, phone: phone, email: email || '-',
+        'אישור דיוור': consent ? 'כן' : 'לא',
+        track: 'workshop-waitlist', מקור: SRC, event_id: eid, _template: 'table'
+      })
+    }).catch(function(){});
+
+    // מציגים אישור גם אם הרשת נכשלה — הליד כבר נשלח, ואין טעם להעניש את הנרשם
+    document.getElementById('wl-form').classList.add('hide');
+    document.getElementById('wl-done').classList.remove('hide');
   });
 
-  // ==== TICKET → CHECKOUT ====
-  // בלי טופס באתר: הפרטים נמסרים פעם אחת בלבד בעמוד הסליקה של Morning.
-  var BLURB = {
-    regular: 'הכרטיס הרגיל: 3 שעות סדנה חיה, השיטה המלאה, המון דוגמאות אמיתיות ותרגול על השוק.',
-    premium: 'כרטיס הפרימיום: כל הסדנה, ובנוסף פגישה אישית איתי לבניית תוכנית מסחר אישית.'
-  };
-  var payBtn = document.getElementById('pay-btn');
-  var picked = document.getElementById('picked');
-
-  function currentTicket(){
-    var checked = document.querySelector('input[name=ticket]:checked');
-    return checked ? checked.value : 'regular';
-  }
-
-  function syncTicket(){
-    var ticket = currentTicket();
-    picked.textContent = BLURB[ticket];
-    payBtn.textContent = 'המשך לשריון המקום · ' + ticketLabel(ticket) + ' ←';
-    payBtn.href = TICKETS[ticket].pay || '#';
-    payBtn.classList.toggle('disabled', !TICKETS[ticket].pay);
-  }
-
-  document.querySelectorAll('input[name=ticket]').forEach(function(radio){
-    radio.addEventListener('change', syncTicket);
-  });
-  syncTicket();
-
-  payBtn.addEventListener('click', function(e){
-    var ticket = currentTicket();
-    if (!TICKETS[ticket].pay){
-      e.preventDefault();
-      picked.textContent = 'קישור התשלום לכרטיס הזה יעלה בקרוב. כתוב לי בוואטסאפ ואשלח לך אותו ישירות.';
-      return;
-    }
-    if (window.fbq) fbq('track','InitiateCheckout', {
-      content_name: ticketLabel(ticket),
-      value: TICKETS[ticket].price,
-      currency: 'ILS'
-    });
-  });
 })();
 </script>
 
 <script>
-/* מקומות שנותרו. לעדכן את המספר הזה בלבד אחרי כל מכירה. */
+/* תוצאת המחזור האחרון, מוצגת כהוכחה בבר המילוי */
 const SEATS_TOTAL = 30, SEATS_SOLD = 29;
 
-/* משפט המילוי נגזר מהמספר האמיתי, כדי שלא ייאמר יותר ממה שנמכר בפועל */
-function fillPhrase(pct){
-  if (pct >= 80) return 'האולם כמעט מלא';
-  if (pct >= 66) return 'שני שליש מהאולם כבר מלאים';
-  if (pct >= 50) return 'יותר מחצי האולם כבר מלא';
-  if (pct >= 40) return 'כמעט חצי מהאולם כבר מלא';
-  return 'המקומות נתפסים';
-}
 
 document.addEventListener('DOMContentLoaded', () => {
-  const left = SEATS_TOTAL - SEATS_SOLD;
   const pct = Math.round(SEATS_SOLD / SEATS_TOTAL * 100);
-  document.querySelectorAll('[data-seats-left]').forEach(el => { el.textContent = left; });
-  /* מתחת ל-10 עוברים ל"X מקומות אחרונים" — נכון רק כשבאמת נשאר מעט */
-  const last = left <= 10;
-  document.querySelectorAll('[data-seats-phrase]').forEach(el => {
-    el.textContent = left === 1 ? 'מקום אחרון אחד' : (last ? (left + ' מקומות אחרונים') : ('נשארו ' + left + ' מקומות'));
-  });
-  document.querySelectorAll('[data-seats-phrase-short]').forEach(el => {
-    el.textContent = left === 1 ? 'מקום אחרון' : (last ? (left + ' אחרונים') : ('נשארו ' + left));
-  });
   document.querySelectorAll('[data-fill-cap]').forEach(el => {
-    el.innerHTML = '<b>' + fillPhrase(pct) + '</b> · ' + SEATS_SOLD + ' מתוך ' + SEATS_TOTAL + ' מקומות נתפסו';
+    el.innerHTML = '<b>המחזור האחרון</b> · ' + SEATS_SOLD + ' מתוך ' + SEATS_TOTAL + ' מקומות נתפסו';
   });
   requestAnimationFrame(() => {
     document.querySelectorAll('[data-fill]').forEach(el => { el.style.width = pct + '%'; });
   });
-  if (left <= 10) document.querySelectorAll('.seatsleft').forEach(el => el.classList.add('low'));
 });
 </script>
 </body>
