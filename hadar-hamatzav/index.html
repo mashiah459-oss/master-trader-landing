@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>חדר המצב · קבוצה פיזית סגורה · מתן משיח</title>
-<meta name="description" content="5 מפגשים פיזיים, 20 סוחרים, שולחן אחד. כל עסקה של כל סוחר נבדקת. המחזור הנוכחי מלא, נרשמים לרשימת ההמתנה למחזור הבא.">
+<title>חדר המצב · מחזור 2 · מתן משיח</title>
+<meta name="description" content="מחזור 2 נפתח 18.10.2026. חמישה מפגשים פיזיים, 20 סוחרים, שולחן אחד. כל עסקה של כל סוחר נבדקת.">
 <meta property="og:title" content="חדר המצב · מתן משיח">
-<meta property="og:description" content="קבוצת מאסטרמיינד פיזית סגורה. המחזור הנוכחי מלא. רשימת המתנה למחזור הבא פתוחה.">
+<meta property="og:description" content="קבוצת מאסטרמיינד פיזית סגורה, 20 מקומות. מחזור 2 נפתח 18.10.2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -22,6 +22,9 @@
   a{ color:inherit; text-decoration:none; }
   .wrap{ max-width:960px; margin:0 auto; padding:0 20px; position:relative; z-index:2; }
   .mono{ font-family:'Space Mono',monospace; }
+  /* Space Mono has no Hebrew glyphs: any Hebrew label set in it falls back and
+     renders thin. Hebrew labels use Heebo with tracking instead. */
+  .heb-label{ font-family:'Heebo',sans-serif; font-weight:800; letter-spacing:.18em; }
   .grain{ position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 
@@ -41,7 +44,7 @@
   header .wrap{ padding:0 20px clamp(40px,7vh,72px); width:100%; }
   .brand{ font-family:'Space Mono',monospace; font-weight:700; letter-spacing:4px; font-size:12px; }
   .brand b{ color:var(--accent); }
-  .eyebrow{ margin-top:18px; font-family:'Space Mono',monospace; font-size:12px; letter-spacing:4px; color:var(--accent); }
+  .eyebrow{ margin-top:18px; font-family:'Heebo',sans-serif; font-weight:800; font-size:13px; letter-spacing:.2em; color:var(--accent); }
   .wordmark{ margin-top:14px; font-weight:900; font-size:clamp(72px,16vw,150px); line-height:.86; letter-spacing:-3px; color:#fff; text-shadow:0 8px 60px rgba(0,0,0,.8); }
   .rule{ width:150px; height:3px; background:var(--accent); margin:24px 0 0; box-shadow:0 0 22px 1px rgba(228,50,42,.5); }
   .datechip{ margin-top:22px; display:inline-flex; align-items:center; gap:12px; border:1.5px solid var(--accent); border-radius:5px; padding:10px 20px; background:rgba(228,50,42,.06); }
@@ -58,11 +61,11 @@
   .btn:hover{ transform:translateY(-2px); box-shadow:0 18px 44px rgba(228,50,42,.5); }
   .btn.ghost{ background:rgba(8,9,12,.4); color:#fff; border:1px solid var(--line); box-shadow:none; backdrop-filter:blur(6px); }
   .btn.ghost:hover{ border-color:var(--accent); }
-  .seats{ margin-top:18px; font-family:'Space Mono',monospace; font-size:13px; letter-spacing:1px; color:var(--dim); }
+  .seats{ margin-top:18px; font-family:'Heebo',sans-serif; font-weight:600; font-size:14px; letter-spacing:.04em; color:var(--dim); }
   .seats b{ color:var(--accent-bright); }
 
   section{ padding:clamp(48px,8vh,80px) 0; border-top:1px solid var(--line); position:relative; z-index:2; }
-  .kick{ font-family:'Space Mono',monospace; font-size:12px; letter-spacing:4px; color:var(--accent); text-align:center; text-transform:uppercase; }
+  .kick{ font-family:'Heebo',sans-serif; font-weight:800; font-size:13px; letter-spacing:.2em; color:var(--accent); text-align:center; }
   h2{ text-align:center; font-weight:900; font-size:clamp(30px,6vw,46px); margin-top:14px; letter-spacing:-1px; line-height:1.05; }
   h2 .out{ color:transparent; -webkit-text-stroke:1.2px rgba(244,245,247,.8); }
   .sub{ text-align:center; color:var(--dim); margin-top:16px; max-width:600px; margin-inline:auto; font-size:16px; line-height:1.65; }
@@ -84,7 +87,7 @@
   .day{ background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:20px 8px; text-align:center; position:relative; overflow:hidden; }
   .day::before{ content:""; position:absolute; top:0; right:0; left:0; height:2px; background:var(--accent); opacity:.5; }
   .day .d{ font-family:'Space Mono',monospace; font-weight:700; font-size:clamp(20px,5vw,26px); color:#fff; }
-  .day .m{ font-family:'Space Mono',monospace; font-size:11px; letter-spacing:1px; color:var(--mute); margin-top:8px; }
+  .day .m{ font-family:'Heebo',sans-serif; font-weight:700; font-size:12px; letter-spacing:.08em; color:var(--mute); margin-top:8px; }
   .when{ text-align:center; color:var(--dim); margin-top:20px; font-size:15px; }
 
   .formbox{ max-width:520px; margin:32px auto 0; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:30px; position:relative; overflow:hidden; }
@@ -98,7 +101,7 @@
   .hide{ display:none; }
   #done{ text-align:center; } #done .v{ font-size:26px; font-weight:900; color:var(--accent-bright); }
   .fineprint{ text-align:center; color:var(--mute); font-size:12px; margin-top:18px; line-height:1.6; }
-  footer{ text-align:center; padding:44px 0; color:var(--mute); font-size:13px; border-top:1px solid var(--line); position:relative; z-index:2; font-family:'Space Mono',monospace; }
+  footer{ text-align:center; padding:44px 0; color:var(--mute); font-size:13px; border-top:1px solid var(--line); position:relative; z-index:2; font-family:'Heebo',sans-serif; letter-spacing:.04em; }
   footer b{ color:var(--dim); }
 
   .promise{ margin-top:22px; max-width:640px; font-weight:800; color:#fff; font-size:clamp(22px,4.2vw,34px); line-height:1.18; letter-spacing:-.5px; }
@@ -120,10 +123,29 @@
   .pshot figcaption{ padding:14px 16px; text-align:right; }
   .pshot figcaption b{ color:#fff; font-size:15px; }
   .pshot figcaption span{ display:block; color:var(--dim); font-size:13px; margin-top:5px; line-height:1.55; }
+  /* cycle 2 marker — replaces the SOLD OUT chip */
+  .cyclechip{ margin-top:22px; display:inline-flex; align-items:stretch; gap:0; flex-wrap:wrap;
+    border:1.5px solid var(--accent); border-radius:6px; overflow:hidden; background:rgba(228,50,42,.07); }
+  .cyclechip .n{ background:var(--accent); color:#fff; font-weight:900; font-size:14px; letter-spacing:.12em;
+    padding:12px 16px; display:flex; align-items:center; }
+  .cyclechip .w{ padding:11px 18px; display:flex; align-items:center; gap:10px; }
+  .cyclechip .w .lbl{ font-size:13px; color:var(--dim); font-weight:600; }
+  .cyclechip .w .d{ font-family:'Space Mono',monospace; font-weight:700;
+    font-size:clamp(20px,4.6vw,27px); color:var(--accent-bright); letter-spacing:1px; }
+  /* the opening night reads differently from the rest of the grid */
+  .day.first{ background:rgba(228,50,42,.07); border-color:rgba(228,50,42,.45); }
+  .day.first::before{ opacity:1; }
+  .day.first .m{ color:var(--accent-bright); }
+  .vidwall{ margin-top:28px; display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; }
+  .vid{ background:var(--panel); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .vid video{ width:100%; display:block; background:#000; aspect-ratio:9/16; object-fit:cover; }
+  .vid .cap{ padding:13px 15px; }
+  .vid .cap b{ color:#fff; font-size:15px; }
+  .vid .cap span{ display:block; color:var(--dim); font-size:13px; margin-top:5px; line-height:1.55; }
   .disclaimer{ text-align:center; color:var(--mute); font-size:12px; margin-top:22px; line-height:1.6; max-width:640px; margin-inline:auto; }
   .prequote{ max-width:520px; margin:28px auto 0; text-align:center; color:#eef1f5; font-size:18px; line-height:1.55; font-style:italic; }
-  .prequote span{ display:block; font-style:normal; font-family:'Space Mono',monospace; font-size:12px; color:var(--dim); margin-top:10px; letter-spacing:1px; }
-  .steps{ text-align:center; font-family:'Space Mono',monospace; font-size:12px; letter-spacing:.5px; color:var(--dim); margin:18px auto 0; }
+  .prequote span{ display:block; font-style:normal; font-family:'Heebo',sans-serif; font-weight:700; font-size:13px; color:var(--dim); margin-top:10px; letter-spacing:.08em; }
+  .steps{ text-align:center; font-family:'Heebo',sans-serif; font-weight:600; font-size:13px; letter-spacing:.06em; color:var(--dim); margin:18px auto 0; }
   .steps b{ color:var(--accent-bright); }
 
   @media(max-width:560px){
@@ -151,13 +173,13 @@
     <div class="wordmark">חדר מצב</div>
     <div class="rule"></div>
     <div class="promise">יודע לנתח גרף, אבל עדיין מחזיר את הרווח לשוק?<br>5 מפגשים פרונטליים שהופכים את המסחר שלך מהימור רגשי לעסק עם מערכת.</div>
-    <div class="soldchip"><span class="so">SOLD OUT</span><span class="lbl">המחזור הנוכחי מלא</span></div>
-    <div class="subhook">מאסטרמיינד פיזי סגור של 20 סוחרים. אתה מביא את העסקאות האמיתיות שלך לשולחן, ואנחנו בונים לך מערכת שמחזיקה. כל 20 המקומות במחזור הנוכחי נתפסו.</div>
+    <div class="cyclechip"><span class="n">מחזור 2</span><span class="w"><span class="lbl">נפתח</span><span class="d">18.10.26</span></span></div>
+    <div class="subhook">מאסטרמיינד פיזי סגור של 20 סוחרים. אתה מביא את העסקאות האמיתיות שלך לשולחן, ואנחנו בונים לך מערכת שמחזיקה. המחזור הראשון נמכר עד המקום האחרון.</div>
     <div class="cta-row">
-      <a href="#register" class="btn">לרשימת ההמתנה למחזור הבא ←</a>
+      <a href="#register" class="btn">לשריון מקום במחזור 2 ←</a>
       <a href="#gap" class="btn ghost">איך זה עובד</a>
     </div>
-    <div class="seats">המחזור הבא ייפתח בהמשך · <b>קדימות לרשימה</b></div>
+    <div class="seats">20 מקומות · <b>ההרשמה למחזור 2 פתוחה</b></div>
   </div>
 </header>
 
@@ -216,7 +238,7 @@
     <div class="kick">השיטה</div>
     <h2>מה שקורה בפנים</h2>
     <div class="pillars">
-      <div class="card"><div class="n">5</div><h3>מערכת, לא טיפ</h3><p>5 מפגשים על פני 3 חודשים. בונים הרגלים ומבנה שנשארים, לא יום אחד של השראה שמתאדה למחרת.</p></div>
+      <div class="card"><div class="n">5</div><h3>מערכת, לא טיפ</h3><p>5 מפגשים מרוכזים על פני תשעה שבועות. בונים הרגלים ומבנה שנשארים, לא יום אחד של השראה שמתאדה למחרת.</p></div>
       <div class="card"><div class="n">1:1</div><h3>כל עסקה נבדקת</h3><p>מביאים עסקאות אמיתיות לשולחן. בונים את החוקים שלך, וחושפים בדיוק איפה אתה מדמם כסף.</p></div>
       <div class="card"><div class="n">20</div><h3>חדר קטן, לא קהל</h3><p>20 סוחרים סביב שולחן אחד. אחריות אמיתית. בחדר הזה קשה להתחבא מעצמך.</p></div>
       <div class="card"><div class="n">★</div><h3>פגישה אישית עם מתן</h3><p>בסוף המסלול, 1:1 עם מתן: תוכנית יישום אישית שתחזיק אותך גם כשאתה חוזר לסחור לבד.</p></div>
@@ -241,15 +263,15 @@
   <div class="wrap">
     <div class="kick">כך בנוי מחזור</div>
     <h2>יום ראשון · 17:00–20:00</h2>
-    <p class="sub">אלה המועדים של המחזור הנוכחי, שכבר מלא. המחזור הבא ייבנה באותו מבנה, במועדים חדשים שיפורסמו בהמשך.</p>
+    <p class="sub">חמישה מפגשים, כולם ביום ראשון. בין המפגש השני לשלישי יש שבוע בלבד, כדי שהתשתית שבנית תיבדק לפני שהחדר עובר לביקורת עסקאות מלאה. לפני מפגש הסיום יש פער של שלושה שבועות, כדי שתגיע אליו עם מקסימום עסקאות מתועדות.</p>
     <div class="dates">
-      <div class="day"><div class="d">26.07</div><div class="m">מפגש 01</div></div>
-      <div class="day"><div class="d">16.08</div><div class="m">מפגש 02</div></div>
-      <div class="day"><div class="d">06.09</div><div class="m">מפגש 03</div></div>
-      <div class="day"><div class="d">04.10</div><div class="m">מפגש 04</div></div>
-      <div class="day"><div class="d">25.10</div><div class="m">מפגש 05</div></div>
+      <div class="day first"><div class="d">18.10</div><div class="m">פתיחה</div></div>
+      <div class="day"><div class="d">08.11</div><div class="m">מפגש 02</div></div>
+      <div class="day"><div class="d">15.11</div><div class="m">מפגש 03</div></div>
+      <div class="day"><div class="d">29.11</div><div class="m">מפגש 04</div></div>
+      <div class="day"><div class="d">20.12</div><div class="m">סיום</div></div>
     </div>
-    <div class="when">3 שעות כל מפגש · פרונטלי · חדר סגור</div>
+    <div class="when">3 שעות כל מפגש · פרונטלי · חדר סגור · ועוד מפגש אישי אחד איתי, שנקבע בנפרד</div>
     <div class="when" style="color:var(--accent);margin-top:6px">רחוב לח״י 21, בני ברק</div>
   </div>
 </section>
@@ -272,7 +294,7 @@
   <div class="wrap">
     <div class="kick">מהשטח</div>
     <h2>לא הבטחות. צילומי מסך.</h2>
-    <p class="sub">סוחרים מהחדר, במילים שלהם. עקביות, משיכות, וכסף שבאמת מגיע לחשבון.</p>
+    <p class="sub">סוחרים שעובדים איתי, במילים שלהם. עקביות, משיכות, וכסף שבאמת מגיע לחשבון.</p>
     <div class="proofwall">
       <figure class="pshot">
         <img src="proof-2-liroy.png" alt="עדות סוחר, התיק ממשיך לצמוח אחרי משיכה" loading="lazy">
@@ -297,25 +319,25 @@
 
 <section id="register">
   <div class="wrap">
-    <div class="kick">רשימת המתנה</div>
-    <h2>המחזור הנוכחי מלא.</h2>
-    <p class="sub">כל 20 המקומות נתפסו, וההרשמה למחזור הזה סגורה. המחזור הבא ייפתח בהמשך, במועדים ובתנאים חדשים שיפורסמו בהמשך. מי שנמצא ברשימת ההמתנה שומע ממני ראשון, לפני שהחדר נפתח לכולם.</p>
-    <blockquote class="prequote">"עוד יומיים ירוקים מאז המפגש. היום כבר מבקש משיכה."<span>גלעד · מהחדר</span></blockquote>
-    <div class="steps">משאירים פרטים <b>←</b> אני מעדכן ראשון על המחזור הבא <b>←</b> שיחת התאמה</div>
+    <div class="kick">הרשמה</div>
+    <h2>20 מקומות. לא יותר.</h2>
+    <p class="sub">המחזור הראשון נמכר עד המקום האחרון. מחזור 2 נפתח ב־18.10, וההרשמה פתוחה. משאירים פרטים ונכנסים לרשימת המחזור, ואני חוזר אישית לשיחת התאמה קצרה. החדר הזה לא מתאים לכולם, ואני מעדיף לדעת את זה לפני ולא אחרי.</p>
+    <blockquote class="prequote">"עוד יומיים ירוקים מאז המפגש. היום כבר מבקש משיכה."<span>גלעד · סוחר שעובד איתי</span></blockquote>
+    <div class="steps">נרשמים לרשימה <b>←</b> שיחת התאמה קצרה <b>←</b> שריון מקום</div>
     <form class="formbox" id="form">
-      <div class="price">רשימת המתנה למחזור הבא<br><span style="font-size:12px;color:var(--mute)">5 מפגשים · 15 שעות פרונטליות · כל עסקה שלך נבדקת אישית</span></div>
+      <div class="price">מחזור 2 · נפתח 18.10<br><span style="font-size:12px;color:var(--mute)">5 מפגשים · 15 שעות פרונטליות · מפגש אישי · כל עסקה שלך נבדקת</span></div>
       <label>שם מלא</label>
       <input type="text" name="name" required placeholder="השם שלך">
       <label>טלפון (וואטסאפ)</label>
       <input type="tel" name="phone" required placeholder="05x-xxxxxxx">
       <label>אימייל</label>
       <input type="email" name="email" required placeholder="you@email.com">
-      <button type="submit" class="btn">צרפו אותי לרשימת ההמתנה ←</button>
-      <div class="fineprint">השארת פרטים אינה מחייבת ואינה שומרת מקום. כשהמחזור הבא נפתח, אני חוזר אליך עם המועדים והתנאים.</div>
+      <button type="submit" class="btn">אני רוצה מקום בחדר ←</button>
+      <div class="fineprint">ההרשמה לרשימה אינה מחייבת ואינה שומרת מקום. אני חוזר אליך אישית לשיחת התאמה, ושם נסגור אם החדר מתאים לך. יש 20 מקומות, והם נסגרים לפי סדר השיחות.</div>
     </form>
     <div class="formbox hide" id="done">
       <div class="v">קיבלתי. ✓</div>
-      <p style="color:var(--dim);margin-top:12px;line-height:1.6">אתה ברשימת ההמתנה למחזור הבא של חדר המצב.<br>כשהמחזור נפתח, אני חוזר אליך בוואטסאפ עם המועדים והתנאים, לפני שזה יוצא לכולם.</p>
+      <p style="color:var(--dim);margin-top:12px;line-height:1.6">נרשמת לרשימת מחזור 2 של חדר המצב.<br>אני חוזר אליך בוואטסאפ לשיחת התאמה קצרה, ומשם נסגור מקום.</p>
     </div>
   </div>
 </section>
@@ -323,7 +345,7 @@
 <section>
   <div class="wrap" style="text-align:center">
     <p class="sub" style="max-width:640px;font-size:clamp(19px,4.5vw,24px);color:var(--text);font-weight:500">החופש שאתה מחפש נמצא בצד השני של המשמעת.<br><b style="color:var(--accent-bright)">בחדר הזה בונים אותה.</b></p>
-    <div class="cta-row" style="justify-content:center"><a href="#register" class="btn">לרשימת ההמתנה למחזור הבא ←</a></div>
+    <div class="cta-row" style="justify-content:center"><a href="#register" class="btn">לשריון מקום במחזור 2 ←</a></div>
   </div>
 </section>
 
@@ -338,9 +360,9 @@
     var btn = form.querySelector('button');
     btn.textContent = 'שולח...'; btn.disabled = true;
     var payload = {
-      _subject: 'רשימת המתנה חדר המצב: ' + (form.name.value || ''),
+      _subject: 'הרשמה חדר המצב מחזור 2: ' + (form.name.value || ''),
       name: form.name.value, phone: form.phone.value, email: form.email.value,
-      source: 'situation-room/waitlist'
+      source: 'situation-room/cycle-2'
     };
     fetch(LEAD_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
       .then(function(){ show(); })
