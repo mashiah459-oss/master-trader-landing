@@ -1024,6 +1024,11 @@
             .pricing { padding: 48px 0; }
         }
     </style>
+<!-- Meta Pixel (shared) -->
+<script src="js/pixel.js"></script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
 </head>
 <body>
 
@@ -1632,6 +1637,15 @@
         });
     });
 
+})();
+</script>
+
+<script>
+// Every Whop link on the page carries the visit's UTM and fbclid through to checkout,
+// and a click fires InitiateCheckout, the same way club.html does it.
+(function () {
+    if (!window.mtPixel) return;
+    window.mtPixel.wireWhopLinks({ value: 297, campaign: 'course' });
 })();
 </script>
 
