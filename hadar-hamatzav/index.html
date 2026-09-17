@@ -159,6 +159,11 @@
     .hero-photo{ background-position:center 22%; }
   }
 </style>
+<!-- Meta Pixel (shared) -->
+<script src="../js/pixel.js"></script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -359,10 +364,20 @@
     e.preventDefault();
     var btn = form.querySelector('button');
     btn.textContent = 'שולח...'; btn.disabled = true;
+
+    // Fire the Lead before the fetch, so a slow or failed endpoint never costs the event.
+    // Tracking must never block a registration, so any failure here falls back to a local id.
+    var eid = 'SR_' + Date.now() + '_' + Math.floor(Math.random() * 1e6);
+    try {
+      if (window.mtPixel && typeof window.mtPixel.trackLead === 'function') {
+        eid = window.mtPixel.trackLead('חדר מצב מחזור 2', 'SR') || eid;
+      }
+    } catch (err) { /* keep the local id and carry on with the submit */ }
+
     var payload = {
       _subject: 'הרשמה חדר המצב מחזור 2: ' + (form.name.value || ''),
       name: form.name.value, phone: form.phone.value, email: form.email.value,
-      source: 'situation-room/cycle-2'
+      source: 'situation-room/cycle-2', event_id: eid
     };
     fetch(LEAD_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
       .then(function(){ show(); })

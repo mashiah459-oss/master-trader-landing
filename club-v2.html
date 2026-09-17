@@ -356,6 +356,8 @@ fbq('track','PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel Code -->
+<!-- Shared funnel helpers (skips a second pixel init, the inline one above owns it) -->
+<script src="js/pixel.js"></script>
 </head>
 <body>
 
@@ -927,7 +929,12 @@ heroIO.observe(hero);
 
 // ---- CTA -> Whop (all CTAs lead to checkout) ----
 const WHOP = "https://whop.com/master-trader-club/";
-function fireCheckout(){ if(window.fbq) fbq('track','InitiateCheckout',{value:149,currency:'ILS'}); }
+// UTM/fbclid pass-through and the checkout event both live in js/pixel.js,
+// so this page and club.html stay one implementation instead of two.
+function whopTarget(){ return window.mtPixel ? window.mtPixel.whopUrl(WHOP,'club') : WHOP; }
+function fireCheckout(){ if(window.mtPixel) window.mtPixel.trackCheckout(149); }
+// Point every real <a data-final> at the tagged Whop URL up front.
+document.querySelectorAll('a[data-cta][data-final]').forEach(a=>{ a.href = whopTarget(); });
 document.querySelectorAll('[data-cta]').forEach(a=>{
   a.addEventListener('click',(ev)=>{
     const href = a.getAttribute('href');
@@ -936,7 +943,7 @@ document.querySelectorAll('[data-cta]').forEach(a=>{
     fireCheckout();                     // click that leads to Whop checkout
     if(a.dataset.final) return;         // real <a> to Whop navigates normally
     ev.preventDefault();
-    window.open(WHOP,'_blank','noopener');
+    window.open(whopTarget(),'_blank','noopener');
   });
 });
 
