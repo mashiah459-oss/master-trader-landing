@@ -61,6 +61,16 @@
   .btn:hover{ transform:translateY(-2px); box-shadow:0 18px 44px rgba(228,50,42,.5); }
   .btn.ghost{ background:rgba(8,9,12,.4); color:#fff; border:1px solid var(--line); box-shadow:none; backdrop-filter:blur(6px); }
   .btn.ghost:hover{ border-color:var(--accent); }
+  .fillbar{ max-width:340px; margin:18px auto 0; }
+  /* בהירו הכותרת מיושרת לימין, אז הבר נצמד לאותו קו ולא מרחף במרכז */
+  .fillbar.start{ margin-inline-start:0; margin-inline-end:auto; }
+  .fillbar.start .cap{ text-align:right; }
+  .fillbar .track{ height:6px; border-radius:99px; background:rgba(244,245,247,.10); overflow:hidden; }
+  .fillbar .fill{ height:100%; width:0; border-radius:99px; background:linear-gradient(90deg,var(--accent),var(--accent-bright));
+                  box-shadow:0 0 14px rgba(228,50,42,.5); transition:width .9s cubic-bezier(.2,.8,.2,1); }
+  .fillbar .cap{ margin-top:9px; font-family:'Heebo',sans-serif; font-weight:600; font-size:13px; letter-spacing:.04em;
+                 color:#cdd4de; text-align:center; }
+  .fillbar .cap b{ color:var(--accent-bright); }
   .seats{ margin-top:18px; font-family:'Heebo',sans-serif; font-weight:600; font-size:14px; letter-spacing:.04em; color:var(--dim); }
   .seats b{ color:var(--accent-bright); }
 
@@ -184,7 +194,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       <a href="#register" class="btn">לשריון מקום במחזור 2 ←</a>
       <a href="#gap" class="btn ghost">איך זה עובד</a>
     </div>
-    <div class="seats">20 מקומות · <b>ההרשמה למחזור 2 פתוחה</b></div>
+    <div class="fillbar start"><div class="track"><div class="fill" data-fill></div></div><div class="cap" data-fill-cap></div></div>
   </div>
 </header>
 
@@ -328,6 +338,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     <h2>20 מקומות. לא יותר.</h2>
     <p class="sub">המחזור הראשון נמכר עד המקום האחרון. מחזור 2 נפתח ב־18.10, וההרשמה פתוחה. משאירים פרטים ונכנסים לרשימת המחזור, ואני חוזר אישית לשיחת התאמה קצרה. החדר הזה לא מתאים לכולם, ואני מעדיף לדעת את זה לפני ולא אחרי.</p>
     <blockquote class="prequote">"עוד יומיים ירוקים מאז המפגש. היום כבר מבקש משיכה."<span>גלעד · סוחר שעובד איתי</span></blockquote>
+    <div class="fillbar"><div class="track"><div class="fill" data-fill></div></div><div class="cap" data-fill-cap></div></div>
     <div class="steps">נרשמים לרשימה <b>←</b> שיחת התאמה קצרה <b>←</b> שריון מקום</div>
     <form class="formbox" id="form">
       <div class="price">מחזור 2 · נפתח 18.10<br><span style="font-size:12px;color:var(--mute)">5 מפגשים · 15 שעות פרונטליות · מפגש אישי · כל עסקה שלך נבדקת</span></div>
@@ -387,6 +398,26 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       document.getElementById('done').classList.remove('hide');
       if (CHECKOUT) { setTimeout(function(){ window.location.href = CHECKOUT; }, 1500); }
     }
+  });
+</script>
+
+<script>
+  /* מקור אמת יחיד למילוי החדר. מעדכנים רק את SEATS_SOLD, והטקסט והבר נגזרים ממנו. */
+  var SEATS_TOTAL = 20, SEATS_SOLD = 4;
+
+  document.addEventListener('DOMContentLoaded', function(){
+    var left = SEATS_TOTAL - SEATS_SOLD;
+    var pct = Math.round(SEATS_SOLD / SEATS_TOTAL * 100);
+    var phrase = left === 0 ? 'החדר מלא'
+               : left === 1 ? 'מקום אחרון'
+               : left <= 10 ? left + ' מקומות אחרונים'
+               : 'נשארו ' + left + ' מקומות';
+    document.querySelectorAll('[data-fill-cap]').forEach(function(el){
+      el.innerHTML = SEATS_SOLD + ' מתוך ' + SEATS_TOTAL + ' מקומות נתפסו · <b>' + phrase + '</b>';
+    });
+    requestAnimationFrame(function(){
+      document.querySelectorAll('[data-fill]').forEach(function(el){ el.style.width = pct + '%'; });
+    });
   });
 </script>
 </body>
