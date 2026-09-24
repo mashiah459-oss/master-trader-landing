@@ -281,8 +281,8 @@
         youtubeId: 'mpeRRrNw4GE',          // ← לדוגמה: 'dQw4w9WgXcQ'
         // אם mp4: כתובת ישירה לקובץ
         mp4Url: '',
-        // לאן שולחים את מי שלוחץ "כן, תראה לי"
-        workshopUrl: '/course.html',
+        // לאן שולחים את מי שלוחץ "כן, תראה לי" (הדף של "עסק או עסקה")
+        offerUrl: '/course.html',
         // כמה שניות לחכות כגיבוי אם זיהוי סוף-הסרטון לא עובד (אז השאלה תופיע ממילא)
         revealFallbackSeconds: 120
     };
@@ -314,8 +314,8 @@
 
     // לחצן "כן, תראה לי" → Pixel Lead + מעבר לדף הסדנה
     document.getElementById('toWorkshop').addEventListener('click', () => {
-        if (window.fbq) fbq('track', 'Lead', { content_name: 'quarter-theory-workshop', source: 'shachaf-journal' });
-        window.location.href = CONFIG.workshopUrl;
+        if (window.fbq) fbq('track', 'Lead', { content_name: 'עסק או עסקה', source: 'shachaf-journal' });
+        window.location.href = CONFIG.offerUrl;
     });
 
     // כפתור "סיימתי לצפות"
