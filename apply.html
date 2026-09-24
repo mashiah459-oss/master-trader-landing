@@ -610,10 +610,11 @@ function submitForm() {
     noCaptcha.value = 'false';
     form.appendChild(noCaptcha);
 
-    // Redirect back after submit
+    // Redirect back after submit. Built from the directory, not from the file name,
+    // so it still lands on a real page when the URL is /apply or carries a query string.
     const redirect = document.createElement('input');
     redirect.name = '_next';
-    redirect.value = window.location.href.replace('apply.html', 'apply-thanks.html');
+    redirect.value = new URL('apply-thanks.html', window.location.href).href;
     form.appendChild(redirect);
 
     // Subject

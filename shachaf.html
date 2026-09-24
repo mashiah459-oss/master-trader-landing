@@ -244,13 +244,13 @@
                 <p class="lead">זה אומר שאתה כבר מבצע במשמעת. תמשיך לתעד, תמשיך לבקר, ואל תיתן לרגש לקחת לך את ההגה. בהצלחה גדולה.</p>
             </div>
 
-            <!-- הצעה לסדנה -->
+            <!-- הצעה לחדר המצב -->
             <div class="step card" id="step-offer">
                 <div class="eyebrow">אתה לא לבד</div>
                 <h2>רוב הסוחרים תקועים באותו מקום בדיוק.</h2>
-                <p class="lead">לא כי אין להם אסטרטגיה. כי אין להם מבנה. בדיוק בשביל זה בניתי את <strong>"עסק או עסקה"</strong>, סדנה דיגיטלית שבה בונים תוכנית עסקית אמיתית לסוחר, צעד אחרי צעד. אפשר להראות לך על מה מדובר?</p>
+                <p class="lead">לא כי אין להם אסטרטגיה. כי אין להם מבנה. בדיוק בשביל זה בניתי את <strong>חדר המצב</strong>, קבוצה פיזית סגורה של 20 סוחרים. חמישה מפגשים ופגישה אישית איתי, שבהם אתה מביא את העסקאות האמיתיות שלך לשולחן ובונים לך מערכת שמחזיקה. אפשר להראות לך על מה מדובר?</p>
                 <div class="btn-row">
-                    <button class="btn btn-primary" id="toWorkshop">כן, תראה לי ←</button>
+                    <button class="btn btn-primary" id="toOffer">כן, תראה לי ←</button>
                     <button class="btn btn-ghost" data-go="thanks">לא עכשיו</button>
                 </div>
             </div>
@@ -281,8 +281,8 @@
         youtubeId: 'mpeRRrNw4GE',          // ← לדוגמה: 'dQw4w9WgXcQ'
         // אם mp4: כתובת ישירה לקובץ
         mp4Url: '',
-        // לאן שולחים את מי שלוחץ "כן, תראה לי"
-        workshopUrl: '/course.html',
+        // לאן שולחים את מי שלוחץ "כן, תראה לי" (הדף של חדר המצב)
+        offerUrl: '/hadar-hamatzav/',
         // כמה שניות לחכות כגיבוי אם זיהוי סוף-הסרטון לא עובד (אז השאלה תופיע ממילא)
         revealFallbackSeconds: 120
     };
@@ -312,10 +312,10 @@
         btn.addEventListener('click', () => showStep(btn.dataset.go));
     });
 
-    // לחצן "כן, תראה לי" → Pixel Lead + מעבר לדף הסדנה
-    document.getElementById('toWorkshop').addEventListener('click', () => {
-        if (window.fbq) fbq('track', 'Lead', { content_name: 'quarter-theory-workshop', source: 'shachaf-journal' });
-        window.location.href = CONFIG.workshopUrl;
+    // לחצן "כן, תראה לי" → Pixel Lead + מעבר לדף חדר המצב
+    document.getElementById('toOffer').addEventListener('click', () => {
+        if (window.fbq) fbq('track', 'Lead', { content_name: 'חדר מצב', source: 'shachaf-journal' });
+        window.location.href = CONFIG.offerUrl;
     });
 
     // כפתור "סיימתי לצפות"

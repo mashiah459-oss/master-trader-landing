@@ -18,14 +18,14 @@
     fbq('track', 'PageView');
     // סכום הרכישה נקבע לפי הפרמטר ?ticket= (thankyou.html?ticket=premium לכרטיס פרימיום).
     // רשימה סגורה של מחירים, כדי שלא יהיה אפשר להזריק סכום שרירותי לפיקסל.
+    // בלי פרמטר תקין אין אירוע רכישה בכלל: כניסה ישירה לדף, או קישור ישן ששרד,
+    // אינה רכישה, ואירוע כזה מלמד את Meta על מכירות שלא קרו.
     (function () {
         var TICKET_PRICES = { regular: 590, premium: 1590 };
-        var DEFAULT_TICKET = 'regular';
         var raw = new URLSearchParams(location.search).get('ticket') || '';
         var ticket = raw.trim().toLowerCase();
-        if (!Object.prototype.hasOwnProperty.call(TICKET_PRICES, ticket)) { ticket = DEFAULT_TICKET; }
-        var amount = TICKET_PRICES[ticket];
-        fbq('track', 'Purchase', {value: amount, currency: 'ILS'});
+        if (!Object.prototype.hasOwnProperty.call(TICKET_PRICES, ticket)) { return; }
+        fbq('track', 'Purchase', {value: TICKET_PRICES[ticket], currency: 'ILS'});
     })();
     </script>
     <noscript><img height="1" width="1" style="display:none"
@@ -314,6 +314,7 @@
         </div>
 
         <div class="actions">
+            <a href="workshop.html#waitlist" class="cta-btn">לרשימת ההמתנה למועד הבא ←</a>
             <a href="index.html" class="cta-btn">חזרה לאתר של מתן ←</a>
         </div>
     </div>
