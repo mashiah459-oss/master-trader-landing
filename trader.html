@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>אני כבר סוחר | מתן משיח</title>
-    <meta name="description" content="הכלים לסוחר שכבר בשוק: מועדון הסוחר המתמיד, סדנת תורת הרבעים, קורס עסק או עסקה ויומני מסחר.">
+    <meta name="description" content="הכלים לסוחר שכבר בשוק: מועדון הסוחר המתמיד, חדר מצב, קורס עסק או עסקה, פגישה אישית לבניית תוכנית מסחר ויומני מסחר מומלצים.">
     <meta property="og:title" content="אני כבר סוחר | מתן משיח">
     <meta property="og:url" content="https://matanmashiah.com/trader.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
     <style>
         :root{
             --ink:#08090c; --panel:rgba(255,255,255,.022); --panel-h:rgba(255,255,255,.04);
-            --text:#F4F5F7; --dim:#9aa0aa; --mute:#5b616b;
+            --text:#F4F5F7; --body:#c3c9d2; --dim:#9aa0aa; --mute:#5b616b;
             --accent:#E4322A; --accent-bright:#FF4A3D; --line:rgba(244,245,247,.11);
         }
         *{ margin:0; padding:0; box-sizing:border-box; }
@@ -49,7 +49,11 @@
             background:var(--panel); transition:border-color .35s, background .35s, transform .35s; min-height:230px; }
         a.tile:hover{ border-color:rgba(228,50,42,.5); background:var(--panel-h); transform:translateY(-5px); }
         .tile:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
-        .tile.featured{ border-color:rgba(228,50,42,.28); }
+        /* the two main products carry a visible frame, the club carries the strongest one */
+        .tile.featured{ border-color:rgba(228,50,42,.45); background:rgba(228,50,42,.022); }
+        .tile.featured.primary{ border-color:rgba(228,50,42,.66); background:rgba(228,50,42,.045);
+            box-shadow:0 0 0 1px rgba(228,50,42,.14), 0 14px 38px -34px rgba(228,50,42,.7); }
+        a.tile.featured:hover{ border-color:rgba(228,50,42,.72); }
         .tile-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:auto; }
         .idx{ font-family:'Space Mono','Heebo',monospace; font-size:13px; font-weight:700; color:var(--accent); }
         .tag{ font-family:'Space Mono','Heebo',monospace; font-size:11px; letter-spacing:.06em; font-weight:700; color:#e6e9ee; border:1px solid rgba(244,245,247,.22); border-radius:4px; padding:3px 9px; }
@@ -65,11 +69,25 @@
             font-size:13px; color:#e6e9ee; line-height:1.5; }
         .sold-note b{ color:var(--accent-bright); }
         .tile h3{ margin-top:26px; font-size:clamp(20px,2.3vw,24px); font-weight:800; letter-spacing:-.4px; }
-        .tile .kv{ font-family:'Space Mono','Heebo',monospace; font-size:12px; color:var(--mute); margin-top:6px; }
-        .tile p{ margin-top:12px; color:var(--dim); font-size:14px; line-height:1.6; }
+        .tile .kv{ font-family:'Space Mono','Heebo',monospace; font-size:12.5px; color:var(--dim); margin-top:7px; }
+        .tile p{ margin-top:12px; color:var(--body); font-size:15px; line-height:1.7; }
         .go{ display:inline-flex; align-items:center; gap:8px; margin-top:20px; color:var(--accent-bright); font-weight:700; font-size:14px; }
         .go svg{ width:14px; height:14px; transition:transform .35s; }
         .tile:hover .go svg{ transform:translateX(-5px); }
+
+        /* the workshop is closed: a quiet strip instead of a tile, still fed by campaigns.js */
+        .waitlist-strip{ display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+            margin-top:clamp(12px,1.6vw,18px); padding:16px clamp(18px,2.2vw,24px);
+            border:1px solid var(--line); border-radius:12px; background:var(--panel);
+            text-decoration:none; color:var(--text); transition:border-color .35s, background .35s; }
+        .waitlist-strip:hover{ border-color:rgba(228,50,42,.4); background:var(--panel-h); }
+        .waitlist-strip:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+        .waitlist-strip .ws-title{ font-size:16px; font-weight:800; letter-spacing:-.2px; }
+        .waitlist-strip .go{ margin-top:0; margin-inline-start:auto; font-size:13.5px; }
+        @media (max-width:520px){
+            .waitlist-strip{ gap:10px; }
+            .waitlist-strip .go{ margin-inline-start:0; width:100%; }
+        }
 
         .section-label{ display:flex; align-items:center; gap:16px; margin:clamp(40px,7vh,64px) 0 24px; }
         .section-label span{ font-family:'Space Mono','Heebo',monospace; font-size:12px; letter-spacing:3px; color:var(--dim); text-transform:uppercase; white-space:nowrap; }
@@ -125,7 +143,8 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
         </header>
 
         <main class="grid">
-            <a href="club.html" class="tile featured" data-campaign="club">
+
+            <a href="club.html" class="tile featured primary" data-campaign="club">
                 <div class="tile-top"><span class="idx">01</span><span class="tag">מנוי חודשי</span></div>
                 <h3>מועדון הסוחר המתמיד</h3>
                 <span class="kv">קהילה · לייבים · תוכן שוטף</span>
@@ -145,18 +164,8 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
                 </span>
             </a>
 
-            <a href="workshop.html" class="tile" data-campaign="workshop">
-                <div class="tile-top"><span class="idx">03</span><span class="tag">המועד הבא יפורסם</span></div>
-                <h3>סדנת תורת הרבעים</h3>
-                <span class="kv">3 שעות פיזי · 30 מקומות</span>
-                <p>שיטה אחת ברורה לכל עסקה: כיוון, כניסה, סטופ ויעד. המחזור האחרון הסתיים, ורשימת ההמתנה למועד הבא פתוחה.</p>
-                <span class="go">לרשימת ההמתנה
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                </span>
-            </a>
-
             <a href="course.html" class="tile" data-campaign="course">
-                <div class="tile-top"><span class="idx">04</span><span class="tag">קורס דיגיטלי</span></div>
+                <div class="tile-top"><span class="idx">03</span><span class="tag">קורס דיגיטלי</span></div>
                 <h3>עסק או עסקה</h3>
                 <span class="kv">קורס דיגיטלי מלא · גישה מיידית</span>
                 <p>הקורס שבו אתה בונה את המערכת העסקית של המסחר שלך, צעד אחרי צעד, עד שיש לך יציבות ושליטה לאורך זמן.</p>
@@ -166,7 +175,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
             </a>
 
             <a href="apply.html" class="tile" data-campaign="personalSession">
-                <div class="tile-top"><span class="idx">05</span><span class="tag">אחד על אחד</span></div>
+                <div class="tile-top"><span class="idx">04</span><span class="tag">אחד על אחד</span></div>
                 <h3>פגישה אישית</h3>
                 <span class="kv">אחד על אחד · תוכנית מסחר כתובה</span>
                 <p>פגישה מולי על המסחר והמספרים שלך, שבסופה יש לך תוכנית מסחר כתובה. ממלאים טופס קצר, ואני חוזר אם אני יכול לעזור.</p>
@@ -175,6 +184,14 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
                 </span>
             </a>
         </main>
+
+        <a href="workshop.html#waitlist" class="waitlist-strip" data-campaign="workshop">
+            <span class="ws-title">סדנת תורת הרבעים</span>
+            <span class="tag">המועד הבא יפורסם</span>
+            <span class="go">לרשימת ההמתנה
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </span>
+        </a>
 
         <div class="section-label"><span>יומן מסחר</span></div>
         <p class="journal-intro">סוחר בלי יומן הוא מהמר עם זיכרון קצר. אלה שתי המערכות שאני ממליץ עליהן לתיעוד וניתוח, עם קופון.</p>
