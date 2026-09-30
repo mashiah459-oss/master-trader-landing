@@ -443,7 +443,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     var pct = Math.round(SEATS_SOLD / SEATS_TOTAL * 100);
     var phrase = left === 0 ? 'החדר מלא'
                : left === 1 ? 'מקום אחרון'
-               : left <= 10 ? left + ' מקומות אחרונים'
+               : left < 10 ? left + ' מקומות אחרונים'   /* "אחרונים" רק כשהחדר באמת ברובו מלא */
                : 'נשארו ' + left + ' מקומות';
     document.querySelectorAll('[data-fill-cap]').forEach(function(el){
       el.innerHTML = SEATS_SOLD + ' מתוך ' + SEATS_TOTAL + ' מקומות נתפסו · <b>' + phrase + '</b>';
