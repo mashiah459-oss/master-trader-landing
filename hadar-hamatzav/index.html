@@ -434,7 +434,8 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 <script>
   /* מקור האמת הוא js/campaigns.js. הערכים כאן הם גיבוי למקרה שהקובץ לא נטען,
      כדי שהמונה לא ייעלם מהדף. מעדכנים ב-campaigns.js. */
-  var sr = (window.CAMPAIGNS && window.CAMPAIGNS.offers && window.CAMPAIGNS.offers.situationRoom) || {};
+  var C = window.CAMPAIGNS || {};
+  var sr = C.situationRoom || (C.offers && C.offers.situationRoom) || {};
   var SEATS_TOTAL = sr.seats || 20, SEATS_SOLD = (sr.seatsTaken != null ? sr.seatsTaken : 9);
 
   document.addEventListener('DOMContentLoaded', function(){
