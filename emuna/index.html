@@ -20,7 +20,7 @@
   :root{--ink:#08090c;--text:#F4F5F7;--dim:#9aa0aa;--mute:#5b616b;
         --accent:#E4322A;--accent-bright:#FF4A3D;--gold:#e2b760;--line:#1e2027}
   *{box-sizing:border-box;margin:0;padding:0}
-  html{overflow-x:hidden}
+  html{overflow-x:hidden;scroll-behavior:smooth}
   body{background:var(--ink);color:var(--text);font-family:'Heebo',sans-serif;
        line-height:1.75;-webkit-font-smoothing:antialiased;
        overflow-x:hidden;overflow-wrap:break-word}
@@ -87,6 +87,19 @@
   .btn:disabled{opacity:.7;cursor:progress}
   .fineprint{text-align:center;color:var(--mute);font-size:13px;font-weight:400;margin:14px 0 0;line-height:1.6}
 
+  /* Mid-guide invite. Anchor only: it jumps to the existing form and does not submit or fire Lead. */
+  #fit{scroll-margin-top:24px}
+  .soft-cta{text-align:center;padding:30px 6px 6px}
+  .soft-line{margin:0 0 14px;color:var(--dim);font-weight:500;font-size:clamp(15.5px,3.7vw,17px)}
+  .soft-btn{display:inline-block;max-width:100%;background:transparent;color:#fff;
+            font-family:inherit;font-weight:700;font-size:clamp(15px,3.8vw,16.5px);
+            line-height:1.35;padding:12px 22px;border:1.5px solid rgba(228,50,42,.72);
+            border-radius:11px;text-decoration:none;cursor:pointer;
+            transition:background .15s,border-color .15s}
+  .soft-btn:hover{background:rgba(228,50,42,.12);border-color:var(--accent-bright)}
+  .soft-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(228,50,42,.28)}
+  .soft-note{margin:12px 0 0;color:var(--mute);font-size:13px;font-weight:400;line-height:1.6}
+
   .signoff{font-weight:700;color:#fff;margin-top:8px}
   footer{text-align:center;padding:28px 0 60px;color:var(--dim);font-size:14px;font-weight:500}
   .disclaimer{color:var(--mute);font-size:13px;font-weight:400;line-height:1.65;margin-top:14px}
@@ -95,6 +108,11 @@
     header{padding:46px 0 32px}
     section{padding:28px 0}
     .formbox{padding:22px 16px 18px}
+    .soft-cta{padding:26px 2px 4px}
+    .soft-btn{padding:12px 18px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
   }
 </style>
 <!-- Meta Pixel (shared) -->
@@ -160,6 +178,12 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     <p><b>הפעולה לשבוע הזה:</b> תבחרו דבר אחד שלמדתם לאחרונה ולא יישמתם. אחד בלבד. תכתבו מתי בדיוק אתם מיישמים אותו השבוע, ואל תתחילו ללמוד שום דבר חדש עד שסיימתם אותו.</p>
   </div>
 </section>
+
+<div class="soft-cta">
+  <p class="soft-line">כבר מרגישים שזה מדבר אליכם?</p>
+  <a class="soft-btn" href="#fit">רוצים שנחזור אליכם</a>
+  <p class="soft-note">אפשר גם להמשיך לקרוא קודם, הטופס מחכה בסוף 🙂</p>
+</div>
 
 <section>
   <h2><span class="num">כלי 04</span>תסחרו כמו מקצוענים</h2>
