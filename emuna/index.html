@@ -20,7 +20,8 @@
   :root{--ink:#08090c;--text:#F4F5F7;--dim:#9aa0aa;--mute:#5b616b;
         --accent:#E4322A;--accent-bright:#FF4A3D;--gold:#e2b760;--line:#1e2027}
   *{box-sizing:border-box;margin:0;padding:0}
-  html{overflow-x:hidden}
+  html{overflow-x:hidden;scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   body{background:var(--ink);color:var(--text);font-family:'Heebo',sans-serif;
        line-height:1.75;-webkit-font-smoothing:antialiased;
        overflow-x:hidden;overflow-wrap:break-word}
@@ -58,6 +59,19 @@
            border-radius:12px;padding:16px 18px;margin:8px 0 4px}
   .action p{margin:0;font-weight:500;color:#fff;font-size:clamp(16px,4vw,18px)}
   .action p b{color:var(--accent-bright)}
+
+  /* Quiet mid-guide pause. Outline only, so it stays lighter than the solid end button. */
+  .midcta{text-align:center;margin-top:28px;padding:2px 0 0}
+  .midcta-line{margin:0 0 14px;color:var(--dim);font-size:15px;font-weight:500;line-height:1.5}
+  .midcta-btn{display:inline-block;max-width:100%;background:transparent;color:var(--text);
+              font-family:inherit;font-weight:700;font-size:16px;line-height:1.3;
+              padding:12px 22px;border:1px solid rgba(244,245,247,.38);border-radius:11px;
+              text-decoration:none;cursor:pointer;
+              transition:border-color .15s,background .15s,color .15s}
+  .midcta-btn:hover{border-color:var(--accent);background:rgba(228,50,42,.1);color:#fff}
+  .midcta-btn:focus-visible{outline:2px solid var(--accent-bright);outline-offset:3px}
+  .midcta-note{margin:12px 0 0;color:var(--mute);font-size:13px;font-weight:400;line-height:1.55}
+  #fit{scroll-margin-top:24px}
 
   .quote{border-inline-start:3px solid var(--gold);background:#101116;
          margin:4px 0 20px;padding:16px 18px;border-radius:0 10px 10px 0}
@@ -158,6 +172,11 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   <p>כל דבר שאתם לומדים צריך לעבור שאלה אחת: מה אני עושה עם זה, ומתי. אם אין תשובה, לא למדתם. רק צפיתם.</p>
   <div class="action">
     <p><b>הפעולה לשבוע הזה:</b> תבחרו דבר אחד שלמדתם לאחרונה ולא יישמתם. אחד בלבד. תכתבו מתי בדיוק אתם מיישמים אותו השבוע, ואל תתחילו ללמוד שום דבר חדש עד שסיימתם אותו.</p>
+  </div>
+  <div class="midcta">
+    <p class="midcta-line">כבר מרגישים שזה מדבר אליכם?</p>
+    <a class="midcta-btn" href="#fit">רוצים שנחזור אליכם</a>
+    <p class="midcta-note">אפשר גם להמשיך לקרוא קודם, הטופס מחכה בסוף</p>
   </div>
 </section>
 
