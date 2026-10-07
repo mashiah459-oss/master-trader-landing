@@ -27,7 +27,7 @@
       price: 149,
       priceNote: 'לחודש',
       url: 'club.html',
-      checkout: 'https://whop.com/master-trader-club/',
+      checkout: 'https://whop.com/master-trader-club/products/master-trader-club/',
       tag: 'מנוי חודשי',
       cta: 'להצטרפות למועדון'
     },
