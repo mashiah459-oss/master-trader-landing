@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//matanmashiah//kenes//HE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:hamofa-hameshutaf-20261116@matanmashiah.com
+DTSTAMP:20261009T120000Z
+DTSTART:20261116T143000Z
+DTEND:20261116T193000Z
+SUMMARY:המופע המשותף של מתן ותמיר
+DESCRIPTION:מתן משיח × תמיר דמרי. ערב חי אחד\, שנ
+ י צדדים של המסחר. 16:30 עד 21:30\, אולם מאירהוף.
+  שאלות בוואטסאפ: 054-766-7172
+LOCATION:אולם מאירהוף\, בית ציוני אמריקה\, דני
+ אל פריש 1\, תל אביב
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:המופע המשותף של מתן ותמיר מחר
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

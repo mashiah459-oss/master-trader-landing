@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!--
+  דף תודה · המופע המשותף של מתן ותמיר · גרסה 2 · 9.10.2026
+  הדף שהקונה מגיע אליו אחרי התשלום. לא מקושר מאף תפריט, ומוסתר מגוגל (noindex).
+  המסך הראשון בטלפון הוא "כרטיס סטורי": הקונים מצלמים מסך, מעלים לסטורי ומתייגים את מתן ותמיר.
+  לכן אין בו שום פרט פרטי: לא מחיר, לא שם הקונה, לא טלפון.
+  לפני עלייה לאוויר (טכני): מערכת התשלום צריכה להפנות לדף הזה עם ?ticket=single או ?ticket=couple,
+  אחרת הפיקסל לא רושם רכישה. ראו את הקוד בתחתית.
+-->
+<meta name="robots" content="noindex, nofollow">
+<title>שמרתי מקום · המופע המשותף של מתן ותמיר · 16.11</title>
+<meta name="theme-color" content="#14002E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<!-- Meta Pixel Code (אותו מזהה כמו בדף הנחיתה) -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','3092602027607133');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+<style>
+  :root{ --bg:#14002E; --bg2:#1E0545; --card:rgba(255,255,255,.045); --line:rgba(205,189,240,.16);
+         --yellow:#FFE145; --pink:#FF2D87; --violet:#7B2CFF; --orange:#FF6A1A; --text:#FFFFFF; --soft:#CDBDF0; --mute:#A796D1;
+         --tk:#24074F; --tk2:#1A0440; }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+  body{ background:var(--bg); color:var(--text); font-family:'Rubik',system-ui,sans-serif; font-size:17px; line-height:1.6;
+        -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 20px; }
+  .ltr{ direction:ltr; unicode-bidi:isolate; display:inline-block; }
+
+  .rise{ opacity:0; transform:translateY(14px); animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards; }
+  .d1{ animation-delay:.05s } .d2{ animation-delay:.18s } .d3{ animation-delay:.32s } .d4{ animation-delay:.46s }
+  @keyframes rise{ to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce){ .rise{ animation:none; opacity:1; transform:none; } html{ scroll-behavior:auto; } }
+
+  /* =====================================================================
+     STORY: המסך הראשון. בנוי כך שצילום מסך בטלפון ייראה כמו סטורי מוכן
+     ===================================================================== */
+  .story{ position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+          padding:max(22px, env(safe-area-inset-top)) 20px 18px; overflow:hidden; isolation:isolate;
+          background:
+            radial-gradient(120% 60% at 50% 0%, rgba(123,44,255,.42), transparent 62%),
+            radial-gradient(90% 45% at 100% 100%, rgba(255,45,135,.22), transparent 65%),
+            radial-gradient(70% 40% at 0% 80%, rgba(255,106,26,.10), transparent 70%),
+            linear-gradient(180deg, #1B0340 0%, #14002E 70%); }
+  /* כוכבים עדינים, סטטיים */
+  .story::before{ content:""; position:absolute; inset:0; z-index:-1; opacity:.55; pointer-events:none;
+    background-image:
+      radial-gradient(1.2px 1.2px at 12% 18%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 82% 9%, #fff 50%, transparent 51%),
+      radial-gradient(1.4px 1.4px at 92% 38%, #FFE145 50%, transparent 51%), radial-gradient(1px 1px at 6% 52%, #fff 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 30% 88%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 70% 94%, #fff 50%, transparent 51%),
+      radial-gradient(1.3px 1.3px at 48% 4%, #FFE145 50%, transparent 51%), radial-gradient(1px 1px at 22% 68%, #fff 50%, transparent 51%); }
+
+  .say{ text-align:center; }
+  .say .kick{ display:inline-flex; align-items:center; gap:8px; font-weight:700; font-size:13.5px; letter-spacing:.3px; color:var(--soft); }
+  .say .kick i{ width:7px; height:7px; border-radius:50%; background:var(--pink); box-shadow:0 0 10px var(--pink); }
+  .say h1{ margin-top:4px; font-weight:900; font-size:clamp(34px, min(10.5vw, 5.4svh), 50px); line-height:1.05; letter-spacing:-.5px; }
+  .say h1 em{ font-style:normal; color:var(--yellow); }
+  .say h1 .tix{ width:.92em; height:.7em; margin-right:.22em; vertical-align:-.02em; transform:rotate(-10deg); filter:drop-shadow(0 0 12px rgba(255,225,69,.45)); }
+
+  .tkt-wrap{ position:relative; width:100%; max-width:360px; margin-top:clamp(12px, 2.2svh, 22px); }
+  /* הילה רכה מאחורי הכרטיס (מחוץ למסכה) */
+  .tkt-wrap::before{ content:""; position:absolute; inset:8% 4% 4%; z-index:-1; border-radius:40px; filter:blur(34px); opacity:.75;
+    background:linear-gradient(160deg, rgba(123,44,255,.9), rgba(255,45,135,.55) 60%, rgba(255,225,69,.35)); }
+
+  .tkt-main, .tkt-stub{ position:relative; background:linear-gradient(170deg, #2C0A60 0%, var(--tk) 45%, var(--tk2) 100%);
+     border:1px solid rgba(255,225,69,.5); overflow:hidden; }
+  .tkt-main{ border-radius:26px 26px 0 0; border-bottom:0;
+     -webkit-mask: radial-gradient(circle 14px at 0 100%, #0000 97%, #000) left/51% 100% no-repeat, radial-gradient(circle 14px at 100% 100%, #0000 97%, #000) right/51% 100% no-repeat;
+             mask: radial-gradient(circle 14px at 0 100%, #0000 97%, #000) left/51% 100% no-repeat, radial-gradient(circle 14px at 100% 100%, #0000 97%, #000) right/51% 100% no-repeat; }
+  .tkt-stub{ border-radius:0 0 26px 26px; border-top:0; background:linear-gradient(170deg, var(--tk2), #150235);
+     -webkit-mask: radial-gradient(circle 14px at 0 0, #0000 97%, #000) left/51% 100% no-repeat, radial-gradient(circle 14px at 100% 0, #0000 97%, #000) right/51% 100% no-repeat;
+             mask: radial-gradient(circle 14px at 0 0, #0000 97%, #000) left/51% 100% no-repeat, radial-gradient(circle 14px at 100% 0, #0000 97%, #000) right/51% 100% no-repeat; }
+  /* קו הניקוב */
+  .tkt-stub::before{ content:""; position:absolute; top:0; left:22px; right:22px; border-top:2px dashed rgba(205,189,240,.35); }
+
+  .photo{ position:relative; height:clamp(136px, 27svh, 232px); overflow:hidden; }
+  .photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 75%; display:block;
+              filter:saturate(.9) contrast(1.08) brightness(1.04); }
+  /* גוון סגול על הכיסאות האדומים + מעבר רך אל גוף הכרטיס */
+  .photo::before{ content:""; position:absolute; inset:0; z-index:1; mix-blend-mode:multiply;
+     background:linear-gradient(180deg, rgba(80,20,190,.55) 0%, rgba(120,50,230,.28) 55%, rgba(120,50,230,.1) 100%); }
+  .photo::after{ content:""; position:absolute; inset:0; z-index:1;
+     background:linear-gradient(180deg, rgba(36,7,79,0) 62%, rgba(36,7,79,.82) 90%, var(--tk) 100%); }
+  /* ברק עדין לרוחב הכרטיס */
+  .tkt-main::after{ content:""; position:absolute; inset:0; z-index:3; pointer-events:none;
+     background:linear-gradient(115deg, transparent 38%, rgba(255,255,255,.07) 47%, rgba(255,255,255,0) 56%); }
+  .stamp{ position:absolute; z-index:2; top:12px; left:12px; transform:rotate(-6deg);
+          font-weight:900; font-size:13.5px; color:var(--bg); background:var(--yellow); padding:5px 11px 6px; border-radius:8px;
+          box-shadow:3px 3px 0 var(--pink); }
+
+  .tbody{ position:relative; z-index:2; margin-top:-20px; padding:0 22px 20px; text-align:center; }
+  .ttl{ font-weight:900; line-height:.95; letter-spacing:-1px; font-size:clamp(44px, min(13.4vw, 6.6svh), 56px); }
+  .ttl span{ color:var(--yellow); display:block; text-shadow:0 6px 30px rgba(0,0,0,.4); }
+  .tag{ display:inline-block; margin-top:10px; font-weight:800; font-size:clamp(18px, min(5.4vw, 2.7svh), 22px); background:var(--pink); color:#fff;
+        padding:3px 14px 6px; transform:rotate(-2deg); line-height:1.15; }
+  .names{ margin-top:12px; font-weight:500; font-size:15px; color:var(--soft); letter-spacing:.2px; }
+  .names b{ color:#fff; font-weight:700; }
+  .names .x{ color:var(--yellow); margin:0 5px; font-weight:400; }
+
+  .stub-in{ display:flex; align-items:center; gap:16px; padding:clamp(14px, 2.4svh, 20px) 22px clamp(12px, 2svh, 16px); }
+  .date{ flex:none; text-align:center; padding-left:16px; border-left:1px solid rgba(205,189,240,.22); }
+  .date b{ display:block; font-weight:900; font-size:clamp(40px, min(12vw, 6svh), 50px); line-height:.9; color:var(--yellow); letter-spacing:-1.5px;
+           text-shadow:0 0 26px rgba(255,225,69,.35); }
+  .date small{ display:block; margin-top:5px; font-weight:700; font-size:13px; letter-spacing:4px; color:var(--soft); }
+  .where{ flex:1; min-width:0; line-height:1.3; }
+  .where span{ display:block; font-size:13.5px; color:var(--mute); font-weight:500; }
+  .where b{ display:block; font-weight:800; font-size:clamp(18px, 5vw, 21px); color:#fff; margin:2px 0; }
+  .handles{ display:flex; justify-content:center; gap:8px; flex-wrap:wrap; padding:0 18px clamp(14px, 2.4svh, 20px); }
+  .handles span{ font-weight:700; font-size:13.5px; color:#fff; padding:5px 11px; border-radius:999px; background:rgba(255,255,255,.07);
+                 border:1px solid rgba(205,189,240,.22); direction:ltr; unicode-bidi:isolate; }
+  .handles span::before{ content:""; display:inline-block; width:12px; height:12px; margin-right:5px; vertical-align:-1.5px; border-radius:4px;
+     border:1.6px solid var(--yellow); box-sizing:border-box;
+     background:radial-gradient(circle at 50% 50%, transparent 2.2px, var(--yellow) 2.4px, var(--yellow) 3.4px, transparent 3.6px); }
+
+  .snap{ margin-top:clamp(12px, 2svh, 18px); font-size:13.5px; font-weight:500; color:var(--soft); text-align:center; line-height:1.45; }
+  .snap b{ color:var(--yellow); font-weight:700; }
+  .more{ position:absolute; bottom:max(8px, env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); width:28px; height:28px; opacity:.55; }
+  @media (max-height:740px){ .more{ display:none; } }
+
+  /* ===== intro below the fold ===== */
+  .top{ padding:46px 0 22px; text-align:center; }
+  .ok{ display:inline-flex; align-items:center; gap:9px; padding:7px 16px 7px 14px; border-radius:999px;
+       background:rgba(255,225,69,.08); border:1px solid rgba(255,225,69,.45); color:var(--yellow); font-weight:700; font-size:14.5px; }
+  .ok svg{ width:18px; height:18px; flex:none; }
+  h2.thx{ margin-top:16px; font-weight:900; font-size:clamp(34px,9.5vw,56px); line-height:1.05; letter-spacing:-.5px; }
+  h2.thx span{ color:var(--yellow); white-space:nowrap; }
+  .lead{ margin:14px auto 0; max-width:600px; font-size:clamp(17px,4.4vw,19px); color:var(--soft); }
+  .lead b{ color:#fff; font-weight:700; }
+
+  .main{ display:grid; grid-template-columns:1fr; gap:34px; padding-bottom:30px; }
+
+  /* ===== video ===== */
+  .vid-col{ display:flex; flex-direction:column; align-items:center; }
+  .vid{ position:relative; width:100%; max-width:min(360px, calc((100svh - 140px) * 9 / 16)); min-width:260px; aspect-ratio:9/16;
+        border-radius:26px; overflow:hidden; background:#0c0020; border:1px solid rgba(255,225,69,.35);
+        box-shadow:0 0 0 6px rgba(255,255,255,.03), 0 30px 80px -20px rgba(123,44,255,.55), 0 0 60px -10px rgba(255,45,135,.25); }
+  .vid video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; background:#0c0020; display:block; }
+  .play{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:12px; padding-bottom:20%;
+         border:0; cursor:pointer; color:#fff; font:inherit; background:linear-gradient(0deg, rgba(20,0,46,.55), transparent 45%); }
+  .play i{ width:76px; height:76px; border-radius:50%; background:rgba(255,225,69,.95); display:flex; align-items:center; justify-content:center;
+           box-shadow:0 0 0 10px rgba(255,225,69,.16); transition:transform .2s; }
+  .play i::after{ content:""; border-style:solid; border-width:13px 0 13px 22px; border-color:transparent transparent transparent var(--bg); margin-left:5px; }
+  .play:hover i{ transform:scale(1.05); }
+  .play span{ font-weight:700; font-size:15px; text-shadow:0 1px 8px rgba(0,0,0,.5); }
+  .vid.playing .play{ display:none; }
+  .vid-cap{ margin-top:14px; font-size:14px; color:var(--mute); text-align:center; }
+
+  /* ===== steps ===== */
+  .steps-h{ font-weight:800; font-size:clamp(22px,5.6vw,28px); line-height:1.2; }
+  .steps-h small{ display:block; margin-top:4px; font-weight:400; font-size:15px; color:var(--mute); }
+  ol.steps{ list-style:none; margin-top:18px; display:flex; flex-direction:column; gap:12px; counter-reset:s; }
+  .step{ position:relative; background:var(--card); border:1px solid var(--line); border-radius:20px; padding:18px; padding-right:62px; }
+  .step::before{ counter-increment:s; content:counter(s); position:absolute; right:16px; top:17px; width:32px; height:32px; border-radius:50%;
+                 display:flex; align-items:center; justify-content:center; font-weight:800; font-size:15px; color:var(--yellow);
+                 border:1px solid rgba(255,225,69,.45); background:rgba(255,225,69,.06); }
+  .step h3{ font-weight:700; font-size:18px; line-height:1.35; }
+  .step p{ margin-top:5px; font-size:15.5px; color:var(--soft); line-height:1.55; }
+  .step p b{ color:#fff; font-weight:700; }
+  .facts{ margin-top:10px; display:flex; flex-wrap:wrap; gap:6px; }
+  .facts span{ font-size:14.5px; font-weight:500; padding:5px 12px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid var(--line); }
+  .facts b{ color:var(--yellow); font-weight:700; }
+  .btns{ margin-top:12px; display:flex; flex-wrap:wrap; gap:8px; }
+  .b{ display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:10px 16px; border-radius:12px; font-weight:700; font-size:15px;
+      border:1px solid rgba(255,255,255,.28); background:rgba(255,255,255,.04); transition:background .2s, border-color .2s; }
+  .b:hover{ background:rgba(255,255,255,.09); border-color:rgba(255,255,255,.45); }
+  .b.main{ background:var(--yellow); color:var(--bg); border-color:var(--yellow); }
+  .b.main:hover{ background:#ffe96e; }
+  .b svg{ width:18px; height:18px; flex:none; }
+
+  /* ===== story CTA (מחליף את בלוק השיתוף) ===== */
+  .ig{ margin-top:22px; padding:22px 20px; border-radius:22px; text-align:center; position:relative; overflow:hidden;
+       background:linear-gradient(160deg, rgba(123,44,255,.22), rgba(255,45,135,.12)); border:1px solid rgba(255,225,69,.35); }
+  .ig .em{ font-size:30px; line-height:1; }
+  .ig h3{ margin-top:8px; font-weight:800; font-size:20px; line-height:1.3; }
+  .ig ol{ list-style:none; margin:14px auto 0; display:flex; justify-content:center; gap:6px; flex-wrap:wrap; font-size:14.5px; font-weight:700; }
+  .ig ol li{ padding:5px 12px; border-radius:999px; background:rgba(20,0,46,.45); border:1px solid var(--line); }
+  .ig ol li b{ color:var(--yellow); margin-left:4px; }
+  .ig p{ margin-top:12px; font-size:15.5px; color:var(--soft); }
+  .ig .btns{ justify-content:center; }
+  .ig .wink{ margin-top:10px; font-size:14px; color:var(--mute); }
+
+  .sign{ margin-top:26px; text-align:center; font-size:16px; color:var(--soft); }
+  .sign b{ display:block; margin-top:2px; font-weight:800; font-size:22px; color:#fff; }
+
+  footer{ padding:30px 0 40px; text-align:center; color:var(--mute); font-size:13.5px; border-top:1px solid var(--line); margin-top:26px; }
+  footer .legal{ margin-top:6px; font-size:12px; opacity:.85; }
+
+  @media (min-width:900px){
+    .story{ min-height:min(100svh, 980px); }
+    .top{ padding:70px 0 40px; }
+    .main{ grid-template-columns:400px 1fr; gap:56px; align-items:start; }
+    .vid-col{ position:sticky; top:28px; }
+    .vid{ max-width:min(380px, calc((100svh - 120px) * 9 / 16)); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== מסך ראשון: כרטיס לסטורי ===================== -->
+<section class="story" id="card" aria-label="כרטיס: שמרתי מקום במופע המשותף">
+  <div class="say rise d1">
+    <div class="kick"><i></i>ערב חי אחד</div>
+    <h1>שמרתי <em>מקום</em><svg class="tix" viewBox="0 0 32 24" aria-hidden="true"><path d="M3 4h26v5a3 3 0 0 0 0 6v5H3v-5a3 3 0 0 0 0-6Z" fill="#FFE145"/><path d="M20 5.5v13" stroke="#14002E" stroke-width="1.6" stroke-dasharray="2 2"/><path d="m9.5 9.2 1.1 2.2 2.4.3-1.8 1.7.5 2.4-2.2-1.2-2.2 1.2.5-2.4-1.8-1.7 2.4-.3Z" fill="#FF2D87"/></svg></h1>
+  </div>
+
+  <div class="tkt-wrap rise d2">
+    <div class="tkt-main">
+      <div class="photo">
+        <img src="todah-duo.jpg" alt="מתן משיח ותמיר דמרי על הבמה" width="1080" height="645">
+        <span class="stamp">אני בפנים ✓</span>
+      </div>
+      <div class="tbody">
+        <div class="ttl"><span>המופע</span>המשותף</div>
+        <div class="tag">של מתן ותמיר</div>
+        <div class="names"><b>מתן משיח</b><span class="x">×</span><b>תמיר דמרי</b></div>
+      </div>
+    </div>
+    <div class="tkt-stub">
+      <div class="stub-in">
+        <div class="date"><b>16.11</b><small>2026</small></div>
+        <div class="where"><span>יום שני · 16:30</span><b>אולם מאירהוף</b><span>תל אביב</span></div>
+      </div>
+      <div class="handles"><span>@matan.mashiah1</span><span>@tamirdamri_</span></div>
+    </div>
+  </div>
+
+  <p class="snap rise d3">📸 <b>צלמו מסך</b>, העלו לסטורי ותייגו אותנו</p>
+  <svg class="more" viewBox="0 0 24 24" fill="none" stroke="#CDBDF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+</section>
+
+<!-- ===================== מתחת לקפל ===================== -->
+<header class="top wrap">
+  <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>ההרשמה הושלמה</div>
+  <h2 class="thx">תודה. <span>נתראה ב-16.11</span></h2>
+  <p class="lead"><b>מתן ותמיר הקליטו לכם כמה מילים</b>, שווה דקה עם סאונד.</p>
+</header>
+
+<main class="wrap main">
+  <div class="vid-col">
+    <div class="vid" id="vid">
+      <video id="v" controls playsinline preload="metadata" poster="todah-poster.jpg" aria-label="סרטון תודה ממתן ותמיר">
+        <source src="todah-video.mp4" type="video/mp4">
+        הדפדפן שלך לא מציג וידאו. <a href="todah-video.mp4">לצפייה בסרטון</a>
+      </video>
+      <button class="play" id="play" type="button" aria-label="הפעלת סרטון התודה"><i></i><span>מתן ותמיר · תודה</span></button>
+    </div>
+    <div class="vid-cap">דקה אחת · עם סאונד 🔊</div>
+  </div>
+
+  <div>
+    <h2 class="steps-h">מה קורה עכשיו<small>ארבעה דברים קטנים, ואתם מסודרים.</small></h2>
+    <ol class="steps">
+      <li class="step">
+        <h3>האישור כבר במייל</h3>
+        <p>שלחנו לכם אישור הרשמה למייל. לא מוצאים אותו? שווה להציץ גם בספאם ובקידומי מכירות.</p>
+        <p><b>כשבוע לפני האירוע</b> תקבלו מאיתנו בוואטסאפ את כל פרטי ההגעה.</p>
+      </li>
+      <li class="step">
+        <h3>שומרים ביומן</h3>
+        <p>שתי לחיצות, וזה לא נשכח.</p>
+        <div class="btns">
+          <a class="b main" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=%D7%94%D7%9E%D7%95%D7%A4%D7%A2+%D7%94%D7%9E%D7%A9%D7%95%D7%AA%D7%A3+%D7%A9%D7%9C+%D7%9E%D7%AA%D7%9F+%D7%95%D7%AA%D7%9E%D7%99%D7%A8&amp;dates=20261116T143000Z%2F20261116T193000Z&amp;details=%D7%9E%D7%AA%D7%9F+%D7%9E%D7%A9%D7%99%D7%97+%C3%97+%D7%AA%D7%9E%D7%99%D7%A8+%D7%93%D7%9E%D7%A8%D7%99.+%D7%A2%D7%A8%D7%91+%D7%97%D7%99+%D7%90%D7%97%D7%93%2C+%D7%A9%D7%A0%D7%99+%D7%A6%D7%93%D7%93%D7%99%D7%9D+%D7%A9%D7%9C+%D7%94%D7%9E%D7%A1%D7%97%D7%A8.+16%3A30+%D7%A2%D7%93+21%3A30%2C+%D7%90%D7%95%D7%9C%D7%9D+%D7%9E%D7%90%D7%99%D7%A8%D7%94%D7%95%D7%A3.+%D7%A9%D7%90%D7%9C%D7%95%D7%AA+%D7%91%D7%95%D7%95%D7%90%D7%98%D7%A1%D7%90%D7%A4%3A+054-766-7172&amp;location=%D7%90%D7%95%D7%9C%D7%9D+%D7%9E%D7%90%D7%99%D7%A8%D7%94%D7%95%D7%A3%2C+%D7%91%D7%99%D7%AA+%D7%A6%D7%99%D7%95%D7%A0%D7%99+%D7%90%D7%9E%D7%A8%D7%99%D7%A7%D7%94%2C+%D7%93%D7%A0%D7%99%D7%90%D7%9C+%D7%A4%D7%A8%D7%99%D7%A9+1%2C+%D7%AA%D7%9C+%D7%90%D7%91%D7%99%D7%91&amp;ctz=Asia%2FJerusalem" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>הוספה ליומן גוגל</a>
+          <a class="b" href="hamofa-hameshutaf-16-11-2026.ics" download="hamofa-hameshutaf-16-11-2026.ics"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>אייפון / אאוטלוק (‎.ics)</a>
+        </div>
+      </li>
+      <li class="step">
+        <h3>איפה ומתי</h3>
+        <div class="facts">
+          <span>יום שני <b>16.11.2026</b></span>
+          <span><b>16:30</b> עד <b>21:30</b></span>
+          <span>אולם מאירהוף, בית ציוני אמריקה</span>
+          <span>דניאל פריש 1, תל אביב</span>
+        </div>
+        <div class="btns">
+          <a class="b" href="https://waze.com/ul?q=%D7%93%D7%A0%D7%99%D7%90%D7%9C+%D7%A4%D7%A8%D7%99%D7%A9+1%2C+%D7%AA%D7%9C+%D7%90%D7%91%D7%99%D7%91&amp;navigate=yes" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>ניווט בוויז</a>
+        </div>
+      </li>
+      <li class="step">
+        <h3>שאלה? כתבו לנו</h3>
+        <p>על הערב, על הכרטיס או על ההגעה. עונים בוואטסאפ.</p>
+        <div class="btns">
+          <a class="b" href="https://wa.me/972547667172" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>וואטסאפ <span class="ltr">054-766-7172</span></a>
+        </div>
+      </li>
+    </ol>
+
+    <div class="ig">
+      <div class="em">📸</div>
+      <h3>ספרו לכולם שאתם מגיעים</h3>
+      <ol>
+        <li><b>1</b>צלמו מסך של הכרטיס</li>
+        <li><b>2</b>העלו לסטורי</li>
+        <li><b>3</b>תייגו את שנינו</li>
+      </ol>
+      <div class="btns">
+        <a class="b" href="https://www.instagram.com/matan.mashiah1/" target="_blank" rel="noopener"><span class="ltr">@matan.mashiah1</span></a>
+        <a class="b" href="https://www.instagram.com/tamirdamri_/" target="_blank" rel="noopener"><span class="ltr">@tamirdamri_</span></a>
+      </div>
+      <div class="btns"><a class="b main" href="#card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>חזרה לכרטיס לצילום מסך</a></div>
+      <p class="wink">ואם ראיתם את הסרטון, אתם כבר יודעים למה שווה לתייג 😉</p>
+    </div>
+
+    <div class="sign">מחכים לראות אתכם באולם,<b>מתן ותמיר</b></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">המופע המשותף של מתן ותמיר · מתן משיח × תמיר דמרי · 2026
+    <p class="legal">מסחר כרוך בסיכון. אין באמור המלצת השקעה או הבטחה לרווח, אלא שיתוף מניסיון ותהליך אישי.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ==== VIDEO: כפתור פליי עדין מעל הפוסטר. לא מתנגן לבד, ותמיד עם הפקדים של הדפדפן ====
+  var box = document.getElementById('vid'), v = document.getElementById('v'), btn = document.getElementById('play');
+  btn.addEventListener('click', function(){ v.muted = false; var p = v.play(); if (p && p.catch) p.catch(function(){}); });
+  v.addEventListener('play', function(){ box.classList.add('playing'); });
+  v.addEventListener('ended', function(){ box.classList.remove('playing'); });
+
+  // ==== PIXEL: רכישה שהושלמה ====
+  // לפני עלייה לאוויר: להגדיר במערכת התשלום שההפניה לדף הזה תכלול ?ticket=single או ?ticket=couple.
+  // בלי הפרמטר לא נרשמת רכישה (כדי שכניסה ישירה לדף או רענון לא ייספרו כקנייה). נרשם פעם אחת לכל כניסה.
+  try {
+    var t = new URLSearchParams(location.search).get('ticket');
+    var price = { single:197, couple:297 }[t];
+    if (price && window.fbq && !sessionStorage.getItem('kenes_purchase_tracked')) {
+      fbq('track', 'Purchase', { value: price, currency: 'ILS',
+        content_name: 'המופע המשותף של מתן ותמיר · ' + (t === 'couple' ? 'זוגי' : 'יחיד') });
+      sessionStorage.setItem('kenes_purchase_tracked', '1');
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>
