@@ -913,9 +913,9 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     return;
   }
   // closed: 22:00 until 10:00 tomorrow
-  bar.textContent = 'המכירה נפתחת מחר, 11.10 ב-10:00';
+  bar.textContent = 'המכירה לקהל הרחב נפתחת היום ב-10:00';
   document.documentElement.classList.add('sale-closed');
-  var MSG = 'המכירה המוקדמת נסגרה · נפתחת מחר ב-10:00';
+  var MSG = 'המכירה המוקדמת נסגרה · נפתחת היום ב-10:00';
   document.querySelectorAll('a.btn[data-checkout], a.btn[href="#tickets"]').forEach(function(a){
     a.setAttribute('data-buy', '');
     if (a.hasAttribute('data-checkout')) { a.removeAttribute('href'); a.setAttribute('aria-disabled', 'true'); a.tabIndex = -1; }
