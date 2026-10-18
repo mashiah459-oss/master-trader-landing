@@ -34,7 +34,7 @@
 
     situationRoom: {
       name: 'חדר מצב',
-      status: 'open',
+      status: 'closed',         // מחזור 2: ההרשמה נסגרה
       cycle: 2,
       opens: '18.10',
       dates: ['18.10', '08.11', '15.11', '29.11', '20.12'],
@@ -42,9 +42,9 @@
       seatsTaken: 14,          // כולל מי שנרשם ועוד לא שילם. מעדכנים כאן בלבד.
       price: null,              // אין מחיר בדף חדר המצב, ולכן אין מחיר כאן
       url: 'hadar-hamatzav/',
-      checkout: null,           // ההרשמה היא דרך הטופס בדף עצמו
-      tag: null,                // התגית נבנית לבד: "מחזור 2 · נפתח 18.10"
-      cta: 'לפרטים והרשמה'
+      checkout: null,
+      tag: null,
+      cta: null
     },
 
     course: {

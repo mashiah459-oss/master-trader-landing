@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>חדר המצב · מחזור 2 · מתן משיח</title>
-<meta name="description" content="מחזור 2 נפתח 18.10.2026. חמישה מפגשים פיזיים, 20 סוחרים, שולחן אחד. כל עסקה של כל סוחר נבדקת.">
+<title>חדר המצב · מחזור 2 סולד אאוט · מתן משיח</title>
+<meta name="description" content="מחזור 2 סולד אאוט, כל המקומות נתפסו. אפשר להירשם לרשימת ההמתנה למחזור הבא. חמישה מפגשים פיזיים, 20 סוחרים, שולחן אחד.">
 <meta property="og:title" content="חדר המצב · מתן משיח">
-<meta property="og:description" content="קבוצת מאסטרמיינד פיזית סגורה, 20 מקומות. מחזור 2 נפתח 18.10.2026.">
+<meta property="og:description" content="מחזור 2 · סולד אאוט. כל המקומות נתפסו. הרשמה לרשימת המתנה למחזור הבא.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -146,7 +146,7 @@
   .cyclechip .n{ background:var(--accent); color:#fff; font-weight:900; font-size:14px; letter-spacing:.12em;
     padding:12px 16px; display:flex; align-items:center; }
   .cyclechip .w{ padding:11px 18px; display:flex; align-items:center; gap:10px; }
-  .cyclechip .w .lbl{ font-size:13px; color:var(--dim); font-weight:600; }
+  .cyclechip .w .lbl{ font-size:clamp(16px,3.6vw,20px); color:#fff; font-weight:800; letter-spacing:.01em; }
   .cyclechip .w .d{ font-family:'Space Mono',monospace; font-weight:700;
     font-size:clamp(20px,4.6vw,27px); color:var(--accent-bright); letter-spacing:1px; }
   /* the opening night reads differently from the rest of the grid */
@@ -195,13 +195,13 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     <div class="wordmark">חדר מצב</div>
     <div class="rule"></div>
     <div class="promise">יודע לנתח גרף, אבל עדיין מחזיר את הרווח לשוק?<br>5 מפגשים פרונטליים שהופכים את המסחר שלך מהימור רגשי לעסק עם מערכת.</div>
-    <div class="cyclechip"><span class="n">מחזור 2</span><span class="w"><span class="lbl">נפתח</span><span class="d">18.10.26</span></span></div>
+    <div class="cyclechip"><span class="n">מחזור 2</span><span class="w"><span class="lbl">סולד אאוט</span></span></div>
+    <div class="seats">כל המקומות נתפסו</div>
     <div class="subhook">מאסטרמיינד פיזי סגור של 20 סוחרים. אתה מביא את העסקאות האמיתיות שלך לשולחן, ואנחנו בונים לך מערכת שמחזיקה. המחזור הראשון נמכר עד המקום האחרון.</div>
     <div class="cta-row">
-      <a href="#register" class="btn">לשריון מקום במחזור 2 ←</a>
+      <a href="#register" class="btn">הרשמה לרשימת המתנה למחזור הבא ←</a>
       <a href="#gap" class="btn ghost">איך זה עובד</a>
     </div>
-    <div class="fillbar start"><div class="track"><div class="fill" data-fill></div></div><div class="cap" data-fill-cap></div></div>
   </div>
 </header>
 
@@ -363,26 +363,24 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 
 <section id="register">
   <div class="wrap">
-    <div class="kick">הרשמה</div>
-    <h2>20 מקומות. לא יותר.</h2>
-    <p class="sub">המחזור הראשון נמכר עד המקום האחרון. מחזור 2 נפתח ב־18.10, וההרשמה פתוחה. משאירים פרטים ונכנסים לרשימת המחזור, ואני חוזר אישית לשיחת התאמה קצרה. החדר הזה לא מתאים לכולם, ואני מעדיף לדעת את זה לפני ולא אחרי.</p>
+    <div class="kick">רשימת המתנה</div>
+    <h2>מחזור 2 · סולד אאוט</h2>
+    <p class="sub">כל המקומות נתפסו. אפשר להירשם לרשימת ההמתנה למחזור הבא, ואני מעדכן כשהוא נפתח.</p>
     <blockquote class="prequote">"עוד יומיים ירוקים מאז המפגש. היום כבר מבקש משיכה."<span>גלעד · סוחר שעובד איתי</span></blockquote>
-    <div class="fillbar"><div class="track"><div class="fill" data-fill></div></div><div class="cap" data-fill-cap></div></div>
-    <div class="steps">נרשמים לרשימה <b>←</b> שיחת התאמה קצרה <b>←</b> שריון מקום</div>
     <form class="formbox" id="form">
-      <div class="price">מחזור 2 · נפתח 18.10<br><span style="font-size:12px;color:var(--mute)">5 מפגשים · 15 שעות פרונטליות · מפגש אישי · כל עסקה שלך נבדקת</span></div>
+      <div class="price">הרשמה לרשימת המתנה למחזור הבא<br><span style="font-size:12px;color:var(--mute)">מחזור 2 סולד אאוט · בלי שמירת מקום ובלי תאריך</span></div>
       <label>שם מלא</label>
       <input type="text" name="name" required placeholder="השם שלך">
       <label>טלפון (וואטסאפ)</label>
       <input type="tel" name="phone" required placeholder="05x-xxxxxxx">
       <label>אימייל</label>
       <input type="email" name="email" required placeholder="you@email.com">
-      <button type="submit" class="btn">אני רוצה מקום בחדר ←</button>
-      <div class="fineprint">ההרשמה לרשימה אינה מחייבת ואינה שומרת מקום. אני חוזר אליך אישית לשיחת התאמה, ושם נסגור אם החדר מתאים לך. יש 20 מקומות, והם נסגרים לפי סדר השיחות.</div>
+      <button type="submit" class="btn">הרשמה לרשימת המתנה למחזור הבא ←</button>
+      <div class="fineprint">הרשימה אינה שומרת מקום במחזור 2. אני חוזר אליך כשייפתח המחזור הבא.</div>
     </form>
     <div class="formbox hide" id="done">
-      <div class="v">קיבלתי. ✓</div>
-      <p style="color:var(--dim);margin-top:12px;line-height:1.6">נרשמת לרשימת מחזור 2 של חדר המצב.<br>אני חוזר אליך בוואטסאפ לשיחת התאמה קצרה, ומשם נסגור מקום.</p>
+      <div class="v">אתה ברשימה. ✓</div>
+      <p style="color:var(--dim);margin-top:12px;line-height:1.6">נרשמת לרשימת ההמתנה למחזור הבא של חדר המצב.<br>אני מעדכן אותך כשהוא נפתח.</p>
     </div>
   </div>
 </section>
@@ -390,14 +388,14 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 <section>
   <div class="wrap" style="text-align:center">
     <p class="sub" style="max-width:640px;font-size:clamp(19px,4.5vw,24px);color:var(--text);font-weight:500">החופש שאתה מחפש נמצא בצד השני של המשמעת.<br><b style="color:var(--accent-bright)">בחדר הזה בונים אותה.</b></p>
-    <div class="cta-row" style="justify-content:center"><a href="#register" class="btn">לשריון מקום במחזור 2 ←</a></div>
+    <div class="cta-row" style="justify-content:center"><a href="#register" class="btn">הרשמה לרשימת המתנה למחזור הבא ←</a></div>
   </div>
 </section>
 
 <footer>מתן משיח · <b>MasterTrader</b> · חדר המצב 2026<br><span style="color:var(--mute)">רחוב לח״י 21, בני ברק</span></footer>
 
 <script>
-  var CHECKOUT = "";
+  /* אותו צינור לידים כמו שאר הדפים: formsubmit.co במייל. */
   var LEAD_ENDPOINT = "https://formsubmit.co/ajax/mashiah459@gmail.com";
   var form = document.getElementById('form');
   form.addEventListener('submit', function(e){
@@ -405,19 +403,18 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     var btn = form.querySelector('button');
     btn.textContent = 'שולח...'; btn.disabled = true;
 
-    // Fire the Lead before the fetch, so a slow or failed endpoint never costs the event.
-    // Tracking must never block a registration, so any failure here falls back to a local id.
-    var eid = 'SR_' + Date.now() + '_' + Math.floor(Math.random() * 1e6);
+    var eid = 'SRWL_' + Date.now() + '_' + Math.floor(Math.random() * 1e6);
     try {
       if (window.mtPixel && typeof window.mtPixel.trackLead === 'function') {
-        eid = window.mtPixel.trackLead('חדר מצב מחזור 2', 'SR') || eid;
+        eid = window.mtPixel.trackLead('חדר מצב רשימת המתנה', 'SRWL') || eid;
       }
     } catch (err) { /* keep the local id and carry on with the submit */ }
 
     var payload = {
-      _subject: 'הרשמה חדר המצב מחזור 2: ' + (form.name.value || ''),
+      _subject: 'רשימת המתנה חדר המצב מחזור 3: ' + (form.name.value || ''),
       name: form.name.value, phone: form.phone.value, email: form.email.value,
-      source: 'situation-room/cycle-2', event_id: eid
+      message: 'אשמח להצטרף לרשימת ההמתנה לחדר מצב מחזור 3',
+      source: 'situation-room/waitlist-cycle-3', event_id: eid, _template: 'table'
     };
     fetch(LEAD_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
       .then(function(){ show(); })
@@ -425,32 +422,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     function show(){
       form.classList.add('hide');
       document.getElementById('done').classList.remove('hide');
-      if (CHECKOUT) { setTimeout(function(){ window.location.href = CHECKOUT; }, 1500); }
     }
-  });
-</script>
-
-<script src="../js/campaigns.js"></script>
-<script>
-  /* מקור האמת הוא js/campaigns.js. הערכים כאן הם גיבוי למקרה שהקובץ לא נטען,
-     כדי שהמונה לא ייעלם מהדף. מעדכנים ב-campaigns.js. */
-  var C = window.CAMPAIGNS || {};
-  var sr = C.situationRoom || (C.offers && C.offers.situationRoom) || {};
-  var SEATS_TOTAL = sr.seats || 20, SEATS_SOLD = (sr.seatsTaken != null ? sr.seatsTaken : 9);
-
-  document.addEventListener('DOMContentLoaded', function(){
-    var left = SEATS_TOTAL - SEATS_SOLD;
-    var pct = Math.round(SEATS_SOLD / SEATS_TOTAL * 100);
-    var phrase = left === 0 ? 'החדר מלא'
-               : left === 1 ? 'מקום אחרון'
-               : left < 10 ? left + ' מקומות אחרונים'   /* "אחרונים" רק כשהחדר באמת ברובו מלא */
-               : 'נשארו ' + left + ' מקומות';
-    document.querySelectorAll('[data-fill-cap]').forEach(function(el){
-      el.innerHTML = SEATS_SOLD + ' מתוך ' + SEATS_TOTAL + ' מקומות נתפסו · <b>' + phrase + '</b>';
-    });
-    requestAnimationFrame(function(){
-      document.querySelectorAll('[data-fill]').forEach(function(el){ el.style.width = pct + '%'; });
-    });
   });
 </script>
 </body>
