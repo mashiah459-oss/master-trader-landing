@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>מועדון הסוחר המתמיד — הפסקת להיות מהמר. הגיע הזמן לנהל עסק.</title>
+<meta name="description" content="המועדון שהופך מסחר יומי מכאוס רגשי לעסק מדיד — מבנה, בקרה וניהול סיכונים. לייבים בזמן אמת, שקיפות מלאה כולל הפסדים, וקהילה של מאות סוחרים. 149₪ לחודש, בלי התחייבות." />
+
+<meta property="og:title" content="מועדון הסוחר המתמיד — הפסקת להיות מהמר. הגיע הזמן לנהל עסק." />
+<meta property="og:description" content="מסחר זה עסק, לא קזינו. מבנה, בקרה וקהילה של מאות סוחרים. 149₪ לחודש." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="he_IL" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --bg:#000;
+  --panel:#121212;
+  --card:#1a1a1a;
+  --text:#fff;
+  --muted:#a3a3a3;
+  --dim:#9a9a9c;
+  --faint:#707070;
+  --line:#222;
+  --line-2:#2e2e2e;
+  --accent:#8fb8ff;
+  --blue:#0e78e8;
+  --blue-2:#09f;
+  --loss:#c4a0a0;
+  --maxw:1120px;
+  --ease:cubic-bezier(.44,0,.56,1);
+  --ease-out:cubic-bezier(.22,.8,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{direction:rtl;scroll-behavior:smooth;background:#000;overflow-x:clip}
+body{
+  background:#000;color:var(--text);
+  font-family:"Heebo","Inter",Arial,sans-serif;
+  font-weight:400;font-size:15px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+img{max-width:100%;height:auto}
+
+.atmosphere{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(1100px 640px at 50% -6%, rgba(14,120,232,.34), transparent 60%),
+    radial-gradient(720px 520px at 82% 22%, rgba(143,184,255,.12), transparent 62%),
+    radial-gradient(640px 480px at 8% 62%, rgba(14,120,232,.14), transparent 68%);
+}
+main{position:relative;z-index:1}
+
+/* blurred sticky nav */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:80;
+  height:64px;display:flex;align-items:center;gap:22px;
+  padding:0 28px;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.brand{
+  font-family:"Inter",sans-serif;font-weight:600;font-size:15px;
+  letter-spacing:-.03em;color:#fff;text-decoration:none;white-space:nowrap;
+}
+.brand span{color:var(--accent)}
+.nav-links{display:flex;gap:18px;margin-inline:auto}
+.nav-links a{
+  color:var(--dim);text-decoration:none;font-size:14px;font-weight:400;
+  letter-spacing:-.01em;
+  transition:color .1s var(--ease);
+}
+.nav-links a:hover{color:#fff}
+.nav-actions{display:flex;align-items:center;gap:8px}
+@media(max-width:900px){
+  .nav{padding:0 14px;gap:10px}
+  .nav-links,.nav-actions .btn-ghost{display:none}
+}
+
+.wrap{max-width:var(--maxw);margin:0 auto}
+.narrow{max-width:720px;margin:0 auto}
+.center{text-align:center}
+section{padding:clamp(88px,12vw,140px) 22px;position:relative}
+
+h1{
+  font-weight:600;letter-spacing:-.055em;line-height:1.02;color:#fff;
+  font-size:clamp(46px,6.5vw,84px);
+}
+h2{
+  font-weight:600;letter-spacing:-.045em;line-height:1.12;color:#fff;
+  font-size:clamp(34px,4.4vw,52px);
+}
+h3{font-size:18px;font-weight:600;letter-spacing:-.02em;color:#fff}
+.kicker{
+  display:block;color:var(--dim);font-size:13px;font-weight:500;
+  letter-spacing:-.01em;margin-bottom:14px;
+}
+.lead{color:var(--muted);font-weight:400;font-size:16px;line-height:1.6}
+.accent{color:var(--accent)}
+.b{font-weight:600;color:#fff}
+.muted{color:var(--faint)}
+
+/* CTAs — solid blue + quiet outline */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;cursor:pointer;border-radius:8px;
+  padding:10px 16px;font-family:inherit;font-size:14px;font-weight:500;
+  letter-spacing:-.01em;line-height:1.2;border:1px solid transparent;
+  transition:background .15s var(--ease),border-color .15s var(--ease),box-shadow .15s var(--ease),color .15s var(--ease),transform .15s var(--ease);
+}
+.btn-primary{
+  background:var(--blue);color:#fff;border-color:var(--blue);
+  box-shadow:0 0 24px rgba(14,120,232,.32);
+}
+.btn-primary:hover{background:var(--blue-2);border-color:var(--blue-2);box-shadow:0 0 32px rgba(0,153,255,.42);transform:translateY(-1px)}
+.btn-ghost{
+  background:rgba(255,255,255,.03);color:#eee;border-color:#2e2e2e;
+  backdrop-filter:blur(8px);
+}
+.btn-ghost:hover{border-color:#454545;background:rgba(255,255,255,.06)}
+.btn-sm{padding:7px 12px;font-size:13px;border-radius:8px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.actions.center{justify-content:center}
+.cta-sub{margin-top:14px;color:var(--faint);font-size:13px}
+.cta-wrap{text-align:center}
+
+/* product bezel */
+.bezel{
+  position:relative;
+  background:linear-gradient(180deg,#2a2a2a,#161616);
+  border:1px solid #2a2a2a;
+  border-radius:22px;
+  padding:14px;
+  box-shadow:
+    0 50px 120px rgba(0,0,0,.62),
+    0 0 80px rgba(14,120,232,.32),
+    0 0 180px rgba(14,120,232,.16);
+}
+.chrome{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:28px;padding:0 8px 10px}
+.dots{display:flex;gap:6px}
+.dots i{width:8px;height:8px;border-radius:50%;display:block}
+.dots i:nth-child(1){background:#ff5f57}
+.dots i:nth-child(2){background:#febc2e}
+.dots i:nth-child(3){background:#28c840}
+.chrome-title{color:#6a6a6a;font-family:"Inter",sans-serif;font-size:11px;letter-spacing:-.02em;text-align:center}
+.screen{position:relative;border-radius:12px;overflow:hidden;background:#070707;border:1px solid #222;aspect-ratio:16/10}
+.screen::after{
+  content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(180deg, rgba(255,255,255,.07), transparent 18%);
+}
+
+/* in-frame product UI — existing club words only */
+.app{display:flex;height:100%;min-height:100%;background:#070707;text-align:right;color:#fff}
+.app-side{
+  width:132px;flex:0 0 132px;background:#0c0c0c;
+  border-inline-end:1px solid #1e1e1e;
+  padding:12px 8px;display:flex;flex-direction:column;gap:2px;
+}
+.app-mark{
+  font-family:"Inter",sans-serif;font-weight:600;font-size:13px;letter-spacing:-.04em;
+  color:#fff;padding:4px 8px 12px;
+}
+.app-mark b{color:var(--accent);font-weight:600}
+.app-side span{
+  display:block;padding:7px 8px;border-radius:8px;color:#8d8d8d;font-size:12.5px;font-weight:500;
+}
+.app-side span.on{background:rgba(14,120,232,.18);color:var(--accent)}
+.app-main{flex:1;min-width:0;display:flex;flex-direction:column;background:#070707}
+.app-top{
+  height:36px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 14px;border-bottom:1px solid #1a1a1a;color:#9a9a9c;font-size:12px;
+}
+.app-search{
+  border:1px solid #2a2a2a;border-radius:8px;padding:3px 10px;color:#666;font-size:11px;
+}
+.app-scroll{padding:14px 16px 16px;overflow:hidden}
+.app-hello{font-size:18px;font-weight:600;letter-spacing:-.03em;color:#fff;margin-bottom:4px}
+.app-sub{color:#8d8d8d;font-size:12px;margin-bottom:12px}
+.app-feature{
+  display:flex;gap:12px;align-items:center;
+  background:linear-gradient(180deg,#151922,#0c0e12);
+  border:1px solid rgba(143,184,255,.28);border-radius:14px;padding:12px;
+  box-shadow:0 0 40px rgba(14,120,232,.18);
+  margin:10px 0 12px;
+}
+.app-feature img{width:84px;height:64px;object-fit:cover;border-radius:10px;flex:0 0 auto}
+.app-feature b{display:block;font-size:15px;font-weight:600;letter-spacing:-.03em}
+.app-feature span{display:block;color:#a3a3a3;font-size:12px;margin-top:3px}
+.app-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.app-tile{
+  background:#101010;border:1px solid #222;border-radius:10px;padding:10px;
+}
+.app-tile span{display:block;color:#8d8d8d;font-size:11px}
+.app-tile b{display:block;margin-top:4px;font-size:13px;font-weight:600;letter-spacing:-.02em}
+.app-lesson{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  background:#101010;border:1px solid #1e1e1e;border-radius:10px;
+  padding:10px 12px;margin-bottom:8px;
+}
+.app-lesson b{font-size:13px;font-weight:500}
+.app-lesson span{color:var(--accent);font-size:11px;white-space:nowrap}
+.app-photo{display:block;width:100%;height:150px;object-fit:cover;border-radius:10px;border:1px solid #222;margin-top:8px}
+.app-stage{position:relative;flex:1;min-height:0}
+.app:has(.pane-learn.is-on) .lnk-learn,
+.app:has(.pane-work.is-on) .lnk-work,
+.app:has(.pane-community.is-on) .lnk-community{background:rgba(14,120,232,.18);color:var(--accent)}
+
+/* hero */
+.hero{padding-top:118px;padding-bottom:28px;text-align:center}
+.hero h1{max-width:10.5em;margin:0 auto 18px}
+.hero .sub{max-width:36em;margin:0 auto 26px;color:#a3a3a3;font-size:17px;letter-spacing:-.01em}
+.hero-visual{position:relative;max-width:1080px;margin:36px auto 0;padding:0 8px}
+.hero-visual .screen{aspect-ratio:16/9.2}
+.hero-visual .wash{
+  position:absolute;left:50%;top:46%;width:92%;height:88%;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(closest-side, rgba(14,120,232,.55), rgba(14,120,232,0) 70%);
+  filter:blur(28px);pointer-events:none;z-index:0;
+}
+.hero-visual .bezel{position:relative;z-index:1}
+.hero-more{margin-top:28px}
+.hero-more .lead{max-width:40em;margin:0 auto;font-size:17px;color:#c8c8c8;letter-spacing:-.01em}
+.stats{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(18px,4vw,52px);margin-top:28px}
+.stat .n{font-family:"Inter","Heebo",sans-serif;font-size:22px;font-weight:500;letter-spacing:-.04em;color:#fff}
+.stat .l{color:var(--faint);font-size:13px;margin-top:2px}
+.hero h1,.hero .sub,.hero .actions,.hero-visual{
+  animation:rise .7s var(--ease-out) both;
+}
+.hero .sub{animation-delay:.06s}
+.hero .actions{animation-delay:.12s}
+.hero-visual{animation-delay:.18s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* sticky platform — desktop pins, mobile stacks */
+.platform{padding:0 22px;height:auto}
+.platform-pin{
+  position:relative;
+  max-width:var(--maxw);margin:0 auto;
+  display:block;
+}
+.p-steps{display:grid;gap:14px}
+.p-step{
+  text-align:right;color:inherit;background:transparent;
+  border-radius:16px;padding:4px 0 8px;cursor:pointer;
+}
+.p-head{display:flex;gap:14px;align-items:flex-start}
+.num{
+  font-family:"Inter",sans-serif;font-weight:500;font-size:40px;
+  letter-spacing:-.05em;color:#2c2c2c;min-width:1.15em;line-height:.9;
+  transition:color .2s var(--ease),text-shadow .2s var(--ease);
+}
+.name{
+  display:block;font-size:26px;font-weight:600;letter-spacing:-.04em;color:#4a4a4a;line-height:1.15;
+  transition:color .2s var(--ease);
+}
+.detail{
+  display:block;margin-top:8px;color:#a3a3a3;font-size:15px;font-weight:400;line-height:1.55;
+}
+.p-step.is-on .num{color:var(--accent);text-shadow:0 0 24px rgba(143,184,255,.45)}
+.p-step.is-on .name{color:#fff}
+.p-step:not(.is-on){opacity:.42}
+.mini-frame{margin-top:14px}
+.mini-frame .screen{aspect-ratio:16/10}
+@media(max-width:959px){
+  .mini-frame .app-side{width:88px;flex-basis:88px;padding:8px 6px}
+  .mini-frame .app-mark{font-size:11px;padding-bottom:8px}
+  .mini-frame .app-side span{font-size:11px;padding:5px 6px}
+  .hero-visual .app-side{width:96px;flex-basis:96px}
+}
+.platform-stage{display:none}
+.platform-kicker{margin-bottom:18px}
+
+@media(min-width:960px){
+  .platform{height:300vh;padding-top:0;padding-bottom:0}
+  .platform-pin{
+    position:sticky;top:72px;height:calc(100vh - 88px);
+    display:grid;grid-template-columns:minmax(280px,.72fr) minmax(0,1.28fr);
+    gap:40px;align-items:center;
+  }
+  .platform-pin::before{
+    content:"";position:absolute;width:640px;height:640px;inset-inline-start:-12%;top:6%;
+    background:radial-gradient(circle, rgba(14,120,232,.32), transparent 68%);
+    filter:blur(16px);pointer-events:none;z-index:0;
+  }
+  .num{font-size:64px}
+  .name{font-size:30px}
+  .platform-copy,.platform-stage{position:relative;z-index:1}
+  .p-steps{gap:0}
+  .p-step{padding:16px 0;border-bottom:1px solid #1c1c1c;border-radius:0}
+  .p-step:last-child{border-bottom:0}
+  .detail{max-height:0;opacity:0;overflow:hidden;margin-top:0;
+    transition:max-height .28s var(--ease),opacity .2s var(--ease),margin .2s var(--ease)}
+  .p-step.is-on .detail{max-height:150px;opacity:1;margin-top:8px}
+  .mini-frame{display:none}
+  .platform-stage{display:block}
+  .stage-shot{
+    position:absolute;inset:0;opacity:0;overflow:hidden;background:#070707;
+    padding:16px 18px 18px;
+    transition:opacity .35s var(--ease);
+  }
+  .stage-shot.is-on{opacity:1}
+  .platform-stage .screen{min-height:480px;aspect-ratio:16/10}
+}
+
+.after-platform{padding-top:28px;padding-bottom:clamp(72px,10vw,120px);text-align:center}
+.after-platform h2{margin-bottom:18px}
+
+.statement{font-size:clamp(18px,2.2vw,24px);line-height:1.55;color:#cfcfcf;font-weight:400;letter-spacing:-.02em}
+.facts{list-style:none;margin-top:28px;display:grid;gap:12px;text-align:right}
+.facts li{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:15px}
+.facts li .em{color:var(--faint);flex:0 0 auto}
+
+.options{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+@media(max-width:800px){.options{grid-template-columns:1fr}}
+.opt{padding:22px 18px;text-align:center}
+.opt .q{font-weight:600;font-size:16px;letter-spacing:-.02em;color:#fff;margin-bottom:10px}
+.opt .arrow{color:#555;margin:4px 0}
+.opt .c{color:var(--faint);font-size:14px;line-height:1.5}
+
+.card{
+  background:#121212;border:1px solid #222;border-radius:18px;
+  padding:clamp(18px,2vw,26px);
+  transition:border-color .18s var(--ease),transform .18s var(--ease),box-shadow .18s var(--ease);
+}
+.card.quiet-accent{
+  border-color:rgba(14,120,232,.35);
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgba(14,120,232,.16), transparent 52%),
+    #121212;
+  box-shadow:0 0 70px rgba(14,120,232,.08);
+}
+.pillar:hover,.opt:hover{
+  border-color:#333;transform:translateY(-3px);
+  box-shadow:0 18px 40px rgba(0,0,0,.4);
+}
+
+.quote-band{text-align:center}
+.quote-band .q{
+  font-weight:600;letter-spacing:-.04em;line-height:1.28;
+  font-size:clamp(28px,3.6vw,44px);max-width:16em;margin:0 auto;color:#fff;
+}
+
+.bio{text-align:center}
+.bio .name{font-size:clamp(32px,4vw,44px);font-weight:600;letter-spacing:-.04em}
+.bio .role{color:var(--accent);margin-top:6px;font-size:15px}
+.bio-photo{width:132px;height:132px;margin:8px auto 16px;border-radius:50%;overflow:hidden;border:1px solid #222;box-shadow:0 0 40px rgba(14,120,232,.16)}
+.bio-photo img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+.rule{width:48px;height:1px;margin:22px auto;background:#2e2e2e}
+.creds{list-style:none;margin:22px auto 0;max-width:640px;display:grid;gap:12px;text-align:right}
+.creds li{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:15px}
+.creds li::before{content:"—";color:#555;flex:0 0 auto}
+.mission{margin-top:24px;color:#eee;font-size:17px;line-height:1.6}
+
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:36px;text-align:right}
+.pillar .badge{
+  display:inline-block;font-size:12px;font-weight:500;color:var(--accent);
+  border:1px solid rgba(143,184,255,.28);border-radius:999px;padding:3px 10px;margin-bottom:10px;
+}
+.pillar h3{margin-bottom:8px}
+.pillar p{color:var(--muted);font-size:14px;margin-bottom:10px}
+.pillar .inc{color:var(--faint);font-size:13px}
+.pillar .ic{display:block;margin-bottom:8px;font-size:18px;opacity:.9}
+
+.stack{max-width:560px;margin:32px auto 0}
+.stack ul{list-style:none;display:grid;gap:11px;text-align:right}
+.stack li{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:15px}
+.stack li .v{color:var(--accent);flex:0 0 auto}
+.price-box{text-align:center;margin-top:26px;padding-top:22px;border-top:1px solid #222}
+.price{font-family:"Inter","Heebo",sans-serif;font-size:clamp(52px,7vw,72px);font-weight:500;letter-spacing:-.05em;color:#fff;line-height:1}
+.price small{font-size:16px;color:var(--faint);font-weight:400;letter-spacing:0;font-family:"Heebo",sans-serif}
+.price-day{color:var(--accent);font-weight:500;margin-top:8px;font-size:15px}
+.price-note{color:var(--faint);margin-top:8px;font-size:13px}
+.anchor{max-width:540px;margin:22px auto 0;color:var(--muted);font-size:15px}
+
+.tgrid{columns:3;column-gap:12px;margin-top:32px}
+@media(max-width:900px){.tgrid{columns:2}}
+@media(max-width:640px){.tgrid{columns:1}}
+.tcard{
+  break-inside:avoid;margin:0 0 12px;text-align:right;
+  background:#121212;border:1px solid #222;border-radius:16px;padding:16px 16px 14px;
+  transition:border-color .18s var(--ease),transform .18s var(--ease);
+}
+.tcard:hover{border-color:#333;transform:translateY(-2px)}
+.t-title{font-size:15px;font-weight:600;letter-spacing:-.03em;color:#fff;margin-bottom:8px}
+.tcard .quote{color:#a3a3a3;font-size:14px;line-height:1.55;margin-bottom:12px}
+.tcard .nm{color:#fff;font-size:13px;font-weight:500}
+
+.proof-grid{columns:3;column-gap:12px;margin-top:28px}
+@media(max-width:900px){.proof-grid{columns:2}}
+@media(max-width:600px){.proof-grid{columns:1}}
+.proof{break-inside:avoid;margin:0 0 12px;position:relative;border-radius:16px;overflow:hidden;border:1px solid #222;background:#121212}
+.proof img{display:block;width:100%}
+.proof-badge{
+  position:absolute;top:10px;right:10px;z-index:2;font-size:11px;font-weight:500;color:var(--accent);
+  border:1px solid rgba(143,184,255,.3);border-radius:999px;padding:3px 8px;
+  background:rgba(0,0,0,.72);backdrop-filter:blur(8px);
+}
+.proof figcaption{padding:12px 14px;color:var(--muted);font-size:13px;line-height:1.5;border-top:1px solid #222;text-align:right}
+.proof.loss{border-color:rgba(196,160,160,.35)}
+.proof-badge.loss{color:var(--loss);border-color:rgba(196,160,160,.45)}
+.loss-label{max-width:640px;margin:36px auto 14px;color:var(--muted);font-size:16px;text-align:center}
+.trades-note{text-align:center;margin:22px auto 0;color:var(--faint);font-size:13px;max-width:620px}
+
+.creative{display:flex;justify-content:center}
+.creative img{width:100%;max-width:440px;border-radius:20px;border:1px solid #222;display:block;box-shadow:0 24px 70px rgba(0,0,0,.45)}
+.creative-section{padding-top:20px;padding-bottom:20px}
+
+.fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;text-align:right}
+@media(max-width:680px){.fit-grid{grid-template-columns:1fr}}
+.fit-col h3{margin-bottom:12px;font-size:16px}
+.fit-col ul{list-style:none;display:grid;gap:10px}
+.fit-col li{display:flex;gap:8px;align-items:flex-start;color:var(--muted);font-size:14px;line-height:1.5}
+.fit-col.yes li::before{content:"✓";color:var(--accent);flex:0 0 auto}
+.fit-col.no li::before{content:"✕";color:var(--loss);flex:0 0 auto}
+
+.faq{max-width:720px;margin:28px auto 0;display:grid;gap:8px;text-align:right}
+.faq details{border:1px solid #222;border-radius:14px;background:#121212;overflow:hidden;transition:border-color .18s var(--ease)}
+.faq details[open]{border-color:rgba(143,184,255,.35)}
+.faq summary{
+  cursor:pointer;list-style:none;padding:16px 18px;font-weight:500;color:#fff;font-size:15px;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  transition:color .1s var(--ease);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:#777;font-size:20px;font-weight:400;line-height:1}
+.faq details[open] summary::after{content:"–";color:var(--accent)}
+.faq .a{padding:0 18px 16px;color:var(--muted);font-size:14px;line-height:1.65}
+
+.signed{text-align:center;max-width:560px;margin:0 auto}
+.signed p{color:var(--muted);font-size:15px}
+.sig{color:var(--accent);margin-top:10px;font-weight:500}
+.final{text-align:center}
+.disclaimer{
+  max-width:680px;margin:36px auto 0;color:var(--faint);font-size:12px;line-height:1.65;
+  border:1px solid #222;border-radius:16px;padding:16px 18px;background:rgba(255,255,255,.02);
+}
+
+.sticky-cta{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:70;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:rgba(0,0,0,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-top:1px solid #222;
+}
+.sticky-cta.show{display:block}
+.sticky-cta .btn{width:100%;max-width:520px;margin:0 auto}
+@media(min-width:769px){.sticky-cta,.sticky-cta.show{display:none}}
+
+footer{text-align:center;padding:36px 22px 56px;color:#555;font-size:13px;position:relative;z-index:1}
+.draft-note{margin-top:8px;color:#3e3e3e;font-size:12px}
+@media(max-width:768px){footer{padding-bottom:96px}}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .reveal,.hero h1,.hero .sub,.hero .actions,.hero-visual{animation:none;opacity:1;transform:none;transition:none}
+  .stage-shot,.detail,.btn,.card{transition:none}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','3092602027607133');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<div class="atmosphere" aria-hidden="true"></div>
+
+<nav class="nav">
+  <a class="brand" href="#top">Master<span>Trader</span></a>
+  <div class="nav-links">
+    <a href="#platform">מה בפנים</a>
+    <a href="#healthy">מסחר בריא</a>
+    <a href="#why">למה</a>
+    <a href="#proof">שקיפות</a>
+    <a href="#tst">המלצות</a>
+    <a href="#join">מחיר</a>
+    <a href="#faq">שאלות</a>
+  </div>
+  <div class="nav-actions">
+    <a class="btn btn-ghost btn-sm" href="#faq">שאלות</a>
+    <a class="btn btn-primary btn-sm" href="#join" data-cta>הצטרפות</a>
+  </div>
+</nav>
+
+<main>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="kicker">מועדון הסוחר המתמיד</p>
+    <h1>הפסקת להיות מהמר.<br>הגיע הזמן לנהל עסק.</h1>
+    <p class="lead sub">המועדון שמלמד אותך לסחור בריא — להפוך מסחר יומי מכאוס רגשי לעסק מדיד.</p>
+    <div class="actions center">
+      <a class="btn btn-primary" href="#join" data-cta>אני רוצה לנהל את זה כמו עסק</a>
+      <a class="btn btn-ghost" href="#proof">שקיפות</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="wash" aria-hidden="true"></div>
+    <div class="bezel">
+      <div class="chrome" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="chrome-title">מועדון</span><span></span></div>
+      <div class="screen app-screen">
+        <div class="app app-home">
+          <aside class="app-side">
+            <div class="app-mark">Master<b>Trader</b></div>
+            <span class="on">בית</span>
+            <span>לימוד</span>
+            <span>לייבים</span>
+            <span>יומן</span>
+            <span>קהילה</span>
+          </aside>
+          <div class="app-main">
+            <div class="app-top"><span>בית</span><span class="app-search">חיפוש</span></div>
+            <div class="app-scroll">
+              <p class="app-hello">מועדון הסוחר המתמיד</p>
+              <div class="app-feature">
+                <img src="images/matan-portrait.png" alt="" />
+                <div>
+                  <b>מסחר בריא</b>
+                  <span>מבנה, בקרה וניהול סיכונים</span>
+                </div>
+              </div>
+              <div class="app-row">
+                <div class="app-tile"><span>לימוד</span><b>+210 שעות</b></div>
+                <div class="app-tile"><span>לייבים</span><b>בזמן אמת</b></div>
+                <div class="app-tile"><span>קהילה</span><b>24/7</b></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap hero-more">
+    <p class="lead">המועדון שמלמד אותך לסחור בריא — להפוך מסחר יומי מכאוס רגשי לעסק מדיד, עם מבנה, בקרה וניהול סיכונים, כל יום מחדש. לייבים בזמן אמת, שקיפות מלאה על עסקאות <span class="b">(כולל ההפסדים)</span>, וקהילה של מאות סוחרים שעובדים כמו מקצוענים.</p>
+    <div class="cta-sub">149₪ לחודש · בלי התחייבות · ביטול בכל רגע</div>
+    <div class="stats">
+      <div class="stat"><div class="n">מאות</div><div class="l">סוחרים במועדון</div></div>
+      <div class="stat"><div class="n">+210</div><div class="l">שעות תוכן</div></div>
+      <div class="stat"><div class="n">24/7</div><div class="l">קהילה פעילה</div></div>
+      <div class="stat"><div class="n">2024</div><div class="l">פעיל מאז</div></div>
+    </div>
+  </div>
+</section>
+<section class="platform" id="platform" aria-label="מה בפנים">
+  <div class="platform-pin">
+    <div class="platform-copy">
+      <p class="kicker platform-kicker">מה בפנים</p>
+      <div class="p-steps">
+        <div class="p-step is-on" role="button" tabindex="0">
+          <div class="p-head">
+            <span class="num" dir="ltr">1</span>
+            <div>
+              <span class="name">לימוד</span>
+              <span class="detail">בקטסטים מוקלטים, ניתוחי עסקאות ושיעורים — מסודרים לפי שיטה, לא עוד פלייליסט אקראי ביוטיוב.</span>
+            </div>
+          </div>
+          <figure class="mini-frame bezel">
+            <div class="chrome" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="chrome-title">לימוד</span><span></span></div>
+            <div class="screen"><div class="app"><aside class="app-side"><div class="app-mark">Master<b>Trader</b></div><span class="on">לימוד</span><span>יומן</span><span>קהילה</span></aside><div class="app-main"><div class="app-scroll"><p class="app-hello">ספריית תוכן</p><p class="app-sub">+210 שעות</p><div class="app-lesson"><b>משדרי לייב בזמן אמת</b><span>כל שבוע</span></div><div class="app-lesson"><b>בקטסטים מוקלטים</b><span>בספרייה</span></div></div></div></div></div>
+          </figure>
+        </div>
+        <div class="p-step" role="button" tabindex="0">
+          <div class="p-head">
+            <span class="num" dir="ltr">2</span>
+            <div>
+              <span class="name">עבודה</span>
+              <span class="detail">התיעוד והבקרה שהופכים מסחר לעסק — מנתחים את היומן שלך ושל אחרים, כולל עסקאות הפסד, כדי שתלמד מהמספרים ולא מהאגו.</span>
+            </div>
+          </div>
+          <figure class="mini-frame bezel">
+            <div class="chrome" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="chrome-title">יומן</span><span></span></div>
+            <div class="screen"><div class="app"><aside class="app-side"><div class="app-mark">Master<b>Trader</b></div><span>לימוד</span><span class="on">יומן</span><span>קהילה</span></aside><div class="app-main"><div class="app-scroll"><p class="app-hello">תיעוד ובקרה</p><p class="app-sub">כולל עסקאות הפסד</p><img class="app-photo" src="images/testimonial-journal.jpg" alt="יומן עסקאות" /></div></div></div></div>
+          </figure>
+        </div>
+        <div class="p-step" role="button" tabindex="0">
+          <div class="p-head">
+            <span class="num" dir="ltr">3</span>
+            <div>
+              <span class="name">קהילה</span>
+              <span class="detail">חדר הבקרה של העסק — חדרי שיח לפי נושא, שאלות, שיתוף עסקאות ותמיכה מסוחרים שמבינים אותך.</span>
+            </div>
+          </div>
+          <figure class="mini-frame bezel">
+            <div class="chrome" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="chrome-title">קהילה</span><span></span></div>
+            <div class="screen"><div class="app"><aside class="app-side"><div class="app-mark">Master<b>Trader</b></div><span>לימוד</span><span>יומן</span><span class="on">קהילה</span></aside><div class="app-main"><div class="app-scroll"><p class="app-hello">חדר הבקרה</p><div class="app-lesson"><b>שאלות</b><span>כל יום</span></div><div class="app-lesson"><b>שיתוף עסקאות</b><span>24/7</span></div></div></div></div></div>
+          </figure>
+        </div>
+      </div>
+    </div>
+    <div class="platform-stage">
+      <div class="bezel">
+        <div class="chrome" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="chrome-title">מועדון</span><span></span></div>
+        <div class="screen app-screen">
+          <div class="app">
+            <aside class="app-side">
+              <div class="app-mark">Master<b>Trader</b></div>
+              <span class="lnk-learn">לימוד</span>
+              <span class="lnk-work">יומן</span>
+              <span class="lnk-community">קהילה</span>
+            </aside>
+            <div class="app-stage">
+              <div class="stage-shot pane-learn is-on">
+                <p class="app-hello">ספריית תוכן</p>
+                <p class="app-sub">+210 שעות · מסודר לפי שיטה</p>
+                <div class="app-lesson"><b>משדרי לייב בזמן אמת</b><span>כל שבוע</span></div>
+                <div class="app-lesson"><b>בקטסטים מוקלטים</b><span>בספרייה</span></div>
+                <div class="app-lesson"><b>ניתוחי עסקאות</b><span>כולל הפסדים</span></div>
+                <img class="app-photo" src="images/wb-schedule.png" alt="לוח שבועי של הלימוד במועדון" />
+              </div>
+              <div class="stage-shot pane-work">
+                <p class="app-hello">יומן וסביבת עבודה</p>
+                <p class="app-sub">תיעוד ובקרה — כולל עסקאות הפסד</p>
+                <img class="app-photo" src="images/testimonial-journal.jpg" alt="יומן עסקאות — תיעוד ובקרה" style="height:220px" />
+              </div>
+              <div class="stage-shot pane-community">
+                <p class="app-hello">חדר הבקרה של העסק</p>
+                <p class="app-sub">שאלות, שיתוף עסקאות, תמיכה</p>
+                <div class="app-lesson"><b>שאלות</b><span>כל יום</span></div>
+                <div class="app-lesson"><b>שיתוף עסקאות</b><span>כולל הפסדים</span></div>
+                <div class="app-lesson"><b>קהילה פעילה</b><span>24/7</span></div>
+                <img class="app-photo" src="images/discord-nq-16-09.jpg" alt="שרת הדיסקורד של המועדון" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="after-platform">
+  <div class="narrow">
+    <h2>השלב הבא.</h2>
+    <div class="actions center">
+      <a class="btn btn-primary" href="#join" data-cta>אני רוצה לנהל את זה כמו עסק</a>
+      <a class="btn btn-ghost" href="#faq">שאלות</a>
+    </div>
+    <div class="cta-sub">149₪ לחודש · בלי התחייבות · ביטול בכל רגע</div>
+  </div>
+</section>
+<section id="proof">
+  <div class="narrow center reveal">
+    <span class="kicker">שקיפות מלאה</span>
+    <h2>ככה מתנהל עסק.<br/><span class="accent">לא קזינו שמראה רק את הזוכים.</span></h2>
+    <p class="lead" style="margin-top:16px">עסקאות אמיתיות מתוך הקהילה — גם הרווחים וגם ההפסדים. כי מספרים אמיתיים זה מה שמבדיל ניהול עסק ממכירת חלום.</p>
+    <div class="card quiet-accent" style="max-width:620px;margin:24px auto 0">
+      <p class="statement" style="font-size:clamp(1.08rem,2.2vw,1.35rem)">הסוד הוא לא לנצח בכל עסקה.<br/><span class="accent b">הסוד הוא הפסדים קטנים, ורווחים גדולים.</span></p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="proof-grid reveal">
+      <figure class="proof">
+        <span class="proof-badge">שקיפות</span>
+        <img src="images/IMG_5749.jpg" alt="סיכום Topstep — היום הכי טוב והכי גרוע, רצף 11 ימים" loading="lazy" />
+        <figcaption>Topstep — מציג גם את היום הכי טוב <strong style="color:#fff">וגם את הכי גרוע</strong>. ככה נראית שקיפות אמיתית.</figcaption>
+      </figure>
+      <figure class="proof">
+        <span class="proof-badge">ביצועים</span>
+        <img src="images/IMG_5750.jpg" alt="סיכום אוגוסט — 37,815$ נטו, 87.5% הצלחה" loading="lazy" />
+        <figcaption>חודש אחד: ‎$37,815‎ נטו, Profit Factor 11.47, ‎87.5%‎ עסקאות מנצחות.</figcaption>
+      </figure>
+      <figure class="proof">
+        <span class="proof-badge">משיכות</span>
+        <img src="images/IMG_5751.jpg" alt="טבלת בקשות משיכה שאושרו" loading="lazy" />
+        <figcaption>בקשות משיכה שאושרו — סכומים שנכנסו ממסחר בחברת פרופ, שבועיים.</figcaption>
+      </figure>
+      <figure class="proof">
+        <span class="proof-badge">שקיפות</span>
+        <img src="images/IMG_5757.jpg" alt="27,014$ ב-13 משיכות" loading="lazy" />
+        <figcaption>‎$27,014.87‎ ב-13 משיכות — וגם בשבוע בלי עסקאות, נשארתי במשמעת.</figcaption>
+      </figure>
+      <figure class="proof">
+        <span class="proof-badge">משיכה</span>
+        <img src="images/IMG_5755.jpg" alt="אישור משיכה 7,494$" loading="lazy" />
+        <figcaption>אישור משיכה — ‎$7,494.10‎, ללא עמלה.</figcaption>
+      </figure>
+      <figure class="proof">
+        <span class="proof-badge">תשלום</span>
+        <img src="images/IMG_5753.jpg" alt="1,895 יורו נכנסו לחשבון" loading="lazy" />
+        <figcaption>‎€1,895.32‎ נחתו בחשבון — Take Profit Trader.</figcaption>
+      </figure>
+      <figure class="proof">
+        <span class="proof-badge">רווח</span>
+        <img src="images/win-1.png" alt="יום ירוק, רווח לכל חוזה" loading="lazy" onerror="this.closest('.proof').remove()" />
+        <figcaption>יום ירוק — ‎+$410‎ לכל חוזה, עקבי לאורך כל היום.</figcaption>
+      </figure>
+      <figure class="proof">
+        <span class="proof-badge">רווח</span>
+        <img src="images/win-2.png" alt="רווח על פיוצ'רס, שיתוף חי לקהילה" loading="lazy" onerror="this.closest('.proof').remove()" />
+        <figcaption>‎+$546‎ לחוזה — עסקה ששותפה חי לקהילה בזמן אמת.</figcaption>
+      </figure>
+      <figure class="proof">
+        <span class="proof-badge">סגירה ממושמעת</span>
+        <img src="images/win-3.png" alt="רווח על ES, סגירה ממושמעת" loading="lazy" onerror="this.closest('.proof').remove()" />
+        <figcaption>‎+$1,165‎ על ES — סגירה ממושמעת ברווח, בלי חמדנות.</figcaption>
+      </figure>
+      <figure class="proof">
+        <span class="proof-badge">סיכום יום</span>
+        <img src="images/win-4.png" alt="סיכום יום ירוק" loading="lazy" onerror="this.closest('.proof').remove()" />
+        <figcaption>סיכום יום ‎+$5,735‎ — כמה חוזים, אותו ניהול בדיוק.</figcaption>
+      </figure>
+      <figure class="proof">
+        <span class="proof-badge">רווח גדול</span>
+        <img src="images/win-5.png" alt="יציאה ברווח גדול" loading="lazy" onerror="this.closest('.proof').remove()" />
+        <figcaption>יציאה נקייה — ‎+$1,412‎ לחוזה, רווח גדול שנלקח במלואו.</figcaption>
+      </figure>
+    </div>
+    <div id="lossSection">
+      <p class="loss-label">וכן — גם ההפסדים. שים לב כמה הם <span class="b">קטנים ביחס לרווחים</span>:</p>
+      <div class="proof-grid reveal">
+        <figure class="proof loss"><span class="proof-badge loss">הפסד מבוקר</span><img src="images/loss-1.png" alt="יום הפסד מבוקר מתוך הקהילה" loading="lazy" onerror="this.closest('.proof').remove()" /><figcaption>יום הפסד מבוקר שמאזן את רווחי אתמול — הספרה נשארת קטנה.</figcaption></figure>
+        <figure class="proof loss"><span class="proof-badge loss">משמעת</span><img src="images/loss-2.png" alt="סטופ קצר בלונג, ואז עצירה" loading="lazy" onerror="this.closest('.proof').remove()" /><figcaption>סטופ קצר בלונג, ואז עצירה — לא נקמה. הפסד קטן ולא יותר.</figcaption></figure>
+        <figure class="proof loss"><span class="proof-badge loss">ניהול סיכון</span><img src="images/loss-3.png" alt="ניסיון לונג שלא צלח" loading="lazy" onerror="this.closest('.proof').remove()" /><figcaption>ניסיון שלא צלח — הפסדים קטנים ומבוקרים, בלי לשרוף את התיק.</figcaption></figure>
+        <figure class="proof loss"><span class="proof-badge loss">סטופ מהיר</span><img src="images/loss-4.png" alt="סטופ על לונג בשריפת לונדון" loading="lazy" onerror="this.closest('.proof').remove()" /><figcaption>סטופ על לונג בפתיחת לונדון — יוצאים מוקדם, ההפסד נשאר מבוקר.</figcaption></figure>
+      </div>
+    </div>
+    <div id="memberPayouts" style="margin-top:44px">
+      <p class="loss-label">ולא רק אני. <span class="b">גם החברים.</span> משיכות אמיתיות, מתוך המועדון:</p>
+      <div class="proof-grid reveal">
+        <figure class="proof">
+          <span class="proof-badge">חבר מהמועדון</span>
+          <img src="images/member-payout-ariel.png" alt="תעודת Payout ראשונה של חבר מהמועדון" loading="lazy" onerror="this.closest('.proof').remove()" />
+          <figcaption>פייאאוט ראשון של חבר מהמועדון. במילים שלו: <strong style="color:#fff">"אין כמו לעמוד בכללים שלך."</strong></figcaption>
+        </figure>
+        <figure class="proof">
+          <span class="proof-badge">חבר מהמועדון</span>
+          <img src="images/member-payout-ofek.png" alt="חודש מסחר של חבר מהמועדון" loading="lazy" onerror="this.closest('.proof').remove()" />
+          <figcaption>חבר מהמועדון — חודש עם ‎$1,960‎ משיכות ו‎+$4,060‎ נטו.</figcaption>
+        </figure>
+        <figure class="proof">
+          <span class="proof-badge">חבר מהמועדון</span>
+          <img src="images/member-payout-rani.png" alt="תעודת Payout מאושרת של חבר מהמועדון" loading="lazy" onerror="this.closest('.proof').remove()" />
+          <figcaption>חבר מהמועדון — חשבון Funded, תעודת Payout מאושרת.</figcaption>
+        </figure>
+        <figure class="proof">
+          <span class="proof-badge">חבר מהמועדון</span>
+          <img src="images/member-payout-yaniv.png" alt="אישור Payout של חבר מהמועדון" loading="lazy" onerror="this.closest('.proof').remove()" />
+          <figcaption>חבר מהמועדון — אישור Payout מחברת פרופ.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <p class="trades-note">* תוצאות עבר אינן מבטיחות תוצאות עתיד. רוב הסוחרים מפסידים כסף. אין כאן ייעוץ או המלצה.</p>
+  </div>
+</section>
+<section class="final" id="join">
+  <div class="narrow reveal">
+    <span class="kicker">השלב הבא</span>
+    <h2>מוכן לסחור בריא?<br/><span class="accent">ולנהל את זה כמו עסק.</span></h2>
+
+    <div class="card quiet-accent stack">
+      <h3 style="text-align:center;margin-bottom:6px">מה אתה מקבל בפנים</h3>
+      <p class="muted center" style="margin-bottom:18px;font-size:.92rem">מערכת שלמה שמחזיקה אותך מקצועי כל יום — בלי לבד, בלי פעם-אחת</p>
+      <ul>
+        <li><span class="v">✓</span><span>לייבים בזמן אמת — מסחר מנוהל מול העיניים</span></li>
+        <li><span class="v">✓</span><span>חדר דיסקורד פעיל 24/7 עם מאות סוחרים</span></li>
+        <li><span class="v">✓</span><span>+210 שעות תוכן מסודר ומתעדכן</span></li>
+        <li><span class="v">✓</span><span>ניתוח יומנים ושקיפות מלאה — כולל הפסדים</span></li>
+        <li><span class="v">✓</span><span>משדרי מנטליות, עסק וניהול סיכונים</span></li>
+        <li><span class="v">✓</span><span>אינדיקטורים ייחודיים + מפגשי קהילה</span></li>
+      </ul>
+      <div class="price-box">
+        <div class="price">149<small>₪ / חודש</small></div>
+        <div class="price-day">≈ פחות מ-5₪ ביום</div>
+        <div class="price-note">בלי התחייבות. ביטול בכל רגע, לבד, בלי שיחות שכנוע.</div>
+      </div>
+    </div>
+
+    <p class="anchor">עסקת נקמה אחת אחרי הפסד עולה לך יותר מחודש שלם במועדון. ההבדל הוא שכאן יש מבנה שעוצר אותך לפני שאתה לוחץ.</p>
+
+    <div class="cta-wrap" style="margin-top:28px">
+      <div class="actions center">
+        <a class="btn btn-primary" href="https://whop.com/master-trader-club/" target="_blank" rel="noopener" data-cta data-final>אני רוצה לנהל את זה כמו עסק</a>
+        <a class="btn btn-ghost" href="#faq">שאלות</a>
+      </div>
+      <div class="cta-sub">149₪ לחודש · בלי התחייבות · ביטול בכל רגע</div>
+    </div>
+
+    <div class="signed" style="margin-top:40px">
+      <div class="rule"></div>
+      <p>אתה מבטל לבד, מתי שתרצה, בלי שיחות שכנוע ובלי דרמה. אם זה לא בשבילך — יצאת. פשוט.</p>
+      <div class="sig">— מתן</div>
+      <div class="rule"></div>
+    </div>
+
+    <div class="disclaimer">
+      ⚠️ אזהרה: מסחר יומי כרוך בסיכון גבוה. רוב הסוחרים מפסידים כסף. אין באתר זה ייעוץ פיננסי או המלצה להשקעה. המועדון לא יהפוך אותך לסוחר רווחי בן לילה — הוא נותן לך כלים, סביבה ותמיכה. השאר תלוי בך.
+    </div>
+  </div>
+</section>
+<section id="tst">
+  <div class="narrow center reveal">
+    <span class="kicker">לא חייבים להאמין לי</span>
+    <h2>אל תסמוך עליי. תקשיב להם.</h2>
+    <p class="lead" style="margin-top:14px">מאות סוחרים במועדון, מ-5 ימים ועד שנתיים. הנה כמה מהם:</p>
+  </div>
+  <div class="wrap">
+    <div class="tgrid reveal" id="tgrid"></div>
+  </div>
+</section>
+<section id="fit">
+  <div class="narrow center reveal">
+    <span class="kicker">לפני שתחליט</span>
+    <h2>המועדון הזה <span class="accent">לא לכולם.</span></h2>
+    <p class="lead" style="margin-top:14px">וזה בכוונה. הנה איך תדע אם זה בשבילך:</p>
+  </div>
+  <div class="wrap">
+    <div class="fit-grid reveal">
+      <div class="card quiet-accent fit-col yes">
+        <h3>זה בשבילך אם…</h3>
+        <ul>
+          <li>אתה כבר סוחר (או באמצע הדרך) ונמאס לך להמר על כל כניסה</li>
+          <li>אתה מוכן להתייחס למסחר כמו לעסק — לתעד, לנתח, להשתפר</li>
+          <li>אתה רוצה קהילה מקצועית ומבנה, לא עוד קורס שתשכח אחרי שבוע</li>
+          <li>אתה מבין שזה מרתון של משמעת, לא לוטו של לילה אחד</li>
+        </ul>
+      </div>
+      <div class="card fit-col no">
+        <h3>זה לא בשבילך אם…</h3>
+        <ul>
+          <li>אתה מחפש "אות קנייה" מוכן בלי להבין למה</li>
+          <li>אתה רוצה להתעשר מהר בלי לעבוד על המשמעת</li>
+          <li>אתה לא מוכן לפתוח יומן ולהסתכל על המספרים שלך באמת</li>
+          <li>אתה מאמין שעוד אסטרטגיה אחת תפתור הכול</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="faq">
+  <div class="narrow center reveal">
+    <span class="kicker">שאלות שעולות לפני שנכנסים</span>
+    <h2>אם אתה מתלבט — <span class="accent">תקרא את זה.</span></h2>
+  </div>
+  <div class="faq reveal">
+    <details>
+      <summary>מה זה בעצם "מסחר בריא"?</summary>
+      <div class="a">לסחור בלי לשבור את עצמך. לקחת רק עסקאות שחשבת עליהן, לנהל סיכון כמו שצריך, לעבור את התהליך הנכון בלי לקצר — ולסחור כשהראש נקי, לא כשהלב דופק או תחת לחץ כלכלי. זה מה שמחזיק אותך בשוק מספיק זמן כדי לנצח, וזה כל מה שהמועדון בנוי סביבו.</div>
+    </details>
+    <details>
+      <summary>אני רק מתחיל. זה לא מתקדם מדי בשבילי?</summary>
+      <div class="a">להפך. המועדון בנוי לכניסה חלקה — ספריית תוכן מסודרת, קהילה תומכת, ולומדים צעד אחר צעד. חלק מהחברים הכי מרוצים נכנסו ממש בתחילת הדרך שלהם.</div>
+    </details>
+    <details>
+      <summary>אין לי זמן לשבת בכל הלייבים.</summary>
+      <div class="a">הכול מוקלט ונשאר בספרייה. הלייבים הם בונוס, לא חובה — אתה צורך מתי שמתאים לך, בקצב שלך, מהטלפון או מהמחשב.</div>
+    </details>
+    <details>
+      <summary>כבר קניתי קורסים ולא יצא מזה כלום. מה שונה פה?</summary>
+      <div class="a">קורס נותן לך ידע ונעלם. המועדון נותן לך מבנה, בקרה וקהילה שמחזיקים אותך לאורך זמן — זה ההבדל בין לדעת לבין לבצע. כאן מישהו רואה את העסקאות שלך באמת.</div>
+    </details>
+    <details>
+      <summary>149₪ לחודש — זה שווה את זה?</summary>
+      <div class="a">עסקה אחת על רגש אחרי הפסד עולה לך יותר מחודש שלם במועדון. כאן אתה מקבל מערכת שלמה שכל תפקידה למנוע בדיוק את העסקה הזאת — בפחות מ-5₪ ביום.</div>
+    </details>
+    <details>
+      <summary>מה אם זה לא בשבילי?</summary>
+      <div class="a">מבטלים לבד, בכל רגע, בלי שיחות שכנוע ובלי התחייבות. נכנסת, התנסית, ואם זה לא מתאים — יצאת. פשוט.</div>
+    </details>
+    <details>
+      <summary>אתם מבטיחים שארוויח?</summary>
+      <div class="a">לא. אף אחד לא יכול, ומי שמבטיח — בורח מהאמת. רוב הסוחרים מפסידים כסף. מה שאנחנו מבטיחים: כלים, סביבה ומבנה ברמה הכי גבוהה שאני יכול לתת. השאר תלוי בך.</div>
+    </details>
+  </div>
+  <div class="cta-wrap reveal" style="margin-top:36px">
+    <a class="btn btn-primary" href="#join" data-cta>אני רוצה לנהל את זה כמו עסק</a>
+    <div class="cta-sub">149₪ לחודש · בלי התחייבות · ביטול בכל רגע</div>
+  </div>
+</section>
+<section>
+  <div class="narrow center reveal">
+    <span class="kicker">בוא נדבר רגע אמת</span>
+    <p class="statement">
+      רוב הסוחרים לא מפסידים כי אין להם אסטרטגיה.<br/>
+      הם מפסידים כי <span class="b">אין להם מבנה.</span>
+    </p>
+    <p class="statement" style="margin-top:18px;font-size:clamp(1.02rem,2vw,1.18rem)">
+      הם נכנסים לעסקאות בלי תוכנית. מגדילים סיכון אחרי הפסד. סוגרים מוקדם מדי כשיש רווח. ונשארים יותר מדי כשכואב להם להודות שטעו.
+    </p>
+    <p class="statement" style="margin-top:18px;font-size:clamp(1.02rem,2vw,1.18rem)">
+      וזה בדיוק ההבדל בין סוחר שמחפש <span class="b">ריגוש</span> — לבין סוחר שבונה <span class="accent b">עסק.</span>
+    </p>
+    <ul class="facts">
+      <li><span class="em">←</span><span>רוב הסוחרים היומיים מפסידים כסף. זו לא דעה, זו סטטיסטיקה.</span></li>
+      <li><span class="em">←</span><span>וכמעט אף אחד מהם לא מפסיד בגלל חוסר ידע — אלא בגלל חוסר משמעת, רגש וחוסר בקרה.</span></li>
+      <li><span class="em">←</span><span>אתה צרכת כבר מאות שעות תוכן. ובכל זאת — אתה עדיין מהמר על כל כניסה במקום לנהל אותה.</span></li>
+    </ul>
+  </div>
+</section>
+<section>
+  <div class="narrow center reveal">
+    <span class="kicker">הנקודה הכואבת</span>
+    <h2>המסחר לא שובר אותך.<br/><span class="accent">הוא חושף אותך.</span></h2>
+    <p class="lead" style="margin-top:20px">
+      הוא חושף את הרגע שבו אתה רואה סטאפ מושלם ולא נכנס — ואז נכנס מאוחר, בדיוק כשכואב. את הרגע שבו אתה מגדיל סיכון כדי "להחזיר" את ההפסד. את הרגע שבו אתה סוגר רווח מוקדם מדי כי פחדת שייקח לך אותו.
+    </p>
+    <p class="lead" style="margin-top:14px">
+      כל עוד אתה מתייחס למסחר כמו לקזינו — <span class="b">הוא ישלם לך כמו קזינו.</span> הבית תמיד מנצח.
+    </p>
+  </div>
+
+  <div class="wrap">
+    <div class="options reveal">
+      <div class="card opt"><div class="q">להמשיך לסחור על רגש?</div><div class="arrow">↓</div><div class="c">ריגוש לרגע, תיק שנשרף בסוף החודש</div></div>
+      <div class="card opt"><div class="q">לקנות עוד אסטרטגיה?</div><div class="arrow">↓</div><div class="c">ראש מלא ידע, ואותה יד רועדת על הכפתור</div></div>
+      <div class="card opt"><div class="q">להמשיך בלי תיעוד ובקרה?</div><div class="arrow">↓</div><div class="c">אותן טעויות חוזרות, בלי שתדע אפילו למה</div></div>
+    </div>
+  </div>
+
+  <div class="narrow center reveal" style="margin-top:44px">
+    <div class="card quiet-accent">
+      <p class="statement"><span class="accent b" style="font-size:1.08em">"סוחר מקצועי לא מחפש ריגוש. הוא מחפש ביצוע."</span></p>
+    </div>
+    <div class="cta-wrap" style="margin-top:32px">
+      <a class="btn btn-primary" href="#join" data-cta>אני רוצה לנהל את זה כמו עסק</a>
+      <div class="cta-sub">149₪ לחודש · בלי התחייבות · ביטול בכל רגע</div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="narrow center reveal">
+    <span class="kicker">נקודת המפנה</span>
+    <h2>באפריל 2024 נשבר לי מזה.</h2>
+    <p class="lead" style="margin-top:20px">
+      ראיתי יותר מדי סוחרים טובים שמתייחסים למסחר כמו לקזינו — קונים עוד קורס, מחפשים עוד אסטרטגיה, ונכנסים לעסקאות על רגש בלי תוכנית, בלי תיעוד, בלי בקרה.
+    </p>
+    <p class="lead" style="margin-top:14px">
+      הבנתי שהבעיה אף פעם לא הייתה כמות הידע. הבעיה הייתה שאף אחד לא לימד אותם להתייחס לזה כמו לעסק — ולא היה להם מקום שבו בונים את המבנה הזה ביחד.
+    </p>
+    <div class="rule"></div>
+    <p class="accent" style="font-size:clamp(1.2rem,2.6vw,1.55rem);font-weight:500;line-height:1.45">
+      אז במקום עוד קורס שנותן ידע ונעלם — בניתי מקום שבונה סוחרים.
+    </p>
+  </div>
+</section>
+<section id="healthy">
+  <div class="narrow center reveal">
+    <span class="kicker">השיטה שבנינו</span>
+    <h2>מסחר בריא.</h2>
+    <p class="lead" style="margin-top:20px">
+      רוב הסוחרים לא נשברים מהשוק. הם נשברים מהדרך שבה הם סוחרים — לב שדופק על כל נר, לחץ כלכלי שמכתיב כל כניסה, וקיצורי דרך כי אין סבלנות לתהליך. זה לא ניהול עסק. זו שחיקה.
+    </p>
+    <div class="rule"></div>
+    <p class="accent" style="font-size:clamp(1.2rem,2.6vw,1.55rem);font-weight:500;line-height:1.45">
+      מסחר בריא זה לא רק איך אתה מרוויח — זה איך אתה ישן, חושב ומרגיש בסוף יום המסחר. וזה מה שמחזיק אותך בשוק מספיק זמן כדי לנצח.
+    </p>
+    <div class="pillars" style="margin-top:36px">
+      <div class="card pillar"><span class="ic">🎯</span><h3>רק עסקאות שחשבת עליהן</h3><p>לא רודף, לא נכנס מ-FOMO, משעמום או נקמה. כל כניסה לפי תוכנית — או שאתה בחוץ.</p></div>
+      <div class="card pillar"><span class="ic">🛡️</span><h3>סיכון מנוהל</h3><p>אתה יודע בדיוק כמה אתה מסכן עוד לפני שאתה לוחץ. ההפסד מתוכנן מראש, לא מפתיע אותך.</p></div>
+      <div class="card pillar"><span class="ic">🧭</span><h3>התהליך הנכון, בזמן הנכון</h3><p>בלי לקצר את הדרך. בונים את המבנה צעד אחרי צעד — גם כשזה פחות מסעיר.</p></div>
+      <div class="card pillar"><span class="ic">🌿</span><h3>ראש נקי</h3><p>סוחר כשהלב לא דופק. לא תחת לחץ כלכלי, ולא על חשבון הבריאות, השינה והשפיות שלך.</p></div>
+    </div>
+    <p class="lead" style="margin-top:32px">
+      כל מה שיש במועדון — הלייבים, הבקרה, היומנים והקהילה — קיים בשביל דבר אחד: שתסחר בריא, כל יום.
+    </p>
+  </div>
+</section>
+<section class="creative-section">
+  <div class="creative reveal" style="flex-direction:column;text-align:center">
+    <img src="images/club-business-not-casino-blue.png" alt="מסחר זה עסק, לא קזינו" loading="lazy" />
+    <p class="lead" style="margin-top:14px">משמעת · מבנה · עקביות</p>
+  </div>
+</section>
+<section>
+  <div class="narrow bio reveal">
+    <span class="kicker">מי אני, ולמה שתקשיב לי</span>
+    <div class="bio-photo"><img src="images/matan-portrait.png" alt="מתן משיח — סוחר יומי, מנטור ומייסד המועדון" loading="lazy" /></div>
+    <div class="name">מתן משיח</div>
+    <div class="role">סוחר יומי, מנטור ומייסד המועדון</div>
+    <div class="rule"></div>
+    <ul class="creds">
+      <li>סוחר יומי פעיל — מסחר אמיתי בזמן אמת מול הקהילה, לא תיאוריה מהספר</li>
+      <li>מפרסם את העסקאות שלי בשקיפות מלאה — <span class="b">כולל ההפסדים</span>, לא רק הניצחונות</li>
+      <li>הקמתי את המועדון באפריל 2024, ומאז בנינו קהילה של מאות סוחרים פעילים</li>
+      <li>מלמד תורת הרבעים, מודל ה-Lookback והקשר המאקרו — מבנה, לא ניחושים</li>
+    </ul>
+    <p class="mission">
+      "אני לא מבטיח שתהפוך לסוחר רווחי. אני מבטיח שתקבל את הכלים, הסביבה והתמיכה הכי טובים שאני יכול לתת — וסביבה שמכריחה אותך להתייחס למסחר כמו לעסק, לא כמו להימור."
+    </p>
+  </div>
+</section>
+<section id="inside">
+  <div class="narrow center reveal">
+    <span class="kicker">מה מחכה לך בפנים</span>
+    <h2>מועדון הסוחר המתמיד</h2>
+    <p class="lead" style="margin-top:16px">המקום שבו לומדים לסחור בריא — מבנה, בקרה וקהילה שמחזיקים אותך מקצועי ומשמעתי, יום אחר יום.</p>
+  </div>
+  <div class="wrap">
+    <div class="pillars reveal">
+      <div class="card pillar"><span class="ic">📡</span><span class="badge">כל שבוע</span><h3>משדרי לייב בזמן אמת</h3><p>לראות איך נראה מסחר מנוהל — כניסות, יציאות, סקירות שוק והחלטות בזמן אמת, בלי ערפול.</p><div class="inc">מספר לייבים בשבוע + סקירות שוק חיות</div></div>
+      <div class="card pillar"><span class="ic">💬</span><span class="badge">כל יום</span><h3>שרת דיסקורד פעיל 24/7</h3><p>חדר הבקרה של העסק — חדרי שיח לפי נושא, שאלות, שיתוף עסקאות ותמיכה מסוחרים שמבינים אותך.</p><div class="inc">גישה מלאה לכל הערוצים</div></div>
+      <div class="card pillar"><span class="ic">📚</span><span class="badge">+210 שעות</span><h3>ספריית תוכן מלאה</h3><p>בקטסטים מוקלטים, ניתוחי עסקאות ושיעורים — מסודרים לפי שיטה, לא עוד פלייליסט אקראי ביוטיוב.</p><div class="inc">תוכן חדש מתווסף כל הזמן</div></div>
+      <div class="card pillar"><span class="ic">📊</span><span class="badge">בקרה</span><h3>ניתוח יומנים ושיתוף עסקאות</h3><p>התיעוד והבקרה שהופכים מסחר לעסק — מנתחים את היומן שלך ושל אחרים, כולל עסקאות הפסד, כדי שתלמד מהמספרים ולא מהאגו.</p><div class="inc">ניתוח יומן + פירמידת כניסות + ניהול סיכונים</div></div>
+      <div class="card pillar"><span class="ic">🧠</span><span class="badge">מאסטרמיינד</span><h3>מנטליות והתנהלות עסקית</h3><p>משדרים ייעודיים על הצד שאף קורס טכני לא נותן — לבנות את האדם שמסוגל לבצע את האסטרטגיה במשמעת.</p><div class="inc">מנטליות · תוכנית עסקית · משמעת</div></div>
+      <div class="card pillar"><span class="ic">⚙️</span><span class="badge">כלים</span><h3>אינדיקטורים ומפגשי קהילה</h3><p>אינדיקטורים מותאמים לתורת הרבעים + מפגשי קהילה פיזיים שמחזקים את הקשרים.</p><div class="inc">אינדיקטורים ייחודיים + מיטאפים</div></div>
+    </div>
+    <div class="cta-wrap reveal" style="margin-top:40px">
+      <a class="btn btn-primary" href="#join" data-cta>אני רוצה לנהל את זה כמו עסק</a>
+      <div class="cta-sub">149₪ לחודש · בלי התחייבות · ביטול בכל רגע</div>
+    </div>
+  </div>
+</section>
+<section class="creative-section">
+  <div class="creative reveal" style="flex-direction:column;text-align:center">
+    <img src="images/club-framework-blue.png" alt="זה לא עוד קורס, זאת מסגרת" loading="lazy" />
+    <p class="lead" style="margin-top:14px">ידע נשכח. מבנה נשאר.</p>
+  </div>
+</section>
+<section class="quote-band">
+  <div class="wrap reveal">
+    <p class="q">החופש שאתה מחפש נמצא <span class="accent">בצד השני של המשמעת.</span><br/>ואת המשמעת הזאת בונים במבנה — לא בעוד עסקה על רגש.</p>
+  </div>
+</section>
+<section id="why">
+  <div class="narrow center reveal">
+    <span class="kicker">למה בכלל בניתי את זה</span>
+    <h2>מסחר זה עסק.<br/><span class="accent">תתחיל להתייחס אליו ככה.</span></h2>
+    <p class="lead" style="margin-top:18px">
+      כי נמאס לי לראות סוחרים טובים נשרפים. אנשים עם פוטנציאל אמיתי שמתייחסים למסחר כמו לקזינו — מהמרים על כל כניסה, רודפים אחרי ריגוש, וקונים עוד קורס בתקווה שהפעם זה יסתדר.
+    </p>
+    <p class="lead" style="margin-top:14px">הבעיה מעולם לא הייתה הידע. הבעיה הייתה שאף אחד לא נתן להם את המבנה, הבקרה והסביבה שהופכים את זה לעסק.</p>
+    <ul class="creds" style="margin-top:26px">
+      <li>לתעד כל עסקה — ולנתח אותה לפי מספרים, לא לפי תחושה</li>
+      <li>לבנות מבנה, כללים וניהול סיכונים במקום להמר על כל כניסה</li>
+      <li>ולעשות את כל זה בתוך קהילה מקצועית — לא לבד מול הרגש שלך</li>
+    </ul>
+    <p class="accent" style="margin-top:26px;font-size:clamp(1.12rem,2.4vw,1.4rem);font-weight:500">
+      כל יום שאתה ממשיך להמר במקום לנהל הוא עוד יום של אותן טעויות. המועדון פתוח עכשיו.
+    </p>
+  </div>
+</section>
+<section class="creative-section">
+  <div class="creative reveal" style="flex-direction:column;text-align:center">
+    <img src="images/club-stop-gambling-blue.png" alt="תפסיק להמר, תתחיל לסחור בריא" loading="lazy" />
+    <p class="lead" style="margin-top:14px">החופש נמצא בצד השני של המשמעת.</p>
+  </div>
+</section>
+
+<footer>
+  © מועדון הסוחר המתמיד · MasterTrader — מתן משיח · כל הזכויות שמורות
+  <p class="draft-note">טיוטת עיצוב · club-draft · העמוד החי club.html לא השתנה</p>
+</footer>
+
+</main>
+
+<div class="sticky-cta" id="stickyCta">
+  <a class="btn btn-primary" href="#join" data-cta>אני רוצה לנהל את זה כמו עסק · 149₪</a>
+</div>
+
+<script>
+(function(){
+  const root = document.getElementById('platform');
+  if(!root) return;
+  const steps = [...root.querySelectorAll('.p-step')];
+  const shots = [...root.querySelectorAll('.stage-shot')];
+  const mq = window.matchMedia('(min-width: 960px)');
+  function set(i){
+    steps.forEach((el,n)=>el.classList.toggle('is-on', !mq.matches || n===i));
+    shots.forEach((el,n)=>el.classList.toggle('is-on', n===i));
+  }
+  function onScroll(){
+    if(!mq.matches){ set(0); return; }
+    const total = root.offsetHeight - window.innerHeight;
+    const passed = Math.min(total, Math.max(0, -root.getBoundingClientRect().top));
+    const p = total>0 ? passed/total : 0;
+    set(Math.min(steps.length-1, Math.floor(p * steps.length)));
+  }
+  steps.forEach((el,i)=>{
+    const go = ()=>{
+      if(!mq.matches) return;
+      const total = root.offsetHeight - window.innerHeight;
+      const target = root.offsetTop + (total * (i + 0.42)) / steps.length;
+      window.scrollTo({top: target, behavior: 'smooth'});
+    };
+    el.addEventListener('click', go);
+    el.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter' || ev.key===' '){ ev.preventDefault(); go(); } });
+  });
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  mq.addEventListener('change', onScroll);
+  onScroll();
+})();
+
+const TESTIMONIALS = [
+  {n:"Adam Harari",d:"חודש",q:"ללא ספק שמי שרוצה להיות מאסטר במסחר זהו המקום! לדעתי אפשר למצוא כאן את התוכן ברמה הגבוהה ביותר בארץ אם לא בעולם."},
+  {n:"Ido Boker",d:"9 חודשים",q:"אין הרבה אנשים שיודעים להעביר את התוכן בצורה כזאת מקצועית ומדוייקת, נוסיף לזה קלילות והומור ובאמת מתן משיח זה בנאדם השראה!"},
+  {n:"Yeheli Raz Atias",d:"3 חודשים",q:"למתחילים שמתלבטים המועדון זו הכניסה הכי חלקה וטובה שאפשר לעולם המסחר, קהילה תומכת ידע טכני מנטלי ועסקי ברמות הכי גבוהות"},
+  {n:"Adam Palaria",d:"5 חודשים",q:"רמה גבוהה בטירוף של תוכן והקהילה הכי טובה מבחינת איכות האנשים והאינטליגנציה שלהם."},
+  {n:"אורן קארו",d:"שנה",q:"אין על מתן אלוף אמיתי אין תוכן כזה באף מקום בארץ! תודה רבה למתן אני אישית מרגיש את השיפור בהבנה שלי"},
+  {n:"hen haziza",d:"11 ימים",q:"מרגיש את השיפור בהבנה שלי מול מה הגרף רוצה לעשות! שווה כל שקל"},
+  {n:"Omri Simon",d:"5 ימים",q:"הכי מקצועי שתמצאו בעברית ה Time and Price."},
+  {n:"Shlomi",d:"3 חודשים",q:"מקצוען ברמה עולמית, פשוט אלוף עולם!"},
+  {n:"ינון עטיה",d:"7 חודשים",q:"המועדון הכי טוב בארץ — ומתן בן אדם נחמד ומתוק"},
+  {n:"Arkash",d:"שנה",q:"מקצוענות נטו! ברמה הכי גבוהה בארץ"},
+  {n:"alikmar",d:"7 חודשים",q:"ממש כיף!"},
+  {n:"Tair Ben Ami",d:"חודשיים",q:"מועדון מטורף, אין תוכן כזה בשום מקום"},
+  {n:"שלו מלאיב",d:"שנתיים",q:"כיף לחיות"},
+  {n:"מיכאל טויטו",d:"8 חודשים",q:"מדהים!"},
+  {n:"Eliya Madniski",d:"23 ימים",q:"מתן מאוד מקצועי ומדויק, נותן יחס אישי לכל אחד מומלץ!"},
+  {n:"Zurab Samushia",d:"12 ימים",q:"רמה אחרת פשוט מי שלא מבין לא יבין ומי שלא ינסה כנראה שלא יצליח"},
+  {n:"eyal yan",d:"8 חודשים",q:"פשוט מדהים"},
+  {n:"אלירן מזגאוקר",d:"שנה",q:"מתן הוא המנטור הכי טוב שאפשר לבקש!"}
+];
+const grid = document.getElementById('tgrid');
+grid.innerHTML = TESTIMONIALS.map(t=>`
+  <article class="tcard">
+    <h3 class="t-title">${t.d} במועדון</h3>
+    <p class="quote">"${t.q}"</p>
+    <p class="nm">${t.n}</p>
+  </article>`).join('');
+
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const sticky = document.getElementById('stickyCta');
+const hero = document.getElementById('top');
+const heroIO = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ sticky.classList.toggle('show', !e.isIntersecting); });
+},{threshold:.1});
+heroIO.observe(hero);
+
+const WHOP = "https://whop.com/master-trader-club/";
+function whopUrl(){
+  const p = new URLSearchParams(location.search);
+  const fromAd = p.has('fbclid') || p.get('utm_source') === 'meta';
+  const out = new URLSearchParams();
+  out.set('utm_source',   fromAd ? 'meta' : (p.get('utm_source') || 'organic'));
+  out.set('utm_medium',   fromAd ? 'paid' : (p.get('utm_medium') || 'web'));
+  out.set('utm_campaign', p.get('utm_campaign') || 'club');
+  const content = p.get('utm_content') || p.get('ad') || '';
+  if(content) out.set('utm_content', content);
+  if(p.get('fbclid')) out.set('fbclid', p.get('fbclid'));
+  return WHOP + '?' + out.toString();
+}
+function fireCheckout(){ if(window.fbq) fbq('track','InitiateCheckout',{value:149,currency:'ILS'}); }
+document.querySelectorAll('a[data-cta][data-final]').forEach(a=>{ a.href = whopUrl(); });
+document.querySelectorAll('[data-cta]').forEach(a=>{
+  a.addEventListener('click',(ev)=>{
+    const href = a.getAttribute('href');
+    const goesToWhop = a.dataset.final || !(href && href.startsWith('#'));
+    if(!goesToWhop) return;
+    fireCheckout();
+    if(a.dataset.final) return;
+    ev.preventDefault();
+    window.open(whopUrl(),'_blank','noopener');
+  });
+});
+
+window.addEventListener('load',()=>{
+  const ls=document.getElementById('lossSection');
+  if(ls && !ls.querySelector('.proof')) ls.style.display='none';
+});
+</script>
+</body>
+</html>
