@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>חדר המצב · ההרשמה למחזור 2 נסגרה · מתן משיח</title>
-<meta name="description" content="ההרשמה למחזור 2 של חדר המצב נסגרה. חמישה מפגשים פיזיים, 20 סוחרים, שולחן אחד. כל עסקה של כל סוחר נבדקת.">
+<title>חדר המצב · מחזור 2 סולד אאוט · מתן משיח</title>
+<meta name="description" content="מחזור 2 סולד אאוט, כל המקומות נתפסו. אפשר להירשם לרשימת ההמתנה למחזור הבא. חמישה מפגשים פיזיים, 20 סוחרים, שולחן אחד.">
 <meta property="og:title" content="חדר המצב · מתן משיח">
-<meta property="og:description" content="ההרשמה למחזור 2 נסגרה. קבוצת מאסטרמיינד פיזית סגורה, 20 מקומות.">
+<meta property="og:description" content="מחזור 2 · סולד אאוט. כל המקומות נתפסו. הרשמה לרשימת המתנה למחזור הבא.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -195,9 +195,11 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     <div class="wordmark">חדר מצב</div>
     <div class="rule"></div>
     <div class="promise">יודע לנתח גרף, אבל עדיין מחזיר את הרווח לשוק?<br>5 מפגשים פרונטליים שהופכים את המסחר שלך מהימור רגשי לעסק עם מערכת.</div>
-    <div class="cyclechip"><span class="n">מחזור 2</span><span class="w"><span class="lbl">ההרשמה נסגרה</span></span></div>
+    <div class="cyclechip"><span class="n">מחזור 2</span><span class="w"><span class="lbl">סולד אאוט</span></span></div>
+    <div class="seats">כל המקומות נתפסו</div>
     <div class="subhook">מאסטרמיינד פיזי סגור של 20 סוחרים. אתה מביא את העסקאות האמיתיות שלך לשולחן, ואנחנו בונים לך מערכת שמחזיקה. המחזור הראשון נמכר עד המקום האחרון.</div>
     <div class="cta-row">
+      <a href="#register" class="btn">הרשמה לרשימת המתנה למחזור הבא ←</a>
       <a href="#gap" class="btn ghost">איך זה עובד</a>
     </div>
   </div>
@@ -361,20 +363,67 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 
 <section id="register">
   <div class="wrap">
-    <div class="kick">הרשמה</div>
-    <h2>ההרשמה למחזור 2 נסגרה</h2>
-    <p class="sub">מחזור 2 יצא לדרך, ואין יותר אפשרות להצטרף אליו.</p>
+    <div class="kick">רשימת המתנה</div>
+    <h2>מחזור 2 · סולד אאוט</h2>
+    <p class="sub">כל המקומות נתפסו. אפשר להירשם לרשימת ההמתנה למחזור הבא, ואני מעדכן כשהוא נפתח.</p>
     <blockquote class="prequote">"עוד יומיים ירוקים מאז המפגש. היום כבר מבקש משיכה."<span>גלעד · סוחר שעובד איתי</span></blockquote>
+    <form class="formbox" id="form">
+      <div class="price">הרשמה לרשימת המתנה למחזור הבא<br><span style="font-size:12px;color:var(--mute)">מחזור 2 סולד אאוט · בלי שמירת מקום ובלי תאריך</span></div>
+      <label>שם מלא</label>
+      <input type="text" name="name" required placeholder="השם שלך">
+      <label>טלפון (וואטסאפ)</label>
+      <input type="tel" name="phone" required placeholder="05x-xxxxxxx">
+      <label>אימייל</label>
+      <input type="email" name="email" required placeholder="you@email.com">
+      <button type="submit" class="btn">הרשמה לרשימת המתנה למחזור הבא ←</button>
+      <div class="fineprint">הרשימה אינה שומרת מקום במחזור 2. אני חוזר אליך כשייפתח המחזור הבא.</div>
+    </form>
+    <div class="formbox hide" id="done">
+      <div class="v">אתה ברשימה. ✓</div>
+      <p style="color:var(--dim);margin-top:12px;line-height:1.6">נרשמת לרשימת ההמתנה למחזור הבא של חדר המצב.<br>אני מעדכן אותך כשהוא נפתח.</p>
+    </div>
   </div>
 </section>
 
 <section>
   <div class="wrap" style="text-align:center">
     <p class="sub" style="max-width:640px;font-size:clamp(19px,4.5vw,24px);color:var(--text);font-weight:500">החופש שאתה מחפש נמצא בצד השני של המשמעת.<br><b style="color:var(--accent-bright)">בחדר הזה בונים אותה.</b></p>
+    <div class="cta-row" style="justify-content:center"><a href="#register" class="btn">הרשמה לרשימת המתנה למחזור הבא ←</a></div>
   </div>
 </section>
 
 <footer>מתן משיח · <b>MasterTrader</b> · חדר המצב 2026<br><span style="color:var(--mute)">רחוב לח״י 21, בני ברק</span></footer>
 
+<script>
+  /* אותו צינור לידים כמו שאר הדפים: formsubmit.co במייל. */
+  var LEAD_ENDPOINT = "https://formsubmit.co/ajax/mashiah459@gmail.com";
+  var form = document.getElementById('form');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = form.querySelector('button');
+    btn.textContent = 'שולח...'; btn.disabled = true;
+
+    var eid = 'SRWL_' + Date.now() + '_' + Math.floor(Math.random() * 1e6);
+    try {
+      if (window.mtPixel && typeof window.mtPixel.trackLead === 'function') {
+        eid = window.mtPixel.trackLead('חדר מצב רשימת המתנה', 'SRWL') || eid;
+      }
+    } catch (err) { /* keep the local id and carry on with the submit */ }
+
+    var payload = {
+      _subject: 'רשימת המתנה חדר המצב מחזור 3: ' + (form.name.value || ''),
+      name: form.name.value, phone: form.phone.value, email: form.email.value,
+      message: 'אשמח להצטרף לרשימת ההמתנה לחדר מצב מחזור 3',
+      source: 'situation-room/waitlist-cycle-3', event_id: eid, _template: 'table'
+    };
+    fetch(LEAD_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) })
+      .then(function(){ show(); })
+      .catch(function(){ show(); });
+    function show(){
+      form.classList.add('hide');
+      document.getElementById('done').classList.remove('hide');
+    }
+  });
+</script>
 </body>
 </html>
