@@ -127,6 +127,7 @@ h1 span{display:block;background:linear-gradient(90deg,var(--gold-ll),var(--gold
 .mbox .role{color:var(--gold-l);font-weight:700;font-size:15px;margin-top:4px}
 .mbox .bio{color:var(--tx7);font-size:16px;margin-top:12px;line-height:1.65}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tags:empty{display:none}
 .tags span{font-size:13px;font-weight:700;padding:6px 11px;border-radius:99px;background:rgba(6,91,100,.45);border:1px solid rgba(95,195,204,.35)}
 .x{position:absolute;top:12px;left:12px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.05);color:#fff;font-size:20px;cursor:pointer}
 /* testimonials */
@@ -351,7 +352,7 @@ document.querySelectorAll('[data-cta]').forEach(a=>{
 </script>
 <script>
 const TEAM=[
- {n:"מתן משיח",r:"מייסד המועדון",img:"images/club-v3/ring-matan-cafe2.jpg",b:"סוחר יומי כבר ארבע שנים, ומלמד סוחרים לנהל את המסחר כמו עסק. הקים את המועדון באפריל 2024, ומאז עברו בו יותר מ-1,445 סוחרים. משדר לייבים בזמן אמת ומפרסם את העסקאות שלו בשקיפות מלאה, כולל ההפסדים.",t:["<bdi>$37,815</bdi> נטו בחודש אחד","<bdi>Profit Factor 11.47</bdi>","<bdi>$27,014</bdi> ב-13 משיכות"]},
+ {n:"מתן משיח",r:"מייסד המועדון",img:"images/club-v3/ring-matan-cafe2.jpg",b:"סוחר יומי עם ניסיון של 6 שנים. עזר למאות סוחרים להפוך את המסחר שלהם לעסק. הקים את המועדון באפריל 2024, ומאז עברו בו יותר מ-1,445 סוחרים. משדר לייבים בזמן אמת ומפרסם את העסקאות שלו בשקיפות מלאה, כולל ההפסדים.",t:[]},
  {n:"תמיר דמרי",r:"מנטור במועדון",img:"images/club-v3/ring-tamir.jpg",b:"כבר יותר מחמש שנים מלווה סוחרים ברמה המנטלית והרגשית, ויותר מ-1,600 סוחרים עברו אצלו, מהרצאות ועד ליווי אישי. המומחיות שלו היא הרגע שאחרי הסטופ: לקחת את ההפסד ולהמשיך, בלי לרוץ להחזיר.",t:["5+ שנות ליווי","1,600+ סוחרים"]},
  {n:"סער פיצ'רסקי",r:"מנטור במועדון",img:"images/club-v3/ring-saar.jpg",b:"סוחר בהצלחה רבה כבר שנתיים, והסוחר הראשון בישראל שהגיע לתוכנית Live Funded של MFFU. מתמחה במסחר שמחבר בין זמן למחיר.",t:["<bdi>Live Funded · MFFU</bdi>","זמן ומחיר"]},
  {n:"שלו מלאיב",r:"היועץ הפיננסי של המועדון",img:"images/club-v3/ring-shalev.jpg",b:"יועץ פיננסי מוסמך ממכללת UNI, וסוחר בהצלחה כבר שלוש שנים. עוזר לחברי המועדון לקבל החלטות פיננסיות טובות ומקצועיות יותר, כדי שינהלו את הכסף שלהם נכון.",t:["יועץ פיננסי מוסמך","3 שנות מסחר"]}];
