@@ -18,3 +18,23 @@ manychat_create_contacts.py
 gmail_auth.py
 quiz_leads_sync.py
 quiz_leads_sync.log
+
+# ----- נוסף 21.10.2026 -----
+# הריפו הזה ציבורי. כל מה שמכיל אנשי קשר, טלפונים, מיילים או לוגים של שליחות
+# יושב מחוץ לריפו ב-~/private-data/landing-page/, והכללים כאן הם רשת הביטחון.
+*.vcf
+*.log
+*-queue.json
+*-whatsapp-*.txt
+templates-for-approval.txt
+.delivery-proof.json
+check_bounces.py
+run_workshop_dispatch.sh
+send_*.py.DISABLED
+
+# זבל מקומי
+__pycache__/
+*.bak
+*.bak-*
+*.bak2-*
+images/Screenshot*.png
