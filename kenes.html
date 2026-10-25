@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- המופע המשותף של מתן ותמיר · דף נחיתה, גרסה 3 · 9.10.2026 · עותק עם תיקונים טכניים (yuval-review/page-fixed.html) -->
 <title>המופע המשותף של מתן ותמיר · 16.11 · תל אביב</title>
-<meta name="description" content="ערב חי אחד, שני צדדים של המסחר. מתן משיח מביא את המבנה, תמיר דמרי מביא את הראש. יום שני 16.11.2026, 16:30 עד 21:30, בית ציוני אמריקה, דניאל פריש 1, תל אביב. 400 מקומות.">
+<meta name="description" content="ערב חי אחד, שני צדדים של המסחר. מתן משיח מביא את המבנה, תמיר דמרי מביא את הראש. יום שני 16.11.2026, 16:00 עד 21:30, בית ציוני אמריקה, דניאל פריש 1, תל אביב. 400 מקומות.">
 <meta property="og:title" content="המופע המשותף של מתן ותמיר · 16.11 · תל אביב">
 <meta property="og:description" content="מתן משיח × תמיר דמרי. ערב חי של 5 שעות ל-400 סוחרים. 16.11 · בית ציוני אמריקה, תל אביב.">
 <meta property="og:type" content="website">
@@ -201,9 +201,9 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   /* setlist */
   #agenda{ background:var(--bg2); }
   .setlist{ margin-top:40px; border-top:3px solid #fff; }
-  .track-row{ display:grid; grid-template-columns:70px 110px 1fr auto; gap:18px; align-items:baseline; padding:20px 0; border-bottom:1px dashed rgba(255,255,255,.3); }
+  .track-row{ display:grid; grid-template-columns:70px max-content 1fr auto; gap:18px; align-items:baseline; padding:20px 0; border-bottom:1px dashed rgba(255,255,255,.3); }
   .track-row .no{ font-weight:900; font-size:32px; color:var(--pink); line-height:1; }
-  .track-row .tm{ font-weight:900; font-size:22px; color:var(--yellow); direction:ltr; text-align:right; }
+  .track-row .tm{ font-weight:900; font-size:22px; color:var(--yellow); direction:ltr; text-align:right; white-space:nowrap; }
   .track-row h3{ font-weight:900; font-size:clamp(20px,2.8vw,28px); line-height:1.15; }
   .track-row p{ color:var(--soft); font-size:16px; margin-top:4px; }
   .track-row .dur{ font-weight:800; font-size:14px; color:var(--bg); background:var(--orange); border-radius:999px; padding:4px 12px; white-space:nowrap; }
@@ -423,7 +423,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       <div class="hero-after">
         <div class="meta">
           <div>יום שני <b>16.11</b></div>
-          <div><b>16:30</b> עד <b>21:30</b></div>
+          <div><b>16:00</b> עד <b>21:30</b></div>
           <div>בית ציוני אמריקה, ת״א</div>
         </div>
         <div class="cd" aria-label="זמן עד הכנס">
@@ -691,17 +691,18 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 <!-- ===================== 7. SETLIST ===================== -->
 <section id="agenda">
   <div class="wrap">
-    <span class="kicker">הסט ליסט</span>
-    <h2 class="big">16:30 עד 21:30</h2>
-    <p class="lead">חלק מלא של שעה וחצי לכל אחד, הפסקה אחת באמצע, ופאנל שאלות בסוף.</p>
+    <span class="kicker">לו״ז האירוע</span>
+    <h2 class="big">16:00 עד 21:30</h2>
+    <p class="lead">שני חלקים מלאים, שתי הפסקות, וסיכום משותף בסוף.</p>
     <div class="setlist">
-      <div class="track-row"><div class="no">01</div><div class="tm">16:30</div><div><h3>פתיחת דלתות, הרשמה ונטוורקינג</h3><p>קפה ו-400 סוחרים שמדברים באותה שפה. שווה להגיע מוקדם.</p></div><div class="dur">45 דק׳</div></div>
-      <div class="track-row"><div class="no">02</div><div class="tm">17:15</div><div><h3>פתיחה · מתן ותמיר</h3><p>למה עשינו את הערב הזה, ומה תיקח ממנו הביתה.</p></div><div class="dur">10 דק׳</div></div>
-      <div class="track-row head"><div class="no">03</div><div class="tm">17:25</div><div><h3>המבנה · מתן משיח</h3><p>איך בונים תוכנית מסחר, ואיך מנהלים את המסחר כמו עסק: כל מחלקה בעסק, הרבה תיקים במקביל, יומן מסחר שעובדים איתו כמו שצריך, ושגרה שמחזיקה את העסק יציב ושיטתי.</p></div><div class="dur">90 דק׳</div></div>
-      <div class="track-row"><div class="no">04</div><div class="tm">18:55</div><div><h3>הפסקה</h3><p>כיבוד קל, אוויר, ושיחה עם סוחרים אחרים.</p></div><div class="dur">30 דק׳</div></div>
-      <div class="track-row head"><div class="no">05</div><div class="tm">19:25</div><div><h3>הראש · תמיר דמרי</h3><p>מה קורה ביום שהתוצאות לא תואמות את הציפיות, ואתה כבר לא יודע על מה לסמוך: על השיטה, או על התחושה. ואיך תופסים בזמן אמת את הרגע שבו אתה מפסיק לסחור לפי התוכנית, ומתחיל לסחור כדי להחזיר.</p></div><div class="dur">90 דק׳</div></div>
-      <div class="track-row"><div class="no">06</div><div class="tm">20:55</div><div><h3>פאנל ושאלות מהקהל</h3><p>אתה שואל, ושנינו עונים, כל אחד מהצד שלו.</p></div><div class="dur">25 דק׳</div></div>
-      <div class="track-row"><div class="no">07</div><div class="tm">21:20</div><div><h3>סיכום וסגירה</h3><p>מה עושים מחר בבוקר, ביום המסחר הבא.</p></div><div class="dur">10 דק׳</div></div>
+      <div class="track-row"><div class="no">01</div><div class="tm">16:00</div><div><h3>התכנסות ו-networking</h3><p>קפה ו-400 סוחרים שמדברים באותה שפה. שווה להגיע מוקדם.</p></div><div class="dur">30 דק׳</div></div>
+      <div class="track-row"><div class="no">02</div><div class="tm">16:30</div><div><h3>פתיחת דלתות</h3><p>הרשמה, תג, ומקום באולם.</p></div><div class="dur">30 דק׳</div></div>
+      <div class="track-row"><div class="no">03</div><div class="tm">17:00</div><div><h3>פתיחה – מתן ותמיר</h3><p>למה עשינו את הערב הזה, ומה תיקח ממנו הביתה.</p></div><div class="dur">15 דק׳</div></div>
+      <div class="track-row head"><div class="no">04</div><div class="tm">17:15–18:30</div><div><h3>הראש · תמיר דמרי</h3><p>מה קורה ביום שהתוצאות לא תואמות את הציפיות, ואתה כבר לא יודע על מה לסמוך: על השיטה, או על התחושה. ואיך תופסים בזמן אמת את הרגע שבו אתה מפסיק לסחור לפי התוכנית, ומתחיל לסחור כדי להחזיר.</p></div><div class="dur">75 דק׳</div></div>
+      <div class="track-row"><div class="no">05</div><div class="tm">18:30–19:00</div><div><h3>הפסקה</h3><p>כיבוד קל, אוויר, ושיחה עם סוחרים אחרים.</p></div><div class="dur">30 דק׳</div></div>
+      <div class="track-row head"><div class="no">06</div><div class="tm">19:00–20:30</div><div><h3>המבנה · מתן משיח</h3><p>איך בונים תוכנית מסחר, ואיך מנהלים את המסחר כמו עסק: כל מחלקה בעסק, הרבה תיקים במקביל, יומן מסחר שעובדים איתו כמו שצריך, ושגרה שמחזיקה את העסק יציב ושיטתי.</p></div><div class="dur">90 דק׳</div></div>
+      <div class="track-row"><div class="no">07</div><div class="tm">20:30–21:00</div><div><h3>הפסקה</h3><p>כיבוד קל, אוויר, ושיחה עם סוחרים אחרים.</p></div><div class="dur">30 דק׳</div></div>
+      <div class="track-row"><div class="no">08</div><div class="tm">21:00–21:30</div><div><h3>סיכום וסגירה</h3><p>מה עושים מחר בבוקר, ביום המסחר הבא.</p></div><div class="dur">30 דק׳</div></div>
     </div>
     <div class="cta">
       <a href="#tickets" class="btn">אני רוצה מקום ב-16.11 ←</a>
@@ -806,7 +807,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     </div>
     <div class="venue">
       <div><small>תאריך</small><b>יום שני, 16.11.2026</b></div>
-      <div><small>שעות</small><b>16:30 עד 21:30</b></div>
+      <div><small>שעות</small><b>16:00 עד 21:30</b></div>
       <div><small>מקום</small><b>בית ציוני אמריקה</b><span style="display:block;margin-top:4px;font-weight:700">דניאל פריש 1, תל אביב</span><a href="https://www.google.com/maps/search/?api=1&amp;query=%D7%93%D7%A0%D7%99%D7%90%D7%9C+%D7%A4%D7%A8%D7%99%D7%A9+1%2C+%D7%AA%D7%9C+%D7%90%D7%91%D7%99%D7%91" target="_blank" rel="noopener">פתיחה במפות ←</a></div>
       <div><small>מקומות</small><b>מוגבל ל-400 סוחרים</b></div>
     </div>
@@ -872,7 +873,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 </footer>
 
 <div class="stickybar" id="stickybar">
-  <span>16.11 · 16:30 · בית ציוני אמריקה</span>
+  <span>16.11 · 16:00 · בית ציוני אמריקה</span>
   <a href="#tickets" class="btn">אני רוצה מקום ב-16.11 ←</a>
 </div>
 <script>
