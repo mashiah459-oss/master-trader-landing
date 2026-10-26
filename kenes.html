@@ -960,6 +960,15 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     .stickybar .sale-note{ flex:1 1 100%; font-size:13.5px; }
     .hero-cta .sale-deadline, .tix-main .sale-deadline{ font-size:13.5px; }
   }
+  .salebar{ display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .salebar-msg{ flex:1 1 12em; min-width:0; text-align:center; }
+  .salebar-go{ flex:none; display:inline-flex; align-items:center; justify-content:center; min-height:32px; padding:6px 12px; border-radius:999px; background:var(--bg); color:var(--yellow); font-weight:900; font-size:14px; line-height:1; white-space:nowrap; box-shadow:2px 2px 0 rgba(20,0,46,.28); }
+  .salebar-go:hover{ transform:translate(-1px,-1px); }
+  .salebar-go[hidden], .sale-closed .salebar-go{ display:none !important; }
+  @media (max-width:540px){
+    .salebar{ gap:6px; }
+    .salebar-go{ font-size:13px; padding:6px 10px; }
+  }
 </style>
 <script>
 (function(){
@@ -1004,6 +1013,14 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   bar.className = 'salebar';
   bar.setAttribute('role', 'status');
   bar.setAttribute('aria-live', 'off');
+  var msg = document.createElement('span');
+  msg.className = 'salebar-msg';
+  var go = document.createElement('a');
+  go.className = 'salebar-go';
+  go.href = '/kenes/tickets';
+  go.textContent = 'לכרטיסים';
+  bar.appendChild(msg);
+  bar.appendChild(go);
   document.body.insertBefore(bar, document.body.firstChild);
 
   var mode = '';
@@ -1022,7 +1039,8 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     mode = 'closed';
     document.documentElement.classList.add('sale-closed');
     bar.setAttribute('aria-live', 'polite');
-    bar.textContent = CLOSED_BAR;
+    msg.textContent = CLOSED_BAR;
+    go.hidden = true;
     document.querySelectorAll('.sale-deadline').forEach(function(el){ el.hidden = true; });
     var stickySpan = document.querySelector('#stickybar > span');
     if (stickySpan) stickySpan.hidden = true;
@@ -1048,7 +1066,8 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       if (mode !== 'last') {
         mode = 'last';
         bar.setAttribute('aria-live', 'polite');
-        bar.textContent = LAST_MSG;
+        msg.textContent = LAST_MSG;
+        go.hidden = false;
         cd = null;
       }
       return;
@@ -1056,8 +1075,9 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     if (mode !== 'open') {
       mode = 'open';
       bar.setAttribute('aria-live', 'off');
-      bar.innerHTML = COUNTDOWN_HTML;
-      cd = bar.querySelector('bdi');
+      msg.innerHTML = COUNTDOWN_HTML;
+      cd = msg.querySelector('bdi');
+      go.hidden = false;
     }
     if (cd) cd.textContent = leftLabel(CLOSE - t);
   }
