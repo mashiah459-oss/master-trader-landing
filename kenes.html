@@ -830,7 +830,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       <details><summary>אני סוחר קריפטו או פורקס. זה רלוונטי לי?</summary><div class="a">כן. אצל תמיר עברו סוחרי חוזים עתידיים, קריפטו ופורקס, ואתה רוצה להחזיר אחרי סטופ בדיוק אותו דבר בכל שוק. וגם תוכנית מסחר, יומן וניהול תיקים עובדים אותו דבר בכל שוק.</div></details>
       <details><summary>יהיו איתותים? ואתם מבטיחים שאעבור מבחן?</summary><div class="a">לא ולא. לא נגיד לך מה לקנות או מתי, ואף אחד לא יכול להבטיח לך רווח או מעבר מבחן. נראה לך איך בונים תוכנית ומנהלים את המסחר, וההחלטות נשארות שלך.</div></details>
       <details><summary>ב-16:30 ניו יורק נפתחת. מה עם המסחר שלי באותו יום?</summary><div class="a">תוותר על הפתיחה ליום אחד. ואם המחשבה על יום בלי מסך מלחיצה אותך, שווה לשים לב לזה.</div></details>
-      <details><summary>אני בא לבד. יהיה לי עם מי לדבר?</summary><div class="a">יהיה. מגיעים מ-16:00, בערך 60 דקות לפני תחילת הערב, ויש שתי הפסקות של חצי שעה באמצע. ואם יש לך חבר שסוחר איתך, בשביל זה יש כרטיס זוגי.</div></details>
+      <details><summary>אני בא לבד. יהיה לי עם מי לדבר?</summary><div class="a">יהיה. אם יש לך חבר שסוחר איתך, בשביל זה יש כרטיס זוגי.</div></details>
       <details><summary>במה זה שונה מחדר המצב?</summary><div class="a">חדר המצב הוא קבוצה סגורה של 20 סוחרים, חמישה מפגשים, ועוברים בה על העסקאות שלך אחת אחת. המופע המשותף הוא ערב אחד באולם, ושנינו על אותה במה.</div></details>
       <details><summary>ומה אם בסוף לא אוכל להגיע?</summary><div class="a">אפשר לבטל בחינם ולקבל החזר מלא עד מוצאי שבת, 7.11.2026, בשעה 23:59. אחרי המועד הזה אין ביטול או החזר, אבל אפשר להעביר את הכרטיס לאדם אחר. כל הפרטים, כולל איך מבטלים, ב<a href="https://matanmashiah.com/takanon-kenes.html" target="_blank" rel="noopener">תקנון האירוע</a>.</div></details>
       <details><summary>איפה זה, ואיך מגיעים?</summary><div class="a">בבית ציוני אמריקה, רחוב דניאל פריש 1, תל אביב. כשבוע לפני הערב נשלח לך בוואטסאפ את כל הפרטים, כולל חניה ותחבורה ציבורית.</div></details>
@@ -939,7 +939,6 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 
 <style>
   .salebar{ position:sticky; top:0; z-index:40; background:linear-gradient(90deg,var(--yellow),var(--pink)); color:var(--bg); text-align:center; font-weight:900; font-size:15px; line-height:1.35; padding:8px 14px; }
-  .salebar bdi{ display:inline-block; min-width:7.2ch; margin-inline-start:6px; padding:1px 8px; border-radius:8px; background:var(--bg); color:var(--yellow); font-variant-numeric:tabular-nums; direction:ltr; }
   .sale-closed .btn[data-buy]{ display:none !important; }
   .sale-note{ display:inline-block; margin-top:6px; padding:12px 18px; border-radius:14px; border:2px dashed var(--yellow); color:var(--yellow); font-weight:900; font-size:16px; line-height:1.35; background:rgba(20,0,46,.6); max-width:100%; }
   .stickybar .sale-note{ margin:0; padding:8px 12px; font-size:14px; line-height:1.35; border-color:var(--bg); color:var(--bg); background:transparent; white-space:normal; text-align:center; }
@@ -960,6 +959,15 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     .stickybar .sale-note{ flex:1 1 100%; font-size:13.5px; }
     .hero-cta .sale-deadline, .tix-main .sale-deadline{ font-size:13.5px; }
   }
+  .salebar{ display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; }
+  .salebar-msg{ flex:1 1 12em; min-width:0; text-align:center; }
+  .salebar-go{ flex:none; display:inline-flex; align-items:center; justify-content:center; min-height:32px; padding:6px 12px; border-radius:999px; background:var(--bg); color:var(--yellow); font-weight:900; font-size:14px; line-height:1; white-space:nowrap; box-shadow:2px 2px 0 rgba(20,0,46,.28); }
+  .salebar-go:hover{ transform:translate(-1px,-1px); }
+  .salebar-go[hidden], .sale-closed .salebar-go{ display:none !important; }
+  @media (max-width:540px){
+    .salebar{ gap:6px; }
+    .salebar-go{ font-size:13px; padding:6px 10px; }
+  }
 </style>
 <script>
 (function(){
@@ -967,7 +975,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   // Preview any moment with ?now=2026-11-01T00:30 (no zone = Israel time) or a full ISO timestamp.
   var CLOSE = Date.parse('2026-10-31T23:59:00+02:00');
   var LAST_DAY = '2026-10-31';
-  var COUNTDOWN_HTML = 'מכירת הכרטיסים נסגרת במוצ״ש 31.10 · נשארו <bdi dir="ltr">--:--:--</bdi>';
+  var OPEN_MSG = 'מכירת הכרטיסים נסגרת במוצ״ש 31.10';
   var LAST_MSG = 'היום זה היום האחרון. המכירה נסגרת הלילה ב-23:59';
   var CLOSED_BAR = 'מכירת הכרטיסים נסגרה · נתראה ב-16.11';
   var CLOSED_NOTE = 'המכירה נסגרה ב-31.10. מי שבפנים, נתראה ב-16.11.';
@@ -991,23 +999,21 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       timeZone: 'Asia/Jerusalem', year: 'numeric', month: '2-digit', day: '2-digit'
     }).format(new Date(ms));
   }
-  function pad(n){ return (n < 10 ? '0' : '') + n; }
-  function leftLabel(ms){
-    var s = Math.max(0, Math.floor(ms / 1000));
-    var d = Math.floor(s / 86400);
-    var h = Math.floor(s % 86400 / 3600);
-    var m = Math.floor(s % 3600 / 60);
-    return d + ':' + pad(h) + ':' + pad(m);
-  }
-
   var bar = document.createElement('div');
   bar.className = 'salebar';
   bar.setAttribute('role', 'status');
   bar.setAttribute('aria-live', 'off');
+  var msg = document.createElement('span');
+  msg.className = 'salebar-msg';
+  var go = document.createElement('a');
+  go.className = 'salebar-go';
+  go.href = '/kenes/tickets';
+  go.textContent = 'לכרטיסים';
+  bar.appendChild(msg);
+  bar.appendChild(go);
   document.body.insertBefore(bar, document.body.firstChild);
 
   var mode = '';
-  var cd = null;
 
   document.addEventListener('click', function(e){
     if (!document.documentElement.classList.contains('sale-closed')) return;
@@ -1022,7 +1028,8 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
     mode = 'closed';
     document.documentElement.classList.add('sale-closed');
     bar.setAttribute('aria-live', 'polite');
-    bar.textContent = CLOSED_BAR;
+    msg.textContent = CLOSED_BAR;
+    go.hidden = true;
     document.querySelectorAll('.sale-deadline').forEach(function(el){ el.hidden = true; });
     var stickySpan = document.querySelector('#stickybar > span');
     if (stickySpan) stickySpan.hidden = true;
@@ -1048,18 +1055,17 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       if (mode !== 'last') {
         mode = 'last';
         bar.setAttribute('aria-live', 'polite');
-        bar.textContent = LAST_MSG;
-        cd = null;
+        msg.textContent = LAST_MSG;
+        go.hidden = false;
       }
       return;
     }
     if (mode !== 'open') {
       mode = 'open';
       bar.setAttribute('aria-live', 'off');
-      bar.innerHTML = COUNTDOWN_HTML;
-      cd = bar.querySelector('bdi');
+      msg.textContent = OPEN_MSG;
+      go.hidden = false;
     }
-    if (cd) cd.textContent = leftLabel(CLOSE - t);
   }
   tick();
   setInterval(tick, 1000);
