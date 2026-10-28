@@ -373,13 +373,6 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   .pre{ margin:14px 0 -4px; font-weight:800; font-size:clamp(15px,1.7vw,19px); color:var(--soft); max-width:560px; line-height:1.35; }
   .pre em{ color:var(--yellow); font-style:normal; font-weight:900; }
   .hook-lead{ display:block; font-size:clamp(22px,2.9vw,30px); font-weight:900; line-height:1.25; margin-bottom:8px; }
-  .seats{ margin-top:12px; max-width:420px; }
-  .seats[hidden]{ display:none; }
-  .seats-t{ font-weight:800; font-size:15px; } .seats-t b{ color:var(--yellow); }
-  .seats-bar{ height:6px; border-radius:6px; background:rgba(255,255,255,.15); margin-top:6px; overflow:hidden; }
-  .seats-bar i{ display:block; height:100%; width:0; background:var(--yellow); }
-  .seats small{ display:block; margin-top:4px; font-size:12px; color:var(--soft); }
-  #tickets .seats{ margin:18px auto 0; text-align:center; }
   .btn:not(.ghost){ outline:2px solid var(--bg); }
   .tix .btn, .tix-stub .btn{ background:var(--yellow)!important; color:var(--bg)!important; box-shadow:4px 4px 0 var(--bg)!important; }
   .lineup-proof{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px; }
@@ -436,7 +429,6 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
         <div class="hero-cta">
           <a href="/kenes/tickets" class="btn">אני רוצה כרטיס לאירוע ←</a>
           <p class="sale-deadline">המכירה נסגרת במוצ״ש, 31.10 בחצות. אחרי זה אין כרטיסים.</p>
-          <div class="seats" hidden><div class="seats-t">נשארו <b data-seats></b> מקומות מתוך 400</div><div class="seats-bar"><i></i></div><small data-seats-upd></small></div>
           <div class="micro">400 מקומות באולם · יחיד <span dir="ltr" style="unicode-bidi:isolate;white-space:nowrap">197₪</span>, זוגי <span dir="ltr" style="unicode-bidi:isolate;white-space:nowrap">297₪</span></div>
         </div>
       </div>
@@ -592,7 +584,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       </figure>
       </div>
     </div>
-    <div class="cta"><button type="button" class="btn ghost" id="showmore">הצג עוד הודעות (11)</button></div>
+    <div class="cta"><button type="button" class="btn ghost" id="showmore">הצג עוד הודעות</button></div>
     <p class="disc">צילומי מסך אמיתיים של סוחרים ששיתפו מרצונם. חלק מהטקסטים קוצרו. תוצאות אישיות, לא הבטחה. מסחר בשוק ההון כרוך בסיכון.</p>
   </div>
 </section>
@@ -600,27 +592,27 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 <section id="why">
   <div class="wrap">
     <span class="kicker">שני החלקים</span>
-    <h2 class="big long">סוחר טוב לא מפסיד פחות ממך. הוא מפסיד אחרת.</h2>
+    <h2 class="big long">הנה חלק מהדברים שתלמדו בערב הזה</h2>
     <p class="lead">עוד לפני שהוא לוחץ, הוא יודע איפה הוא יוצא אם הוא טועה, וכמה זה יעלה לו. וכשהוא חוטף סטופ, הוא לוקח את ההפסד וממשיך, בלי לרוץ להחזיר. על שני הדברים האלה בנינו את הערב: את הראשון תיקח מהחלק של מתן, ואת השני מהחלק של תמיר.</p>
     <div class="split">
       <div class="s1">
-        <h3>לנהל את המסחר כמו עסק</h3><div class="who">מתן משיח · סוחר יומי ממומן</div>
+        <h3>להפוך את המסחר לעסק יציב ומשגשג</h3><div class="who">מתן משיח · סוחר יומי ממומן</div>
         <ul>
-          <li>איך בונים תוכנית מסחר כתובה: מתי נכנסים, איפה הסטופ, וכמה מותר להפסיד ביום</li>
-          <li>אנליזה, ביצוע, ניהול סיכונים וכספים: איך מנהלים כל מחלקה בעסק, כשאתה גם הבעלים וגם העובד בכל אחת מהן</li>
-          <li>איך עובדים עם הרבה תיקים במקביל, ומנהלים אותם בלי לאבד שליטה על הסיכון</li>
-          <li>איך משתמשים ביומן המסחר כמו שצריך: מה רושמים, ומה בודקים בו בסוף כל שבוע</li>
-          <li>איך מנהלים את העסק כך שיהיה יציב ושיטתי, ויום מסחר ייראה אותו דבר גם כשהוא אדום</li>
+          <li>איך בונים תוכנית מסחר מסודרת שתעזור לכם להגיע ליציבות ולקביעות</li>
+          <li>ניהול סיכונים: כולם מדברים על ניהול סיכונים, אף אחד לא באמת מראה איך מנהלים את הסיכון בתוך העסקה, ברמה השבועית וברמה החודשית. בערב הזה נלמד לעשות את זה</li>
+          <li>סקייל: איך להרחיב את העסק ל-15 עד 20 תיקי פרופ או נוסטרו במקביל, ואיך לסחור בקופי טרייד כמו מקצוען</li>
+          <li>איך לתעד ולנתח את יומן המסחר שלכם כך שיעזור לכם להשתפר ולהתקדם, ולא סתם לשלם עליו ולא לעשות איתו כלום</li>
+          <li>העקרונות לבניית אסטרטגיה שמביאה עקביות ורווחיות</li>
         </ul>
       </div>
       <div class="plus" aria-hidden="true">+</div>
       <div class="s2">
-        <h3>לקחת את ההפסד ולהמשיך</h3><div class="who">תמיר דמרי · מאמן מנטלי לסוחרים</div>
+        <h3>להפוך למקצוען בצד המנטלי</h3><div class="who">תמיר דמרי · מאמן מנטלי לסוחרים</div>
         <ul>
-          <li>איך עוצרים את עצמך באמצע עסקה מפסידה, רגע לפני שאתה מזיז את הסטופ</li>
-          <li>למה את העסקה שתכננת לא לקחת, ואת זו שלקחת לא תכננת</li>
-          <li>איך אפשר לצדוק ברוב העסקאות, ועדיין לשרוף תיק</li>
-          <li>למה לפני עסקה גרועה תמיד תמצא בקבוצה מישהו שמסכים איתך</li>
+          <li>איך הופכים לאדם שמכבד את המילה של עצמו</li>
+          <li>איך מפסיקים להאשים את המשמעת ומתחילים לייצר עקביות בגרף</li>
+          <li>איך מקבלים הפסד בלי שהוא יהרוס לכם את המשך היום</li>
+          <li>איך לוקחים עסקאות בביטחון, בלי חששות מול הגרף, ומייצרים עקביות מתוך הביטחון באסטרטגיה שלכם</li>
         </ul>
       </div>
     </div>
@@ -750,7 +742,6 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       </figure>
       </div></div>
     </div>
-    <div class="seats" hidden><div class="seats-t">נשארו <b data-seats></b> מקומות מתוך 400</div><div class="seats-bar"><i></i></div><small data-seats-upd></small></div>
     <div class="tix">
       <div class="tix-item one">
         <div class="tix-main">
@@ -1077,16 +1068,6 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 (function(){
   var b=document.getElementById('showmore');
   if(b) b.addEventListener('click',function(){ document.querySelectorAll('[data-more]').forEach(function(f){f.hidden=false;}); b.parentNode.remove(); });
-  fetch('/seats.json',{cache:'no-store'}).then(function(r){return r.json();}).then(function(d){
-    if(!d || typeof d.remaining!=='number') return;
-    var r=Math.max(0,Math.min(400,d.remaining));
-    document.querySelectorAll('.seats').forEach(function(el){
-      el.querySelector('[data-seats]').textContent=r;
-      el.querySelector('.seats-bar i').style.width=((400-r)/400*100)+'%';
-      if(d.updated) el.querySelector('[data-seats-upd]').textContent='עודכן: '+d.updated;
-      el.hidden=false;
-    });
-  }).catch(function(){});
 })();
 </script>
 </body>
