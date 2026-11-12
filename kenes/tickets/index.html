@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>בחרו את סוג הכרטיס שלכם · המופע המשותף</title>
-<meta name="description" content="כרטיס יחיד 197₪ או כרטיס זוגי 297₪ למופע המשותף של מתן ותמיר, 16.11 בבית ציוני אמריקה.">
+<title>SOLD OUT · אזלו הכרטיסים · המופע המשותף</title>
+<meta name="description" content="אזלו כל הכרטיסים למופע המשותף של מתן ותמיר, 16.11 בבית ציוני אמריקה.">
 <link rel="canonical" href="https://matanmashiah.com/kenes/tickets">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,7 +54,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
   .btn{ display:inline-flex; align-items:center; justify-content:center; flex:1 1 auto; gap:10px; padding:14px 16px; border-radius:14px; font-weight:900; font-size:17px; line-height:1.25; text-align:center; background:var(--yellow); color:var(--bg); box-shadow:4px 4px 0 var(--bg); outline:2px solid var(--bg); white-space:normal; }
   .btn:hover{ transform:translate(-2px,-2px); }
   .sale-closed .btn[data-buy]{ display:none !important; }
-  .sale-note{ display:block; width:100%; margin-top:0; padding:12px 14px; border-radius:14px; border:2px dashed var(--yellow); color:var(--yellow); font-weight:900; font-size:16px; line-height:1.35; background:rgba(20,0,46,.55); text-align:center; }
+  .sale-note{ display:block; width:100%; margin-top:14px; padding:12px 14px; border-radius:14px; border:2px dashed var(--yellow); color:var(--yellow); font-weight:900; font-size:16px; line-height:1.35; background:#14002E; text-align:center; cursor:default; pointer-events:none; }
   .tix-foot{ margin-top:18px; color:var(--soft); font-size:14px; font-weight:700; }
   .salebar{ position:sticky; top:0; z-index:40; background:linear-gradient(90deg,var(--yellow),var(--pink)); color:var(--bg); text-align:center; font-weight:900; font-size:15px; line-height:1.35; padding:8px 14px; }
   @media (max-width:420px){
@@ -76,9 +76,9 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
 <body>
 <main class="wrap">
   <a class="back" href="/kenes.html">→ לדף האירוע</a>
-  <h1>בחרו את סוג הכרטיס שלכם</h1>
-  <p class="lead">16.11 · בית ציוני אמריקה, תל אביב. אחרי הבחירה עוברים לתשלום מאובטח.</p>
-  <p class="last-call" style="margin:10px auto 0;text-align:center;font-weight:800;color:#FFE145">נשארו כרטיסים אחרונים · אנחנו לקראת סגירה</p>
+  <h1>הכרטיסים אזלו</h1>
+  <p class="lead">16.11 · בית ציוני אמריקה, תל אביב. אין יותר מקומות.</p>
+  <p class="last-call" role="status" style="margin:10px auto 0;text-align:center;font-weight:800;color:#FFE145">SOLD OUT · אזלו כל הכרטיסים לכנס</p>
   <div class="tix">
     <article class="tix-item one">
       <div class="tix-main">
@@ -87,7 +87,7 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       </div>
       <div class="tix-stub">
         <div class="pp"><div class="price">197<small>₪</small></div><div class="per">לאדם אחד</div></div>
-        <a class="btn" data-checkout="single" data-value="197" href="https://secure.cardcom.solutions/EA/EA5/nmb7An6dUiM2goDRF1Eg/Order">כרטיס יחיד ←</a>
+        <span class="sale-note" role="status">SOLD OUT</span>
       </div>
     </article>
     <article class="tix-item two">
@@ -98,36 +98,11 @@ src="https://www.facebook.com/tr?id=3092602027607133&ev=PageView&noscript=1"/></
       </div>
       <div class="tix-stub">
         <div class="pp"><div class="price">297<small>₪</small></div><div class="per">לשניים · 148.5₪ לאדם</div></div>
-        <a class="btn" data-checkout="couple" data-value="297" href="https://secure.cardcom.solutions/EA/EA5/Db7EEdAt5kuT0iBK5pxnZw/PaymentSP">כרטיס זוגי (חוסכים 97₪) ←</a>
+        <span class="sale-note" role="status">SOLD OUT</span>
       </div>
     </article>
   </div>
   <p class="tix-foot">באולם יש 400 מקומות. בסוף הערב נציג גם את התוכנית המלאה, למי שירצה. היא לא כלולה בכרטיס.</p>
 </main>
-<script>
-(function(){
-  // אותם קישורי קארדקום כמו ב-kenes.html. לשמור זהים.
-  var CARDCOM_SINGLE_URL = 'https://secure.cardcom.solutions/EA/EA5/nmb7An6dUiM2goDRF1Eg/Order';
-  var CARDCOM_COUPLE_URL = 'https://secure.cardcom.solutions/EA/EA5/Db7EEdAt5kuT0iBK5pxnZw/PaymentSP';
-  var CHECKOUT_URLS = {
-    single: /^https:\/\//.test(CARDCOM_SINGLE_URL) ? CARDCOM_SINGLE_URL : '',
-    couple: /^https:\/\//.test(CARDCOM_COUPLE_URL) ? CARDCOM_COUPLE_URL : ''
-  };
-  document.querySelectorAll('[data-checkout]').forEach(function(a){
-    var url = CHECKOUT_URLS[a.getAttribute('data-checkout')];
-    if (url) a.setAttribute('href', url);
-    a.addEventListener('click', function(e){
-      if (window.fbq) fbq('track', 'InitiateCheckout', {
-        value: Number(a.getAttribute('data-value')), currency: 'ILS',
-        content_name: 'המופע המשותף של מתן ותמיר · ' + (a.getAttribute('data-checkout') === 'couple' ? 'זוגי' : 'יחיד')
-      });
-      if (url && !(e.metaKey || e.ctrlKey || e.shiftKey)) {
-        e.preventDefault();
-        setTimeout(function(){ location.href = url; }, 250);
-      }
-    });
-  });
-})();
-</script>
 </body>
 </html>
