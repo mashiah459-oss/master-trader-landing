@@ -54,6 +54,10 @@ h2{text-align:center;font-size:clamp(28px,5vw,38px);font-weight:800;line-height:
 .btn{display:flex;align-items:center;justify-content:center;margin-top:16px;background:linear-gradient(180deg,var(--gold-l),var(--gold));color:#14110a;font-weight:800;font-size:18px;padding:15px;border-radius:14px;box-shadow:0 0 0 1px rgba(255,255,255,.15) inset,0 10px 30px rgba(186,152,40,.35)}
 .btn.ghost{background:transparent;color:var(--gold-ll);box-shadow:0 0 0 1px rgba(217,184,71,.5) inset}
 .last{text-align:center;font-weight:800;color:var(--gold-ll);margin-top:10px}
+.t.is-sold{cursor:default}
+.t.is-sold:hover{transform:none;border-color:var(--line)}
+.t.feat.is-sold:hover{border-color:rgba(217,184,71,.5)}
+.sold-note{display:flex;align-items:center;justify-content:center;margin-top:16px;font-weight:800;font-size:18px;padding:15px;border-radius:14px;color:var(--gold-ll);border:2px dashed rgba(217,184,71,.75);background:rgba(186,152,40,.08);pointer-events:none;cursor:default}
 .note{margin-top:16px;font-size:13px;color:var(--tx4);text-align:center}
 @media(min-width:960px){.wrap{max-width:1080px;display:grid;grid-template-columns:1.05fr 1fr;column-gap:48px;padding-top:64px}.top{grid-column:1/-1}.heroimg{margin-top:0}.kicker{margin-top:0}}
 </style>
@@ -64,7 +68,7 @@ h2{text-align:center;font-size:clamp(28px,5vw,38px);font-weight:800;line-height:
 <span class="pill">מתן משיח × תמיר דמרי · <b>ערב חי אחד</b></span>
 <h1>כנס הסוחרים<span>הגדול</span></h1>
 <p class="sub">יום שני, 16.11 · בית ציוני אמריקה, תל אביב</p>
-<p class="last">נשארו כרטיסים אחרונים · אנחנו לקראת סגירה</p>
+<p class="last" role="status">SOLD OUT · אזלו כל הכרטיסים לכנס</p>
 </header>
 <section>
 <figure class="heroimg"><img src="/images/kenes-duo.jpg" alt="מתן משיח ותמיר דמרי"><figcaption><b>מתן ותמיר</b><span>על במה אחת</span></figcaption></figure>
@@ -73,18 +77,18 @@ h2{text-align:center;font-size:clamp(28px,5vw,38px);font-weight:800;line-height:
 <div class="fact"><small>איפה</small><b>בית ציוני אמריקה</b><span>דניאל פריש 1, תל אביב</span><a href="https://www.google.com/maps/search/?api=1&query=%D7%91%D7%99%D7%AA%20%D7%A6%D7%99%D7%95%D7%A0%D7%99%20%D7%90%D7%9E%D7%A8%D7%99%D7%A7%D7%94%20%D7%93%D7%A0%D7%99%D7%90%D7%9C%20%D7%A4%D7%A8%D7%99%D7%A9%201%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91" target="_blank" rel="noopener">פתח במפה</a></div>
 </div>
 <span class="kicker" style="margin-top:40px">כרטיסים</span>
-<h2>בחרו כרטיס</h2>
-<p class="last">נשארו כרטיסים אחרונים</p>
+<h2>הכרטיסים אזלו</h2>
+<p class="last" role="status">SOLD OUT · אזלו כל הכרטיסים לכנס</p>
 <div class="tickets">
-<a class="t" id="single" href="https://secure.cardcom.solutions/EA/EA5/nmb7An6dUiM2goDRF1Eg/Order" target="_blank" rel="noopener">
+<div class="t is-sold" id="single">
 <div class="row"><div><h3>כרטיס יחיד</h3><p>כניסה לאדם אחד</p></div><div class="price">197<small>₪</small></div></div>
-<span class="btn ghost">לרכישת כרטיס יחיד</span></a>
-<a class="t feat" id="couple" href="https://secure.cardcom.solutions/EA/EA5/Db7EEdAt5kuT0iBK5pxnZw/PaymentSP" target="_blank" rel="noopener">
+<span class="sold-note" role="status">SOLD OUT</span></div>
+<div class="t feat is-sold" id="couple">
 <span class="tag">חוסכים 97₪</span>
 <div class="row"><div><h3>כרטיס זוגי</h3><p>כניסה לשני אנשים</p></div><div class="price">297<small>₪</small></div></div>
-<span class="btn">לרכישת כרטיס זוגי</span></a>
+<span class="sold-note" role="status">SOLD OUT</span></div>
 </div>
-<p class="note">יש לכם קוד קופון? מזינים אותו בעמוד התשלום.</p>
+<p class="note">המכירה נסגרה. אין יותר מקומות.</p>
 </section>
 <section>
 <span class="kicker">לו״ז הערב</span>
