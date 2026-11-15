@@ -1,0 +1,13 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//MasterTrader//Sipur Hatzlacha//HE
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:sipur-hatzlacha-2026-12-10@matanmashiah.com
+DTSTAMP:20261115T120000Z
+DTSTART;VALUE=DATE:20261210
+DTEND;VALUE=DATE:20261211
+SUMMARY:סיפור הצלחה · מחזור דצמבר מתחיל
+DESCRIPTION:התוכנית של מתן משיח ותמיר דמרי. שאלות בוואטסאפ: 054-766-7172
+END:VEVENT
+END:VCALENDAR
