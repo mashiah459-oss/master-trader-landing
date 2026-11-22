@@ -9,7 +9,7 @@
  * לסגור מחזור:        status: 'closed'   → האריח של המוצר נעלם מדף המוצרים
  * לפתוח רשימת המתנה:  status: 'waitlist' → התגית הופכת ל״המועד הבא יפורסם״
  * לפתוח מכירה:        status: 'open'
- * לשנות מחיר:         price: 149         (המספר בשקלים, בלי סימן ₪)
+ * לשנות מחיר:         price: 197         (המספר בשקלים, בלי סימן ₪)
  * מחזור חדש:          לעדכן cycle, opens ואת רשימת dates
  *
  * ── חשוב ─────────────────────────────────────────────────────
@@ -24,7 +24,7 @@
     club: {
       name: 'מועדון הסוחר המתמיד',
       status: 'open',
-      price: 149,
+      price: 197,
       priceNote: 'לחודש',
       url: 'club.html',
       checkout: 'https://whop.com/master-trader-club/products/master-trader-club/',
